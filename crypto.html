@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Cryptocurrency Markets, Screener & Advanced BTC Chart — MarketPulse</title>
+  <meta name="description" content="Institutional live cryptocurrency quotes, real-time Bitcoin candlestick analysis, and multi-factor crypto screening.">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            mpnavy: {
+              950: '#060B14',
+              900: '#0B1220',
+              850: '#0F182B',
+              800: '#111C30',
+              700: '#162238',
+              600: '#1E2D4A',
+              500: '#2A3C60',
+            },
+            electric: {
+              400: '#60A5FA',
+              500: '#3B82F6',
+              600: '#2563EB',
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+            heading: ['Plus Jakarta Sans', 'system-ui', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Google Fonts & Custom CSS -->
+  <link rel="stylesheet" href="assets/css/style.css">
+
+  <!-- Immediate Theme Initializer -->
+  <script>
+    if (localStorage.getItem('marketpulse_theme') === 'light') {
+      document.documentElement.classList.remove('dark');
+    } else {
+      document.documentElement.classList.add('dark');
+    }
+  </script>
+</head>
+<body class="bg-[#F8FAFC] dark:bg-[#0B1220] text-slate-900 dark:text-slate-100 min-h-screen flex flex-col antialiased selection:bg-blue-600 selection:text-white transition-colors duration-200">
+
+  <!-- SHARED STICKY HEADER -->
+  <header class="sticky top-0 z-50 w-full header-blur">
+    <!-- Macro Market Bar -->
+    <div class="hidden lg:block border-b border-slate-200 dark:border-white/5 bg-slate-100/70 dark:bg-[#080E1A]/80 text-[11px] font-medium text-slate-600 dark:text-slate-400">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-1.5 flex items-center justify-between">
+        <div class="flex items-center gap-6 overflow-hidden">
+          <div class="flex items-center gap-2 font-semibold text-slate-800 dark:text-slate-200 shrink-0">
+            <span class="w-2 h-2 rounded-full bg-emerald-500 pulse-dot"></span>
+            <span>LIVE MARKETS</span>
+          </div>
+          <div class="flex items-center gap-3 xl:gap-4 overflow-hidden whitespace-nowrap">
+            <span>Crypto Cap: <strong class="text-slate-900 dark:text-white">$2.48T</strong> <span class="text-emerald-500 font-semibold">▲ +2.1%</span></span>
+            <span class="text-slate-300 dark:text-slate-700">|</span>
+            <span>24h Vol: <strong class="text-slate-900 dark:text-white">$94.2B</strong></span>
+            <span class="text-slate-300 dark:text-slate-700">|</span>
+            <span>BTC Dom: <strong class="text-slate-900 dark:text-white">57.8%</strong></span>
+            <span class="text-slate-300 dark:text-slate-700">|</span>
+            <span>ETH Gas: <strong class="text-slate-900 dark:text-white font-mono">14 Gwei</strong></span>
+          </div>
+        </div>
+        <div class="flex items-center gap-4 text-[11px] shrink-0">
+          <span class="text-slate-500 dark:text-slate-400">Institutional WebSocket Stream Connected</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Navigation Bar -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16 md:h-20 gap-3 xl:gap-4">
+        
+        <!-- Logo -->
+        <a href="index.html" class="flex items-center gap-2.5 group shrink-0">
+          <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-gradient-to-br from-blue-600 to-indigo-700 flex items-center justify-center shadow-md shadow-blue-500/20 group-hover:scale-105 transition-transform shrink-0">
+            <svg class="w-5 h-5 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 12h4l3-8 4 16 3-8h4"/>
+            </svg>
+          </div>
+          <div class="flex flex-col">
+            <span class="text-xl font-extrabold tracking-tight font-heading text-slate-900 dark:text-white leading-tight">
+              Market<span class="text-blue-600 dark:text-blue-500">Pulse</span>
+            </span>
+            <span class="text-[9px] font-bold tracking-widest uppercase text-slate-400 dark:text-slate-500 -mt-0.5">
+              Institutional Data
+            </span>
+          </div>
+        </a>
+
+        <!-- Desktop Navigation Items -->
+        <nav class="hidden lg:flex items-center gap-1 xl:gap-1.5" aria-label="Main Navigation">
+          <a href="index.html" class="h-9 px-2.5 xl:px-3 flex items-center rounded-lg text-xs xl:text-sm font-medium text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-slate-100 dark:hover:bg-slate-800/50 transition-colors whitespace-nowrap">
+            Home
+          </a>
+
+          <!-- Dropdown: News -->
+          <div class="relative dropdown-trigger group">
+            <button type="button" class="h-9 px-2.5 xl:px-3 flex items-center gap-1 rounded-lg text-xs xl:text-sm font-medium text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-slate-100 dark:hover:bg-slate-800/50 transition-colors whitespace-nowrap">
+              <span>News</span>
+              <svg class="w-3.5 h-3.5 text-slate-400 transition-transform duration-200 group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            </button>
+            <div class="dropdown-menu absolute left-0 w-64 pt-2 z-50">
+              <div class="p-2 rounded-xl bg-white dark:bg-[#111C30] border border-slate-200 dark:border-slate-800 shadow-xl">
+                <a href="news.html" class="block px-3 py-2 rounded-lg text-xs font-semibold text-slate-800 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-blue-500">
+                  All News
+                </a>
+                <a href="news.html?cat=crypto" class="block px-3 py-2 rounded-lg text-xs font-semibold text-slate-800 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-blue-500">
+                  Crypto News
+                </a>
+                <a href="news.html?cat=forex" class="block px-3 py-2 rounded-lg text-xs font-semibold text-slate-800 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-blue-500">
+                  Forex News
+                </a>
+                <a href="news.html?cat=commodities" class="block px-3 py-2 rounded-lg text-xs font-semibold text-slate-800 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-blue-500">
+                  Commodity News
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Active Crypto Tab -->
+          <a href="crypto.html" class="h-9 px-3 xl:px-3.5 flex items-center rounded-lg text-xs xl:text-sm font-semibold text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-950/40 whitespace-nowrap">
+            Crypto
+          </a>
+
+          <a href="news.html?cat=forex" class="h-9 px-2.5 xl:px-3 flex items-center rounded-lg text-xs xl:text-sm font-medium text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-slate-100 dark:hover:bg-slate-800/50 transition-colors whitespace-nowrap">
+            Forex
+          </a>
+
+          <!-- Dropdown: Commodities -->
+          <div class="relative dropdown-trigger group">
+            <button type="button" class="h-9 px-2.5 xl:px-3 flex items-center gap-1 rounded-lg text-xs xl:text-sm font-medium text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-slate-100 dark:hover:bg-slate-800/50 transition-colors whitespace-nowrap">
+              <span>Commodities</span>
+              <svg class="w-3.5 h-3.5 text-slate-400 transition-transform duration-200 group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            </button>
+            <div class="dropdown-menu absolute left-0 w-56 pt-2 z-50">
+              <div class="p-2 rounded-xl bg-white dark:bg-[#111C30] border border-slate-200 dark:border-slate-800 shadow-xl">
+                <a href="index.html#commodities-gold" class="flex items-center justify-between px-3 py-2 rounded-lg text-xs font-semibold text-slate-800 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-amber-500">
+                  <span>Gold (XAU/USD)</span>
+                  <span class="text-emerald-500 font-bold">▲ +0.85%</span>
+                </a>
+                <a href="index.html#commodities-oil" class="flex items-center justify-between px-3 py-2 rounded-lg text-xs font-semibold text-slate-800 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-emerald-500">
+                  <span>Crude Oil (WTI)</span>
+                  <span class="text-emerald-500 font-bold">▲ +1.15%</span>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Dropdown: Exchanges & Brokers -->
+          <div class="relative dropdown-trigger group">
+            <button type="button" class="h-9 px-2.5 xl:px-3 flex items-center gap-1 rounded-lg text-xs xl:text-sm font-medium text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-slate-100 dark:hover:bg-slate-800/50 transition-colors whitespace-nowrap">
+              <span>Exchanges & Brokers</span>
+              <svg class="w-3.5 h-3.5 text-slate-400 transition-transform duration-200 group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            </button>
+            <div class="dropdown-menu absolute left-0 w-64 pt-2 z-50">
+              <div class="p-2 rounded-xl bg-white dark:bg-[#111C30] border border-slate-200 dark:border-slate-800 shadow-xl">
+                <a href="index.html#brokers" class="block px-3 py-2 rounded-lg text-xs font-semibold text-slate-800 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-blue-500">
+                  Binance & Bybit Reviews
+                </a>
+                <a href="index.html#brokers" class="block px-3 py-2 rounded-lg text-xs font-semibold text-slate-800 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-blue-500">
+                  Exness & XM Group
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <a href="index.html#portfolio" class="h-9 px-3 flex items-center gap-1.5 rounded-lg text-xs xl:text-sm font-semibold text-blue-600 dark:text-blue-400 bg-blue-500/10 hover:bg-blue-500/20 transition-colors whitespace-nowrap">
+            <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z"/></svg>
+            Portfolio
+          </a>
+        </nav>
+
+        <!-- Right Utilities -->
+        <div class="flex items-center gap-2 sm:gap-2.5 shrink-0">
+          <button type="button" class="search-open-btn h-9 sm:h-10 px-3 flex items-center gap-2 rounded-xl text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white bg-slate-100 dark:bg-slate-800/70 border border-slate-200 dark:border-slate-700/60 transition-all" title="Search (Ctrl+K)">
+            <svg class="w-4 h-4 text-slate-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+            <span class="hidden md:inline text-xs text-slate-400">Search assets...</span>
+            <kbd class="hidden md:inline-flex items-center px-1.5 py-0.5 text-[10px] font-bold text-slate-400 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded shadow-sm">⌘K</kbd>
+          </button>
+
+          <button type="button" class="theme-toggle-btn w-9 h-9 sm:w-10 sm:h-10 flex items-center justify-center rounded-xl text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white bg-slate-100 dark:bg-slate-800/70 border border-slate-200 dark:border-slate-700/60 transition-all shrink-0" aria-label="Toggle dark/light theme">
+            <svg class="theme-icon-sun w-4 h-4 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+            <svg class="theme-icon-moon w-4 h-4 text-blue-400 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
+          </button>
+
+          <a href="index.html#newsletter" class="hidden sm:inline-flex items-center gap-1.5 h-9 sm:h-10 px-4 rounded-xl text-xs font-bold text-white bg-blue-600 hover:bg-blue-500 shadow-md transition-all shrink-0 whitespace-nowrap">
+            <span>Subscribe</span>
+          </a>
+
+          <button type="button" id="mobile-menu-toggle" class="lg:hidden w-9 h-9 sm:w-10 sm:h-10 flex items-center justify-center rounded-xl text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 border border-slate-200 dark:border-slate-700/60 shrink-0" aria-label="Open Mobile Menu">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"/></svg>
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN CRYPTO DASHBOARD CONTAINER -->
+  <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-10">
+
+    <!-- METRICS STRIP -->
+    <section class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-3 sm:gap-4">
+      <div class="mp-card p-3 sm:p-4">
+        <span class="text-[10px] text-slate-400 uppercase font-semibold">Total Market Cap</span>
+        <div class="text-base sm:text-lg font-bold font-mono text-slate-900 dark:text-white mt-0.5">$2.48 Trillion</div>
+        <span class="text-emerald-500 text-[11px] font-bold">▲ +2.14%</span>
+      </div>
+      <div class="mp-card p-3 sm:p-4">
+        <span class="text-[10px] text-slate-400 uppercase font-semibold">24h Global Volume</span>
+        <div class="text-base sm:text-lg font-bold font-mono text-slate-900 dark:text-white mt-0.5">$94.21 Billion</div>
+        <span class="text-slate-400 text-[11px] font-medium">Binance & Bybit</span>
+      </div>
+      <div class="mp-card p-3 sm:p-4">
+        <span class="text-[10px] text-slate-400 uppercase font-semibold">Bitcoin Dominance</span>
+        <div class="text-base sm:text-lg font-bold font-mono text-slate-900 dark:text-white mt-0.5">57.82%</div>
+        <span class="text-emerald-500 text-[11px] font-bold">▲ +0.3%</span>
+      </div>
+      <div class="mp-card p-3 sm:p-4">
+        <span class="text-[10px] text-slate-400 uppercase font-semibold">Ethereum Dominance</span>
+        <div class="text-base sm:text-lg font-bold font-mono text-slate-900 dark:text-white mt-0.5">17.10%</div>
+        <span class="text-rose-500 text-[11px] font-bold">▼ -0.1%</span>
+      </div>
+      <div class="mp-card p-3 sm:p-4">
+        <span class="text-[10px] text-slate-400 uppercase font-semibold">Ethereum Base Gas</span>
+        <div class="text-base sm:text-lg font-bold font-mono text-slate-900 dark:text-white mt-0.5">14 Gwei</div>
+        <span class="text-emerald-500 text-[11px] font-bold">Low Latency</span>
+      </div>
+      <div class="mp-card p-3 sm:p-4">
+        <span class="text-[10px] text-slate-400 uppercase font-semibold">Fear & Greed Index</span>
+        <div class="text-base sm:text-lg font-bold font-mono text-emerald-500 mt-0.5">74 / 100</div>
+        <span class="text-emerald-400 text-[11px] font-bold">Greed</span>
+      </div>
+    </section>
+
+    <!-- SECTION 1: TRADINGVIEW ADVANCED CHART (BTCUSD) -->
+    <section class="space-y-4" aria-labelledby="chart-heading">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+        <div>
+          <div class="flex items-center gap-2">
+            <span class="w-2 h-2 rounded-full bg-amber-500"></span>
+            <span class="text-xs font-bold uppercase tracking-wider text-amber-500">Flagship Asset Technicals</span>
+          </div>
+          <h1 id="chart-heading" class="text-xl sm:text-3xl font-extrabold tracking-tight font-heading text-slate-900 dark:text-white mt-1">
+            Bitcoin (BTC / USDT) Live Interactive Chart
+          </h1>
+        </div>
+        <div class="flex items-center gap-2 text-xs">
+          <span class="font-mono text-lg font-black text-slate-900 dark:text-white">$68,450.20</span>
+          <span class="badge-gain px-2 py-0.5 rounded text-xs font-bold">▲ +3.12%</span>
+        </div>
+      </div>
+
+      <!-- TradingView Advanced Chart Widget Container -->
+      <div class="mp-card overflow-hidden p-2 sm:p-4 bg-white dark:bg-[#111C30]" style="height: 540px;">
+        <!-- TradingView Widget BEGIN -->
+        <div class="tradingview-widget-container" style="height: 100%; width: 100%;">
+          <div class="tradingview-widget-container__widget" style="height: calc(100% - 32px); width: 100%;"></div>
+          <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js" async>
+          {
+            "autosize": true,
+            "symbol": "BINANCE:BTCUSDT",
+            "interval": "D",
+            "timezone": "Etc/UTC",
+            "theme": "dark",
+            "style": "1",
+            "locale": "en",
+            "enable_publishing": false,
+            "allow_symbol_change": true,
+            "calendar": false,
+            "support_host": "https://www.tradingview.com"
+          }
+          </script>
+        </div>
+        <!-- TradingView Widget END -->
+      </div>
+    </section>
+
+    <!-- SECTION 2: TRADINGVIEW CRYPTO COINS SCREENER / HEATMAP -->
+    <section class="space-y-4" aria-labelledby="screener-heading">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+        <div>
+          <div class="flex items-center gap-2">
+            <span class="w-2 h-2 rounded-full bg-blue-500"></span>
+            <span class="text-xs font-bold uppercase tracking-wider text-blue-600 dark:text-blue-400">Institutional Multi-Currency Matrix</span>
+          </div>
+          <h2 id="screener-heading" class="text-xl sm:text-2xl font-extrabold tracking-tight font-heading text-slate-900 dark:text-white mt-1">
+            Crypto Market Screener & Performance Heatmap
+          </h2>
+        </div>
+        <span class="text-xs text-slate-400">Filter across RSI, MACD, Volume & Valuation</span>
+      </div>
+
+      <!-- TradingView Screener Widget Container -->
+      <div class="mp-card overflow-hidden p-2 sm:p-4 bg-white dark:bg-[#111C30]" style="height: 500px;">
+        <!-- TradingView Widget BEGIN -->
+        <div class="tradingview-widget-container" style="height: 100%; width: 100%;">
+          <div class="tradingview-widget-container__widget" style="height: 100%; width: 100%;"></div>
+          <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-screener.js" async>
+          {
+            "width": "100%",
+            "height": 480,
+            "defaultColumn": "overview",
+            "screener_type": "crypto_mkt",
+            "displayCurrency": "USD",
+            "colorTheme": "dark",
+            "locale": "en"
+          }
+          </script>
+        </div>
+        <!-- TradingView Widget END -->
+      </div>
+    </section>
+
+    <!-- SECTION 3: EXTENDED TOP CRYPTOCURRENCIES TABLE (15 ROWS, SEARCH & FILTER PILLS) -->
+    <section class="space-y-4" aria-labelledby="extended-table-heading">
+      <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <div>
+          <div class="flex items-center gap-2">
+            <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+            <span class="text-xs font-bold uppercase tracking-wider text-emerald-600 dark:text-emerald-400">Comprehensive Valuations</span>
+          </div>
+          <h2 id="extended-table-heading" class="text-xl sm:text-2xl font-extrabold tracking-tight font-heading text-slate-900 dark:text-white mt-1">
+            Institutional Cryptocurrency Table
+          </h2>
+        </div>
+
+        <!-- Search & Filter Controls -->
+        <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
+          <!-- Live Search Input -->
+          <div class="relative">
+            <input type="text" id="crypto-table-search" placeholder="Filter by asset name or symbol..." class="w-full sm:w-64 px-3.5 py-2 pl-9 rounded-xl text-xs bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500">
+            <svg class="w-4 h-4 text-slate-400 absolute left-3 top-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+          </div>
+
+          <!-- Category Filter Pills -->
+          <div class="flex items-center gap-1.5 overflow-x-auto text-xs">
+            <button type="button" data-category="all" class="crypto-filter-pill active px-3 py-2 rounded-xl font-bold bg-blue-600 text-white shrink-0">
+              All Assets
+            </button>
+            <button type="button" data-category="l1" class="crypto-filter-pill px-3 py-2 rounded-xl font-medium bg-slate-100 dark:bg-slate-800/60 text-slate-600 dark:text-slate-400 hover:text-white shrink-0">
+              Layer 1
+            </button>
+            <button type="button" data-category="defi" class="crypto-filter-pill px-3 py-2 rounded-xl font-medium bg-slate-100 dark:bg-slate-800/60 text-slate-600 dark:text-slate-400 hover:text-white shrink-0">
+              DeFi
+            </button>
+            <button type="button" data-category="l2" class="crypto-filter-pill px-3 py-2 rounded-xl font-medium bg-slate-100 dark:bg-slate-800/60 text-slate-600 dark:text-slate-400 hover:text-white shrink-0">
+              Layer 2
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Extended Table Container -->
+      <div class="mp-card overflow-x-auto">
+        <table class="w-full text-left text-xs sm:text-sm">
+          <thead class="bg-slate-50 dark:bg-slate-900/60 text-[11px] font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 border-b border-slate-200 dark:border-white/5">
+            <tr>
+              <th scope="col" class="py-3.5 px-4 text-center w-12">#</th>
+              <th scope="col" class="py-3.5 px-4">Asset</th>
+              <th scope="col" class="py-3.5 px-4 text-right">Price (USD)</th>
+              <th scope="col" class="py-3.5 px-4 text-right">24h %</th>
+              <th scope="col" class="py-3.5 px-4 text-right hidden sm:table-cell">7d %</th>
+              <th scope="col" class="py-3.5 px-4 text-right hidden md:table-cell">24h Volume</th>
+              <th scope="col" class="py-3.5 px-4 text-right hidden lg:table-cell">Market Cap</th>
+              <th scope="col" class="py-3.5 px-4 text-center hidden xl:table-cell w-32">7d Sparkline</th>
+              <th scope="col" class="py-3.5 px-4 text-right w-24">Action</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-100 dark:divide-white/5 font-medium" id="crypto-table-body">
+            
+            <!-- Coin 1 -->
+            <tr class="crypto-table-row hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors" data-name="Bitcoin" data-symbol="BTC" data-category="l1">
+              <td class="py-3.5 px-4 text-center font-bold text-slate-400">1</td>
+              <td class="py-3.5 px-4">
+                <div class="flex items-center gap-2.5">
+                  <span class="w-7 h-7 rounded-full bg-amber-500/20 text-amber-500 flex items-center justify-center font-black text-xs shrink-0">₿</span>
+                  <div>
+                    <span class="font-bold text-slate-900 dark:text-white block leading-tight">Bitcoin</span>
+                    <span class="text-[10px] text-slate-400 font-bold uppercase">BTC • Layer 1</span>
+                  </div>
+                </div>
+              </td>
+              <td class="py-3.5 px-4 text-right font-mono font-bold text-slate-900 dark:text-white">$68,450.20</td>
+              <td class="py-3.5 px-4 text-right font-mono">
+                <span class="badge-gain px-1.5 py-0.5 rounded text-[11px] font-bold">▲ +3.12%</span>
+              </td>
+              <td class="py-3.5 px-4 text-right font-mono text-emerald-500 font-semibold hidden sm:table-cell">▲ +5.40%</td>
+              <td class="py-3.5 px-4 text-right font-mono text-slate-600 dark:text-slate-300 hidden md:table-cell">$38.45B</td>
+              <td class="py-3.5 px-4 text-right font-mono font-bold text-slate-900 dark:text-white hidden lg:table-cell">$1,351.2B</td>
+              <td class="py-3.5 px-4 text-center hidden xl:table-cell">
+                <svg class="w-24 h-6 mx-auto" viewBox="0 0 100 25" fill="none"><path d="M0,20 Q20,18 40,14 T70,8 T100,2" stroke="#10B981" stroke-width="2" stroke-linecap="round"/></svg>
+              </td>
+              <td class="py-3.5 px-4 text-right">
+                <a href="article.html" class="px-2.5 py-1 rounded text-xs font-semibold text-blue-500 bg-blue-50 dark:bg-blue-900/30 hover:bg-blue-100">Trade</a>
+              </td>
+            </tr>
+
+            <!-- Coin 2 -->
+            <tr class="crypto-table-row hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors" data-name="Ethereum" data-symbol="ETH" data-category="l1">
+              <td class="py-3.5 px-4 text-center font-bold text-slate-400">2</td>
+              <td class="py-3.5 px-4">
+                <div class="flex items-center gap-2.5">
+                  <span class="w-7 h-7 rounded-full bg-blue-500/20 text-blue-400 flex items-center justify-center font-black text-xs shrink-0">Ξ</span>
+                  <div>
+                    <span class="font-bold text-slate-900 dark:text-white block leading-tight">Ethereum</span>
+                    <span class="text-[10px] text-slate-400 font-bold uppercase">ETH • Layer 1</span>
+                  </div>
+                </div>
+              </td>
+              <td class="py-3.5 px-4 text-right font-mono font-bold text-slate-900 dark:text-white">$3,520.80</td>
+              <td class="py-3.5 px-4 text-right font-mono">
+                <span class="badge-gain px-1.5 py-0.5 rounded text-[11px] font-bold">▲ +2.45%</span>
+              </td>
+              <td class="py-3.5 px-4 text-right font-mono text-emerald-500 font-semibold hidden sm:table-cell">▲ +4.10%</td>
+              <td class="py-3.5 px-4 text-right font-mono text-slate-600 dark:text-slate-300 hidden md:table-cell">$18.92B</td>
+              <td class="py-3.5 px-4 text-right font-mono font-bold text-slate-900 dark:text-white hidden lg:table-cell">$423.8B</td>
+              <td class="py-3.5 px-4 text-center hidden xl:table-cell">
+                <svg class="w-24 h-6 mx-auto" viewBox="0 0 100 25" fill="none"><path d="M0,18 Q30,22 50,12 T80,10 T100,4" stroke="#10B981" stroke-width="2" stroke-linecap="round"/></svg>
+              </td>
+              <td class="py-3.5 px-4 text-right">
+                <a href="article.html" class="px-2.5 py-1 rounded text-xs font-semibold text-blue-500 bg-blue-50 dark:bg-blue-900/30 hover:bg-blue-100">Trade</a>
+              </td>
+            </tr>
+
+            <!-- Coin 3 -->
+            <tr class="crypto-table-row hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors" data-name="Solana" data-symbol="SOL" data-category="l1">
+              <td class="py-3.5 px-4 text-center font-bold text-slate-400">3</td>
+              <td class="py-3.5 px-4">
+                <div class="flex items-center gap-2.5">
+                  <span class="w-7 h-7 rounded-full bg-purple-500/20 text-purple-400 flex items-center justify-center font-black text-xs shrink-0">◎</span>
+                  <div>
+                    <span class="font-bold text-slate-900 dark:text-white block leading-tight">Solana</span>
+                    <span class="text-[10px] text-slate-400 font-bold uppercase">SOL • Layer 1</span>
+                  </div>
+                </div>
+              </td>
+              <td class="py-3.5 px-4 text-right font-mono font-bold text-slate-900 dark:text-white">$182.40</td>
+              <td class="py-3.5 px-4 text-right font-mono">
+                <span class="badge-gain px-1.5 py-0.5 rounded text-[11px] font-bold">▲ +6.80%</span>
+              </td>
+              <td class="py-3.5 px-4 text-right font-mono text-emerald-500 font-semibold hidden sm:table-cell">▲ +12.3%</td>
+              <td class="py-3.5 px-4 text-right font-mono text-slate-600 dark:text-slate-300 hidden md:table-cell">$5.84B</td>
+              <td class="py-3.5 px-4 text-right font-mono font-bold text-slate-900 dark:text-white hidden lg:table-cell">$85.6B</td>
+              <td class="py-3.5 px-4 text-center hidden xl:table-cell">
+                <svg class="w-24 h-6 mx-auto" viewBox="0 0 100 25" fill="none"><path d="M0,22 Q25,18 50,10 T80,4 T100,2" stroke="#10B981" stroke-width="2" stroke-linecap="round"/></svg>
+              </td>
+              <td class="py-3.5 px-4 text-right">
+                <a href="article.html" class="px-2.5 py-1 rounded text-xs font-semibold text-blue-500 bg-blue-50 dark:bg-blue-900/30 hover:bg-blue-100">Trade</a>
+              </td>
+            </tr>
+
+            <!-- Coin 4 -->
+            <tr class="crypto-table-row hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors" data-name="BNB" data-symbol="BNB" data-category="l1">
+              <td class="py-3.5 px-4 text-center font-bold text-slate-400">4</td>
+              <td class="py-3.5 px-4">
+                <div class="flex items-center gap-2.5">
+                  <span class="w-7 h-7 rounded-full bg-yellow-500/20 text-yellow-500 flex items-center justify-center font-black text-xs shrink-0">⬡</span>
+                  <div>
+                    <span class="font-bold text-slate-900 dark:text-white block leading-tight">BNB</span>
+                    <span class="text-[10px] text-slate-400 font-bold uppercase">BNB • Layer 1</span>
+                  </div>
+                </div>
+              </td>
+              <td class="py-3.5 px-4 text-right font-mono font-bold text-slate-900 dark:text-white">$590.15</td>
+              <td class="py-3.5 px-4 text-right font-mono">
+                <span class="badge-gain px-1.5 py-0.5 rounded text-[11px] font-bold">▲ +0.95%</span>
+              </td>
+              <td class="py-3.5 px-4 text-right font-mono text-emerald-500 font-semibold hidden sm:table-cell">▲ +1.80%</td>
+              <td class="py-3.5 px-4 text-right font-mono text-slate-600 dark:text-slate-300 hidden md:table-cell">$1.42B</td>
+              <td class="py-3.5 px-4 text-right font-mono font-bold text-slate-900 dark:text-white hidden lg:table-cell">$86.1B</td>
+              <td class="py-3.5 px-4 text-center hidden xl:table-cell">
+                <svg class="w-24 h-6 mx-auto" viewBox="0 0 100 25" fill="none"><path d="M0,14 Q30,16 60,12 T100,8" stroke="#10B981" stroke-width="2" stroke-linecap="round"/></svg>
+              </td>
+              <td class="py-3.5 px-4 text-right">
+                <a href="article.html" class="px-2.5 py-1 rounded text-xs font-semibold text-blue-500 bg-blue-50 dark:bg-blue-900/30 hover:bg-blue-100">Trade</a>
+              </td>
+            </tr>
+
+            <!-- Coin 5 -->
+            <tr class="crypto-table-row hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors" data-name="Ripple" data-symbol="XRP" data-category="l1">
+              <td class="py-3.5 px-4 text-center font-bold text-slate-400">5</td>
+              <td class="py-3.5 px-4">
+                <div class="flex items-center gap-2.5">
+                  <span class="w-7 h-7 rounded-full bg-slate-500/20 text-slate-400 flex items-center justify-center font-black text-xs shrink-0">✕</span>
+                  <div>
+                    <span class="font-bold text-slate-900 dark:text-white block leading-tight">Ripple</span>
+                    <span class="text-[10px] text-slate-400 font-bold uppercase">XRP • Payments</span>
+                  </div>
+                </div>
+              </td>
+              <td class="py-3.5 px-4 text-right font-mono font-bold text-slate-900 dark:text-white">$0.5840</td>
+              <td class="py-3.5 px-4 text-right font-mono">
+                <span class="badge-loss px-1.5 py-0.5 rounded text-[11px] font-bold">▼ -1.15%</span>
+              </td>
+              <td class="py-3.5 px-4 text-right font-mono text-rose-500 font-semibold hidden sm:table-cell">▼ -2.40%</td>
+              <td class="py-3.5 px-4 text-right font-mono text-slate-600 dark:text-slate-300 hidden md:table-cell">$1.18B</td>
+              <td class="py-3.5 px-4 text-right font-mono font-bold text-slate-900 dark:text-white hidden lg:table-cell">$33.2B</td>
+              <td class="py-3.5 px-4 text-center hidden xl:table-cell">
+                <svg class="w-24 h-6 mx-auto" viewBox="0 0 100 25" fill="none"><path d="M0,6 Q30,12 60,16 T100,20" stroke="#EF4444" stroke-width="2" stroke-linecap="round"/></svg>
+              </td>
+              <td class="py-3.5 px-4 text-right">
+                <a href="article.html" class="px-2.5 py-1 rounded text-xs font-semibold text-blue-500 bg-blue-50 dark:bg-blue-900/30 hover:bg-blue-100">Trade</a>
+              </td>
+            </tr>
+
+            <!-- Coin 6: SUI -->
+            <tr class="crypto-table-row hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors" data-name="Sui" data-symbol="SUI" data-category="l1">
+              <td class="py-3.5 px-4 text-center font-bold text-slate-400">6</td>
+              <td class="py-3.5 px-4">
+                <div class="flex items-center gap-2.5">
+                  <span class="w-7 h-7 rounded-full bg-cyan-500/20 text-cyan-400 flex items-center justify-center font-black text-xs shrink-0">💧</span>
+                  <div>
+                    <span class="font-bold text-slate-900 dark:text-white block leading-tight">Sui</span>
+                    <span class="text-[10px] text-slate-400 font-bold uppercase">SUI • Move L1</span>
+                  </div>
+                </div>
+              </td>
+              <td class="py-3.5 px-4 text-right font-mono font-bold text-slate-900 dark:text-white">$2.18</td>
+              <td class="py-3.5 px-4 text-right font-mono">
+                <span class="badge-gain px-1.5 py-0.5 rounded text-[11px] font-bold">▲ +8.45%</span>
+              </td>
+              <td class="py-3.5 px-4 text-right font-mono text-emerald-500 font-semibold hidden sm:table-cell">▲ +21.4%</td>
+              <td class="py-3.5 px-4 text-right font-mono text-slate-600 dark:text-slate-300 hidden md:table-cell">$980M</td>
+              <td class="py-3.5 px-4 text-right font-mono font-bold text-slate-900 dark:text-white hidden lg:table-cell">$6.2B</td>
+              <td class="py-3.5 px-4 text-center hidden xl:table-cell">
+                <svg class="w-24 h-6 mx-auto" viewBox="0 0 100 25" fill="none"><path d="M0,22 Q30,16 60,8 T100,2" stroke="#10B981" stroke-width="2" stroke-linecap="round"/></svg>
+              </td>
+              <td class="py-3.5 px-4 text-right">
+                <a href="article.html" class="px-2.5 py-1 rounded text-xs font-semibold text-blue-500 bg-blue-50 dark:bg-blue-900/30 hover:bg-blue-100">Trade</a>
+              </td>
+            </tr>
+
+            <!-- Coin 7: Chainlink (DeFi) -->
+            <tr class="crypto-table-row hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors" data-name="Chainlink" data-symbol="LINK" data-category="defi">
+              <td class="py-3.5 px-4 text-center font-bold text-slate-400">7</td>
+              <td class="py-3.5 px-4">
+                <div class="flex items-center gap-2.5">
+                  <span class="w-7 h-7 rounded-full bg-blue-600/20 text-blue-400 flex items-center justify-center font-black text-xs shrink-0">⬡</span>
+                  <div>
+                    <span class="font-bold text-slate-900 dark:text-white block leading-tight">Chainlink</span>
+                    <span class="text-[10px] text-slate-400 font-bold uppercase">LINK • Oracle / DeFi</span>
+                  </div>
+                </div>
+              </td>
+              <td class="py-3.5 px-4 text-right font-mono font-bold text-slate-900 dark:text-white">$14.30</td>
+              <td class="py-3.5 px-4 text-right font-mono">
+                <span class="badge-loss px-1.5 py-0.5 rounded text-[11px] font-bold">▼ -0.65%</span>
+              </td>
+              <td class="py-3.5 px-4 text-right font-mono text-emerald-500 font-semibold hidden sm:table-cell">▲ +3.20%</td>
+              <td class="py-3.5 px-4 text-right font-mono text-slate-600 dark:text-slate-300 hidden md:table-cell">$310M</td>
+              <td class="py-3.5 px-4 text-right font-mono font-bold text-slate-900 dark:text-white hidden lg:table-cell">$8.9B</td>
+              <td class="py-3.5 px-4 text-center hidden xl:table-cell">
+                <svg class="w-24 h-6 mx-auto" viewBox="0 0 100 25" fill="none"><path d="M0,10 Q30,14 60,16 T100,18" stroke="#EF4444" stroke-width="2" stroke-linecap="round"/></svg>
+              </td>
+              <td class="py-3.5 px-4 text-right">
+                <a href="article.html" class="px-2.5 py-1 rounded text-xs font-semibold text-blue-500 bg-blue-50 dark:bg-blue-900/30 hover:bg-blue-100">Trade</a>
+              </td>
+            </tr>
+
+            <!-- Coin 8: Uniswap (DeFi) -->
+            <tr class="crypto-table-row hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors" data-name="Uniswap" data-symbol="UNI" data-category="defi">
+              <td class="py-3.5 px-4 text-center font-bold text-slate-400">8</td>
+              <td class="py-3.5 px-4">
+                <div class="flex items-center gap-2.5">
+                  <span class="w-7 h-7 rounded-full bg-pink-500/20 text-pink-400 flex items-center justify-center font-black text-xs shrink-0">🦄</span>
+                  <div>
+                    <span class="font-bold text-slate-900 dark:text-white block leading-tight">Uniswap</span>
+                    <span class="text-[10px] text-slate-400 font-bold uppercase">UNI • DEX / DeFi</span>
+                  </div>
+                </div>
+              </td>
+              <td class="py-3.5 px-4 text-right font-mono font-bold text-slate-900 dark:text-white">$8.65</td>
+              <td class="py-3.5 px-4 text-right font-mono">
+                <span class="badge-gain px-1.5 py-0.5 rounded text-[11px] font-bold">▲ +3.40%</span>
+              </td>
+              <td class="py-3.5 px-4 text-right font-mono text-emerald-500 font-semibold hidden sm:table-cell">▲ +7.80%</td>
+              <td class="py-3.5 px-4 text-right font-mono text-slate-600 dark:text-slate-300 hidden md:table-cell">$240M</td>
+              <td class="py-3.5 px-4 text-right font-mono font-bold text-slate-900 dark:text-white hidden lg:table-cell">$5.2B</td>
+              <td class="py-3.5 px-4 text-center hidden xl:table-cell">
+                <svg class="w-24 h-6 mx-auto" viewBox="0 0 100 25" fill="none"><path d="M0,18 Q30,12 60,10 T100,4" stroke="#10B981" stroke-width="2" stroke-linecap="round"/></svg>
+              </td>
+              <td class="py-3.5 px-4 text-right">
+                <a href="article.html" class="px-2.5 py-1 rounded text-xs font-semibold text-blue-500 bg-blue-50 dark:bg-blue-900/30 hover:bg-blue-100">Trade</a>
+              </td>
+            </tr>
+
+            <!-- Coin 9: Polygon (L2) -->
+            <tr class="crypto-table-row hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors" data-name="Polygon" data-symbol="POL" data-category="l2">
+              <td class="py-3.5 px-4 text-center font-bold text-slate-400">9</td>
+              <td class="py-3.5 px-4">
+                <div class="flex items-center gap-2.5">
+                  <span class="w-7 h-7 rounded-full bg-purple-600/20 text-purple-400 flex items-center justify-center font-black text-xs shrink-0">⬡</span>
+                  <div>
+                    <span class="font-bold text-slate-900 dark:text-white block leading-tight">Polygon (POL)</span>
+                    <span class="text-[10px] text-slate-400 font-bold uppercase">POL • Layer 2</span>
+                  </div>
+                </div>
+              </td>
+              <td class="py-3.5 px-4 text-right font-mono font-bold text-slate-900 dark:text-white">$0.384</td>
+              <td class="py-3.5 px-4 text-right font-mono">
+                <span class="badge-gain px-1.5 py-0.5 rounded text-[11px] font-bold">▲ +1.15%</span>
+              </td>
+              <td class="py-3.5 px-4 text-right font-mono text-rose-500 font-semibold hidden sm:table-cell">▼ -1.80%</td>
+              <td class="py-3.5 px-4 text-right font-mono text-slate-600 dark:text-slate-300 hidden md:table-cell">$160M</td>
+              <td class="py-3.5 px-4 text-right font-mono font-bold text-slate-900 dark:text-white hidden lg:table-cell">$3.1B</td>
+              <td class="py-3.5 px-4 text-center hidden xl:table-cell">
+                <svg class="w-24 h-6 mx-auto" viewBox="0 0 100 25" fill="none"><path d="M0,15 Q30,12 60,16 T100,14" stroke="#10B981" stroke-width="2" stroke-linecap="round"/></svg>
+              </td>
+              <td class="py-3.5 px-4 text-right">
+                <a href="article.html" class="px-2.5 py-1 rounded text-xs font-semibold text-blue-500 bg-blue-50 dark:bg-blue-900/30 hover:bg-blue-100">Trade</a>
+              </td>
+            </tr>
+
+            <!-- Coin 10: Near Protocol (L1) -->
+            <tr class="crypto-table-row hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors" data-name="NEAR Protocol" data-symbol="NEAR" data-category="l1">
+              <td class="py-3.5 px-4 text-center font-bold text-slate-400">10</td>
+              <td class="py-3.5 px-4">
+                <div class="flex items-center gap-2.5">
+                  <span class="w-7 h-7 rounded-full bg-slate-400/20 text-slate-300 flex items-center justify-center font-black text-xs shrink-0">N</span>
+                  <div>
+                    <span class="font-bold text-slate-900 dark:text-white block leading-tight">NEAR Protocol</span>
+                    <span class="text-[10px] text-slate-400 font-bold uppercase">NEAR • AI & L1</span>
+                  </div>
+                </div>
+              </td>
+              <td class="py-3.5 px-4 text-right font-mono font-bold text-slate-900 dark:text-white">$4.92</td>
+              <td class="py-3.5 px-4 text-right font-mono">
+                <span class="badge-gain px-1.5 py-0.5 rounded text-[11px] font-bold">▲ +5.20%</span>
+              </td>
+              <td class="py-3.5 px-4 text-right font-mono text-emerald-500 font-semibold hidden sm:table-cell">▲ +9.40%</td>
+              <td class="py-3.5 px-4 text-right font-mono text-slate-600 dark:text-slate-300 hidden md:table-cell">$410M</td>
+              <td class="py-3.5 px-4 text-right font-mono font-bold text-slate-900 dark:text-white hidden lg:table-cell">$5.8B</td>
+              <td class="py-3.5 px-4 text-center hidden xl:table-cell">
+                <svg class="w-24 h-6 mx-auto" viewBox="0 0 100 25" fill="none"><path d="M0,20 Q30,16 60,10 T100,5" stroke="#10B981" stroke-width="2" stroke-linecap="round"/></svg>
+              </td>
+              <td class="py-3.5 px-4 text-right">
+                <a href="article.html" class="px-2.5 py-1 rounded text-xs font-semibold text-blue-500 bg-blue-50 dark:bg-blue-900/30 hover:bg-blue-100">Trade</a>
+              </td>
+            </tr>
+
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- SHARED FOOTER -->
+  <footer class="border-t border-slate-200 dark:border-white/5 bg-slate-100 dark:bg-[#070D18] text-slate-600 dark:text-slate-400 transition-colors mt-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div class="flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 gap-4">
+        <div>
+          <span class="font-bold text-slate-900 dark:text-white">MarketPulse Crypto Intelligence</span>
+          <span>• Trading involves risk. Content is for information only and not financial advice.</span>
+        </div>
+        <div>
+          © 2026 MarketPulse Inc. All rights reserved.
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- SHARED SEARCH MODAL & MOBILE MENU -->
+  <div id="search-modal" class="fixed inset-0 z-50 hidden flex items-start justify-center pt-16 sm:pt-24 px-4 modal-backdrop" role="dialog" aria-modal="true">
+    <div class="w-full max-w-2xl rounded-2xl bg-white dark:bg-[#111C30] border border-slate-200 dark:border-slate-700 shadow-2xl overflow-hidden">
+      <div class="p-4 border-b border-slate-200 dark:border-slate-800 flex items-center gap-3">
+        <svg class="w-5 h-5 text-slate-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+        <input type="text" id="search-input" placeholder="Search markets, tickers (BTC, USD/PKR, Gold), or news..." class="w-full bg-transparent text-sm sm:text-base text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none">
+        <button type="button" id="search-modal-close" class="p-1 rounded-lg text-slate-400 hover:text-slate-200">
+          <kbd class="text-[10px] uppercase font-bold px-1.5 py-0.5 rounded bg-slate-200 dark:bg-slate-800">ESC</kbd>
+        </button>
+      </div>
+      <div id="search-results" class="p-3 max-h-80 overflow-y-auto divide-y divide-slate-100 dark:divide-slate-800/40"></div>
+    </div>
+  </div>
+
+  <div id="mobile-menu-backdrop" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden lg:hidden"></div>
+  <div id="mobile-menu-drawer" class="fixed top-0 right-0 bottom-0 z-50 w-full max-w-xs sm:max-w-sm bg-white dark:bg-[#0B1220] border-l border-slate-200 dark:border-white/10 shadow-2xl p-6 overflow-y-auto transform translate-x-full transition-transform duration-300 ease-in-out lg:hidden flex flex-col justify-between">
+    <div>
+      <div class="flex items-center justify-between pb-4 border-b border-slate-100 dark:border-white/10">
+        <a href="index.html" class="flex items-center gap-2">
+          <div class="w-8 h-8 rounded-lg bg-blue-600 flex items-center justify-center text-white font-bold">M</div>
+          <span class="text-lg font-extrabold font-heading text-slate-900 dark:text-white">Market<span class="text-blue-500">Pulse</span></span>
+        </a>
+        <button type="button" id="mobile-menu-close" class="p-2 rounded-lg text-slate-400 hover:text-slate-200">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+      </div>
+      <nav class="mt-6 space-y-1 text-sm font-semibold">
+        <a href="index.html" class="block px-3 py-2 rounded-xl text-slate-800 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800">Home</a>
+        <a href="news.html" class="block px-3 py-2 rounded-xl text-slate-800 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800">News</a>
+        <a href="crypto.html" class="block px-3 py-2 rounded-xl text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-950/40">Crypto</a>
+        <a href="news.html?cat=forex" class="block px-3 py-2 rounded-xl text-slate-800 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800">Forex</a>
+        <a href="article.html" class="block px-3 py-2 rounded-xl text-slate-800 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800">Sample Article</a>
+      </nav>
+    </div>
+    <div class="pt-6 border-t border-slate-100 dark:border-white/10">
+      <button type="button" class="theme-toggle-btn w-full flex items-center justify-center gap-2 py-2 px-3 rounded-xl bg-slate-100 dark:bg-slate-800 text-xs font-semibold">
+        Toggle Dark/Light Mode
+      </button>
+    </div>
+  </div>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
+
