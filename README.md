@@ -77,3 +77,4 @@ A clean, modern, institutional-grade front-end demo layout for a **Cryptocurrenc
 
 ## 📄 License
 Preview demo layout built for client approval. Content is for informational purposes only and does not constitute financial advice.
+
