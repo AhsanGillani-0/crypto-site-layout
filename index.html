@@ -1144,50 +1144,58 @@
 
       <!-- TradingView Market Overview Embed -->
       <div class="w-full h-[450px] rounded-2xl overflow-hidden bg-white dark:bg-slate-900">
-        <div class="tradingview-widget-container h-full w-full">
+        <div class="tradingview-widget-container h-full w-full" id="tv-market-overview-wrap">
           <div class="tradingview-widget-container__widget h-full w-full"></div>
-          <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-market-overview.js" async>
-          {
-            "colorTheme": "light",
-            "dateRange": "12M",
-            "showChart": true,
-            "locale": "en",
-            "largeChartUrl": "",
-            "isTransparent": true,
-            "showSymbolLogo": true,
-            "showFloatingTooltip": false,
-            "width": "100%",
-            "height": "100%",
-            "tabs": [
-              {
-                "title": "Commodities",
-                "symbols": [
-                  { "s": "TVC:GOLD", "d": "Spot Gold (XAU/USD)" },
-                  { "s": "TVC:SILVER", "d": "Spot Silver (XAG/USD)" },
-                  { "s": "TVC:USOIL", "d": "WTI Crude Oil" },
-                  { "s": "COMEX:HG1!", "d": "Copper Futures" }
+          <script type="text/javascript">
+            (function() {
+              const tvScript = document.createElement('script');
+              tvScript.type = 'text/javascript';
+              tvScript.src = 'https://s3.tradingview.com/external-embedding/embed-widget-market-overview.js';
+              tvScript.async = true;
+              tvScript.innerHTML = JSON.stringify({
+                "colorTheme": "light",
+                "dateRange": "12M",
+                "showChart": true,
+                "locale": "en",
+                "largeChartUrl": "",
+                "isTransparent": true,
+                "showSymbolLogo": true,
+                "showFloatingTooltip": false,
+                "width": "100%",
+                "height": "100%",
+                "tabs": [
+                  {
+                    "title": "Commodities",
+                    "symbols": [
+                      { "s": "TVC:GOLD", "d": "Spot Gold (XAU/USD)" },
+                      { "s": "TVC:SILVER", "d": "Spot Silver (XAG/USD)" },
+                      { "s": "TVC:USOIL", "d": "WTI Crude Oil" },
+                      { "s": "COMEX:HG1!", "d": "Copper Futures" }
+                    ]
+                  },
+                  {
+                    "title": "Crypto Assets",
+                    "symbols": [
+                      { "s": "BINANCE:BTCUSDT", "d": "Bitcoin / Tether" },
+                      { "s": "BINANCE:ETHUSDT", "d": "Ethereum / Tether" },
+                      { "s": "BINANCE:SOLUSDT", "d": "Solana / Tether" },
+                      { "s": "BINANCE:BNBUSDT", "d": "BNB / Tether" }
+                    ]
+                  },
+                  {
+                    "title": "Currencies",
+                    "symbols": [
+                      { "s": "FX_IDC:USDPKR", "d": "USD / PKR" },
+                      { "s": "FX:EURUSD", "d": "EUR / USD" },
+                      { "s": "FX:GBPUSD", "d": "GBP / USD" },
+                      { "s": "FX_IDC:SARPKR", "d": "SAR / PKR" }
+                    ]
+                  }
                 ]
-              },
-              {
-                "title": "Crypto Assets",
-                "symbols": [
-                  { "s": "BINANCE:BTCUSDT", "d": "Bitcoin / Tether" },
-                  { "s": "BINANCE:ETHUSDT", "d": "Ethereum / Tether" },
-                  { "s": "BINANCE:SOLUSDT", "d": "Solana / Tether" },
-                  { "s": "BINANCE:BNBUSDT", "d": "BNB / Tether" }
-                ]
-              },
-              {
-                "title": "Currencies",
-                "symbols": [
-                  { "s": "FX_IDC:USDPKR", "d": "USD / PKR" },
-                  { "s": "FX:EURUSD", "d": "EUR / USD" },
-                  { "s": "FX:GBPUSD", "d": "GBP / USD" },
-                  { "s": "FX_IDC:SARPKR", "d": "SAR / PKR" }
-                ]
-              }
-            ]
-          }
+              });
+              const wrap = document.getElementById('tv-market-overview-wrap');
+              if (wrap) wrap.appendChild(tvScript);
+            })();
           </script>
         </div>
       </div>
