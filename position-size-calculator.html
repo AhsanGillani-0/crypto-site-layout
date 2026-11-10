@@ -38,35 +38,162 @@
   <!-- STICKY HEADER -->
   <header class="header-glass sticky top-0 z-40 transition-all duration-200">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex items-center justify-between h-16">
-        <div class="flex items-center gap-6">
-          <a href="index.html" class="flex items-center gap-2.5">
-            <div class="w-9 h-9 rounded-xl bg-[#F5B700] text-[#0B1220] flex items-center justify-center font-black text-xl shadow-md">
-              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" /></svg>
+      <div class="flex items-center justify-between h-16 sm:h-20">
+        
+        <!-- Brand Logo & Navigation -->
+        <div class="flex items-center gap-8">
+          <a href="index.html" class="flex items-center gap-3 group">
+            <div class="w-10 h-10 rounded-2xl bg-[#F5B700] text-[#0B1220] flex items-center justify-center font-black text-xl shadow-sm group-hover:scale-105 transition-transform">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+              </svg>
             </div>
             <div>
-              <span class="font-heading font-extrabold text-xl text-slate-900 dark:text-white tracking-tight">Market<span class="text-amber-500">Pulse</span></span>
-              <span class="block text-[9px] font-semibold text-slate-500 tracking-wider uppercase -mt-1">Risk Calculator</span>
+              <span class="font-heading font-extrabold text-2xl text-slate-900 dark:text-white tracking-tight">Market<span class="text-amber-500">Pulse</span></span>
+              <span class="block text-[9px] font-bold text-slate-500 tracking-wider uppercase -mt-1">Risk Calculator</span>
             </div>
           </a>
 
+          <!-- Desktop Navigation with Zero-Glitch Dropdowns -->
           <nav class="hidden lg:flex items-center gap-1 text-sm font-semibold text-slate-700 dark:text-slate-300">
-            <a href="index.html" class="px-3 py-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition">Home</a>
-            <a href="markets.html" class="px-3 py-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition">Markets</a>
-            <a href="tools.html" class="px-3 py-2 rounded-lg text-amber-600 dark:text-amber-400 bg-amber-50 dark:bg-slate-800">Tools</a>
-            <a href="news.html" class="px-3 py-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition">News</a>
-            <a href="academy.html" class="px-3 py-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition">Academy</a>
+            <a href="index.html" class="px-3.5 py-2 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 transition">Home</a>
+            
+            <!-- News Dropdown (With Hover Bridge) -->
+            <div class="dropdown-group">
+              <button type="button" class="flex items-center gap-1 px-3 py-2 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+                <span>News</span>
+                <svg class="w-3.5 h-3.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+              </button>
+              <div class="dropdown-menu left-0 pt-2 w-52">
+                <div class="bg-white dark:bg-slate-900 rounded-2xl shadow-2xl border border-slate-200 dark:border-slate-800 p-2 space-y-1">
+                  <a href="news.html" class="block px-3 py-2 rounded-xl text-xs hover:bg-amber-50 dark:hover:bg-slate-800 font-medium transition">All News & Wire</a>
+                  <a href="news.html?cat=crypto" class="block px-3 py-2 rounded-xl text-xs hover:bg-amber-50 dark:hover:bg-slate-800 font-medium transition">Crypto Intelligence</a>
+                  <a href="news.html?cat=forex" class="block px-3 py-2 rounded-xl text-xs hover:bg-amber-50 dark:hover:bg-slate-800 font-medium transition">Forex & Interbank</a>
+                  <a href="news.html?cat=commodities" class="block px-3 py-2 rounded-xl text-xs hover:bg-amber-50 dark:hover:bg-slate-800 font-medium transition">Bullion & Commodities</a>
+                </div>
+              </div>
+            </div>
+
+            <a href="markets.html" class="px-3 py-2 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 transition">Markets</a>
+
+            <!-- Tools Mega-Menu (Active on this page) -->
+            <div class="dropdown-group">
+              <button type="button" class="flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-amber-600 dark:text-amber-400 bg-amber-50 dark:bg-slate-800 font-bold">
+                <span>Tools</span>
+                <span class="px-1.5 py-0.2 bg-amber-200 dark:bg-amber-900 text-amber-900 dark:text-amber-200 text-[10px] rounded-md font-bold">8</span>
+                <svg class="w-3.5 h-3.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+              </button>
+              <div class="dropdown-menu left-1/2 -translate-x-1/2 pt-2 w-[620px]">
+                <div class="bg-white dark:bg-slate-900 rounded-3xl shadow-2xl border border-slate-200 dark:border-slate-800 p-4 grid grid-cols-2 gap-2">
+                  <a href="dca-calculator.html" class="p-3 rounded-2xl hover:bg-slate-50 dark:hover:bg-slate-800 flex items-start gap-3 transition group/item">
+                    <div class="w-9 h-9 rounded-xl bg-blue-50 dark:bg-blue-950/60 text-blue-600 flex items-center justify-center font-bold text-base">📈</div>
+                    <div>
+                      <div class="font-bold text-xs text-slate-900 dark:text-white group-hover/item:text-amber-500 transition">DCA Calculator</div>
+                      <div class="text-[11px] text-slate-500">Historical Binance klines backtest</div>
+                    </div>
+                  </a>
+                  <a href="position-size-calculator.html" class="p-3 rounded-2xl bg-amber-50 dark:bg-slate-800 flex items-start gap-3 transition group/item">
+                    <div class="w-9 h-9 rounded-xl bg-emerald-100 dark:bg-emerald-900 text-emerald-700 flex items-center justify-center font-bold text-base">⚖️</div>
+                    <div>
+                      <div class="font-bold text-xs text-amber-600 dark:text-amber-400 transition">Position Size & Risk</div>
+                      <div class="text-[11px] text-slate-500">Stop-loss & Risk/Reward ratio</div>
+                    </div>
+                  </a>
+                  <a href="crypto-converter.html" class="p-3 rounded-2xl hover:bg-slate-50 dark:hover:bg-slate-800 flex items-start gap-3 transition group/item">
+                    <div class="w-9 h-9 rounded-xl bg-purple-50 dark:bg-purple-950/60 text-purple-600 flex items-center justify-center font-bold text-base">🔄</div>
+                    <div>
+                      <div class="font-bold text-xs text-slate-900 dark:text-white group-hover/item:text-amber-500 transition">Crypto Converter</div>
+                      <div class="text-[11px] text-slate-500">Live Coin &harr; USD &harr; PKR</div>
+                    </div>
+                  </a>
+                  <a href="gold-tola-calculator.html" class="p-3 rounded-2xl hover:bg-slate-50 dark:hover:bg-slate-800 flex items-start gap-3 transition group/item">
+                    <div class="w-9 h-9 rounded-xl bg-amber-50 dark:bg-amber-950/60 text-amber-600 flex items-center justify-center font-bold text-base">🪙</div>
+                    <div>
+                      <div class="font-bold text-xs text-slate-900 dark:text-white group-hover/item:text-amber-500 transition">Gold per Tola (PKR)</div>
+                      <div class="text-[11px] text-slate-500">PAXG & Spot bullion formula</div>
+                    </div>
+                  </a>
+                  <a href="profit-loss-calculator.html" class="p-3 rounded-2xl hover:bg-slate-50 dark:hover:bg-slate-800 flex items-start gap-3 transition group/item">
+                    <div class="w-9 h-9 rounded-xl bg-teal-50 dark:bg-teal-950/60 text-teal-600 flex items-center justify-center font-bold text-base">💵</div>
+                    <div>
+                      <div class="font-bold text-xs text-slate-900 dark:text-white group-hover/item:text-amber-500 transition">Profit / Loss Calculator</div>
+                      <div class="text-[11px] text-slate-500">Net profit and fee breakdown</div>
+                    </div>
+                  </a>
+                  <a href="fear-greed.html" class="p-3 rounded-2xl hover:bg-slate-50 dark:hover:bg-slate-800 flex items-start gap-3 transition group/item">
+                    <div class="w-9 h-9 rounded-xl bg-rose-50 dark:bg-rose-950/60 text-rose-600 flex items-center justify-center font-bold text-base">🌡️</div>
+                    <div>
+                      <div class="font-bold text-xs text-slate-900 dark:text-white group-hover/item:text-amber-500 transition">Fear & Greed Index</div>
+                      <div class="text-[11px] text-slate-500">Live gauge & 30-day sentiment</div>
+                    </div>
+                  </a>
+                  <a href="gainers-losers.html" class="p-3 rounded-2xl hover:bg-slate-50 dark:hover:bg-slate-800 flex items-start gap-3 transition group/item">
+                    <div class="w-9 h-9 rounded-xl bg-indigo-50 dark:bg-indigo-950/60 text-indigo-600 flex items-center justify-center font-bold text-base">🚀</div>
+                    <div>
+                      <div class="font-bold text-xs text-slate-900 dark:text-white group-hover/item:text-amber-500 transition">Gainers & Losers</div>
+                      <div class="text-[11px] text-slate-500">Volume > $5M USDT movers</div>
+                    </div>
+                  </a>
+                  <a href="heatmap.html" class="p-3 rounded-2xl hover:bg-slate-50 dark:hover:bg-slate-800 flex items-start gap-3 transition group/item">
+                    <div class="w-9 h-9 rounded-xl bg-sky-50 dark:bg-sky-950/60 text-sky-600 flex items-center justify-center font-bold text-base">🗺️</div>
+                    <div>
+                      <div class="font-bold text-xs text-slate-900 dark:text-white group-hover/item:text-amber-500 transition">Market Heatmap</div>
+                      <div class="text-[11px] text-slate-500">Top 100 coins volume tiles</div>
+                    </div>
+                  </a>
+                </div>
+                <div class="bg-slate-50 dark:bg-slate-800/80 px-5 py-2.5 border-t border-slate-200 dark:border-slate-700 rounded-b-3xl flex items-center justify-between text-xs text-slate-500">
+                  <span>Explore full suite of financial tools</span>
+                  <a href="tools.html" class="font-bold text-amber-600 dark:text-amber-400 hover:underline">Tools Hub &rarr;</a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Commodities Dropdown (With Hover Bridge) -->
+            <div class="dropdown-group">
+              <button type="button" class="flex items-center gap-1 px-3 py-2 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+                <span>Commodities</span>
+                <svg class="w-3.5 h-3.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+              </button>
+              <div class="dropdown-menu left-0 pt-2 w-48">
+                <div class="bg-white dark:bg-slate-900 rounded-2xl shadow-2xl border border-slate-200 dark:border-slate-800 p-2 space-y-1">
+                  <a href="index.html#commodities-strip" class="block px-3 py-2 rounded-xl text-xs hover:bg-amber-50 dark:hover:bg-slate-800 font-medium transition">Spot Gold (XAU)</a>
+                  <a href="index.html#commodities-strip" class="block px-3 py-2 rounded-xl text-xs hover:bg-amber-50 dark:hover:bg-slate-800 font-medium transition">Spot Silver (XAG)</a>
+                  <a href="index.html#commodities-strip" class="block px-3 py-2 rounded-xl text-xs hover:bg-amber-50 dark:hover:bg-slate-800 font-medium transition">WTI Crude Oil</a>
+                  <a href="index.html#commodities-strip" class="block px-3 py-2 rounded-xl text-xs hover:bg-amber-50 dark:hover:bg-slate-800 font-medium transition">Copper Futures</a>
+                </div>
+              </div>
+            </div>
+
+            <a href="exchanges-brokers.html" class="px-3 py-2 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 transition">Brokers</a>
+            <a href="academy.html" class="px-3 py-2 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 transition">Academy</a>
           </nav>
         </div>
 
+        <!-- Right Header Actions -->
         <div class="flex items-center gap-2.5">
+          <!-- Global Search Trigger (Cmd+K) -->
+          <button class="search-modal-trigger flex items-center gap-2 bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-500 dark:text-slate-400 px-3.5 py-2 rounded-xl text-xs font-medium transition">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+            <span class="hidden sm:inline">Search assets, tools...</span>
+            <kbd class="hidden md:inline text-[10px] bg-white dark:bg-slate-900 px-1.5 py-0.5 rounded border border-slate-300 dark:border-slate-700 shadow-xs font-mono font-bold">⌘K</kbd>
+          </button>
+
+          <!-- Currency Switcher USD / PKR -->
           <div class="flex items-center bg-slate-100 dark:bg-slate-800 p-0.5 rounded-xl border border-slate-200 dark:border-slate-700 text-xs font-semibold">
-            <button class="currency-toggle-btn px-2.5 py-1 rounded-lg" data-currency="USD">USD</button>
-            <button class="currency-toggle-btn px-2.5 py-1 rounded-lg" data-currency="PKR">PKR</button>
+            <button class="currency-toggle-btn px-2.5 py-1 rounded-lg transition" data-currency="USD">USD</button>
+            <button class="currency-toggle-btn px-2.5 py-1 rounded-lg transition" data-currency="PKR">PKR</button>
           </div>
-          <button class="theme-toggle-btn p-2 rounded-xl text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800">
+
+          <!-- Dark / Light Theme Toggle -->
+          <button class="theme-toggle-btn p-2 rounded-xl text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition" title="Toggle Light/Dark Theme">
             <svg class="theme-icon-moon w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
             <svg class="theme-icon-sun w-4 h-4 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+          </button>
+
+          <!-- Mobile Hamburger -->
+          <button id="mobile-menu-open" class="lg:hidden p-2 text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-xl">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
           </button>
         </div>
       </div>
@@ -76,7 +203,33 @@
   <!-- LIVE TICKER -->
   <div class="bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 text-xs py-1">
     <div class="ticker-container">
-      <div id="live-ticker-track" class="ticker-track"></div>
+      <div id="live-ticker-track" class="ticker-track">
+        <div class="inline-flex items-center gap-2 px-4 py-1.5 border-r border-slate-200 dark:border-slate-800 text-xs whitespace-nowrap"><span class="font-bold text-slate-900 dark:text-white">BTC</span><span class="font-mono text-slate-700 dark:text-slate-300 font-semibold" data-ticker-price="BTC">$89,450.20</span><span class="font-semibold text-emerald-600 dark:text-emerald-400 flex items-center gap-0.5" data-ticker-change="BTC"><span class="text-[9px]">▲</span><span>+3.42%</span></span></div>
+        <div class="inline-flex items-center gap-2 px-4 py-1.5 border-r border-slate-200 dark:border-slate-800 text-xs whitespace-nowrap"><span class="font-bold text-slate-900 dark:text-white">ETH</span><span class="font-mono text-slate-700 dark:text-slate-300 font-semibold" data-ticker-price="ETH">$3,380.50</span><span class="font-semibold text-emerald-600 dark:text-emerald-400 flex items-center gap-0.5" data-ticker-change="ETH"><span class="text-[9px]">▲</span><span>+2.15%</span></span></div>
+        <div class="inline-flex items-center gap-2 px-4 py-1.5 border-r border-slate-200 dark:border-slate-800 text-xs whitespace-nowrap"><span class="font-bold text-slate-900 dark:text-white">SOL</span><span class="font-mono text-slate-700 dark:text-slate-300 font-semibold" data-ticker-price="SOL">$214.80</span><span class="font-semibold text-emerald-600 dark:text-emerald-400 flex items-center gap-0.5" data-ticker-change="SOL"><span class="text-[9px]">▲</span><span>+5.60%</span></span></div>
+        <div class="inline-flex items-center gap-2 px-4 py-1.5 border-r border-slate-200 dark:border-slate-800 text-xs whitespace-nowrap"><span class="font-bold text-slate-900 dark:text-white">BNB</span><span class="font-mono text-slate-700 dark:text-slate-300 font-semibold" data-ticker-price="BNB">$635.40</span><span class="font-semibold text-emerald-600 dark:text-emerald-400 flex items-center gap-0.5" data-ticker-change="BNB"><span class="text-[9px]">▲</span><span>+1.12%</span></span></div>
+        <div class="inline-flex items-center gap-2 px-4 py-1.5 border-r border-slate-200 dark:border-slate-800 text-xs whitespace-nowrap"><span class="font-bold text-slate-900 dark:text-white">XRP</span><span class="font-mono text-slate-700 dark:text-slate-300 font-semibold" data-ticker-price="XRP">$1.48</span><span class="font-semibold text-rose-600 dark:text-rose-400 flex items-center gap-0.5" data-ticker-change="XRP"><span class="text-[9px]">▼</span><span>-0.65%</span></span></div>
+        <div class="inline-flex items-center gap-2 px-4 py-1.5 border-r border-slate-200 dark:border-slate-800 text-xs whitespace-nowrap"><span class="font-bold text-slate-900 dark:text-white">DOGE</span><span class="font-mono text-slate-700 dark:text-slate-300 font-semibold" data-ticker-price="DOGE">$0.3820</span><span class="font-semibold text-emerald-600 dark:text-emerald-400 flex items-center gap-0.5" data-ticker-change="DOGE"><span class="text-[9px]">▲</span><span>+8.94%</span></span></div>
+        <div class="inline-flex items-center gap-2 px-4 py-1.5 border-r border-slate-200 dark:border-slate-800 text-xs whitespace-nowrap"><span class="font-bold text-slate-900 dark:text-white">ADA</span><span class="font-mono text-slate-700 dark:text-slate-300 font-semibold" data-ticker-price="ADA">$0.5840</span><span class="font-semibold text-emerald-600 dark:text-emerald-400 flex items-center gap-0.5" data-ticker-change="ADA"><span class="text-[9px]">▲</span><span>+2.80%</span></span></div>
+        <div class="inline-flex items-center gap-2 px-4 py-1.5 border-r border-slate-200 dark:border-slate-800 text-xs whitespace-nowrap"><span class="font-bold text-slate-900 dark:text-white">AVAX</span><span class="font-mono text-slate-700 dark:text-slate-300 font-semibold" data-ticker-price="AVAX">$35.60</span><span class="font-semibold text-rose-600 dark:text-rose-400 flex items-center gap-0.5" data-ticker-change="AVAX"><span class="text-[9px]">▼</span><span>-2.10%</span></span></div>
+        <div class="inline-flex items-center gap-2 px-4 py-1.5 border-r border-slate-200 dark:border-slate-800 text-xs whitespace-nowrap"><span class="font-bold text-slate-900 dark:text-white">USD/PKR</span><span class="font-mono text-slate-700 dark:text-slate-300 font-semibold" data-ticker-price="USD/PKR">₨ 278.70</span><span class="font-semibold text-emerald-600 dark:text-emerald-400 flex items-center gap-0.5" data-ticker-change="USD/PKR"><span class="text-[9px]">▲</span><span>+0.12%</span></span></div>
+        <div class="inline-flex items-center gap-2 px-4 py-1.5 border-r border-slate-200 dark:border-slate-800 text-xs whitespace-nowrap"><span class="font-bold text-slate-900 dark:text-white">EUR/USD</span><span class="font-mono text-slate-700 dark:text-slate-300 font-semibold" data-ticker-price="EUR/USD">$1.0845</span><span class="font-semibold text-rose-600 dark:text-rose-400 flex items-center gap-0.5" data-ticker-change="EUR/USD"><span class="text-[9px]">▼</span><span>-0.08%</span></span></div>
+        <div class="inline-flex items-center gap-2 px-4 py-1.5 border-r border-slate-200 dark:border-slate-800 text-xs whitespace-nowrap"><span class="font-bold text-slate-900 dark:text-white">Spot Gold (PAXG)</span><span class="font-mono text-slate-700 dark:text-slate-300 font-semibold" data-ticker-price="Spot Gold (PAXG)">$2,685.50</span><span class="font-semibold text-emerald-600 dark:text-emerald-400 flex items-center gap-0.5" data-ticker-change="Spot Gold (PAXG)"><span class="text-[9px]">▲</span><span>+0.45%</span></span></div>
+        <div class="inline-flex items-center gap-2 px-4 py-1.5 border-r border-slate-200 dark:border-slate-800 text-xs whitespace-nowrap"><span class="font-bold text-slate-900 dark:text-white">Crude Oil</span><span class="font-mono text-slate-700 dark:text-slate-300 font-semibold" data-ticker-price="Crude Oil">$72.40</span><span class="font-semibold text-rose-600 dark:text-rose-400 flex items-center gap-0.5" data-ticker-change="Crude Oil"><span class="text-[9px]">▼</span><span>-0.85%</span></span></div>
+        <!-- Duplicate loop for smooth infinite marquee -->
+        <div class="inline-flex items-center gap-2 px-4 py-1.5 border-r border-slate-200 dark:border-slate-800 text-xs whitespace-nowrap"><span class="font-bold text-slate-900 dark:text-white">BTC</span><span class="font-mono text-slate-700 dark:text-slate-300 font-semibold" data-ticker-price="BTC">$89,450.20</span><span class="font-semibold text-emerald-600 dark:text-emerald-400 flex items-center gap-0.5" data-ticker-change="BTC"><span class="text-[9px]">▲</span><span>+3.42%</span></span></div>
+        <div class="inline-flex items-center gap-2 px-4 py-1.5 border-r border-slate-200 dark:border-slate-800 text-xs whitespace-nowrap"><span class="font-bold text-slate-900 dark:text-white">ETH</span><span class="font-mono text-slate-700 dark:text-slate-300 font-semibold" data-ticker-price="ETH">$3,380.50</span><span class="font-semibold text-emerald-600 dark:text-emerald-400 flex items-center gap-0.5" data-ticker-change="ETH"><span class="text-[9px]">▲</span><span>+2.15%</span></span></div>
+        <div class="inline-flex items-center gap-2 px-4 py-1.5 border-r border-slate-200 dark:border-slate-800 text-xs whitespace-nowrap"><span class="font-bold text-slate-900 dark:text-white">SOL</span><span class="font-mono text-slate-700 dark:text-slate-300 font-semibold" data-ticker-price="SOL">$214.80</span><span class="font-semibold text-emerald-600 dark:text-emerald-400 flex items-center gap-0.5" data-ticker-change="SOL"><span class="text-[9px]">▲</span><span>+5.60%</span></span></div>
+        <div class="inline-flex items-center gap-2 px-4 py-1.5 border-r border-slate-200 dark:border-slate-800 text-xs whitespace-nowrap"><span class="font-bold text-slate-900 dark:text-white">BNB</span><span class="font-mono text-slate-700 dark:text-slate-300 font-semibold" data-ticker-price="BNB">$635.40</span><span class="font-semibold text-emerald-600 dark:text-emerald-400 flex items-center gap-0.5" data-ticker-change="BNB"><span class="text-[9px]">▲</span><span>+1.12%</span></span></div>
+        <div class="inline-flex items-center gap-2 px-4 py-1.5 border-r border-slate-200 dark:border-slate-800 text-xs whitespace-nowrap"><span class="font-bold text-slate-900 dark:text-white">XRP</span><span class="font-mono text-slate-700 dark:text-slate-300 font-semibold" data-ticker-price="XRP">$1.48</span><span class="font-semibold text-rose-600 dark:text-rose-400 flex items-center gap-0.5" data-ticker-change="XRP"><span class="text-[9px]">▼</span><span>-0.65%</span></span></div>
+        <div class="inline-flex items-center gap-2 px-4 py-1.5 border-r border-slate-200 dark:border-slate-800 text-xs whitespace-nowrap"><span class="font-bold text-slate-900 dark:text-white">DOGE</span><span class="font-mono text-slate-700 dark:text-slate-300 font-semibold" data-ticker-price="DOGE">$0.3820</span><span class="font-semibold text-emerald-600 dark:text-emerald-400 flex items-center gap-0.5" data-ticker-change="DOGE"><span class="text-[9px]">▲</span><span>+8.94%</span></span></div>
+        <div class="inline-flex items-center gap-2 px-4 py-1.5 border-r border-slate-200 dark:border-slate-800 text-xs whitespace-nowrap"><span class="font-bold text-slate-900 dark:text-white">ADA</span><span class="font-mono text-slate-700 dark:text-slate-300 font-semibold" data-ticker-price="ADA">$0.5840</span><span class="font-semibold text-emerald-600 dark:text-emerald-400 flex items-center gap-0.5" data-ticker-change="ADA"><span class="text-[9px]">▲</span><span>+2.80%</span></span></div>
+        <div class="inline-flex items-center gap-2 px-4 py-1.5 border-r border-slate-200 dark:border-slate-800 text-xs whitespace-nowrap"><span class="font-bold text-slate-900 dark:text-white">AVAX</span><span class="font-mono text-slate-700 dark:text-slate-300 font-semibold" data-ticker-price="AVAX">$35.60</span><span class="font-semibold text-rose-600 dark:text-rose-400 flex items-center gap-0.5" data-ticker-change="AVAX"><span class="text-[9px]">▼</span><span>-2.10%</span></span></div>
+        <div class="inline-flex items-center gap-2 px-4 py-1.5 border-r border-slate-200 dark:border-slate-800 text-xs whitespace-nowrap"><span class="font-bold text-slate-900 dark:text-white">USD/PKR</span><span class="font-mono text-slate-700 dark:text-slate-300 font-semibold" data-ticker-price="USD/PKR">₨ 278.70</span><span class="font-semibold text-emerald-600 dark:text-emerald-400 flex items-center gap-0.5" data-ticker-change="USD/PKR"><span class="text-[9px]">▲</span><span>+0.12%</span></span></div>
+        <div class="inline-flex items-center gap-2 px-4 py-1.5 border-r border-slate-200 dark:border-slate-800 text-xs whitespace-nowrap"><span class="font-bold text-slate-900 dark:text-white">EUR/USD</span><span class="font-mono text-slate-700 dark:text-slate-300 font-semibold" data-ticker-price="EUR/USD">$1.0845</span><span class="font-semibold text-rose-600 dark:text-rose-400 flex items-center gap-0.5" data-ticker-change="EUR/USD"><span class="text-[9px]">▼</span><span>-0.08%</span></span></div>
+        <div class="inline-flex items-center gap-2 px-4 py-1.5 border-r border-slate-200 dark:border-slate-800 text-xs whitespace-nowrap"><span class="font-bold text-slate-900 dark:text-white">Spot Gold (PAXG)</span><span class="font-mono text-slate-700 dark:text-slate-300 font-semibold" data-ticker-price="Spot Gold (PAXG)">$2,685.50</span><span class="font-semibold text-emerald-600 dark:text-emerald-400 flex items-center gap-0.5" data-ticker-change="Spot Gold (PAXG)"><span class="text-[9px]">▲</span><span>+0.45%</span></span></div>
+        <div class="inline-flex items-center gap-2 px-4 py-1.5 border-r border-slate-200 dark:border-slate-800 text-xs whitespace-nowrap"><span class="font-bold text-slate-900 dark:text-white">Crude Oil</span><span class="font-mono text-slate-700 dark:text-slate-300 font-semibold" data-ticker-price="Crude Oil">$72.40</span><span class="font-semibold text-rose-600 dark:text-rose-400 flex items-center gap-0.5" data-ticker-change="Crude Oil"><span class="text-[9px]">▼</span><span>-0.85%</span></span></div>
+      </div>
     </div>
   </div>
 
@@ -329,6 +482,57 @@
       }
     });
   </script>
+
+  <!-- MOBILE DRAWER NAVIGATION -->
+  <div id="mobile-drawer-backdrop" class="fixed inset-0 bg-black/60 z-50 opacity-0 pointer-events-none transition-opacity duration-300"></div>
+  <div id="mobile-drawer" class="fixed right-0 top-0 bottom-0 w-[300px] bg-white dark:bg-slate-900 z-50 transform translate-x-full transition-transform duration-300 p-6 flex flex-col justify-between overflow-y-auto">
+    <div>
+      <div class="flex items-center justify-between pb-4 border-b border-slate-100 dark:border-slate-800 mb-6">
+        <div class="flex items-center gap-2">
+          <div class="w-8 h-8 rounded-xl bg-[#F5B700] text-[#0B1220] flex items-center justify-center font-bold text-sm">MP</div>
+          <span class="font-heading font-extrabold text-lg text-slate-900 dark:text-white">Market<span class="text-amber-500">Pulse</span></span>
+        </div>
+        <button id="mobile-menu-close" class="p-1.5 text-slate-400 hover:text-slate-700 dark:hover:text-white text-lg">&times;</button>
+      </div>
+
+      <nav class="space-y-1 text-sm font-bold text-slate-700 dark:text-slate-200">
+        <a href="index.html" class="block px-3 py-2 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800">Home</a>
+        <a href="news.html" class="block px-3 py-2 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800">News</a>
+        <a href="markets.html" class="block px-3 py-2 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800">Markets Directory</a>
+        <a href="tools.html" class="block px-3 py-2 rounded-xl bg-amber-50 dark:bg-slate-800 text-amber-600 dark:text-amber-400">Tools Suite (8)</a>
+        <a href="index.html#commodities-strip" class="block px-3 py-2 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800">Commodities</a>
+        <a href="exchanges-brokers.html" class="block px-3 py-2 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800">Exchanges & Brokers</a>
+        <a href="academy.html" class="block px-3 py-2 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800">Academy Guides</a>
+      </nav>
+    </div>
+
+    <div class="pt-6 border-t border-slate-100 dark:border-slate-800 space-y-3">
+      <div class="flex items-center justify-between text-xs font-semibold text-slate-500">
+        <span>Currency</span>
+        <div class="flex items-center bg-slate-100 dark:bg-slate-800 p-0.5 rounded-lg border border-slate-200 dark:border-slate-700 text-xs">
+          <button class="currency-toggle-btn px-2 py-0.5 rounded text-xs" data-currency="USD">USD</button>
+          <button class="currency-toggle-btn px-2 py-0.5 rounded text-xs" data-currency="PKR">PKR</button>
+        </div>
+      </div>
+      <div class="text-[10px] text-slate-400">
+        Trading involves risk &bull; Informational only
+      </div>
+    </div>
+  </div>
+
+  <!-- SEARCH MODAL (Cmd+K) -->
+  <div id="search-modal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-xs flex items-start justify-center pt-20 px-4 opacity-0 pointer-events-none transition-opacity duration-200">
+    <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl shadow-2xl max-w-xl w-full p-4 overflow-hidden transform scale-95 transition-transform duration-200" id="search-modal-box">
+      <div class="flex items-center gap-3 border-b border-slate-100 dark:border-slate-800 pb-3">
+        <svg class="w-5 h-5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+        <input type="text" id="search-input" placeholder="Search coins, tools, guides... (e.g. BTC, DCA, Gold)" class="w-full bg-transparent border-none text-slate-900 dark:text-white placeholder-slate-400 text-sm focus:outline-hidden font-medium">
+        <kbd class="text-[10px] bg-slate-100 dark:bg-slate-800 text-slate-500 px-2 py-1 rounded">ESC</kbd>
+      </div>
+      <div id="search-results" class="max-h-80 overflow-y-auto p-2 text-xs divide-y divide-slate-100 dark:divide-slate-800">
+        <!-- Results dynamically populated -->
+      </div>
+    </div>
+  </div>
 
 </body>
 </html>

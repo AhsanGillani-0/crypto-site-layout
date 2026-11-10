@@ -102,6 +102,60 @@
     }, { passive: true });
   }
 
+  // --- 3b. Nav Dropdown Controller (Zero-Glitch Grace Period + Click Toggle) ---
+  function initNavDropdowns() {
+    const groups = document.querySelectorAll('.dropdown-group');
+    if (!groups.length) return;
+
+    groups.forEach(group => {
+      let closeTimer = null;
+      const btn = group.querySelector('button');
+
+      group.addEventListener('mouseenter', () => {
+        if (closeTimer) clearTimeout(closeTimer);
+        groups.forEach(g => { if (g !== group) g.classList.remove('is-open'); });
+        group.classList.add('is-open');
+      });
+
+      group.addEventListener('mouseleave', () => {
+        closeTimer = setTimeout(() => {
+          group.classList.remove('is-open');
+        }, 220); // 220ms grace period so moving cursor never loses menu
+      });
+
+      if (btn) {
+        btn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          const isOpen = group.classList.contains('is-open');
+          groups.forEach(g => g.classList.remove('is-open'));
+          if (!isOpen) {
+            group.classList.add('is-open');
+          }
+        });
+      }
+    });
+
+    document.addEventListener('click', (e) => {
+      if (!e.target.closest('.dropdown-group')) {
+        groups.forEach(g => g.classList.remove('is-open'));
+      }
+    });
+  }
+
+  // --- 3c. Top-Tier Crypto Cursor Glow & Tilt ---
+  function initCardGlow() {
+    const cards = document.querySelectorAll('.crypto-card-glow, .mp-card-hover, .glass-float-card, .mp-card');
+    cards.forEach(card => {
+      card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        card.style.setProperty('--mouse-x', `${x}px`);
+        card.style.setProperty('--mouse-y', `${y}px`);
+      });
+    });
+  }
+
   // --- 4. Count-Up Numbers Animation (Motion #5) ---
   function initCountUpNumbers() {
     const countElements = document.querySelectorAll('[data-count-to]');
@@ -413,11 +467,52 @@
     }[tag] || tag));
   }
 
-  // --- 8. Live Marquee Ticker Tape ---
+  // --- 8. Live Marquee Ticker Tape (Immediate 0ms Display + Live Hydration) ---
+  const defaultTickerItems = [
+    { name: 'BTC', price: '$89,450.20', change: 3.42 },
+    { name: 'ETH', price: '$3,380.50', change: 2.15 },
+    { name: 'SOL', price: '$214.80', change: 5.60 },
+    { name: 'BNB', price: '$635.40', change: 1.12 },
+    { name: 'XRP', price: '$1.48', change: -0.65 },
+    { name: 'DOGE', price: '$0.3820', change: 8.94 },
+    { name: 'ADA', price: '$0.5840', change: 2.80 },
+    { name: 'AVAX', price: '$35.60', change: -2.10 },
+    { name: 'USD/PKR', price: '₨ 278.70', change: 0.12 },
+    { name: 'EUR/USD', price: '$1.0845', change: -0.08 },
+    { name: 'Spot Gold (PAXG)', price: '$2,685.50', change: 0.45 },
+    { name: 'Crude Oil', price: '$72.40', change: -0.85 }
+  ];
+
+  function buildTickerHTML(list) {
+    return list.map(item => {
+      const isUp = item.change >= 0;
+      const arrow = isUp ? '▲' : '▼';
+      const color = isUp ? 'text-emerald-600 dark:text-emerald-400' : 'text-rose-600 dark:text-rose-400';
+      return `
+        <div class="inline-flex items-center gap-2 px-4 py-1.5 border-r border-slate-200 dark:border-slate-800 text-xs whitespace-nowrap">
+          <span class="font-bold text-slate-900 dark:text-white">${item.name}</span>
+          <span class="font-mono text-slate-700 dark:text-slate-300 font-semibold" data-ticker-price="${item.name}">${item.price}</span>
+          <span class="font-semibold ${color} flex items-center gap-0.5" data-ticker-change="${item.name}">
+            <span class="text-[9px]">${arrow}</span>
+            <span>${isUp ? '+' : ''}${item.change.toFixed(2)}%</span>
+          </span>
+        </div>
+      `;
+    }).join('');
+  }
+
   async function initMarqueeTicker() {
     const track = document.getElementById('live-ticker-track');
-    if (!track || !window.MarketPulseAPI) return;
+    if (!track) return;
 
+    // STEP 1: Render instantly so ticker moves IMMEDIATELY on 0ms page load
+    if (!track.children.length || track.textContent.includes('Streaming') || track.textContent.includes('Loading')) {
+      track.innerHTML = buildTickerHTML(defaultTickerItems) + buildTickerHTML(defaultTickerItems);
+    }
+
+    if (!window.MarketPulseAPI) return;
+
+    // STEP 2: Asynchronously hydrate with live API data in background without interrupting marquee
     try {
       const [coinsRes, ratesRes] = await Promise.all([
         window.MarketPulseAPI.getLiveCoins(),
@@ -425,9 +520,9 @@
       ]);
 
       const coins = coinsRes.data.slice(0, 8);
-      const rates = ratesRes.rates;
+      const rates = ratesRes.rates || { pkr: 278.70, eur: 0.92 };
 
-      const items = [
+      const liveItems = [
         ...coins.map(c => ({
           name: c.code,
           price: window.MarketPulseAPI.formatPrice(c.price),
@@ -440,7 +535,7 @@
         },
         {
           name: 'EUR/USD',
-          price: '$' + (1 / rates.eur).toFixed(4),
+          price: '$' + (rates.eur ? (1 / rates.eur).toFixed(4) : '1.0845'),
           change: -0.08
         },
         {
@@ -455,27 +550,31 @@
         }
       ];
 
-      function buildHTML(list) {
-        return list.map(item => {
+      // Seamless in-place DOM hydration: updates figures directly so continuous CSS animation does NOT jump
+      let updatedCount = 0;
+      liveItems.forEach(item => {
+        const priceEls = track.querySelectorAll(`[data-ticker-price="${item.name}"]`);
+        const changeEls = track.querySelectorAll(`[data-ticker-change="${item.name}"]`);
+        if (priceEls.length) {
+          updatedCount++;
+          priceEls.forEach(el => { el.textContent = item.price; });
+        }
+        if (changeEls.length) {
           const isUp = item.change >= 0;
           const arrow = isUp ? '▲' : '▼';
-          const color = isUp ? 'text-emerald-600 dark:text-emerald-400' : 'text-rose-600 dark:text-rose-400';
-          return `
-            <div class="inline-flex items-center gap-2 px-4 py-1.5 border-r border-slate-200 dark:border-slate-800 text-xs whitespace-nowrap">
-              <span class="font-bold text-slate-900 dark:text-white">${item.name}</span>
-              <span class="font-mono text-slate-700 dark:text-slate-300 font-semibold">${item.price}</span>
-              <span class="font-semibold ${color} flex items-center gap-0.5">
-                <span class="text-[9px]">${arrow}</span>
-                <span>${isUp ? '+' : ''}${item.change.toFixed(2)}%</span>
-              </span>
-            </div>
-          `;
-        }).join('');
-      }
+          const colorClass = isUp ? 'text-emerald-600 dark:text-emerald-400' : 'text-rose-600 dark:text-rose-400';
+          changeEls.forEach(el => {
+            el.className = `font-semibold ${colorClass} flex items-center gap-0.5`;
+            el.innerHTML = `<span class="text-[9px]">${arrow}</span><span>${isUp ? '+' : ''}${item.change.toFixed(2)}%</span>`;
+          });
+        }
+      });
 
-      track.innerHTML = buildHTML(items) + buildHTML(items);
+      if (updatedCount === 0) {
+        track.innerHTML = buildTickerHTML(liveItems) + buildTickerHTML(liveItems);
+      }
     } catch (e) {
-      console.warn('Ticker hydration error:', e);
+      console.warn('Ticker live hydration error:', e);
     }
   }
 
@@ -551,6 +650,8 @@
     initTheme();
     initCurrencySwitcher();
     initStickyHeader();
+    initNavDropdowns();
+    initCardGlow();
     initCountUpNumbers();
     initMobileDrawer();
     initSearchModal();

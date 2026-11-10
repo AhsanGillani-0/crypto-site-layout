@@ -146,6 +146,95 @@ h1, h2, h3, h4, h5, h6, .font-heading {
   box-shadow: 0 8px 24px -4px rgba(11, 18, 32, 0.06);
 }
 
+/* Smooth Animated Dropdown Menus with Invisible Hover Bridge (No Disappearing Bug) */
+.dropdown-group {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-group button svg {
+  transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.dropdown-group:hover button svg,
+.dropdown-group:focus-within button svg,
+.dropdown-group.is-open button svg {
+  transform: rotate(180deg);
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(6px) scale(0.98);
+  transform-origin: top center;
+  transition: opacity 0.22s cubic-bezier(0.22, 1, 0.36, 1), 
+              transform 0.22s cubic-bezier(0.22, 1, 0.36, 1), 
+              visibility 0.22s;
+  pointer-events: none;
+  z-index: 60;
+}
+
+/* Invisible bridge so moving mouse from trigger to dropdown NEVER closes it */
+.dropdown-menu::before {
+  content: '';
+  position: absolute;
+  top: -14px;
+  left: 0;
+  right: 0;
+  height: 18px;
+}
+
+.dropdown-menu > div {
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow: 0 20px 45px -8px rgba(11, 18, 32, 0.14), 0 0 0 1px rgba(227, 234, 242, 0.85);
+}
+
+html.dark .dropdown-menu > div {
+  box-shadow: 0 20px 50px -8px rgba(0, 0, 0, 0.75), 0 0 0 1px rgba(30, 41, 59, 0.85);
+}
+
+.dropdown-group:hover .dropdown-menu,
+.dropdown-group:focus-within .dropdown-menu,
+.dropdown-group.is-open .dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0) scale(1);
+  pointer-events: auto;
+}
+
+/* Modern Top-Tier Crypto Glow & Interactive Hover */
+.crypto-card-glow {
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1), 
+              box-shadow 0.25s cubic-bezier(0.22, 1, 0.36, 1),
+              border-color 0.2s ease;
+}
+
+.crypto-card-glow::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(500px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(245, 183, 0, 0.12), transparent 45%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.crypto-card-glow:hover::after {
+  opacity: 1;
+}
+
+.crypto-card-glow:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 36px -6px rgba(11, 18, 32, 0.08), 0 0 24px -2px rgba(245, 183, 0, 0.18);
+  border-color: rgba(245, 183, 0, 0.6);
+}
+
 /* Reading Progress Bar */
 .reading-progress-bar {
   position: fixed;
