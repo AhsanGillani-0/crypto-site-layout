@@ -4,8 +4,8 @@
  */
 window.MARKETPULSE_CONFIG = {
   brand: {
-    name: 'MarketPulse',
-    tagline: 'Institutional Market Intelligence & Financial Data',
+    name: 'CryptoNews',
+    tagline: 'Leading Crypto Intelligence, Markets & Financial Data',
     version: '2.0.0',
     disclaimer: 'Trading involves risk. Content is for information only and not financial advice.'
   },

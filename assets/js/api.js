@@ -3,7 +3,7 @@
  * Handles in-memory caching, live API calls, fallback data, and currency conversions.
  */
 
-window.MarketPulseAPI = (function () {
+window.CryptoNewsAPI = window.MarketPulseAPI = (function () {
   const config = window.MARKETPULSE_CONFIG;
   const cache = {};
 
