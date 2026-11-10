@@ -8,6 +8,10 @@
 
   // --- 1. Theme Controller (Light Mode Default) ---
   function initTheme() {
+    // Clear old v1 dark cache if present to ensure clean Light theme default
+    if (localStorage.getItem('marketpulse_theme')) {
+      localStorage.removeItem('marketpulse_theme');
+    }
     const savedTheme = localStorage.getItem('mp_theme') || 'light';
     const html = document.documentElement;
 
