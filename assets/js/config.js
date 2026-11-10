@@ -11,6 +11,8 @@ window.MARKETPULSE_CONFIG = {
   },
 
   endpoints: {
+    bitunixFutures: 'https://fapi.bitunix.com/api/v1/futures/market/tickers',
+    bitunixProxy: 'https://api.allorigins.win/raw?url=https%3A%2F%2Ffapi.bitunix.com%2Fapi%2Fv1%2Ffutures%2Fmarket%2Ftickers',
     binance24h: 'https://data-api.binance.vision/api/v3/ticker/24hr',
     binanceKlines: 'https://data-api.binance.vision/api/v3/klines',
     currencyApi: 'https://cdn.jsdelivr.net/npm/@irfanokr/currency-api@latest/v1/currencies/usd.json',

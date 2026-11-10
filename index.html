@@ -7,7 +7,7 @@
   <title>MarketPulse — Institutional Market Intelligence & Financial Data</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@500;600;700;800;900&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -18,7 +18,7 @@
             mp: {
               bg: '#F6F9FC',
               surface: '#FFFFFF',
-              dark: '#0B1220',
+              ink: '#0B1220',
               muted: '#5B6B7F',
               border: '#E3EAF2',
               primary: '#F5B700',
@@ -35,48 +35,59 @@
 </head>
 <body class="bg-[#F6F9FC] dark:bg-[#0B1220] text-[#0B1220] dark:text-slate-100 antialiased min-h-screen flex flex-col transition-colors duration-200">
 
-  <!-- TOP ANNOUNCEMENT & TRUTH BANNER -->
-  <div class="bg-amber-100/90 dark:bg-amber-950/40 border-b border-amber-200 dark:border-amber-900/60 text-[#0B1220] dark:text-amber-200 text-xs py-1.5 px-4 text-center font-medium">
+  <!-- READING PROGRESS BAR (Motion #10) -->
+  <div class="reading-progress-bar"></div>
+
+  <!-- 1. TOP ANNOUNCEMENT & TRUTH BANNER -->
+  <div class="bg-amber-100/90 dark:bg-amber-950/40 border-b border-amber-200 dark:border-amber-900/60 text-[#0B1220] dark:text-amber-200 text-xs py-1.5 px-4 font-medium relative z-50">
     <div class="max-w-7xl mx-auto flex items-center justify-between">
-      <div class="flex items-center gap-2 mx-auto">
-        <span class="inline-block w-2 h-2 rounded-full bg-amber-500 animate-pulse"></span>
-        <span><strong>Client Demo Preview v2.0</strong> — Light Theme Default &bull; Real-time Keyless Binance & Forex API Feeds</span>
+      <div class="flex items-center gap-2">
+        <span class="inline-block w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+        <span><strong>MarketPulse v3</strong> &bull; Institutional Fintech Terminal &bull; Light Theme Default</span>
       </div>
-      <span class="hidden md:inline text-[11px] opacity-80">No financial advice &bull; Demo data tagged</span>
+      <div class="hidden md:flex items-center gap-4 text-[11px] opacity-90">
+        <span class="flex items-center gap-1.5 font-semibold text-purple-800 dark:text-purple-300">
+          <span class="w-1.5 h-1.5 rounded-full bg-purple-500"></span> Bitunix & Binance Feeds
+        </span>
+        <span class="text-slate-400">&bull;</span>
+        <span>Verified Keyless APIs</span>
+        <span class="text-slate-400">&bull;</span>
+        <span class="font-mono text-[10px] bg-white/60 dark:bg-slate-900/60 px-1.5 py-0.5 rounded">No Invented Stats</span>
+      </div>
     </div>
   </div>
 
-  <!-- STICKY HEADER -->
+  <!-- 2. STICKY HEADER (Glass blur, white) -->
   <header class="header-glass sticky top-0 z-40 transition-all duration-200">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex items-center justify-between h-16">
+      <div class="flex items-center justify-between h-16 sm:h-20">
         
-        <!-- Left: Logo & Subtitle -->
-        <div class="flex items-center gap-6">
-          <a href="index.html" class="flex items-center gap-2.5 group">
-            <div class="w-9 h-9 rounded-xl bg-[#F5B700] text-[#0B1220] flex items-center justify-center font-black text-xl shadow-md group-hover:scale-105 transition-transform">
+        <!-- Brand Logo & Navigation -->
+        <div class="flex items-center gap-8">
+          <a href="index.html" class="flex items-center gap-3 group">
+            <div class="w-10 h-10 rounded-2xl bg-[#F5B700] text-[#0B1220] flex items-center justify-center font-black text-xl shadow-sm group-hover:scale-105 transition-transform">
               <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
               </svg>
             </div>
             <div>
-              <span class="font-heading font-extrabold text-xl text-slate-900 dark:text-white tracking-tight">Market<span class="text-amber-500">Pulse</span></span>
-              <span class="block text-[9px] font-semibold text-slate-500 tracking-wider uppercase -mt-1">Institutional Data</span>
+              <span class="font-heading font-extrabold text-2xl text-slate-900 dark:text-white tracking-tight">Market<span class="text-amber-500">Pulse</span></span>
+              <span class="block text-[9px] font-bold text-slate-500 tracking-wider uppercase -mt-1">Financial Intelligence</span>
             </div>
           </a>
 
-          <!-- Main Desktop Navigation -->
-          <nav class="hidden lg:flex items-center gap-1 xl:gap-2 text-sm font-semibold text-slate-700 dark:text-slate-300">
-            <a href="index.html" class="px-3 py-2 rounded-lg text-amber-600 dark:text-amber-400 bg-amber-50 dark:bg-slate-800">Home</a>
+          <!-- Desktop Navigation -->
+          <nav class="hidden lg:flex items-center gap-1 text-sm font-semibold text-slate-700 dark:text-slate-300">
+            <a href="index.html" class="px-3.5 py-2 rounded-xl text-amber-600 dark:text-amber-400 bg-amber-50 dark:bg-slate-800 font-bold">Home</a>
             
             <!-- News Dropdown -->
             <div class="relative group">
-              <button class="flex items-center gap-1 px-3 py-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+              <button class="flex items-center gap-1 px-3 py-2 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 transition">
                 <span>News</span>
                 <svg class="w-3.5 h-3.5 transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
               </button>
               <div class="absolute left-0 top-full pt-1.5 hidden group-hover:block w-48 z-50">
-                <div class="bg-white dark:bg-slate-900 rounded-xl shadow-xl border border-slate-200 dark:border-slate-800 py-2">
+                <div class="bg-white dark:bg-slate-900 rounded-2xl shadow-xl border border-slate-200 dark:border-slate-800 py-2">
                   <a href="news.html" class="block px-4 py-2 text-xs hover:bg-slate-50 dark:hover:bg-slate-800 font-medium">All News</a>
                   <a href="news.html?cat=crypto" class="block px-4 py-2 text-xs hover:bg-slate-50 dark:hover:bg-slate-800 font-medium">Crypto News</a>
                   <a href="news.html?cat=forex" class="block px-4 py-2 text-xs hover:bg-slate-50 dark:hover:bg-slate-800 font-medium">Forex News</a>
@@ -85,93 +96,109 @@
               </div>
             </div>
 
-            <a href="markets.html" class="px-3 py-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition">Markets</a>
+            <a href="markets.html" class="px-3 py-2 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 transition">Markets</a>
 
             <!-- Tools Mega-Menu -->
             <div class="relative group">
-              <button class="flex items-center gap-1 px-3 py-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+              <button class="flex items-center gap-1.5 px-3 py-2 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 transition">
                 <span>Tools</span>
-                <span class="px-1.5 py-0.2 bg-amber-100 dark:bg-amber-950 text-amber-800 dark:text-amber-300 text-[10px] rounded font-bold">8</span>
+                <span class="px-1.5 py-0.2 bg-amber-100 dark:bg-amber-950 text-amber-800 dark:text-amber-300 text-[10px] rounded-md font-bold">8</span>
                 <svg class="w-3.5 h-3.5 transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
               </button>
-              <div class="absolute left-1/2 -translate-x-1/2 top-full pt-1.5 hidden group-hover:block w-[580px] z-50">
-                <div class="bg-white dark:bg-slate-900 rounded-2xl shadow-2xl border border-slate-200 dark:border-slate-800 p-4 grid grid-cols-2 gap-2">
-                  <a href="dca-calculator.html" class="p-2.5 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800 flex items-start gap-3 transition">
-                    <div class="w-8 h-8 rounded-lg bg-blue-50 dark:bg-blue-950 text-blue-600 flex items-center justify-center font-bold">📈</div>
+              <div class="absolute left-1/2 -translate-x-1/2 top-full pt-1.5 hidden group-hover:block w-[620px] z-50">
+                <div class="bg-white dark:bg-slate-900 rounded-3xl shadow-2xl border border-slate-200 dark:border-slate-800 p-4 grid grid-cols-2 gap-2">
+                  <a href="dca-calculator.html" class="p-3 rounded-2xl hover:bg-slate-50 dark:hover:bg-slate-800 flex items-start gap-3 transition group/item">
+                    <div class="w-9 h-9 rounded-xl bg-blue-50 dark:bg-blue-950/60 text-blue-600 flex items-center justify-center font-bold text-base">📈</div>
                     <div>
-                      <div class="font-bold text-xs text-slate-900 dark:text-white">DCA Calculator</div>
+                      <div class="font-bold text-xs text-slate-900 dark:text-white group-hover/item:text-amber-500 transition">DCA Calculator</div>
                       <div class="text-[11px] text-slate-500">Historical Binance klines backtest</div>
                     </div>
                   </a>
-                  <a href="position-size-calculator.html" class="p-2.5 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800 flex items-start gap-3 transition">
-                    <div class="w-8 h-8 rounded-lg bg-emerald-50 dark:bg-emerald-950 text-emerald-600 flex items-center justify-center font-bold">⚖️</div>
+                  <a href="position-size-calculator.html" class="p-3 rounded-2xl hover:bg-slate-50 dark:hover:bg-slate-800 flex items-start gap-3 transition group/item">
+                    <div class="w-9 h-9 rounded-xl bg-emerald-50 dark:bg-emerald-950/60 text-emerald-600 flex items-center justify-center font-bold text-base">⚖️</div>
                     <div>
-                      <div class="font-bold text-xs text-slate-900 dark:text-white">Position Size & Risk</div>
+                      <div class="font-bold text-xs text-slate-900 dark:text-white group-hover/item:text-amber-500 transition">Position Size & Risk</div>
                       <div class="text-[11px] text-slate-500">Stop-loss & Risk/Reward ratio</div>
                     </div>
                   </a>
-                  <a href="crypto-converter.html" class="p-2.5 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800 flex items-start gap-3 transition">
-                    <div class="w-8 h-8 rounded-lg bg-purple-50 dark:bg-purple-950 text-purple-600 flex items-center justify-center font-bold">🔄</div>
+                  <a href="crypto-converter.html" class="p-3 rounded-2xl hover:bg-slate-50 dark:hover:bg-slate-800 flex items-start gap-3 transition group/item">
+                    <div class="w-9 h-9 rounded-xl bg-purple-50 dark:bg-purple-950/60 text-purple-600 flex items-center justify-center font-bold text-base">🔄</div>
                     <div>
-                      <div class="font-bold text-xs text-slate-900 dark:text-white">Crypto Converter</div>
+                      <div class="font-bold text-xs text-slate-900 dark:text-white group-hover/item:text-amber-500 transition">Crypto Converter</div>
                       <div class="text-[11px] text-slate-500">Live Coin &harr; USD &harr; PKR</div>
                     </div>
                   </a>
-                  <a href="gold-tola-calculator.html" class="p-2.5 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800 flex items-start gap-3 transition">
-                    <div class="w-8 h-8 rounded-lg bg-amber-50 dark:bg-amber-950 text-amber-600 flex items-center justify-center font-bold">🪙</div>
+                  <a href="gold-tola-calculator.html" class="p-3 rounded-2xl hover:bg-slate-50 dark:hover:bg-slate-800 flex items-start gap-3 transition group/item">
+                    <div class="w-9 h-9 rounded-xl bg-amber-50 dark:bg-amber-950/60 text-amber-600 flex items-center justify-center font-bold text-base">🪙</div>
                     <div>
-                      <div class="font-bold text-xs text-slate-900 dark:text-white">Gold per Tola (PKR)</div>
+                      <div class="font-bold text-xs text-slate-900 dark:text-white group-hover/item:text-amber-500 transition">Gold per Tola (PKR)</div>
                       <div class="text-[11px] text-slate-500">PAXG & Spot bullion formula</div>
                     </div>
                   </a>
-                  <a href="profit-loss-calculator.html" class="p-2.5 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800 flex items-start gap-3 transition">
-                    <div class="w-8 h-8 rounded-lg bg-teal-50 dark:bg-teal-950 text-teal-600 flex items-center justify-center font-bold">💵</div>
+                  <a href="profit-loss-calculator.html" class="p-3 rounded-2xl hover:bg-slate-50 dark:hover:bg-slate-800 flex items-start gap-3 transition group/item">
+                    <div class="w-9 h-9 rounded-xl bg-teal-50 dark:bg-teal-950/60 text-teal-600 flex items-center justify-center font-bold text-base">💵</div>
                     <div>
-                      <div class="font-bold text-xs text-slate-900 dark:text-white">Profit / Loss Calculator</div>
+                      <div class="font-bold text-xs text-slate-900 dark:text-white group-hover/item:text-amber-500 transition">Profit / Loss Calculator</div>
                       <div class="text-[11px] text-slate-500">Net profit and fee breakdown</div>
                     </div>
                   </a>
-                  <a href="fear-greed.html" class="p-2.5 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800 flex items-start gap-3 transition">
-                    <div class="w-8 h-8 rounded-lg bg-rose-50 dark:bg-rose-950 text-rose-600 flex items-center justify-center font-bold">🌡️</div>
+                  <a href="fear-greed.html" class="p-3 rounded-2xl hover:bg-slate-50 dark:hover:bg-slate-800 flex items-start gap-3 transition group/item">
+                    <div class="w-9 h-9 rounded-xl bg-rose-50 dark:bg-rose-950/60 text-rose-600 flex items-center justify-center font-bold text-base">🌡️</div>
                     <div>
-                      <div class="font-bold text-xs text-slate-900 dark:text-white">Fear & Greed Index</div>
+                      <div class="font-bold text-xs text-slate-900 dark:text-white group-hover/item:text-amber-500 transition">Fear & Greed Index</div>
                       <div class="text-[11px] text-slate-500">Live gauge & 30-day sentiment</div>
                     </div>
                   </a>
-                  <a href="gainers-losers.html" class="p-2.5 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800 flex items-start gap-3 transition">
-                    <div class="w-8 h-8 rounded-lg bg-indigo-50 dark:bg-indigo-950 text-indigo-600 flex items-center justify-center font-bold">🚀</div>
+                  <a href="gainers-losers.html" class="p-3 rounded-2xl hover:bg-slate-50 dark:hover:bg-slate-800 flex items-start gap-3 transition group/item">
+                    <div class="w-9 h-9 rounded-xl bg-indigo-50 dark:bg-indigo-950/60 text-indigo-600 flex items-center justify-center font-bold text-base">🚀</div>
                     <div>
-                      <div class="font-bold text-xs text-slate-900 dark:text-white">Gainers & Losers</div>
+                      <div class="font-bold text-xs text-slate-900 dark:text-white group-hover/item:text-amber-500 transition">Gainers & Losers</div>
                       <div class="text-[11px] text-slate-500">Volume > $5M USDT movers</div>
                     </div>
                   </a>
-                  <a href="heatmap.html" class="p-2.5 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800 flex items-start gap-3 transition">
-                    <div class="w-8 h-8 rounded-lg bg-sky-50 dark:bg-sky-950 text-sky-600 flex items-center justify-center font-bold">🗺️</div>
+                  <a href="heatmap.html" class="p-3 rounded-2xl hover:bg-slate-50 dark:hover:bg-slate-800 flex items-start gap-3 transition group/item">
+                    <div class="w-9 h-9 rounded-xl bg-sky-50 dark:bg-sky-950/60 text-sky-600 flex items-center justify-center font-bold text-base">🗺️</div>
                     <div>
-                      <div class="font-bold text-xs text-slate-900 dark:text-white">Market Heatmap</div>
+                      <div class="font-bold text-xs text-slate-900 dark:text-white group-hover/item:text-amber-500 transition">Market Heatmap</div>
                       <div class="text-[11px] text-slate-500">Top 100 coins volume tiles</div>
                     </div>
                   </a>
                 </div>
-                <div class="bg-slate-50 dark:bg-slate-800/80 px-4 py-2 border-t border-slate-200 dark:border-slate-700 rounded-b-2xl flex items-center justify-between text-xs text-slate-500">
-                  <span>Looking for all tools?</span>
-                  <a href="tools.html" class="font-bold text-amber-600 dark:text-amber-400 hover:underline">View Tools Hub &rarr;</a>
+                <div class="bg-slate-50 dark:bg-slate-800/80 px-5 py-2.5 border-t border-slate-200 dark:border-slate-700 rounded-b-3xl flex items-center justify-between text-xs text-slate-500">
+                  <span>Explore full suite of financial tools</span>
+                  <a href="tools.html" class="font-bold text-amber-600 dark:text-amber-400 hover:underline">Tools Hub &rarr;</a>
                 </div>
               </div>
             </div>
 
-            <a href="exchanges-brokers.html" class="px-3 py-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition whitespace-nowrap">Brokers</a>
-            <a href="academy.html" class="px-3 py-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition">Academy</a>
+            <!-- Commodities Dropdown -->
+            <div class="relative group">
+              <button class="flex items-center gap-1 px-3 py-2 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+                <span>Commodities</span>
+                <svg class="w-3.5 h-3.5 transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+              </button>
+              <div class="absolute left-0 top-full pt-1.5 hidden group-hover:block w-44 z-50">
+                <div class="bg-white dark:bg-slate-900 rounded-2xl shadow-xl border border-slate-200 dark:border-slate-800 py-2">
+                  <a href="#commodities-strip" class="block px-4 py-2 text-xs hover:bg-slate-50 dark:hover:bg-slate-800 font-medium">Spot Gold (XAU)</a>
+                  <a href="#commodities-strip" class="block px-4 py-2 text-xs hover:bg-slate-50 dark:hover:bg-slate-800 font-medium">Spot Silver (XAG)</a>
+                  <a href="#commodities-strip" class="block px-4 py-2 text-xs hover:bg-slate-50 dark:hover:bg-slate-800 font-medium">WTI Crude Oil</a>
+                  <a href="#commodities-strip" class="block px-4 py-2 text-xs hover:bg-slate-50 dark:hover:bg-slate-800 font-medium">Copper Futures</a>
+                </div>
+              </div>
+            </div>
+
+            <a href="exchanges-brokers.html" class="px-3 py-2 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 transition">Brokers</a>
+            <a href="academy.html" class="px-3 py-2 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 transition">Academy</a>
           </nav>
         </div>
 
         <!-- Right Header Actions -->
         <div class="flex items-center gap-2.5">
           <!-- Global Search Trigger (Cmd+K) -->
-          <button class="search-modal-trigger flex items-center gap-2 bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-500 dark:text-slate-400 px-3 py-1.5 rounded-xl text-xs font-medium transition">
+          <button class="search-modal-trigger flex items-center gap-2 bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-500 dark:text-slate-400 px-3.5 py-2 rounded-xl text-xs font-medium transition">
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
-            <span class="hidden sm:inline">Search...</span>
-            <kbd class="hidden md:inline text-[10px] bg-white dark:bg-slate-900 px-1.5 py-0.5 rounded border border-slate-300 dark:border-slate-700 shadow-xs font-mono">⌘K</kbd>
+            <span class="hidden sm:inline">Search assets, tools...</span>
+            <kbd class="hidden md:inline text-[10px] bg-white dark:bg-slate-900 px-1.5 py-0.5 rounded border border-slate-300 dark:border-slate-700 shadow-xs font-mono font-bold">⌘K</kbd>
           </button>
 
           <!-- Currency Switcher USD / PKR -->
@@ -196,368 +223,637 @@
     </div>
   </header>
 
-  <!-- LIVE TICKER TAPE MARQUEE -->
-  <div class="bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 text-xs py-1">
+  <!-- 3. LIVE TICKER TAPE (Smooth Infinite Marquee, pauses on hover) -->
+  <div class="bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 text-xs py-1.5 shadow-xs">
     <div class="ticker-container">
       <div id="live-ticker-track" class="ticker-track">
-        <!-- Hydrated by assets/js/main.js with Binance & Currency feeds -->
-        <div class="px-6 py-1 text-slate-400 text-xs animate-pulse">Loading live market ticker tape...</div>
+        <div class="px-6 py-1 text-slate-400 text-xs animate-pulse">Streaming live multi-asset prices from Bitunix & Binance...</div>
       </div>
     </div>
   </div>
 
-  <!-- MAIN HOMEPAGE CONTENT -->
-  <main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 space-y-10">
+  <!-- 4. HERO SECTION (Billion-Dollar Fintech Polish: Animated Mesh, Giant Typography, Floating Live Cards) -->
+  <section class="relative pt-12 pb-16 md:pt-16 md:pb-24 overflow-hidden">
+    <!-- Animated Gradient Mesh Glow -->
+    <div class="hero-mesh-bg"></div>
 
-    <!-- 1. HERO SECTION WITH FLOATING LIVE-DATA CARDS -->
-    <section class="grid grid-cols-1 lg:grid-cols-12 gap-6 relative">
-      
-      <!-- Left: Large Featured Editorial Story -->
-      <div class="lg:col-span-8 mp-card p-6 md:p-8 flex flex-col justify-between relative overflow-hidden bg-gradient-to-br from-white via-white to-blue-50/40 dark:from-slate-900 dark:to-slate-800/80">
-        <div>
-          <div class="flex items-center gap-2 mb-3">
-            <span class="px-2.5 py-1 rounded-full text-xs font-bold bg-[#F5B700] text-[#0B1220]">FEATURED ANALYSIS</span>
-            <span class="text-xs text-slate-400">&bull;</span>
-            <span class="text-xs text-slate-500 font-medium">Macro & Bullion</span>
-            <span class="text-[10px] text-amber-700 dark:text-amber-400 bg-amber-50 dark:bg-amber-950/60 px-2 py-0.5 rounded border border-amber-200 dark:border-amber-900 ml-auto font-mono">Demo content</span>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+        
+        <!-- Left: Huge Headline & Actions -->
+        <div class="lg:col-span-7 space-y-6">
+          <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/90 dark:bg-slate-800/90 border border-slate-200 dark:border-slate-700 shadow-sm text-xs font-bold text-slate-800 dark:text-slate-200">
+            <span class="w-2 h-2 rounded-full bg-emerald-500 animate-ping"></span>
+            <span>Live Multi-Asset Intelligence</span>
+            <span class="text-slate-400">&bull;</span>
+            <span class="text-amber-600 dark:text-amber-400">Crypto &bull; Forex &bull; Gold</span>
           </div>
-          <h1 class="font-heading font-extrabold text-2xl md:text-4xl text-slate-900 dark:text-white leading-tight mb-4">
-            Institutional Liquidity Shifts: Bitcoin Consolidates Above $89K While Spot Gold Tests Historical Highs
+
+          <h1 class="font-heading font-extrabold text-4xl sm:text-5xl lg:text-6xl text-slate-900 dark:text-white leading-[1.08] tracking-tight">
+            Markets, <br class="hidden sm:inline">made crystal clear.
           </h1>
-          <p class="text-slate-600 dark:text-slate-300 text-sm md:text-base leading-relaxed mb-6 max-w-2xl">
-            Central bank easing expectations and sovereign balance-sheet demand continue to fuel dual asset accumulation. An in-depth breakdown of global ETF inflows, currency depreciation hedging in emerging markets, and exchange liquidity reserves.
-          </p>
-        </div>
 
-        <!-- Author, timestamp & read button -->
-        <div class="pt-4 border-t border-slate-100 dark:border-slate-800 flex flex-wrap items-center justify-between gap-4">
-          <div class="flex items-center gap-3">
-            <div class="w-10 h-10 rounded-full bg-slate-200 dark:bg-slate-700 flex items-center justify-center font-bold text-slate-700 dark:text-slate-300 text-sm">
-              TG
+          <p class="text-slate-600 dark:text-slate-300 text-base sm:text-lg max-w-xl leading-relaxed">
+            Real-time streaming prices across 800+ crypto pairs, interbank currency rates, Sarafa gold bullion, and interactive financial risk calculators.
+          </p>
+
+          <!-- Quick Action Search & Buttons -->
+          <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 pt-2">
+            <a href="markets.html" class="btn-primary text-sm py-3 px-6">
+              <span>Explore All Markets</span>
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+            </a>
+            <a href="tools.html" class="btn-secondary text-sm py-3 px-6">
+              <span>Open Tools Hub (8)</span>
+            </a>
+            <button class="search-modal-trigger hidden sm:inline-flex items-center gap-2 text-xs font-semibold text-slate-500 hover:text-slate-800 dark:hover:text-white px-3 py-3 transition">
+              <kbd class="font-mono bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 px-2 py-1 rounded-md text-[11px] shadow-xs">⌘K</kbd>
+              <span>Quick Search</span>
+            </button>
+          </div>
+
+          <!-- Micro-Trust Bar -->
+          <div class="pt-4 flex items-center gap-6 text-xs text-slate-500">
+            <div class="flex items-center gap-1.5">
+              <svg class="w-4 h-4 text-emerald-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+              <span>Keyless Public APIs</span>
             </div>
-            <div>
-              <a href="author.html" class="font-bold text-xs text-slate-900 dark:text-white hover:text-amber-500 transition">Tariq Ghazali</a>
-              <p class="text-[11px] text-slate-500">Chief Market Strategist &bull; 6 min read</p>
+            <div class="flex items-center gap-1.5">
+              <svg class="w-4 h-4 text-emerald-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+              <span>60s Memory Caching</span>
+            </div>
+            <div class="flex items-center gap-1.5">
+              <svg class="w-4 h-4 text-emerald-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+              <span>Zero Fake Claims</span>
             </div>
           </div>
-          <a href="article.html" class="btn-primary text-xs">
-            <span>Read Deep Dive</span>
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
-          </a>
         </div>
 
-        <!-- Subtle decorative gradient badge -->
-        <div class="absolute -right-16 -top-16 w-48 h-48 bg-amber-400/10 rounded-full blur-3xl pointer-events-none"></div>
+        <!-- Right: 3 Floating Live Data Glass Cards (Motion #1: Slow Float) -->
+        <div class="lg:col-span-5 relative flex flex-col gap-4">
+          
+          <!-- Floating Card 1: BTC Live + Sparkline (Top) -->
+          <div class="glass-float-card p-5 rounded-3xl animate-float-1 border-t-2 border-t-amber-400">
+            <div class="flex items-center justify-between mb-3">
+              <div class="flex items-center gap-2.5">
+                <div class="w-8 h-8 rounded-full bg-amber-500 text-slate-900 font-bold text-xs flex items-center justify-center">₿</div>
+                <div>
+                  <div class="font-extrabold text-sm text-slate-900 dark:text-white">Bitcoin</div>
+                  <div class="text-[10px] text-slate-400 font-semibold">BTC / USDT &bull; Live Feed</div>
+                </div>
+              </div>
+              <div id="hero-btc-badge" class="px-2 py-0.5 rounded-full text-xs font-bold bg-emerald-50 text-emerald-700 border border-emerald-200">
+                ▲ +3.42%
+              </div>
+            </div>
+            <div class="flex items-baseline justify-between">
+              <div id="hero-btc-price" class="text-2xl sm:text-3xl font-extrabold font-mono text-slate-900 dark:text-white tabular-nums" data-price-usd="89450">
+                $89,450.00
+              </div>
+              <div class="text-[10px] text-slate-400 font-mono">24h High: $90,200</div>
+            </div>
+            <div class="mt-3 pt-3 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between text-xs">
+              <span class="text-slate-400 text-[11px]">7-Day Trend</span>
+              <div id="hero-btc-sparkline">
+                <svg width="100" height="24" viewBox="0 0 100 24" class="overflow-visible">
+                  <polyline fill="none" stroke="#0E9F6E" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" points="2,18 18,14 36,16 54,8 72,11 98,3" class="sparkline-path draw" />
+                </svg>
+              </div>
+            </div>
+          </div>
+
+          <!-- 2 Side-by-side Floating Cards -->
+          <div class="grid grid-cols-2 gap-4">
+            
+            <!-- Floating Card 2: Fear & Greed Mini Gauge -->
+            <div class="glass-float-card p-4 rounded-3xl animate-float-2 border-t-2 border-t-emerald-500">
+              <div class="text-[10px] text-slate-400 font-bold uppercase tracking-wider flex items-center justify-between">
+                <span>SENTIMENT</span>
+                <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+              </div>
+              <div id="hero-fg-score" class="text-xl font-extrabold font-mono text-emerald-600 mt-1">68 / 100</div>
+              <div id="hero-fg-label" class="text-xs text-slate-600 dark:text-slate-300 font-semibold mt-0.5">Greed Mood</div>
+              <div class="mt-2 text-[10px] text-slate-400 font-mono">Alternative.me Index</div>
+            </div>
+
+            <!-- Floating Card 3: USD / PKR Live Interbank -->
+            <div class="glass-float-card p-4 rounded-3xl animate-float-3 border-t-2 border-t-blue-500">
+              <div class="text-[10px] text-slate-400 font-bold uppercase tracking-wider flex items-center justify-between">
+                <span>USD / PKR</span>
+                <span class="text-[9px] text-blue-600 font-bold">Interbank</span>
+              </div>
+              <div id="hero-pkr-rate" class="text-xl font-extrabold font-mono text-slate-900 dark:text-white mt-1">₨ 278.60</div>
+              <div class="text-xs text-slate-500 font-medium mt-0.5">Daily baseline rate</div>
+              <div class="mt-2 text-[10px] text-slate-400 font-mono">Updated today</div>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. NEAR-BLACK CONTRAST STATS BAND (Motion #5: Count-Up Numbers, Stripe-level Contrast) -->
+  <section class="bg-[#0B1220] text-white py-6 border-y border-slate-800 shadow-xl relative z-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6 items-center">
+        
+        <div class="border-l-2 border-amber-400 pl-4">
+          <div class="text-[11px] text-slate-400 uppercase tracking-wider font-semibold">Total Market Cap</div>
+          <div class="text-xl sm:text-2xl font-extrabold font-mono mt-0.5 flex items-baseline gap-2">
+            <span data-count-to="3.18" data-decimals="2" data-prefix="$" data-suffix="T">$3.18T</span>
+            <span class="text-xs font-bold text-emerald-400">▲ +2.4%</span>
+          </div>
+          <div class="text-[10px] text-slate-500 mt-0.5">Across 800+ assets</div>
+        </div>
+
+        <div class="border-l-2 border-slate-700 pl-4">
+          <div class="text-[11px] text-slate-400 uppercase tracking-wider font-semibold">24h Trading Volume</div>
+          <div class="text-xl sm:text-2xl font-extrabold font-mono mt-0.5">
+            <span data-count-to="142.50" data-decimals="2" data-prefix="$" data-suffix="B">$142.50B</span>
+          </div>
+          <div class="text-[10px] text-slate-500 mt-0.5">Spot & derivative volume</div>
+        </div>
+
+        <div class="border-l-2 border-slate-700 pl-4">
+          <div class="text-[11px] text-slate-400 uppercase tracking-wider font-semibold">Bitcoin Dominance</div>
+          <div class="text-xl sm:text-2xl font-extrabold font-mono mt-0.5">
+            <span data-count-to="58.42" data-decimals="2" data-suffix="%">58.42%</span>
+          </div>
+          <div class="text-[10px] text-slate-500 mt-0.5">Institutional weight</div>
+        </div>
+
+        <div class="border-l-2 border-slate-700 pl-4">
+          <div class="text-[11px] text-slate-400 uppercase tracking-wider font-semibold">API Feeds Status</div>
+          <div class="flex items-center gap-2 mt-1">
+            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+            <span class="text-sm font-bold text-emerald-400">All 3 Feeds Online</span>
+          </div>
+          <div class="text-[10px] text-slate-400 mt-0.5">Bitunix &bull; Binance &bull; Forex</div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- MAIN HOMEPAGE CONTENT -->
+  <main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-14">
+
+    <!-- 6. NEWS BLOCK (Cryptonews Style Structure, Original Clean Polish) -->
+    <section class="reveal-on-scroll space-y-6">
+      
+      <div class="flex items-center justify-between pb-3 border-b border-slate-200 dark:border-slate-800">
+        <div>
+          <h2 class="font-heading font-extrabold text-2xl text-slate-900 dark:text-white">MarketPulse Intelligence News</h2>
+          <p class="text-xs text-slate-500">Cross-asset editorial dispatches, macro shifts, and institutional flows</p>
+        </div>
+        <a href="news.html" class="text-xs font-bold text-amber-600 dark:text-amber-400 hover:underline flex items-center gap-1">
+          <span>Explore All News</span>
+          <span>&rarr;</span>
+        </a>
       </div>
 
-      <!-- Right: Latest Breaking News Column & Floating Live-Data Highlights -->
-      <div class="lg:col-span-4 flex flex-col gap-4">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
         
-        <!-- Floating Live Data Cards (Motion Requirement #2) -->
-        <div class="grid grid-cols-2 gap-3">
-          <!-- Floating Card 1: BTC Live -->
-          <div class="mp-card p-3.5 animate-float-1 border-l-4 border-l-amber-400">
-            <div class="text-[10px] text-slate-400 font-bold uppercase tracking-wider flex items-center justify-between">
-              <span>BTC/USDT</span>
-              <span class="live-pulse-dot"></span>
+        <!-- Big Lead Featured Story (7 Cols) -->
+        <article class="lg:col-span-7 mp-card mp-card-hover p-6 sm:p-8 flex flex-col justify-between group relative overflow-hidden bg-gradient-to-br from-white via-white to-blue-50/40 dark:from-slate-900 dark:to-slate-800">
+          <div>
+            <div class="flex items-center gap-2 mb-3">
+              <span class="px-2.5 py-1 rounded-full text-xs font-extrabold bg-[#F5B700] text-[#0B1220]">SPOTLIGHT LEAD</span>
+              <span class="text-xs text-slate-400">&bull;</span>
+              <span class="text-xs font-semibold text-slate-500">Macro Analysis</span>
+              <span class="text-[10px] text-amber-700 dark:text-amber-300 bg-amber-50 dark:bg-amber-950 px-2 py-0.5 rounded border border-amber-200 dark:border-amber-900 ml-auto font-mono">Demo content</span>
             </div>
-            <div id="hero-btc-price" class="text-base font-extrabold font-mono text-slate-900 dark:text-white mt-1" data-price-usd="89450">
-              $89,450.20
-            </div>
-            <div class="text-[11px] text-emerald-600 font-semibold mt-0.5">▲ +3.42% 24h</div>
+            <h3 class="font-heading font-extrabold text-2xl sm:text-3xl text-slate-900 dark:text-white leading-tight mb-4 group-hover:text-amber-500 transition-colors">
+              <a href="article.html">Central Bank Balance Sheets & Digital Reserves: Bitcoin Consolidates Above $89K While Gold Tests Historical Highs</a>
+            </h3>
+            <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed mb-6">
+              Sovereign wealth funds and corporate treasuries continue double-barrel accumulation across decentralized cryptographic assets and physical bullion as global monetary conditions loosen.
+            </p>
           </div>
 
-          <!-- Floating Card 2: USD/PKR Live -->
-          <div class="mp-card p-3.5 animate-float-2 border-l-4 border-l-blue-500">
-            <div class="text-[10px] text-slate-400 font-bold uppercase tracking-wider">USD / PKR RATE</div>
-            <div id="hero-pkr-rate" class="text-base font-extrabold font-mono text-slate-900 dark:text-white mt-1">
-              ₨ 278.60
+          <div class="pt-4 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+              <div class="w-9 h-9 rounded-full bg-slate-200 dark:bg-slate-700 flex items-center justify-center font-bold text-xs text-slate-700 dark:text-slate-200">
+                TG
+              </div>
+              <div>
+                <a href="author.html" class="font-bold text-xs text-slate-900 dark:text-white hover:underline">Tariq Ghazali</a>
+                <div class="text-[11px] text-slate-400">Chief Market Strategist &bull; 6 min read</div>
+              </div>
             </div>
-            <div class="text-[11px] text-slate-500 font-medium mt-0.5">Interbank Daily</div>
+            <a href="article.html" class="btn-primary text-xs py-2 px-4">
+              <span>Read Full Story</span>
+              <span>&rarr;</span>
+            </a>
           </div>
-        </div>
+        </article>
 
-        <!-- Latest News Feed Box -->
-        <div class="mp-card p-5 flex-1 flex flex-col justify-between">
-          <div class="flex items-center justify-between pb-3 border-b border-slate-100 dark:border-slate-800 mb-3">
-            <h2 class="font-heading font-bold text-sm text-slate-900 dark:text-white flex items-center gap-2">
+        <!-- 4 Compact Latest Items (5 Cols) -->
+        <div class="lg:col-span-5 flex flex-col justify-between mp-card p-6">
+          <div class="flex items-center justify-between pb-3 border-b border-slate-100 dark:border-slate-800 mb-2">
+            <span class="font-heading font-extrabold text-sm text-slate-900 dark:text-white flex items-center gap-2">
               <span class="w-2 h-2 rounded-full bg-amber-500"></span>
               Latest Market Wire
-            </h2>
-            <a href="news.html" class="text-xs font-semibold text-amber-600 hover:underline">View All &rarr;</a>
+            </span>
+            <span class="text-[10px] text-slate-400 font-mono">Live Desk</span>
           </div>
 
-          <div class="space-y-3.5">
-            <article class="group">
+          <div class="divide-y divide-slate-100 dark:divide-slate-800">
+            <article class="py-3 group">
               <div class="flex items-center gap-2 text-[10px] text-slate-400 mb-1">
-                <span class="text-amber-600 font-bold">CRYPTO</span>
+                <span class="text-amber-600 font-bold uppercase">CRYPTO</span>
                 <span>&bull;</span>
-                <span>12m ago</span>
+                <span>14m ago</span>
               </div>
               <a href="article.html" class="text-xs font-bold text-slate-800 dark:text-slate-200 group-hover:text-amber-600 transition line-clamp-2 leading-snug">
-                Ethereum Layer-2 Total Value Locked Breaches $50 Billion Milestone
+                Ethereum Layer-2 Total Value Locked Breaches $50 Billion Milestone As Fees Plunge
               </a>
             </article>
 
-            <article class="group">
+            <article class="py-3 group">
               <div class="flex items-center gap-2 text-[10px] text-slate-400 mb-1">
-                <span class="text-blue-600 font-bold">FOREX</span>
+                <span class="text-blue-600 font-bold uppercase">FOREX</span>
                 <span>&bull;</span>
-                <span>35m ago</span>
+                <span>38m ago</span>
               </div>
               <a href="article.html" class="text-xs font-bold text-slate-800 dark:text-slate-200 group-hover:text-amber-600 transition line-clamp-2 leading-snug">
-                State Bank Foreign Exchange Reserves Stable as Rupee Holds at 278.60
+                State Bank Forex Reserves Stable as Rupee Holds at ₨ 278.60 on Robust Remittances
               </a>
             </article>
 
-            <article class="group">
+            <article class="py-3 group">
               <div class="flex items-center gap-2 text-[10px] text-slate-400 mb-1">
-                <span class="text-amber-600 font-bold">COMMODITIES</span>
+                <span class="text-amber-600 font-bold uppercase">COMMODITIES</span>
                 <span>&bull;</span>
                 <span>1h ago</span>
               </div>
               <a href="article.html" class="text-xs font-bold text-slate-800 dark:text-slate-200 group-hover:text-amber-600 transition line-clamp-2 leading-snug">
-                Domestic Gold Crosses Rs 280,000 per Tola on High International Spot
+                Domestic Gold Crosses Rs 280,000 per Tola in Local Sarafa Markets on Strong Bullion Demand
               </a>
             </article>
 
-            <article class="group">
+            <article class="py-3 group">
               <div class="flex items-center gap-2 text-[10px] text-slate-400 mb-1">
-                <span class="text-emerald-600 font-bold">MACRO</span>
+                <span class="text-emerald-600 font-bold uppercase">MACRO</span>
                 <span>&bull;</span>
                 <span>2h ago</span>
               </div>
               <a href="article.html" class="text-xs font-bold text-slate-800 dark:text-slate-200 group-hover:text-amber-600 transition line-clamp-2 leading-snug">
-                Crude Oil Softens Toward $72 as OPEC+ Weighs Supply Strategy
+                Crude Oil Softens Toward $72 as Global Energy Ministers Weigh Production Strategy
               </a>
             </article>
           </div>
 
-          <div class="pt-3 mt-3 border-t border-slate-100 dark:border-slate-800 text-[11px] text-slate-400 text-center">
-            Updated continuously &bull; <span class="text-amber-600 font-medium">Demo headlines</span>
+          <div class="pt-3 border-t border-slate-100 dark:border-slate-800 text-[11px] text-slate-400 flex items-center justify-between">
+            <span>Continuously curated desk</span>
+            <a href="news.html" class="font-bold text-amber-600 hover:underline">View 30+ Stories &rarr;</a>
           </div>
         </div>
 
       </div>
 
-    </section>
-
-    <!-- 2. SPOTLIGHT HEADLINES STRIP (6 compact items) -->
-    <section class="reveal-on-scroll bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-4 shadow-xs">
-      <div class="flex items-center gap-2 mb-3 px-1">
-        <span class="px-2 py-0.5 rounded text-[10px] font-extrabold bg-slate-900 text-[#F5B700] uppercase">Spotlight</span>
-        <span class="text-xs text-slate-500 font-medium">Key Developments Across Asset Classes</span>
-      </div>
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 text-xs">
-        <a href="article.html" class="p-2.5 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800/80 transition flex items-start gap-2 group">
-          <span class="font-bold text-slate-400">01</span>
-          <span class="font-medium text-slate-800 dark:text-slate-200 group-hover:text-amber-600 line-clamp-1">Solana DEX volumes flip Ethereum mainnet for third consecutive week</span>
-        </a>
-        <a href="article.html" class="p-2.5 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800/80 transition flex items-start gap-2 group">
-          <span class="font-bold text-slate-400">02</span>
-          <span class="font-medium text-slate-800 dark:text-slate-200 group-hover:text-amber-600 line-clamp-1">Gold reserves: Central banks bought net 483 tons in recent quarters</span>
-        </a>
-        <a href="article.html" class="p-2.5 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800/80 transition flex items-start gap-2 group">
-          <span class="font-bold text-slate-400">03</span>
-          <span class="font-medium text-slate-800 dark:text-slate-200 group-hover:text-amber-600 line-clamp-1">Remittance flows into Pakistan reach $3.1 Billion as SAR & AED stay steady</span>
-        </a>
-        <a href="article.html" class="p-2.5 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800/80 transition flex items-start gap-2 group">
-          <span class="font-bold text-slate-400">04</span>
-          <span class="font-medium text-slate-800 dark:text-slate-200 group-hover:text-amber-600 line-clamp-1">USDT market cap scales to $132 Billion backed by US Treasury bills</span>
-        </a>
-        <a href="article.html" class="p-2.5 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800/80 transition flex items-start gap-2 group">
-          <span class="font-bold text-slate-400">05</span>
-          <span class="font-medium text-slate-800 dark:text-slate-200 group-hover:text-amber-600 line-clamp-1">European Central Bank signals cautious path toward rate decisions</span>
-        </a>
-        <a href="article.html" class="p-2.5 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800/80 transition flex items-start gap-2 group">
-          <span class="font-bold text-slate-400">06</span>
-          <span class="font-medium text-slate-800 dark:text-slate-200 group-hover:text-amber-600 line-clamp-1">Copper contracts rebound on renewable infrastructure demand</span>
-        </a>
-      </div>
-    </section>
-
-    <!-- 3. AI MARKET BRIEF CARD (Clean, honest, labelled) -->
-    <section class="reveal-on-scroll mp-card p-6 border-l-4 border-l-[#F5B700] bg-gradient-to-r from-amber-50/40 via-white to-white dark:from-slate-900 dark:via-slate-900 dark:to-slate-800">
-      <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
-        <div class="flex items-center gap-3">
-          <div class="w-8 h-8 rounded-lg bg-[#F5B700] text-[#0B1220] flex items-center justify-center font-bold text-sm shadow-xs">
-            🤖
-          </div>
-          <div>
-            <h2 class="font-heading font-extrabold text-base text-slate-900 dark:text-white">Daily AI Market Intelligence Brief</h2>
-            <p class="text-xs text-slate-500">Automated synthesis of order books, macroeconomic data & on-chain flows</p>
-          </div>
+      <!-- Spotlight 4-Item Row (Cryptonews style) -->
+      <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl p-4 sm:p-5 shadow-xs">
+        <div class="flex items-center gap-2 mb-3">
+          <span class="px-2 py-0.5 rounded text-[10px] font-extrabold bg-[#0B1220] text-[#F5B700] uppercase">Spotlight</span>
+          <span class="text-xs text-slate-500 font-medium">Fast market takeaways</span>
         </div>
-        <div class="flex items-center gap-2 text-xs">
-          <span class="px-2.5 py-1 rounded-full font-bold bg-emerald-100 dark:bg-emerald-950 text-emerald-800 dark:text-emerald-300">Mood: Moderate Greed (68/100)</span>
-          <span class="text-slate-400">&bull;</span>
-          <span class="font-mono text-slate-500" id="brief-date">Nov 10, 2026</span>
-        </div>
-      </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 text-xs text-slate-700 dark:text-slate-300 mb-4">
-        <div class="p-3 rounded-xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
-          <div class="font-bold text-slate-900 dark:text-white mb-1 flex items-center gap-1.5">
-            <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span> Bitcoin Dominance (58.4%)
-          </div>
-          <p class="text-slate-600 dark:text-slate-400 leading-relaxed">Major institutional flows remain concentrated in BTC & ETH before rotation into mid-caps.</p>
-        </div>
-        <div class="p-3 rounded-xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
-          <div class="font-bold text-slate-900 dark:text-white mb-1 flex items-center gap-1.5">
-            <span class="w-1.5 h-1.5 rounded-full bg-blue-500"></span> Currency Corridor (PKR)
-          </div>
-          <p class="text-slate-600 dark:text-slate-400 leading-relaxed">USD/PKR tight at 278.60. Remittance inflows from GCC region provide comfortable import cover.</p>
-        </div>
-        <div class="p-3 rounded-xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
-          <div class="font-bold text-slate-900 dark:text-white mb-1 flex items-center gap-1.5">
-            <span class="w-1.5 h-1.5 rounded-full bg-amber-500"></span> Gold Spot Pressure
-          </div>
-          <p class="text-slate-600 dark:text-slate-400 leading-relaxed">PAXG tracks international spot at $2,685/oz; local Sarafa rates hold above Rs 280K/tola.</p>
-        </div>
-        <div class="p-3 rounded-xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
-          <div class="font-bold text-slate-900 dark:text-white mb-1 flex items-center gap-1.5">
-            <span class="w-1.5 h-1.5 rounded-full bg-purple-500"></span> Risk Tip of the Day
-          </div>
-          <p class="text-slate-600 dark:text-slate-400 leading-relaxed">Always define stop-loss before order execution. Never risk >2% of total capital on a single position.</p>
-        </div>
-      </div>
-
-      <div class="pt-3 border-t border-slate-200 dark:border-slate-700/60 flex items-center justify-between text-[11px] text-slate-500">
-        <span><strong class="text-amber-600 dark:text-amber-400 font-semibold">Demo Notice:</strong> In the final production deployment, this card is dynamically generated by LLM analysis of live data feeds and reviewed by an editor.</span>
-        <a href="dca-calculator.html" class="font-semibold text-slate-700 dark:text-slate-300 hover:text-amber-600 underline">Simulate DCA strategy &rarr;</a>
-      </div>
-    </section>
-
-    <!-- 4. LIVE MARKET DASHBOARD: TOP GAINERS / LOSERS & FEAR & GREED GAUGE -->
-    <section class="grid grid-cols-1 lg:grid-cols-12 gap-6 reveal-on-scroll">
-      
-      <!-- Top Gainers & Losers (Live Binance USDT pairs > $5M volume) -->
-      <div class="lg:col-span-8 mp-card p-6">
-        <div class="flex flex-wrap items-center justify-between gap-3 pb-4 border-b border-slate-100 dark:border-slate-800 mb-4">
-          <div>
-            <h2 class="font-heading font-extrabold text-base text-slate-900 dark:text-white flex items-center gap-2">
-              <span class="live-pulse-dot"></span>
-              24h High Volume Movers (Binance USDT)
-            </h2>
-            <p class="text-xs text-slate-500">Live filtered: Volume > $5,000,000 USDT &bull; Source: Binance Vision</p>
-          </div>
-          <div class="flex items-center gap-2 text-xs">
-            <a href="gainers-losers.html" class="btn-secondary py-1 px-3 text-xs">View Full Screen &rarr;</a>
-          </div>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <!-- Gainers Column -->
-          <div>
-            <div class="flex items-center justify-between mb-2">
-              <span class="text-xs font-bold text-emerald-700 dark:text-emerald-400 flex items-center gap-1">
-                <span>▲</span> Top 5 Gainers
-              </span>
-              <span class="text-[10px] text-slate-400">24h Gain</span>
-            </div>
-            <div id="home-gainers-list" class="space-y-2">
-              <div class="skeleton-loader h-10 w-full"></div>
-              <div class="skeleton-loader h-10 w-full"></div>
-              <div class="skeleton-loader h-10 w-full"></div>
-            </div>
-          </div>
-
-          <!-- Losers Column -->
-          <div>
-            <div class="flex items-center justify-between mb-2">
-              <span class="text-xs font-bold text-rose-700 dark:text-rose-400 flex items-center gap-1">
-                <span>▼</span> Top 5 Losers
-              </span>
-              <span class="text-[10px] text-slate-400">24h Loss</span>
-            </div>
-            <div id="home-losers-list" class="space-y-2">
-              <div class="skeleton-loader h-10 w-full"></div>
-              <div class="skeleton-loader h-10 w-full"></div>
-              <div class="skeleton-loader h-10 w-full"></div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Fear & Greed Gauge (Live alternative.me) -->
-      <div class="lg:col-span-4 mp-card p-6 flex flex-col justify-between">
-        <div>
-          <div class="flex items-center justify-between pb-3 border-b border-slate-100 dark:border-slate-800 mb-4">
-            <h2 class="font-heading font-extrabold text-base text-slate-900 dark:text-white">Fear & Greed Index</h2>
-            <span class="text-[10px] text-slate-400">Alternative.me</span>
-          </div>
-
-          <!-- SVG Radial Gauge -->
-          <div class="relative flex flex-col items-center justify-center my-2">
-            <svg viewBox="0 0 200 115" class="w-48 h-28">
-              <!-- Background Arc -->
-              <path d="M 20 100 A 80 80 0 0 1 180 100" fill="none" stroke="#E2E8F0" stroke-width="16" stroke-linecap="round" class="dark:stroke-slate-800"/>
-              <!-- Colored Segments Arc -->
-              <path d="M 20 100 A 80 80 0 0 1 60 43" fill="none" stroke="#EF4444" stroke-width="16" stroke-linecap="round"/>
-              <path d="M 60 43 A 80 80 0 0 1 100 20" fill="none" stroke="#F59E0B" stroke-width="16"/>
-              <path d="M 100 20 A 80 80 0 0 1 140 43" fill="none" stroke="#10B981" stroke-width="16"/>
-              <path d="M 140 43 A 80 80 0 0 1 180 100" fill="none" stroke="#059669" stroke-width="16" stroke-linecap="round"/>
-              <!-- Needle -->
-              <g id="fg-needle" class="gauge-needle-v2" style="transform: rotate(-15deg);">
-                <polygon points="98,95 102,95 100,28" fill="#0B1220" class="dark:fill-white"/>
-                <circle cx="100" cy="95" r="7" fill="#F5B700"/>
-              </g>
-            </svg>
-
-            <!-- Value Badge -->
-            <div class="text-center -mt-3">
-              <span id="fg-value" class="text-3xl font-extrabold font-heading text-slate-900 dark:text-white">68</span>
-              <p id="fg-classification" class="text-xs font-bold text-emerald-600 dark:text-emerald-400 uppercase tracking-wide">Greed</p>
-            </div>
-          </div>
-
-          <!-- Historical Comparison -->
-          <div class="grid grid-cols-3 gap-2 text-center text-xs mt-4 pt-4 border-t border-slate-100 dark:border-slate-800">
-            <div class="p-2 rounded-lg bg-slate-50 dark:bg-slate-800">
-              <div class="text-[10px] text-slate-400">Yesterday</div>
-              <div id="fg-yesterday" class="font-bold text-slate-800 dark:text-slate-200">64</div>
-            </div>
-            <div class="p-2 rounded-lg bg-slate-50 dark:bg-slate-800">
-              <div class="text-[10px] text-slate-400">Last Week</div>
-              <div id="fg-week" class="font-bold text-slate-800 dark:text-slate-200">72</div>
-            </div>
-            <div class="p-2 rounded-lg bg-slate-50 dark:bg-slate-800">
-              <div class="text-[10px] text-slate-400">Last Month</div>
-              <div id="fg-month" class="font-bold text-slate-800 dark:text-slate-200">55</div>
-            </div>
-          </div>
-        </div>
-
-        <a href="fear-greed.html" class="mt-4 block text-center text-xs font-semibold text-amber-600 dark:text-amber-400 hover:underline">
-          Explore 30-Day Historical Sentiment &rarr;
-        </a>
-      </div>
-
-    </section>
-
-    <!-- 5. TOP 10 CRYPTOCURRENCIES (LIVE TABLE WITH SPARKLINE) -->
-    <section class="mp-card p-6 reveal-on-scroll">
-      <div class="flex flex-wrap items-center justify-between gap-3 pb-4 border-b border-slate-100 dark:border-slate-800 mb-4">
-        <div>
-          <h2 class="font-heading font-extrabold text-lg text-slate-900 dark:text-white flex items-center gap-2">
-            Top Cryptocurrencies by Market Volume
-          </h2>
-          <p class="text-xs text-slate-500">Live prices from Binance &bull; Real-time USD & PKR currency toggle responsive</p>
-        </div>
-        <div class="flex items-center gap-3">
-          <span class="text-xs text-slate-400" id="top10-timestamp">Updated just now</span>
-          <a href="markets.html" class="btn-primary py-1.5 px-3 text-xs">
-            <span>View All Markets</span>
-            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 text-xs">
+          <a href="article.html" class="p-3 rounded-2xl hover:bg-slate-50 dark:hover:bg-slate-800 transition flex items-start gap-2.5 group">
+            <span class="font-black text-amber-500 text-sm">01</span>
+            <span class="font-medium text-slate-800 dark:text-slate-200 group-hover:text-amber-600 line-clamp-2">Solana DEX volume overtakes Ethereum mainnet for third consecutive week</span>
+          </a>
+          <a href="article.html" class="p-3 rounded-2xl hover:bg-slate-50 dark:hover:bg-slate-800 transition flex items-start gap-2.5 group">
+            <span class="font-black text-amber-500 text-sm">02</span>
+            <span class="font-medium text-slate-800 dark:text-slate-200 group-hover:text-amber-600 line-clamp-2">Central banks accumulated net 483 tons of gold bullion in recent quarters</span>
+          </a>
+          <a href="article.html" class="p-3 rounded-2xl hover:bg-slate-50 dark:hover:bg-slate-800 transition flex items-start gap-2.5 group">
+            <span class="font-black text-amber-500 text-sm">03</span>
+            <span class="font-medium text-slate-800 dark:text-slate-200 group-hover:text-amber-600 line-clamp-2">Remittance inflows from Saudi Arabia & UAE reach $3.1 Billion milestone</span>
+          </a>
+          <a href="article.html" class="p-3 rounded-2xl hover:bg-slate-50 dark:hover:bg-slate-800 transition flex items-start gap-2.5 group">
+            <span class="font-black text-amber-500 text-sm">04</span>
+            <span class="font-medium text-slate-800 dark:text-slate-200 group-hover:text-amber-600 line-clamp-2">USDT total circulation reaches $132 Billion backed by US short-term Treasuries</span>
           </a>
         </div>
       </div>
 
-      <div class="overflow-x-auto">
-        <table class="w-full text-left border-collapse">
+    </section>
+
+    <!-- 7. AI MARKET BRIEF CARD (Strictly Labeled Sample) -->
+    <section class="reveal-on-scroll mp-card p-6 sm:p-7 border-l-4 border-l-[#F5B700] bg-gradient-to-r from-amber-50/30 via-white to-white dark:from-slate-900 dark:to-slate-850">
+      <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
+        <div class="flex items-center gap-3">
+          <div class="w-9 h-9 rounded-xl bg-[#F5B700] text-[#0B1220] flex items-center justify-center font-bold text-base shadow-xs">
+            🤖
+          </div>
+          <div>
+            <h2 class="font-heading font-extrabold text-lg text-slate-900 dark:text-white">Daily AI Market Intelligence Brief</h2>
+            <p class="text-xs text-slate-500">Automated synthesis of order books, macroeconomic data & on-chain flows</p>
+          </div>
+        </div>
+        <div class="flex items-center gap-2 text-xs">
+          <span class="px-3 py-1 rounded-full font-bold bg-emerald-100 dark:bg-emerald-950 text-emerald-800 dark:text-emerald-300">Market Mood: Greed (68/100)</span>
+          <span class="text-slate-400">&bull;</span>
+          <span class="font-mono text-slate-500">Nov 10, 2026</span>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 text-xs mb-4">
+        <div class="p-4 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
+          <div class="font-bold text-slate-900 dark:text-white mb-1.5 flex items-center gap-1.5">
+            <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span> Bitcoin Dominance (58.4%)
+          </div>
+          <p class="text-slate-600 dark:text-slate-400 leading-relaxed">Major institutional flows remain focused in BTC before speculative rotation into mid-caps.</p>
+        </div>
+        <div class="p-4 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
+          <div class="font-bold text-slate-900 dark:text-white mb-1.5 flex items-center gap-1.5">
+            <span class="w-1.5 h-1.5 rounded-full bg-blue-500"></span> PKR Currency Corridor
+          </div>
+          <p class="text-slate-600 dark:text-slate-400 leading-relaxed">USD/PKR steady at ₨ 278.60. GCC remittances provide healthy import coverage cushion.</p>
+        </div>
+        <div class="p-4 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
+          <div class="font-bold text-slate-900 dark:text-white mb-1.5 flex items-center gap-1.5">
+            <span class="w-1.5 h-1.5 rounded-full bg-amber-500"></span> Spot Bullion Elevation
+          </div>
+          <p class="text-slate-600 dark:text-slate-400 leading-relaxed">PAXG tracks spot at $2,685/oz; local Sarafa 24K benchmark holds firmly above Rs 280,000/tola.</p>
+        </div>
+        <div class="p-4 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
+          <div class="font-bold text-slate-900 dark:text-white mb-1.5 flex items-center gap-1.5">
+            <span class="w-1.5 h-1.5 rounded-full bg-purple-500"></span> Risk Tip of the Day
+          </div>
+          <p class="text-slate-600 dark:text-slate-400 leading-relaxed">Always define stop-loss before order execution. Never risk >2% of total account on a single setup.</p>
+        </div>
+      </div>
+
+      <div class="pt-3 border-t border-slate-200 dark:border-slate-700/60 flex flex-wrap items-center justify-between text-[11px] text-slate-500 gap-2">
+        <span><strong class="text-amber-600 dark:text-amber-400 font-bold">Sample brief:</strong> In the final site this is generated from live data and approved by an editor.</span>
+        <a href="dca-calculator.html" class="font-bold text-slate-800 dark:text-slate-200 hover:text-amber-600 underline">Run DCA Simulation &rarr;</a>
+      </div>
+    </section>
+
+    <!-- 8. BENTO GRID (The Showpiece: Top Gainers, Losers, Fear & Greed, Gold Tola, PKR Rates, Heatmap) -->
+    <section class="reveal-on-scroll space-y-4">
+      <div class="flex items-center justify-between">
+        <div>
+          <h2 class="font-heading font-extrabold text-2xl text-slate-900 dark:text-white">Live Market Bento Terminal</h2>
+          <p class="text-xs text-slate-500">Real-time market movers, interbank baseline rates, bullion formulas, and market sentiment</p>
+        </div>
+        <div class="flex items-center gap-2">
+          <span class="px-2.5 py-1 rounded-full text-xs font-bold bg-purple-50 dark:bg-purple-950 text-purple-700 dark:text-purple-300 border border-purple-200 dark:border-purple-800">
+            Bitunix &bull; Binance Feeds
+          </span>
+        </div>
+      </div>
+
+      <!-- Bento Grid (12 Columns) -->
+      <div class="bento-grid">
+        
+        <!-- Bento Cell 1: Top Gainers & Losers (8 Cols) -->
+        <div class="lg:col-span-8 mp-card p-6 flex flex-col justify-between">
+          <div class="flex flex-wrap items-center justify-between pb-3 border-b border-slate-100 dark:border-slate-800 mb-4 gap-2">
+            <div>
+              <h3 class="font-heading font-extrabold text-base text-slate-900 dark:text-white flex items-center gap-2">
+                <span class="live-pulse-dot"></span>
+                Top 24h Market Movers (Volume > $5M)
+              </h3>
+              <p class="text-xs text-slate-500">Streaming live from Binance & Bitunix Futures</p>
+            </div>
+            <a href="gainers-losers.html" class="btn-secondary py-1 px-3 text-xs">Full Screen &rarr;</a>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <!-- Gainers -->
+            <div>
+              <div class="flex items-center justify-between mb-2">
+                <span class="text-xs font-extrabold text-emerald-700 dark:text-emerald-400 flex items-center gap-1">
+                  <span>▲</span> Top 5 Gainers
+                </span>
+                <span class="text-[10px] text-slate-400">24h Gain</span>
+              </div>
+              <div id="home-gainers-list" class="space-y-2">
+                <div class="skeleton-loader h-10 w-full"></div>
+                <div class="skeleton-loader h-10 w-full"></div>
+                <div class="skeleton-loader h-10 w-full"></div>
+              </div>
+            </div>
+
+            <!-- Losers -->
+            <div>
+              <div class="flex items-center justify-between mb-2">
+                <span class="text-xs font-extrabold text-rose-700 dark:text-rose-400 flex items-center gap-1">
+                  <span>▼</span> Top 5 Losers
+                </span>
+                <span class="text-[10px] text-slate-400">24h Loss</span>
+              </div>
+              <div id="home-losers-list" class="space-y-2">
+                <div class="skeleton-loader h-10 w-full"></div>
+                <div class="skeleton-loader h-10 w-full"></div>
+                <div class="skeleton-loader h-10 w-full"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bento Cell 2: Fear & Greed Radial Gauge (4 Cols) -->
+        <div class="lg:col-span-4 mp-card p-6 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between pb-3 border-b border-slate-100 dark:border-slate-800 mb-2">
+              <h3 class="font-heading font-extrabold text-base text-slate-900 dark:text-white">Fear & Greed Index</h3>
+              <span class="text-[10px] text-slate-400 font-mono">Alternative.me</span>
+            </div>
+
+            <!-- Radial SVG Gauge -->
+            <div class="relative flex flex-col items-center justify-center my-2">
+              <svg viewBox="0 0 200 115" class="w-48 h-28">
+                <path d="M 20 100 A 80 80 0 0 1 180 100" fill="none" stroke="#E2E8F0" stroke-width="16" stroke-linecap="round" class="dark:stroke-slate-800"/>
+                <path d="M 20 100 A 80 80 0 0 1 60 43" fill="none" stroke="#EF4444" stroke-width="16" stroke-linecap="round"/>
+                <path d="M 60 43 A 80 80 0 0 1 100 20" fill="none" stroke="#F59E0B" stroke-width="16"/>
+                <path d="M 100 20 A 80 80 0 0 1 140 43" fill="none" stroke="#10B981" stroke-width="16"/>
+                <path d="M 140 43 A 80 80 0 0 1 180 100" fill="none" stroke="#059669" stroke-width="16" stroke-linecap="round"/>
+                <!-- Needle (Motion #8: animates 0 -> value) -->
+                <line id="fg-needle" x1="100" y1="100" x2="100" y2="35" stroke="#0B1220" stroke-width="3.5" stroke-linecap="round" class="dark:stroke-white gauge-needle" style="transform: rotate(32deg);" />
+                <circle cx="100" cy="100" r="7" fill="#F5B700" stroke="#0B1220" stroke-width="2" />
+              </svg>
+
+              <div class="text-center -mt-3">
+                <div id="fg-value" class="text-3xl font-extrabold font-mono text-slate-900 dark:text-white tabular-nums">68</div>
+                <div id="fg-classification" class="text-xs font-bold text-emerald-600 uppercase tracking-wider">Greed</div>
+              </div>
+            </div>
+
+            <!-- Sentiment Comparisons -->
+            <div class="grid grid-cols-3 gap-2 text-center text-xs pt-3 border-t border-slate-100 dark:border-slate-800 mt-2">
+              <div class="p-2 rounded-xl bg-slate-50 dark:bg-slate-800">
+                <div class="text-[10px] text-slate-400 font-semibold">Yesterday</div>
+                <div id="fg-yesterday" class="font-bold text-slate-800 dark:text-slate-200 font-mono">64</div>
+              </div>
+              <div class="p-2 rounded-xl bg-slate-50 dark:bg-slate-800">
+                <div class="text-[10px] text-slate-400 font-semibold">Last Week</div>
+                <div id="fg-week" class="font-bold text-slate-800 dark:text-slate-200 font-mono">72</div>
+              </div>
+              <div class="p-2 rounded-xl bg-slate-50 dark:bg-slate-800">
+                <div class="text-[10px] text-slate-400 font-semibold">Last Month</div>
+                <div id="fg-month" class="font-bold text-slate-800 dark:text-slate-200 font-mono">55</div>
+              </div>
+            </div>
+          </div>
+
+          <a href="fear-greed.html" class="mt-4 text-xs font-bold text-amber-600 hover:underline text-center block">
+            Explore 30-Day Historical Sentiment &rarr;
+          </a>
+        </div>
+
+        <!-- Bento Cell 3: Pakistani Rupee (PKR) Interbank Rates (4 Cols) -->
+        <div class="lg:col-span-4 mp-card p-6 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between pb-3 border-b border-slate-100 dark:border-slate-800 mb-3">
+              <h3 class="font-heading font-extrabold text-base text-slate-900 dark:text-white flex items-center gap-2">
+                <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+                PKR Interbank Rates
+              </h3>
+              <span class="text-[10px] text-slate-400 font-mono uppercase">Daily rate</span>
+            </div>
+            
+            <div class="space-y-2 text-xs">
+              <div class="flex items-center justify-between p-2.5 rounded-xl bg-slate-50 dark:bg-slate-800">
+                <span class="font-bold text-slate-800 dark:text-slate-200">USD / PKR</span>
+                <span id="rate-usd-pkr" class="font-mono font-bold text-slate-900 dark:text-white">₨ 278.60</span>
+              </div>
+              <div class="flex items-center justify-between p-2.5 rounded-xl bg-slate-50 dark:bg-slate-800">
+                <span class="font-bold text-slate-800 dark:text-slate-200">EUR / PKR</span>
+                <span id="rate-eur-pkr" class="font-mono font-bold text-slate-900 dark:text-white">₨ 302.80</span>
+              </div>
+              <div class="flex items-center justify-between p-2.5 rounded-xl bg-slate-50 dark:bg-slate-800">
+                <span class="font-bold text-slate-800 dark:text-slate-200">GBP / PKR</span>
+                <span id="rate-gbp-pkr" class="font-mono font-bold text-slate-900 dark:text-white">₨ 352.40</span>
+              </div>
+              <div class="flex items-center justify-between p-2.5 rounded-xl bg-slate-50 dark:bg-slate-800">
+                <span class="font-bold text-slate-800 dark:text-slate-200">SAR / PKR</span>
+                <span id="rate-sar-pkr" class="font-mono font-bold text-slate-900 dark:text-white">₨ 74.25</span>
+              </div>
+              <div class="flex items-center justify-between p-2.5 rounded-xl bg-slate-50 dark:bg-slate-800">
+                <span class="font-bold text-slate-800 dark:text-slate-200">AED / PKR</span>
+                <span id="rate-aed-pkr" class="font-mono font-bold text-slate-900 dark:text-white">₨ 75.85</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="pt-3 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between text-[11px] text-slate-400 mt-2">
+            <span>Interbank benchmark</span>
+            <a href="crypto-converter.html" class="font-bold text-amber-600 hover:underline">Convert &rarr;</a>
+          </div>
+        </div>
+
+        <!-- Bento Cell 4: Gold per Tola Live Calculator (4 Cols) -->
+        <div class="lg:col-span-4 mp-card p-6 flex flex-col justify-between border-amber-200/80 dark:border-amber-900/60">
+          <div>
+            <div class="flex items-center justify-between pb-3 border-b border-slate-100 dark:border-slate-800 mb-3">
+              <h3 class="font-heading font-extrabold text-base text-slate-900 dark:text-white flex items-center gap-2">
+                <span class="w-2 h-2 rounded-full bg-amber-500"></span>
+                Gold per Tola (Pakistan)
+              </h3>
+              <span class="text-[10px] text-amber-700 dark:text-amber-300 font-bold bg-amber-100 dark:bg-amber-950 px-2 py-0.5 rounded">Spot Math</span>
+            </div>
+
+            <div class="p-3 rounded-2xl bg-gradient-to-br from-amber-50 to-yellow-50/40 dark:from-slate-800 dark:to-slate-800 border border-amber-200 dark:border-amber-900/40 mb-3 text-center">
+              <div class="text-[10px] text-amber-800 dark:text-amber-300 font-bold uppercase tracking-wider">24K Bullion (11.664 Grams)</div>
+              <div id="gold-tola-home-val" class="text-2xl font-extrabold font-mono text-slate-900 dark:text-white mt-1">₨ 281,450</div>
+              <div class="text-[10px] text-slate-500 font-mono mt-0.5">XAU: <span id="gold-spot-usd">$2,685.40</span> &bull; USD: ₨ 278.60</div>
+            </div>
+
+            <div class="grid grid-cols-2 gap-2 text-xs">
+              <div class="p-2.5 rounded-xl bg-slate-50 dark:bg-slate-800">
+                <div class="text-[10px] text-slate-400">10 Grams (24K)</div>
+                <div id="gold-10g-val" class="font-bold font-mono text-slate-900 dark:text-white mt-0.5">₨ 241,300</div>
+              </div>
+              <div class="p-2.5 rounded-xl bg-slate-50 dark:bg-slate-800">
+                <div class="text-[10px] text-slate-400">22K Sarafa Jewelry</div>
+                <div id="gold-22k-val" class="font-bold font-mono text-slate-900 dark:text-white mt-0.5">₨ 257,990</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="pt-3 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between text-[11px] text-slate-400 mt-2">
+            <span>Local Sarafa rates may vary</span>
+            <a href="gold-tola-calculator.html" class="font-bold text-amber-600 hover:underline">Full Calculator &rarr;</a>
+          </div>
+        </div>
+
+        <!-- Bento Cell 5: Market Heatmap / Bubbles Preview (4 Cols) -->
+        <div class="lg:col-span-4 mp-card p-6 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between pb-3 border-b border-slate-100 dark:border-slate-800 mb-3">
+              <h3 class="font-heading font-extrabold text-base text-slate-900 dark:text-white flex items-center gap-2">
+                <span class="w-2 h-2 rounded-full bg-sky-500"></span>
+                Market Heatmap Preview
+              </h3>
+              <span class="text-[10px] text-slate-400 font-mono">Top 100</span>
+            </div>
+
+            <p class="text-xs text-slate-500 mb-3">Visual volume-sized heatmap of crypto assets:</p>
+
+            <!-- Mini Interactive Treemap / Bubble preview -->
+            <div class="grid grid-cols-3 gap-2 text-center text-xs font-bold">
+              <a href="coin.html?symbol=BTCUSDT" class="p-3 rounded-2xl bg-emerald-500 text-white flex flex-col justify-center items-center hover:scale-105 transition-transform">
+                <span>BTC</span>
+                <span class="text-[10px] font-mono">▲ +3.4%</span>
+              </a>
+              <a href="coin.html?symbol=ETHUSDT" class="p-3 rounded-2xl bg-emerald-600 text-white flex flex-col justify-center items-center hover:scale-105 transition-transform">
+                <span>ETH</span>
+                <span class="text-[10px] font-mono">▲ +2.1%</span>
+              </a>
+              <a href="coin.html?symbol=SOLUSDT" class="p-3 rounded-2xl bg-emerald-500 text-white flex flex-col justify-center items-center hover:scale-105 transition-transform">
+                <span>SOL</span>
+                <span class="text-[10px] font-mono">▲ +5.6%</span>
+              </a>
+              <a href="coin.html?symbol=BNBUSDT" class="p-3 rounded-2xl bg-emerald-600 text-white flex flex-col justify-center items-center hover:scale-105 transition-transform">
+                <span>BNB</span>
+                <span class="text-[10px] font-mono">▲ +1.1%</span>
+              </a>
+              <a href="coin.html?symbol=XRPUSDT" class="p-3 rounded-2xl bg-rose-500 text-white flex flex-col justify-center items-center hover:scale-105 transition-transform">
+                <span>XRP</span>
+                <span class="text-[10px] font-mono">▼ -1.3%</span>
+              </a>
+              <a href="coin.html?symbol=DOGEUSDT" class="p-3 rounded-2xl bg-emerald-400 text-slate-900 flex flex-col justify-center items-center hover:scale-105 transition-transform">
+                <span>DOGE</span>
+                <span class="text-[10px] font-mono font-extrabold">▲ +8.9%</span>
+              </a>
+            </div>
+          </div>
+
+          <div class="pt-3 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between text-[11px] text-slate-400 mt-2">
+            <span>Sized by 24h trading volume</span>
+            <a href="heatmap.html" class="font-bold text-amber-600 hover:underline">Full 100 Heatmap &rarr;</a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 9. TOP 10 COINS LIVE TABLE (With SVG Sparklines, USD/PKR toggle) -->
+    <section class="reveal-on-scroll mp-card p-6 overflow-hidden">
+      <div class="flex flex-wrap items-center justify-between gap-4 pb-4 border-b border-slate-100 dark:border-slate-800 mb-4">
+        <div>
+          <h2 class="font-heading font-extrabold text-xl text-slate-900 dark:text-white flex items-center gap-2">
+            <span class="live-pulse-dot"></span>
+            Top 10 Cryptocurrencies by Market Performance
+          </h2>
+          <p class="text-xs text-slate-500">Live prices from Binance & Bitunix with USD/PKR toggle and 7-day sparkline trends</p>
+        </div>
+        <div class="flex items-center gap-3">
+          <a href="markets.html" class="btn-primary text-xs py-1.5 px-4">View All Coins &rarr;</a>
+        </div>
+      </div>
+
+      <div class="overflow-x-auto -mx-6 px-6">
+        <table class="w-full text-left border-collapse min-w-[700px]">
           <thead>
-            <tr class="border-b border-slate-200 dark:border-slate-800 text-[11px] font-bold text-slate-400 uppercase tracking-wider">
-              <th class="py-3 px-3 w-10">#</th>
+            <tr class="border-b border-slate-200 dark:border-slate-800 text-[11px] uppercase tracking-wider text-slate-500 font-bold">
+              <th class="py-3 px-3">#</th>
               <th class="py-3 px-3">Asset</th>
               <th class="py-3 px-3 text-right">Price</th>
               <th class="py-3 px-3 text-right">24h Change</th>
@@ -568,11 +864,10 @@
             </tr>
           </thead>
           <tbody id="top-coins-tbody" class="divide-y divide-slate-100 dark:divide-slate-800/60 text-xs font-medium">
-            <!-- Populated dynamically via JS -->
             <tr>
               <td colspan="8" class="py-12 text-center text-slate-400">
                 <div class="inline-block w-6 h-6 border-2 border-amber-500 border-t-transparent rounded-full animate-spin mb-2"></div>
-                <p>Loading live Binance market records...</p>
+                <p>Streaming live market records...</p>
               </td>
             </tr>
           </tbody>
@@ -580,21 +875,21 @@
       </div>
     </section>
 
-    <!-- 6. TOOLS GRID (8 ESSENTIAL CALCULATORS & MARKET TOOLS) -->
-    <section class="reveal-on-scroll">
-      <div class="flex items-center justify-between mb-4">
+    <!-- 10. TOOLS GRID (8 Essential Working Financial Tools) -->
+    <section class="reveal-on-scroll space-y-4">
+      <div class="flex items-center justify-between">
         <div>
-          <h2 class="font-heading font-extrabold text-lg text-slate-900 dark:text-white">Financial & Crypto Tools Hub</h2>
-          <p class="text-xs text-slate-500">Mathematical precision calculators, risk modeling & market analytics</p>
+          <h2 class="font-heading font-extrabold text-2xl text-slate-900 dark:text-white">Financial & Crypto Tools Hub</h2>
+          <p class="text-xs text-slate-500">Mathematical precision calculators, risk modeling, and market analytics</p>
         </div>
-        <a href="tools.html" class="text-xs font-semibold text-amber-600 dark:text-amber-400 hover:underline">Explore All 8 Tools &rarr;</a>
+        <a href="tools.html" class="text-xs font-bold text-amber-600 dark:text-amber-400 hover:underline">Explore All 8 Tools &rarr;</a>
       </div>
 
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         
         <a href="dca-calculator.html" class="mp-card p-5 mp-card-hover group flex flex-col justify-between">
           <div>
-            <div class="w-10 h-10 rounded-xl bg-blue-50 dark:bg-blue-950/60 text-blue-600 dark:text-blue-400 flex items-center justify-center text-lg mb-3 shadow-xs group-hover:scale-110 transition-transform">
+            <div class="w-10 h-10 rounded-2xl bg-blue-50 dark:bg-blue-950/60 text-blue-600 flex items-center justify-center text-lg mb-3 shadow-xs group-hover:scale-110 transition-transform">
               📈
             </div>
             <h3 class="font-bold text-sm text-slate-900 dark:text-white mb-1 group-hover:text-amber-600 transition">DCA Calculator</h3>
@@ -605,7 +900,7 @@
 
         <a href="position-size-calculator.html" class="mp-card p-5 mp-card-hover group flex flex-col justify-between">
           <div>
-            <div class="w-10 h-10 rounded-xl bg-emerald-50 dark:bg-emerald-950/60 text-emerald-600 dark:text-emerald-400 flex items-center justify-center text-lg mb-3 shadow-xs group-hover:scale-110 transition-transform">
+            <div class="w-10 h-10 rounded-2xl bg-emerald-50 dark:bg-emerald-950/60 text-emerald-600 flex items-center justify-center text-lg mb-3 shadow-xs group-hover:scale-110 transition-transform">
               ⚖️
             </div>
             <h3 class="font-bold text-sm text-slate-900 dark:text-white mb-1 group-hover:text-amber-600 transition">Position Size & Risk</h3>
@@ -616,7 +911,7 @@
 
         <a href="crypto-converter.html" class="mp-card p-5 mp-card-hover group flex flex-col justify-between">
           <div>
-            <div class="w-10 h-10 rounded-xl bg-purple-50 dark:bg-purple-950/60 text-purple-600 dark:text-purple-400 flex items-center justify-center text-lg mb-3 shadow-xs group-hover:scale-110 transition-transform">
+            <div class="w-10 h-10 rounded-2xl bg-purple-50 dark:bg-purple-950/60 text-purple-600 flex items-center justify-center text-lg mb-3 shadow-xs group-hover:scale-110 transition-transform">
               🔄
             </div>
             <h3 class="font-bold text-sm text-slate-900 dark:text-white mb-1 group-hover:text-amber-600 transition">Crypto Converter</h3>
@@ -627,7 +922,7 @@
 
         <a href="gold-tola-calculator.html" class="mp-card p-5 mp-card-hover group flex flex-col justify-between border-amber-200 dark:border-amber-900/60">
           <div>
-            <div class="w-10 h-10 rounded-xl bg-amber-50 dark:bg-amber-950/60 text-amber-600 dark:text-amber-400 flex items-center justify-center text-lg mb-3 shadow-xs group-hover:scale-110 transition-transform">
+            <div class="w-10 h-10 rounded-2xl bg-amber-50 dark:bg-amber-950/60 text-amber-600 flex items-center justify-center text-lg mb-3 shadow-xs group-hover:scale-110 transition-transform">
               🪙
             </div>
             <h3 class="font-bold text-sm text-slate-900 dark:text-white mb-1 group-hover:text-amber-600 transition">Gold per Tola (PKR)</h3>
@@ -638,7 +933,7 @@
 
         <a href="profit-loss-calculator.html" class="mp-card p-5 mp-card-hover group flex flex-col justify-between">
           <div>
-            <div class="w-10 h-10 rounded-xl bg-teal-50 dark:bg-teal-950/60 text-teal-600 dark:text-teal-400 flex items-center justify-center text-lg mb-3 shadow-xs group-hover:scale-110 transition-transform">
+            <div class="w-10 h-10 rounded-2xl bg-teal-50 dark:bg-teal-950/60 text-teal-600 flex items-center justify-center text-lg mb-3 shadow-xs group-hover:scale-110 transition-transform">
               💵
             </div>
             <h3 class="font-bold text-sm text-slate-900 dark:text-white mb-1 group-hover:text-amber-600 transition">Profit / Loss Calculator</h3>
@@ -649,7 +944,7 @@
 
         <a href="fear-greed.html" class="mp-card p-5 mp-card-hover group flex flex-col justify-between">
           <div>
-            <div class="w-10 h-10 rounded-xl bg-rose-50 dark:bg-rose-950/60 text-rose-600 dark:text-rose-400 flex items-center justify-center text-lg mb-3 shadow-xs group-hover:scale-110 transition-transform">
+            <div class="w-10 h-10 rounded-2xl bg-rose-50 dark:bg-rose-950/60 text-rose-600 flex items-center justify-center text-lg mb-3 shadow-xs group-hover:scale-110 transition-transform">
               🌡️
             </div>
             <h3 class="font-bold text-sm text-slate-900 dark:text-white mb-1 group-hover:text-amber-600 transition">Fear & Greed Sentiment</h3>
@@ -660,7 +955,7 @@
 
         <a href="gainers-losers.html" class="mp-card p-5 mp-card-hover group flex flex-col justify-between">
           <div>
-            <div class="w-10 h-10 rounded-xl bg-indigo-50 dark:bg-indigo-950/60 text-indigo-600 dark:text-indigo-400 flex items-center justify-center text-lg mb-3 shadow-xs group-hover:scale-110 transition-transform">
+            <div class="w-10 h-10 rounded-2xl bg-indigo-50 dark:bg-indigo-950/60 text-indigo-600 flex items-center justify-center text-lg mb-3 shadow-xs group-hover:scale-110 transition-transform">
               🚀
             </div>
             <h3 class="font-bold text-sm text-slate-900 dark:text-white mb-1 group-hover:text-amber-600 transition">Gainers & Losers</h3>
@@ -671,7 +966,7 @@
 
         <a href="heatmap.html" class="mp-card p-5 mp-card-hover group flex flex-col justify-between">
           <div>
-            <div class="w-10 h-10 rounded-xl bg-sky-50 dark:bg-sky-950/60 text-sky-600 dark:text-sky-400 flex items-center justify-center text-lg mb-3 shadow-xs group-hover:scale-110 transition-transform">
+            <div class="w-10 h-10 rounded-2xl bg-sky-50 dark:bg-sky-950/60 text-sky-600 flex items-center justify-center text-lg mb-3 shadow-xs group-hover:scale-110 transition-transform">
               🗺️
             </div>
             <h3 class="font-bold text-sm text-slate-900 dark:text-white mb-1 group-hover:text-amber-600 transition">Market Heatmap</h3>
@@ -683,856 +978,600 @@
       </div>
     </section>
 
-    <!-- 7. SHORT STORIES (WEB-STORIES STYLE HORIZONTAL SCROLL) -->
-    <section class="reveal-on-scroll">
-      <div class="flex items-center justify-between mb-3">
-        <h2 class="font-heading font-extrabold text-base text-slate-900 dark:text-white flex items-center gap-2">
-          <span>⚡</span> Quick Market Stories
-        </h2>
-        <span class="text-xs text-slate-400">Swipe to view</span>
-      </div>
-      <div class="flex gap-4 overflow-x-auto pb-3 pt-1 scrollbar-none">
-        
-        <a href="article.html" class="min-w-[190px] w-[190px] rounded-2xl overflow-hidden mp-card group relative p-4 flex flex-col justify-between bg-gradient-to-br from-blue-600 to-indigo-800 text-white shadow-md hover:scale-102 transition-transform">
-          <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-white/20 backdrop-blur w-fit">BITCOIN</span>
-          <p class="text-xs font-bold mt-12 line-clamp-3 leading-snug">Why institutional buyers view $90K as a new structural baseline</p>
-          <span class="text-[10px] text-white/70 mt-2">1m read &bull; Demo</span>
-        </a>
-
-        <a href="article.html" class="min-w-[190px] w-[190px] rounded-2xl overflow-hidden mp-card group relative p-4 flex flex-col justify-between bg-gradient-to-br from-amber-600 to-yellow-800 text-white shadow-md hover:scale-102 transition-transform">
-          <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-white/20 backdrop-blur w-fit">GOLD</span>
-          <p class="text-xs font-bold mt-12 line-clamp-3 leading-snug">Pakistani Sarafa market dynamics: How local premiums are set</p>
-          <span class="text-[10px] text-white/70 mt-2">2m read &bull; Demo</span>
-        </a>
-
-        <a href="article.html" class="min-w-[190px] w-[190px] rounded-2xl overflow-hidden mp-card group relative p-4 flex flex-col justify-between bg-gradient-to-br from-emerald-600 to-teal-800 text-white shadow-md hover:scale-102 transition-transform">
-          <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-white/20 backdrop-blur w-fit">DEFI</span>
-          <p class="text-xs font-bold mt-12 line-clamp-3 leading-snug">Stablecoin yields: Where smart money is parking cash reserves</p>
-          <span class="text-[10px] text-white/70 mt-2">2m read &bull; Demo</span>
-        </a>
-
-        <a href="article.html" class="min-w-[190px] w-[190px] rounded-2xl overflow-hidden mp-card group relative p-4 flex flex-col justify-between bg-gradient-to-br from-purple-600 to-pink-800 text-white shadow-md hover:scale-102 transition-transform">
-          <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-white/20 backdrop-blur w-fit">FOREX</span>
-          <p class="text-xs font-bold mt-12 line-clamp-3 leading-snug">USD/PKR interbank vs open market: Key indicators to watch</p>
-          <span class="text-[10px] text-white/70 mt-2">1m read &bull; Demo</span>
-        </a>
-
-        <a href="article.html" class="min-w-[190px] w-[190px] rounded-2xl overflow-hidden mp-card group relative p-4 flex flex-col justify-between bg-gradient-to-br from-slate-700 to-slate-900 text-white shadow-md hover:scale-102 transition-transform">
-          <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-white/20 backdrop-blur w-fit">REGULATION</span>
-          <p class="text-xs font-bold mt-12 line-clamp-3 leading-snug">Global regulatory standards: What ETF approvals mean for retail</p>
-          <span class="text-[10px] text-white/70 mt-2">3m read &bull; Demo</span>
-        </a>
-
-      </div>
-    </section>
-
-    <!-- 8. THREE SIDE-BY-SIDE BLOCKS: PKR CORNER, GOLD PER TOLA, COMMODITIES STRIP -->
-    <section class="grid grid-cols-1 lg:grid-cols-3 gap-6 reveal-on-scroll">
-      
-      <!-- Block 1: PKR Corner (Live Currency Rates) -->
-      <div class="mp-card p-5 flex flex-col justify-between">
+    <!-- 11. DEEP DIVES & SHORT STORIES (Cryptonews Editorial Style) -->
+    <section class="reveal-on-scroll space-y-6">
+      <div class="flex items-center justify-between pb-3 border-b border-slate-200 dark:border-slate-800">
         <div>
-          <div class="flex items-center justify-between pb-3 border-b border-slate-100 dark:border-slate-800 mb-3">
-            <h3 class="font-heading font-extrabold text-sm text-slate-900 dark:text-white flex items-center gap-2">
-              <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
-              Pakistani Rupee (PKR) Corner
-            </h3>
-            <span class="text-[10px] font-semibold text-slate-400 uppercase">Daily rate</span>
-          </div>
-          <p class="text-xs text-slate-500 mb-3">Official daily interbank baseline rates for major trade currencies:</p>
-          
-          <div class="space-y-2 text-xs">
-            <div class="flex items-center justify-between p-2.5 rounded-xl bg-slate-50 dark:bg-slate-800">
-              <span class="font-bold text-slate-800 dark:text-slate-200">USD / PKR</span>
-              <span id="rate-usd-pkr" class="font-mono font-bold text-slate-900 dark:text-white">₨ 278.60</span>
-            </div>
-            <div class="flex items-center justify-between p-2.5 rounded-xl bg-slate-50 dark:bg-slate-800">
-              <span class="font-bold text-slate-800 dark:text-slate-200">EUR / PKR</span>
-              <span id="rate-eur-pkr" class="font-mono font-bold text-slate-900 dark:text-white">₨ 302.80</span>
-            </div>
-            <div class="flex items-center justify-between p-2.5 rounded-xl bg-slate-50 dark:bg-slate-800">
-              <span class="font-bold text-slate-800 dark:text-slate-200">GBP / PKR</span>
-              <span id="rate-gbp-pkr" class="font-mono font-bold text-slate-900 dark:text-white">₨ 352.40</span>
-            </div>
-            <div class="flex items-center justify-between p-2.5 rounded-xl bg-slate-50 dark:bg-slate-800">
-              <span class="font-bold text-slate-800 dark:text-slate-200">SAR / PKR</span>
-              <span id="rate-sar-pkr" class="font-mono font-bold text-slate-900 dark:text-white">₨ 74.25</span>
-            </div>
-            <div class="flex items-center justify-between p-2.5 rounded-xl bg-slate-50 dark:bg-slate-800">
-              <span class="font-bold text-slate-800 dark:text-slate-200">AED / PKR</span>
-              <span id="rate-aed-pkr" class="font-mono font-bold text-slate-900 dark:text-white">₨ 75.85</span>
-            </div>
-          </div>
+          <h2 class="font-heading font-extrabold text-2xl text-slate-900 dark:text-white">Deep Dives & Market Reports</h2>
+          <p class="text-xs text-slate-500">In-depth research by our financial analysts & market contributors</p>
         </div>
-        <div class="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800 text-[10px] text-slate-400 flex items-center justify-between">
-          <span>Source: jsDelivr / OpenER</span>
-          <a href="crypto-converter.html" class="text-amber-600 font-semibold hover:underline">Currency Converter &rarr;</a>
-        </div>
+        <a href="news.html" class="text-xs font-bold text-amber-600 hover:underline">View All Research &rarr;</a>
       </div>
 
-      <!-- Block 2: Gold per Tola Live Card -->
-      <div class="mp-card p-5 flex flex-col justify-between border-amber-200 dark:border-amber-900/40">
-        <div>
-          <div class="flex items-center justify-between pb-3 border-b border-slate-100 dark:border-slate-800 mb-3">
-            <h3 class="font-heading font-extrabold text-sm text-slate-900 dark:text-white flex items-center gap-2">
-              <span class="text-amber-500">🪙</span>
-              Gold per Tola (Pakistan)
+      <!-- 2 Feature Deep Dive Cards -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <article class="mp-card mp-card-hover p-6 flex flex-col justify-between group">
+          <div>
+            <div class="flex items-center gap-2 text-[11px] text-slate-400 mb-2">
+              <span class="font-extrabold text-blue-600 uppercase">FOREX & RESERVES</span>
+              <span>&bull;</span>
+              <span>8 min read</span>
+              <span class="text-[10px] text-amber-700 bg-amber-50 dark:bg-amber-950 px-2 py-0.5 rounded ml-auto">Demo content</span>
+            </div>
+            <h3 class="font-heading font-extrabold text-lg text-slate-900 dark:text-white mb-3 group-hover:text-amber-500 transition-colors">
+              <a href="article.html">The Anatomy of Pakistan's Foreign Exchange Stabilization: Rupee Dynamics Against GCC Currencies</a>
             </h3>
-            <span class="text-[10px] font-bold text-amber-700 bg-amber-100 dark:bg-amber-950 px-2 py-0.5 rounded">24K Purity</span>
+            <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed mb-4">
+              A comprehensive examination of remittances, IMF review benchmarks, and interbank currency corridors shaping USD/PKR, SAR/PKR, and AED/PKR parity in 2026.
+            </p>
           </div>
-
-          <div class="p-4 rounded-xl bg-amber-50/70 dark:bg-amber-950/30 border border-amber-200 dark:border-amber-900/60 my-2 text-center">
-            <span class="text-[10px] text-slate-500 dark:text-slate-400 font-medium uppercase tracking-wider block">Estimated 1 Tola (11.664g) 24K</span>
-            <div id="gold-tola-home-val" class="text-2xl font-black font-mono text-slate-900 dark:text-white my-1">
-              ₨ 280,450
+          <div class="pt-3 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between">
+            <div class="flex items-center gap-2.5">
+              <div class="w-8 h-8 rounded-full bg-slate-200 dark:bg-slate-700 flex items-center justify-center font-bold text-xs text-slate-700 dark:text-slate-200">
+                ZK
+              </div>
+              <div>
+                <a href="author.html" class="font-bold text-xs text-slate-900 dark:text-white">Zainab Khan</a>
+                <div class="text-[10px] text-slate-400">Forex Research Lead</div>
+              </div>
             </div>
-            <span class="text-[11px] text-emerald-700 dark:text-emerald-400 font-semibold">▲ Calculated from PAXG spot ($2,685/oz)</span>
+            <a href="article.html" class="text-xs font-bold text-amber-600 hover:underline">Read Analysis &rarr;</a>
           </div>
+        </article>
 
-          <div class="space-y-1.5 text-xs text-slate-600 dark:text-slate-400 my-2">
-            <div class="flex justify-between py-1 border-b border-slate-100 dark:border-slate-800">
-              <span>Spot Gold (PAXG):</span>
-              <span class="font-mono font-bold text-slate-800 dark:text-slate-200" id="gold-spot-usd">$2,685.40</span>
+        <article class="mp-card mp-card-hover p-6 flex flex-col justify-between group">
+          <div>
+            <div class="flex items-center gap-2 text-[11px] text-slate-400 mb-2">
+              <span class="font-extrabold text-amber-600 uppercase">BULLION STRATEGY</span>
+              <span>&bull;</span>
+              <span>5 min read</span>
+              <span class="text-[10px] text-amber-700 bg-amber-50 dark:bg-amber-950 px-2 py-0.5 rounded ml-auto">Demo content</span>
             </div>
-            <div class="flex justify-between py-1 border-b border-slate-100 dark:border-slate-800">
-              <span>USD/PKR baseline:</span>
-              <span class="font-mono font-bold text-slate-800 dark:text-slate-200">278.60</span>
-            </div>
-            <div class="flex justify-between py-1">
-              <span>10 Grams (24K):</span>
-              <span class="font-mono font-bold text-slate-800 dark:text-slate-200" id="gold-10g-val">₨ 240,440</span>
-            </div>
+            <h3 class="font-heading font-extrabold text-lg text-slate-900 dark:text-white mb-3 group-hover:text-amber-500 transition-colors">
+              <a href="article.html">Physical Bullion vs Digital Gold Tokens: How PAXG Tracks Global Spot Prices with Zero Storage Drag</a>
+            </h3>
+            <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed mb-4">
+              Understanding the mathematical equivalence between 1 Troy Ounce and 1 Pakistani Tola (11.6638 grams) for retail and family-office wealth preservation.
+            </p>
           </div>
-        </div>
+          <div class="pt-3 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between">
+            <div class="flex items-center gap-2.5">
+              <div class="w-8 h-8 rounded-full bg-slate-200 dark:bg-slate-700 flex items-center justify-center font-bold text-xs text-slate-700 dark:text-slate-200">
+                HM
+              </div>
+              <div>
+                <a href="author.html" class="font-bold text-xs text-slate-900 dark:text-white">Hamza Malik</a>
+                <div class="text-[10px] text-slate-400">Commodities Editor</div>
+              </div>
+            </div>
+            <a href="article.html" class="text-xs font-bold text-amber-600 hover:underline">Read Analysis &rarr;</a>
+          </div>
+        </article>
+      </div>
 
-        <div class="mt-3 pt-3 border-t border-slate-100 dark:border-slate-800">
-          <p class="text-[10px] text-slate-400 mb-2">Note: International conversion. Local Sarafa rates may carry dealer margins.</p>
-          <a href="gold-tola-calculator.html" class="btn-primary w-full py-1.5 text-xs justify-center">
-            Open Gold Calculator & Override
+      <!-- Short Stories: Horizontal Scroll Row -->
+      <div class="space-y-2">
+        <div class="text-xs font-bold text-slate-500 uppercase tracking-wider">Short Market Dispatches</div>
+        <div class="flex items-center gap-4 overflow-x-auto pb-2 -mx-4 px-4 sm:mx-0 sm:px-0">
+          <a href="article.html" class="min-w-[280px] max-w-[280px] p-4 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-xs hover:border-amber-400 transition flex-shrink-0">
+            <div class="text-[10px] font-bold text-amber-600 mb-1">CRYPTO &bull; 20m ago</div>
+            <div class="text-xs font-bold text-slate-900 dark:text-white line-clamp-2 leading-snug">Bitcoin Miner Revenue Surges Despite Network Difficulty Hitting All-Time High</div>
+          </a>
+          <a href="article.html" class="min-w-[280px] max-w-[280px] p-4 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-xs hover:border-amber-400 transition flex-shrink-0">
+            <div class="text-[10px] font-bold text-blue-600 mb-1">FOREX &bull; 45m ago</div>
+            <div class="text-xs font-bold text-slate-900 dark:text-white line-clamp-2 leading-snug">European Central Bank Maintains Benchmark Rate Corridor Amid Mixed Inflation Data</div>
+          </a>
+          <a href="article.html" class="min-w-[280px] max-w-[280px] p-4 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-xs hover:border-amber-400 transition flex-shrink-0">
+            <div class="text-[10px] font-bold text-amber-600 mb-1">COMMODITIES &bull; 1h ago</div>
+            <div class="text-xs font-bold text-slate-900 dark:text-white line-clamp-2 leading-snug">Silver Industrial Demand Rebounds on Renewable Solar Photovoltaic Shipments</div>
+          </a>
+          <a href="article.html" class="min-w-[280px] max-w-[280px] p-4 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-xs hover:border-amber-400 transition flex-shrink-0">
+            <div class="text-[10px] font-bold text-emerald-600 mb-1">MACRO &bull; 2h ago</div>
+            <div class="text-xs font-bold text-slate-900 dark:text-white line-clamp-2 leading-snug">Global Liquidity Index Signals Extended Expansion Phase Into Q4 2026</div>
           </a>
         </div>
       </div>
-
-      <!-- Block 3: Commodities Strip -->
-      <div class="mp-card p-5 flex flex-col justify-between">
-        <div>
-          <div class="flex items-center justify-between pb-3 border-b border-slate-100 dark:border-slate-800 mb-3">
-            <h3 class="font-heading font-extrabold text-sm text-slate-900 dark:text-white flex items-center gap-2">
-              <span class="w-2 h-2 rounded-full bg-blue-500"></span>
-              Global Commodities
-            </h3>
-            <span class="text-[10px] text-slate-400">Spot & Futures</span>
-          </div>
-          <p class="text-xs text-slate-500 mb-3">Key macro industrial and precious commodity benchmarks:</p>
-
-          <div class="space-y-2.5 text-xs">
-            <div class="p-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 flex items-center justify-between">
-              <div>
-                <span class="font-bold text-slate-900 dark:text-white block">Gold (XAU)</span>
-                <span class="text-[10px] text-slate-400">Troy Ounce</span>
-              </div>
-              <div class="text-right">
-                <span class="font-mono font-bold text-slate-900 dark:text-white">$2,685.50</span>
-                <span class="text-[11px] text-emerald-600 block font-semibold">▲ +0.45%</span>
-              </div>
-            </div>
-
-            <div class="p-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 flex items-center justify-between">
-              <div>
-                <span class="font-bold text-slate-900 dark:text-white block">Silver (XAG)</span>
-                <span class="text-[10px] text-slate-400">Troy Ounce</span>
-              </div>
-              <div class="text-right">
-                <span class="font-mono font-bold text-slate-900 dark:text-white">$31.85</span>
-                <span class="text-[11px] text-emerald-600 block font-semibold">▲ +1.10%</span>
-              </div>
-            </div>
-
-            <div class="p-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 flex items-center justify-between">
-              <div>
-                <span class="font-bold text-slate-900 dark:text-white block">Crude Oil (WTI)</span>
-                <span class="text-[10px] text-slate-400">Barrel</span>
-              </div>
-              <div class="text-right">
-                <span class="font-mono font-bold text-slate-900 dark:text-white">$72.40</span>
-                <span class="text-[11px] text-rose-600 block font-semibold">▼ -0.85%</span>
-              </div>
-            </div>
-
-            <div class="p-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 flex items-center justify-between">
-              <div>
-                <span class="font-bold text-slate-900 dark:text-white block">High Grade Copper</span>
-                <span class="text-[10px] text-slate-400">Per Pound</span>
-              </div>
-              <div class="text-right">
-                <span class="font-mono font-bold text-slate-900 dark:text-white">$4.22</span>
-                <span class="text-[11px] text-emerald-600 block font-semibold">▲ +0.65%</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800 text-[10px] text-slate-400 text-center">
-          Continuous updates &bull; <a href="markets.html" class="text-amber-600 font-semibold hover:underline">Full Screener</a>
-        </div>
-      </div>
-
     </section>
 
-    <!-- 9. LATEST NEWS BOXED CARDS (6 CARDS WITH GRADIENT PLACEHOLDERS) -->
-    <section class="reveal-on-scroll">
-      <div class="flex items-center justify-between mb-4">
+    <!-- 12. COMMODITIES STRIP (TradingView Widgets Embed) -->
+    <section id="commodities-strip" class="reveal-on-scroll mp-card p-6 overflow-hidden">
+      <div class="flex items-center justify-between pb-3 border-b border-slate-100 dark:border-slate-800 mb-4">
         <div>
-          <h2 class="font-heading font-extrabold text-lg text-slate-900 dark:text-white">Editorial Intelligence & Reports</h2>
-          <p class="text-xs text-slate-500">Unbiased reporting, structural analysis and regulatory coverage</p>
+          <h2 class="font-heading font-extrabold text-lg text-slate-900 dark:text-white flex items-center gap-2">
+            <span class="w-2.5 h-2.5 rounded-full bg-amber-500"></span>
+            Global Commodities & Forex Screener
+          </h2>
+          <p class="text-xs text-slate-500">Gold, Silver, WTI Crude Oil, Copper, and Currencies via official TradingView widgets</p>
         </div>
-        <a href="news.html" class="text-xs font-semibold text-amber-600 dark:text-amber-400 hover:underline">View Newsroom &rarr;</a>
+        <span class="text-xs text-slate-400 font-mono">Live Screener</span>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        
-        <!-- Card 1 -->
-        <a href="article.html" class="mp-card overflow-hidden mp-card-hover group flex flex-col justify-between">
-          <div>
-            <div class="h-44 w-full bg-gradient-to-tr from-blue-700 via-indigo-600 to-sky-500 flex items-center justify-center text-white relative">
-              <span class="text-4xl opacity-80 group-hover:scale-110 transition-transform">📊</span>
-              <span class="absolute top-3 left-3 bg-white/90 dark:bg-slate-900/90 text-slate-900 dark:text-white text-[10px] font-bold px-2 py-0.5 rounded-full backdrop-blur">CRYPTO</span>
-              <span class="absolute bottom-2 right-3 text-[10px] bg-black/40 text-white/90 px-2 py-0.5 rounded">Demo content</span>
-            </div>
-            <div class="p-5">
-              <div class="flex items-center gap-2 text-[11px] text-slate-400 mb-2">
-                <span>Nov 10, 2026</span>
-                <span>&bull;</span>
-                <span>4 min read</span>
-              </div>
-              <h3 class="font-bold text-sm text-slate-900 dark:text-white group-hover:text-amber-600 transition line-clamp-2 leading-snug">
-                Institutional Bitcoin Reserves Reach 4.2% of Total Circulating Supply
-              </h3>
-              <p class="text-xs text-slate-500 mt-2 line-clamp-2 leading-relaxed">
-                Custody data highlights consistent accumulation by regulated treasury managers through volatile market cycles.
-              </p>
-            </div>
-          </div>
-          <div class="p-5 pt-0 text-xs font-semibold text-amber-600 flex items-center gap-1">
-            Read article &rarr;
-          </div>
-        </a>
-
-        <!-- Card 2 -->
-        <a href="article.html" class="mp-card overflow-hidden mp-card-hover group flex flex-col justify-between">
-          <div>
-            <div class="h-44 w-full bg-gradient-to-tr from-amber-600 via-yellow-600 to-orange-500 flex items-center justify-center text-white relative">
-              <span class="text-4xl opacity-80 group-hover:scale-110 transition-transform">🪙</span>
-              <span class="absolute top-3 left-3 bg-white/90 dark:bg-slate-900/90 text-slate-900 dark:text-white text-[10px] font-bold px-2 py-0.5 rounded-full backdrop-blur">COMMODITIES</span>
-              <span class="absolute bottom-2 right-3 text-[10px] bg-black/40 text-white/90 px-2 py-0.5 rounded">Demo content</span>
-            </div>
-            <div class="p-5">
-              <div class="flex items-center gap-2 text-[11px] text-slate-400 mb-2">
-                <span>Nov 10, 2026</span>
-                <span>&bull;</span>
-                <span>5 min read</span>
-              </div>
-              <h3 class="font-bold text-sm text-slate-900 dark:text-white group-hover:text-amber-600 transition line-clamp-2 leading-snug">
-                The Gold-to-Silver Ratio Compressed: Precious Metals Sector Review
-              </h3>
-              <p class="text-xs text-slate-500 mt-2 line-clamp-2 leading-relaxed">
-                Industrial applications for silver in solar photovoltaic manufacturing drive historical revaluation against physical gold.
-              </p>
-            </div>
-          </div>
-          <div class="p-5 pt-0 text-xs font-semibold text-amber-600 flex items-center gap-1">
-            Read article &rarr;
-          </div>
-        </a>
-
-        <!-- Card 3 -->
-        <a href="article.html" class="mp-card overflow-hidden mp-card-hover group flex flex-col justify-between">
-          <div>
-            <div class="h-44 w-full bg-gradient-to-tr from-emerald-600 via-teal-600 to-cyan-500 flex items-center justify-center text-white relative">
-              <span class="text-4xl opacity-80 group-hover:scale-110 transition-transform">🇵🇰</span>
-              <span class="absolute top-3 left-3 bg-white/90 dark:bg-slate-900/90 text-slate-900 dark:text-white text-[10px] font-bold px-2 py-0.5 rounded-full backdrop-blur">PAKISTAN FOREX</span>
-              <span class="absolute bottom-2 right-3 text-[10px] bg-black/40 text-white/90 px-2 py-0.5 rounded">Demo content</span>
-            </div>
-            <div class="p-5">
-              <div class="flex items-center gap-2 text-[11px] text-slate-400 mb-2">
-                <span>Nov 09, 2026</span>
-                <span>&bull;</span>
-                <span>3 min read</span>
-              </div>
-              <h3 class="font-bold text-sm text-slate-900 dark:text-white group-hover:text-amber-600 transition line-clamp-2 leading-snug">
-                State Bank Reserve Metrics & Import Coverage Analysis
-              </h3>
-              <p class="text-xs text-slate-500 mt-2 line-clamp-2 leading-relaxed">
-                Detailed assessment of multilateral inflows, debt servicing schedules, and currency stability projections for Q4.
-              </p>
-            </div>
-          </div>
-          <div class="p-5 pt-0 text-xs font-semibold text-amber-600 flex items-center gap-1">
-            Read article &rarr;
-          </div>
-        </a>
-
-        <!-- Card 4 -->
-        <a href="article.html" class="mp-card overflow-hidden mp-card-hover group flex flex-col justify-between">
-          <div>
-            <div class="h-44 w-full bg-gradient-to-tr from-purple-700 via-indigo-600 to-rose-500 flex items-center justify-center text-white relative">
-              <span class="text-4xl opacity-80 group-hover:scale-110 transition-transform">🛡️</span>
-              <span class="absolute top-3 left-3 bg-white/90 dark:bg-slate-900/90 text-slate-900 dark:text-white text-[10px] font-bold px-2 py-0.5 rounded-full backdrop-blur">RISK MANAGEMENT</span>
-              <span class="absolute bottom-2 right-3 text-[10px] bg-black/40 text-white/90 px-2 py-0.5 rounded">Demo content</span>
-            </div>
-            <div class="p-5">
-              <div class="flex items-center gap-2 text-[11px] text-slate-400 mb-2">
-                <span>Nov 09, 2026</span>
-                <span>&bull;</span>
-                <span>6 min read</span>
-              </div>
-              <h3 class="font-bold text-sm text-slate-900 dark:text-white group-hover:text-amber-600 transition line-clamp-2 leading-snug">
-                Mathematical Position Sizing: Why 2% Capital Risk Prevents Ruin
-              </h3>
-              <p class="text-xs text-slate-500 mt-2 line-clamp-2 leading-relaxed">
-                How professional proprietary trading desks protect capital through strict expectancy and stop-loss positioning.
-              </p>
-            </div>
-          </div>
-          <div class="p-5 pt-0 text-xs font-semibold text-amber-600 flex items-center gap-1">
-            Read article &rarr;
-          </div>
-        </a>
-
-        <!-- Card 5 -->
-        <a href="article.html" class="mp-card overflow-hidden mp-card-hover group flex flex-col justify-between">
-          <div>
-            <div class="h-44 w-full bg-gradient-to-tr from-slate-700 via-slate-800 to-slate-900 flex items-center justify-center text-white relative">
-              <span class="text-4xl opacity-80 group-hover:scale-110 transition-transform">⚡</span>
-              <span class="absolute top-3 left-3 bg-white/90 dark:bg-slate-900/90 text-slate-900 dark:text-white text-[10px] font-bold px-2 py-0.5 rounded-full backdrop-blur">DEFI & L2</span>
-              <span class="absolute bottom-2 right-3 text-[10px] bg-black/40 text-white/90 px-2 py-0.5 rounded">Demo content</span>
-            </div>
-            <div class="p-5">
-              <div class="flex items-center gap-2 text-[11px] text-slate-400 mb-2">
-                <span>Nov 08, 2026</span>
-                <span>&bull;</span>
-                <span>4 min read</span>
-              </div>
-              <h3 class="font-bold text-sm text-slate-900 dark:text-white group-hover:text-amber-600 transition line-clamp-2 leading-snug">
-                Layer-2 Sequencing & Zero Knowledge Rollup Economic Models
-              </h3>
-              <p class="text-xs text-slate-500 mt-2 line-clamp-2 leading-relaxed">
-                Examining blob gas fee markets and revenue retention on scalable modular blockchain protocols.
-              </p>
-            </div>
-          </div>
-          <div class="p-5 pt-0 text-xs font-semibold text-amber-600 flex items-center gap-1">
-            Read article &rarr;
-          </div>
-        </a>
-
-        <!-- Card 6 -->
-        <a href="article.html" class="mp-card overflow-hidden mp-card-hover group flex flex-col justify-between">
-          <div>
-            <div class="h-44 w-full bg-gradient-to-tr from-rose-600 via-pink-600 to-amber-500 flex items-center justify-center text-white relative">
-              <span class="text-4xl opacity-80 group-hover:scale-110 transition-transform">🛢️</span>
-              <span class="absolute top-3 left-3 bg-white/90 dark:bg-slate-900/90 text-slate-900 dark:text-white text-[10px] font-bold px-2 py-0.5 rounded-full backdrop-blur">ENERGY</span>
-              <span class="absolute bottom-2 right-3 text-[10px] bg-black/40 text-white/90 px-2 py-0.5 rounded">Demo content</span>
-            </div>
-            <div class="p-5">
-              <div class="flex items-center gap-2 text-[11px] text-slate-400 mb-2">
-                <span>Nov 08, 2026</span>
-                <span>&bull;</span>
-                <span>5 min read</span>
-              </div>
-              <h3 class="font-bold text-sm text-slate-900 dark:text-white group-hover:text-amber-600 transition line-clamp-2 leading-snug">
-                Global Crude Tanker Rates & Strategic Petroleum Reserve Replenishment
-              </h3>
-              <p class="text-xs text-slate-500 mt-2 line-clamp-2 leading-relaxed">
-                Maritime logistics bottlenecks and refinery margins influence near-term oil contracts around $72-$75.
-              </p>
-            </div>
-          </div>
-          <div class="p-5 pt-0 text-xs font-semibold text-amber-600 flex items-center gap-1">
-            Read article &rarr;
-          </div>
-        </a>
-
+      <!-- TradingView Market Overview Embed -->
+      <div class="w-full h-[450px] rounded-2xl overflow-hidden bg-white dark:bg-slate-900">
+        <div class="tradingview-widget-container h-full w-full">
+          <div class="tradingview-widget-container__widget h-full w-full"></div>
+          <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-market-overview.js" async>
+          {
+            "colorTheme": "light",
+            "dateRange": "12M",
+            "showChart": true,
+            "locale": "en",
+            "largeChartUrl": "",
+            "isTransparent": true,
+            "showSymbolLogo": true,
+            "showFloatingTooltip": false,
+            "width": "100%",
+            "height": "100%",
+            "tabs": [
+              {
+                "title": "Commodities",
+                "symbols": [
+                  { "s": "TVC:GOLD", "d": "Spot Gold (XAU/USD)" },
+                  { "s": "TVC:SILVER", "d": "Spot Silver (XAG/USD)" },
+                  { "s": "TVC:USOIL", "d": "WTI Crude Oil" },
+                  { "s": "COMEX:HG1!", "d": "Copper Futures" }
+                ]
+              },
+              {
+                "title": "Crypto Assets",
+                "symbols": [
+                  { "s": "BINANCE:BTCUSDT", "d": "Bitcoin / Tether" },
+                  { "s": "BINANCE:ETHUSDT", "d": "Ethereum / Tether" },
+                  { "s": "BINANCE:SOLUSDT", "d": "Solana / Tether" },
+                  { "s": "BINANCE:BNBUSDT", "d": "BNB / Tether" }
+                ]
+              },
+              {
+                "title": "Currencies",
+                "symbols": [
+                  { "s": "FX_IDC:USDPKR", "d": "USD / PKR" },
+                  { "s": "FX:EURUSD", "d": "EUR / USD" },
+                  { "s": "FX:GBPUSD", "d": "GBP / USD" },
+                  { "s": "FX_IDC:SARPKR", "d": "SAR / PKR" }
+                ]
+              }
+            ]
+          }
+          </script>
+        </div>
       </div>
     </section>
 
-    <!-- 10. TOP EXCHANGES & BROKERS (REVIEW CARDS & AFFILIATE DISCLOSURE) -->
-    <section class="reveal-on-scroll">
-      <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
+    <!-- 13. EXCHANGES & BROKERS (Cards with Rating, Pros/Cons, Affiliate Disclosure) -->
+    <section class="reveal-on-scroll space-y-4">
+      <div class="flex items-center justify-between">
         <div>
-          <h2 class="font-heading font-extrabold text-lg text-slate-900 dark:text-white">Regulated & Top-Tier Trading Platforms</h2>
-          <p class="text-xs text-slate-500">Evaluated on liquidity, regulatory standing, taker fees, and security posture</p>
+          <h2 class="font-heading font-extrabold text-2xl text-slate-900 dark:text-white">Featured Exchanges & Platforms</h2>
+          <p class="text-xs text-slate-500">Independent editorial assessments with transparent fee and security breakdowns</p>
         </div>
-        <a href="exchanges-brokers.html" class="text-xs font-semibold text-amber-600 dark:text-amber-400 hover:underline">Full Directory & Ratings &rarr;</a>
+        <a href="exchanges-brokers.html" class="text-xs font-bold text-amber-600 hover:underline">Compare All Platforms &rarr;</a>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
         
-        <!-- Broker 1: Binance -->
-        <div class="mp-card p-5 flex flex-col justify-between">
+        <!-- Platform 1: Bitunix -->
+        <div class="mp-card p-5 mp-card-hover flex flex-col justify-between">
           <div>
             <div class="flex items-center justify-between mb-3">
-              <div class="w-10 h-10 rounded-xl bg-amber-400/20 text-amber-700 dark:text-amber-300 font-extrabold text-sm flex items-center justify-center">
-                BN
-              </div>
-              <div class="flex items-center gap-1 text-amber-500 text-xs font-bold">
-                ★ 4.9 <span class="text-slate-400 font-normal text-[10px]">(Demo)</span>
-              </div>
+              <div class="w-10 h-10 rounded-2xl bg-purple-50 dark:bg-purple-950 text-purple-600 font-black text-sm flex items-center justify-center">BX</div>
+              <div class="text-xs font-extrabold text-amber-500">★ 4.8 / 5.0</div>
             </div>
-            <h3 class="font-bold text-sm text-slate-900 dark:text-white mb-1">Binance</h3>
-            <p class="text-xs text-slate-500 mb-3">World's deepest spot and futures order book liquidity with lowest maker fees.</p>
-            
-            <ul class="text-[11px] text-slate-600 dark:text-slate-400 space-y-1 mb-4">
-              <li class="flex items-center gap-1.5"><span class="text-emerald-500">✓</span> 350+ Crypto Pairs</li>
-              <li class="flex items-center gap-1.5"><span class="text-emerald-500">✓</span> 0.1% Standard Spot Fee</li>
-              <li class="flex items-center gap-1.5"><span class="text-emerald-500">✓</span> Proof of Reserves published</li>
-            </ul>
+            <h3 class="font-bold text-sm text-slate-900 dark:text-white">Bitunix Exchange</h3>
+            <p class="text-xs text-slate-500 mt-1 mb-3">High-speed crypto derivatives & spot trading with 800+ perpetual pairs.</p>
+            <div class="text-[11px] text-slate-600 dark:text-slate-400 space-y-1 mb-4">
+              <div class="flex items-center gap-1.5"><span class="text-emerald-500">✓</span> <span>Ultra-low maker fees</span></div>
+              <div class="flex items-center gap-1.5"><span class="text-emerald-500">✓</span> <span>Free public market API</span></div>
+            </div>
           </div>
-          <div class="space-y-2">
-            <a href="https://binance.com" target="_blank" rel="noopener" class="btn-primary w-full py-1.5 text-xs justify-center">Visit Platform</a>
-            <a href="exchanges-brokers.html" class="btn-secondary w-full py-1.5 text-xs justify-center">Read Full Review</a>
+          <div class="pt-3 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between">
+            <a href="exchanges-brokers.html" class="text-xs font-bold text-slate-600 hover:text-amber-600">Read Review</a>
+            <a href="https://bitunix.com/" target="_blank" rel="noopener noreferrer" class="btn-primary text-xs py-1 px-3">Visit &rarr;</a>
           </div>
         </div>
 
-        <!-- Broker 2: Interactive Brokers -->
-        <div class="mp-card p-5 flex flex-col justify-between">
+        <!-- Platform 2: Binance -->
+        <div class="mp-card p-5 mp-card-hover flex flex-col justify-between">
           <div>
             <div class="flex items-center justify-between mb-3">
-              <div class="w-10 h-10 rounded-xl bg-red-100 dark:bg-red-950 text-red-700 dark:text-red-300 font-extrabold text-sm flex items-center justify-center">
-                IBKR
-              </div>
-              <div class="flex items-center gap-1 text-amber-500 text-xs font-bold">
-                ★ 4.8 <span class="text-slate-400 font-normal text-[10px]">(Demo)</span>
-              </div>
+              <div class="w-10 h-10 rounded-2xl bg-amber-50 dark:bg-amber-950 text-amber-600 font-black text-sm flex items-center justify-center">BN</div>
+              <div class="text-xs font-extrabold text-amber-500">★ 4.9 / 5.0</div>
             </div>
-            <h3 class="font-bold text-sm text-slate-900 dark:text-white mb-1">Interactive Brokers</h3>
-            <p class="text-xs text-slate-500 mb-3">Institutional multi-asset broker providing direct access to global stocks, forex & gold.</p>
-            
-            <ul class="text-[11px] text-slate-600 dark:text-slate-400 space-y-1 mb-4">
-              <li class="flex items-center gap-1.5"><span class="text-emerald-500">✓</span> Global Market Access (150+)</li>
-              <li class="flex items-center gap-1.5"><span class="text-emerald-500">✓</span> SEC & FCA Regulated</li>
-              <li class="flex items-center gap-1.5"><span class="text-emerald-500">✓</span> Professional Trader Workstation</li>
-            </ul>
+            <h3 class="font-bold text-sm text-slate-900 dark:text-white">Binance Global</h3>
+            <p class="text-xs text-slate-500 mt-1 mb-3">Largest cryptocurrency exchange by volume with deepest global order books.</p>
+            <div class="text-[11px] text-slate-600 dark:text-slate-400 space-y-1 mb-4">
+              <div class="flex items-center gap-1.5"><span class="text-emerald-500">✓</span> <span>Deepest liquidity</span></div>
+              <div class="flex items-center gap-1.5"><span class="text-emerald-500">✓</span> <span>Peer-to-Peer (P2P) in PKR</span></div>
+            </div>
           </div>
-          <div class="space-y-2">
-            <a href="exchanges-brokers.html" class="btn-primary w-full py-1.5 text-xs justify-center">Visit Platform</a>
-            <a href="exchanges-brokers.html" class="btn-secondary w-full py-1.5 text-xs justify-center">Read Full Review</a>
+          <div class="pt-3 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between">
+            <a href="exchanges-brokers.html" class="text-xs font-bold text-slate-600 hover:text-amber-600">Read Review</a>
+            <a href="https://binance.com/" target="_blank" rel="noopener noreferrer" class="btn-primary text-xs py-1 px-3">Visit &rarr;</a>
           </div>
         </div>
 
-        <!-- Broker 3: Bybit -->
-        <div class="mp-card p-5 flex flex-col justify-between">
+        <!-- Platform 3: Interactive Brokers -->
+        <div class="mp-card p-5 mp-card-hover flex flex-col justify-between">
           <div>
             <div class="flex items-center justify-between mb-3">
-              <div class="w-10 h-10 rounded-xl bg-slate-900 text-[#F5B700] font-extrabold text-sm flex items-center justify-center">
-                BY
-              </div>
-              <div class="flex items-center gap-1 text-amber-500 text-xs font-bold">
-                ★ 4.7 <span class="text-slate-400 font-normal text-[10px]">(Demo)</span>
-              </div>
+              <div class="w-10 h-10 rounded-2xl bg-red-50 dark:bg-red-950 text-red-600 font-black text-sm flex items-center justify-center">IB</div>
+              <div class="text-xs font-extrabold text-amber-500">★ 4.9 / 5.0</div>
             </div>
-            <h3 class="font-bold text-sm text-slate-900 dark:text-white mb-1">Bybit</h3>
-            <p class="text-xs text-slate-500 mb-3">Top derivatives and copy-trading exchange with reliable matching engine uptime.</p>
-            
-            <ul class="text-[11px] text-slate-600 dark:text-slate-400 space-y-1 mb-4">
-              <li class="flex items-center gap-1.5"><span class="text-emerald-500">✓</span> High Perpetual Leverage</li>
-              <li class="flex items-center gap-1.5"><span class="text-emerald-500">✓</span> Unified Trading Account</li>
-              <li class="flex items-center gap-1.5"><span class="text-emerald-500">✓</span> VIP Tier Fee Discounts</li>
-            </ul>
+            <h3 class="font-bold text-sm text-slate-900 dark:text-white">Interactive Brokers</h3>
+            <p class="text-xs text-slate-500 mt-1 mb-3">Global institutional multi-asset broker for stocks, forex, gold & options.</p>
+            <div class="text-[11px] text-slate-600 dark:text-slate-400 space-y-1 mb-4">
+              <div class="flex items-center gap-1.5"><span class="text-emerald-500">✓</span> <span>150+ global markets</span></div>
+              <div class="flex items-center gap-1.5"><span class="text-emerald-500">✓</span> <span>Interbank forex spreads</span></div>
+            </div>
           </div>
-          <div class="space-y-2">
-            <a href="exchanges-brokers.html" class="btn-primary w-full py-1.5 text-xs justify-center">Visit Platform</a>
-            <a href="exchanges-brokers.html" class="btn-secondary w-full py-1.5 text-xs justify-center">Read Full Review</a>
+          <div class="pt-3 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between">
+            <a href="exchanges-brokers.html" class="text-xs font-bold text-slate-600 hover:text-amber-600">Read Review</a>
+            <a href="exchanges-brokers.html" class="btn-primary text-xs py-1 px-3">Visit &rarr;</a>
           </div>
         </div>
 
-        <!-- Broker 4: OANDA -->
-        <div class="mp-card p-5 flex flex-col justify-between">
+        <!-- Platform 4: OANDA -->
+        <div class="mp-card p-5 mp-card-hover flex flex-col justify-between">
           <div>
             <div class="flex items-center justify-between mb-3">
-              <div class="w-10 h-10 rounded-xl bg-blue-100 dark:bg-blue-950 text-blue-700 dark:text-blue-300 font-extrabold text-sm flex items-center justify-center">
-                OA
-              </div>
-              <div class="flex items-center gap-1 text-amber-500 text-xs font-bold">
-                ★ 4.6 <span class="text-slate-400 font-normal text-[10px]">(Demo)</span>
-              </div>
+              <div class="w-10 h-10 rounded-2xl bg-blue-50 dark:bg-blue-950 text-blue-600 font-black text-sm flex items-center justify-center">OA</div>
+              <div class="text-xs font-extrabold text-amber-500">★ 4.7 / 5.0</div>
             </div>
-            <h3 class="font-bold text-sm text-slate-900 dark:text-white mb-1">OANDA</h3>
-            <p class="text-xs text-slate-500 mb-3">Pioneering retail Forex and CFD broker with tight spreads on major currency pairs.</p>
-            
-            <ul class="text-[11px] text-slate-600 dark:text-slate-400 space-y-1 mb-4">
-              <li class="flex items-center gap-1.5"><span class="text-emerald-500">✓</span> Major & Minor FX Pairs</li>
-              <li class="flex items-center gap-1.5"><span class="text-emerald-500">✓</span> TradingView Direct Integration</li>
-              <li class="flex items-center gap-1.5"><span class="text-emerald-500">✓</span> CFTC, FCA, ASIC licensed</li>
-            </ul>
+            <h3 class="font-bold text-sm text-slate-900 dark:text-white">OANDA Forex</h3>
+            <p class="text-xs text-slate-500 mt-1 mb-3">Established currency and precious metals broker with robust API access.</p>
+            <div class="text-[11px] text-slate-600 dark:text-slate-400 space-y-1 mb-4">
+              <div class="flex items-center gap-1.5"><span class="text-emerald-500">✓</span> <span>68 currency pairs</span></div>
+              <div class="flex items-center gap-1.5"><span class="text-emerald-500">✓</span> <span>Strict Tier-1 regulation</span></div>
+            </div>
           </div>
-          <div class="space-y-2">
-            <a href="exchanges-brokers.html" class="btn-primary w-full py-1.5 text-xs justify-center">Visit Platform</a>
-            <a href="exchanges-brokers.html" class="btn-secondary w-full py-1.5 text-xs justify-center">Read Full Review</a>
+          <div class="pt-3 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between">
+            <a href="exchanges-brokers.html" class="text-xs font-bold text-slate-600 hover:text-amber-600">Read Review</a>
+            <a href="exchanges-brokers.html" class="btn-primary text-xs py-1 px-3">Visit &rarr;</a>
           </div>
         </div>
 
       </div>
 
-      <!-- Affiliate Disclosure Note -->
-      <div class="mt-4 p-3 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl text-[11px] text-slate-500 flex flex-wrap items-center justify-between gap-2">
-        <span><strong>Affiliate Disclosure:</strong> MarketPulse may receive compensation from partner links at no additional cost to you. Ratings reflect editorial criteria and are labeled as demo content for this layout preview.</span>
-        <a href="exchanges-brokers.html" class="text-amber-600 font-semibold hover:underline">Read review methodology &rarr;</a>
+      <div class="text-[11px] text-slate-500 pt-2 flex items-center gap-2">
+        <span class="font-bold text-amber-600">Affiliate Disclosure:</span>
+        <span>MarketPulse may receive affiliate compensation when you register via partner links. Ratings remain editorially independent. Demo content.</span>
       </div>
     </section>
 
-    <!-- 11. LEARN & ACADEMY SECTION -->
-    <section class="reveal-on-scroll">
-      <div class="flex items-center justify-between mb-4">
+    <!-- 14. ACADEMY / LEARN CARDS -->
+    <section class="reveal-on-scroll space-y-4">
+      <div class="flex items-center justify-between">
         <div>
-          <h2 class="font-heading font-extrabold text-lg text-slate-900 dark:text-white">MarketPulse Academy</h2>
-          <p class="text-xs text-slate-500">Educational modules on risk management, market mechanics and technical indicators</p>
+          <h2 class="font-heading font-extrabold text-2xl text-slate-900 dark:text-white">MarketPulse Learning Academy</h2>
+          <p class="text-xs text-slate-500">Educational modules on risk management, technical mechanics, and macro literacy</p>
         </div>
-        <a href="academy.html" class="text-xs font-semibold text-amber-600 dark:text-amber-400 hover:underline">View All Lessons &rarr;</a>
+        <a href="academy.html" class="text-xs font-bold text-amber-600 hover:underline">View All Guides &rarr;</a>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <a href="academy.html" class="mp-card p-5 mp-card-hover group flex flex-col justify-between">
+        <a href="academy.html" class="mp-card mp-card-hover p-6 flex flex-col justify-between group">
           <div>
             <div class="flex items-center justify-between mb-3">
-              <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-100 dark:bg-emerald-950 text-emerald-800 dark:text-emerald-300">BEGINNER</span>
-              <span class="text-[11px] text-slate-400">8 min read</span>
+              <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-50 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-300">Beginner Guide</span>
+              <span class="text-[10px] text-slate-400">7 min read</span>
             </div>
-            <h3 class="font-bold text-sm text-slate-900 dark:text-white group-hover:text-amber-600 transition mb-2">
-              Order Book Mechanics: Bids, Asks, and Slippage Explained
+            <h3 class="font-bold text-sm text-slate-900 dark:text-white mb-2 group-hover:text-amber-600 transition">
+              Understanding Dollar Cost Averaging (DCA): Minimizing Emotional Volatility
             </h3>
             <p class="text-xs text-slate-500 leading-relaxed">
-              Understand market depth, why market orders incur slippage during volatility, and how limit orders provide fee rebates.
+              Why regular scheduled allocations mathematically outperform emotional market timing across secular bull and bear cycles.
             </p>
           </div>
-          <span class="mt-4 text-xs font-bold text-slate-700 dark:text-slate-300 inline-flex items-center gap-1 group-hover:text-amber-600">Start Lesson &rarr;</span>
+          <div class="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800 text-xs font-bold text-amber-600 group-hover:translate-x-1 transition-transform inline-flex items-center gap-1">
+            <span>Read Guide</span>
+            <span>&rarr;</span>
+          </div>
         </a>
 
-        <a href="academy.html" class="mp-card p-5 mp-card-hover group flex flex-col justify-between">
+        <a href="academy.html" class="mp-card mp-card-hover p-6 flex flex-col justify-between group">
           <div>
             <div class="flex items-center justify-between mb-3">
-              <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-blue-100 dark:bg-blue-950 text-blue-800 dark:text-blue-300">INTERMEDIATE</span>
-              <span class="text-[11px] text-slate-400">12 min read</span>
+              <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-blue-50 dark:bg-blue-950 text-blue-700 dark:text-blue-300">Intermediate</span>
+              <span class="text-[10px] text-slate-400">10 min read</span>
             </div>
-            <h3 class="font-bold text-sm text-slate-900 dark:text-white group-hover:text-amber-600 transition mb-2">
-              Dollar Cost Averaging vs Lump Sum: Empirical Backtesting
+            <h3 class="font-bold text-sm text-slate-900 dark:text-white mb-2 group-hover:text-amber-600 transition">
+              Position Sizing & Asymmetric Risk/Reward: Surviving Fat-Tail Events
             </h3>
             <p class="text-xs text-slate-500 leading-relaxed">
-              Compare cyclical drawdown mitigation using systematic periodic accumulation versus single-entry allocation.
+              How professional prop desks calculate fixed fractional risk and define invalidation levels before opening leverage.
             </p>
           </div>
-          <span class="mt-4 text-xs font-bold text-slate-700 dark:text-slate-300 inline-flex items-center gap-1 group-hover:text-amber-600">Start Lesson &rarr;</span>
+          <div class="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800 text-xs font-bold text-amber-600 group-hover:translate-x-1 transition-transform inline-flex items-center gap-1">
+            <span>Read Guide</span>
+            <span>&rarr;</span>
+          </div>
         </a>
 
-        <a href="academy.html" class="mp-card p-5 mp-card-hover group flex flex-col justify-between">
+        <a href="academy.html" class="mp-card mp-card-hover p-6 flex flex-col justify-between group">
           <div>
             <div class="flex items-center justify-between mb-3">
-              <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-purple-100 dark:bg-purple-950 text-purple-800 dark:text-purple-300">INTERMEDIATE</span>
-              <span class="text-[11px] text-slate-400">10 min read</span>
+              <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-50 dark:bg-amber-950 text-amber-700 dark:text-amber-300">Bullion Mechanics</span>
+              <span class="text-[10px] text-slate-400">6 min read</span>
             </div>
-            <h3 class="font-bold text-sm text-slate-900 dark:text-white group-hover:text-amber-600 transition mb-2">
-              Currency Risk in Frontier Markets: Protecting Purchasing Power
+            <h3 class="font-bold text-sm text-slate-900 dark:text-white mb-2 group-hover:text-amber-600 transition">
+              Gold Math in Pakistan: Tolas, Grams, Sarafa Premiums & Conversion
             </h3>
             <p class="text-xs text-slate-500 leading-relaxed">
-              Strategies to hedge local currency devaluation utilizing physical bullion, dollar-pegged assets, and diversified baskets.
+              The exact mathematical formula connecting international COMEX spot ounces with local Pakistani Sarafa jewelry rates.
             </p>
           </div>
-          <span class="mt-4 text-xs font-bold text-slate-700 dark:text-slate-300 inline-flex items-center gap-1 group-hover:text-amber-600">Start Lesson &rarr;</span>
+          <div class="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800 text-xs font-bold text-amber-600 group-hover:translate-x-1 transition-transform inline-flex items-center gap-1">
+            <span>Read Guide</span>
+            <span>&rarr;</span>
+          </div>
         </a>
       </div>
     </section>
 
-    <!-- 12. WHY TRUST US STRIP (NO INVENTED CLAIMS) -->
-    <section class="reveal-on-scroll bg-slate-100 dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800 rounded-2xl p-6">
-      <div class="max-w-4xl mx-auto text-center space-y-3">
-        <h2 class="font-heading font-extrabold text-base text-slate-900 dark:text-white">Our Editorial & Data Commitments</h2>
-        <p class="text-xs text-slate-600 dark:text-slate-400 max-w-2xl mx-auto leading-relaxed">
-          MarketPulse is committed to objective data presentation without fabricated metrics, undisclosed paid sponsorships, or inflated volume statistics. Every live feed indicates its origin and refresh timestamp.
-        </p>
-        <div class="flex flex-wrap items-center justify-center gap-6 pt-2 text-xs font-semibold text-slate-700 dark:text-slate-300">
-          <a href="#" class="hover:text-amber-600 flex items-center gap-1.5"><span class="text-amber-500">✓</span> Editorial Guidelines</a>
-          <a href="#" class="hover:text-amber-600 flex items-center gap-1.5"><span class="text-amber-500">✓</span> Verified Data Sources</a>
-          <a href="#" class="hover:text-amber-600 flex items-center gap-1.5"><span class="text-amber-500">✓</span> Corrections Policy</a>
-          <a href="#" class="hover:text-amber-600 flex items-center gap-1.5"><span class="text-amber-500">✓</span> Affiliate Disclosure</a>
+    <!-- 15. "WHY TRUST US" STRIP (Truth Rules: Transparent Links, Zero Fake Claims) -->
+    <section class="reveal-on-scroll bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl p-6 sm:p-8 shadow-xs">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-6 text-xs">
+        <div>
+          <div class="font-bold text-slate-900 dark:text-white text-sm mb-1">Editorial Policy</div>
+          <p class="text-slate-500 leading-relaxed">Strict separation between editorial research and commercial sponsorships.</p>
+        </div>
+        <div>
+          <div class="font-bold text-slate-900 dark:text-white text-sm mb-1">Verified Public Feeds</div>
+          <p class="text-slate-500 leading-relaxed">All market quotes pull from official public APIs (Bitunix, Binance, Currency API).</p>
+        </div>
+        <div>
+          <div class="font-bold text-slate-900 dark:text-white text-sm mb-1">Corrections Policy</div>
+          <p class="text-slate-500 leading-relaxed">Transparent log of factual rectifications with timestamps.</p>
+        </div>
+        <div>
+          <div class="font-bold text-slate-900 dark:text-white text-sm mb-1">Affiliate Disclosure</div>
+          <p class="text-slate-500 leading-relaxed">Zero pay-to-win rankings. Full commercial relationship transparency.</p>
         </div>
       </div>
     </section>
 
-    <!-- 13. PORTFOLIO CTA & MOCK PREVIEW (LABELED DEMO) -->
-    <section class="reveal-on-scroll mp-card p-6 md:p-8 bg-gradient-to-r from-slate-900 via-[#0B1220] to-slate-900 text-white relative overflow-hidden">
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center relative z-10">
-        <div class="lg:col-span-7 space-y-4">
-          <span class="px-2.5 py-1 rounded-full text-xs font-bold bg-[#F5B700] text-[#0B1220]">PORTFOLIO TRACKER PREVIEW</span>
-          <h2 class="font-heading font-extrabold text-2xl md:text-3xl leading-tight">
-            Consolidate Crypto, Forex Holdings & Bullion in One Clean Dashboard
-          </h2>
-          <p class="text-slate-300 text-xs md:text-sm leading-relaxed max-w-xl">
-            Simulate and track asset allocations across spot Bitcoin, gold tola holdings, and multi-currency bank deposits with zero third-party wallet access or private key requirements.
+    <!-- 16. PORTFOLIO CTA & NEWSLETTER -->
+    <section class="reveal-on-scroll grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
+      
+      <!-- Portfolio Mock CTA (7 Cols) -->
+      <div class="lg:col-span-7 mp-card p-6 sm:p-8 bg-gradient-to-br from-slate-900 via-slate-900 to-slate-800 text-white flex flex-col justify-between">
+        <div>
+          <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-bold bg-amber-400/20 text-amber-300 border border-amber-400/30 mb-3">
+            <span>PREVIEW FEATURE</span> &bull; <span>DEMO PORTFOLIO</span>
+          </div>
+          <h3 class="font-heading font-extrabold text-2xl sm:text-3xl mb-3 leading-tight">
+            Track Multi-Asset Wealth in USD & Pakistani Rupee
+          </h3>
+          <p class="text-slate-300 text-xs sm:text-sm leading-relaxed mb-6 max-w-lg">
+            Monitor spot crypto holdings, physical bullion tolas, and foreign currency accounts in one private, client-side browser dashboard.
           </p>
-          <div class="flex flex-wrap items-center gap-3 pt-2">
-            <a href="tools.html" class="btn-primary text-xs">
-              <span>Try Interactive Tools</span>
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
-            </a>
-            <span class="text-xs text-slate-400 font-mono">Sample client UI preview</span>
+
+          <!-- Mock Portfolio Pill Card -->
+          <div class="p-4 rounded-2xl bg-slate-800/80 border border-slate-700/60 max-w-md mb-6">
+            <div class="flex items-center justify-between text-xs text-slate-400 mb-1">
+              <span>Demo Portfolio Balance</span>
+              <span class="text-emerald-400 font-bold">▲ +14.8% All-Time</span>
+            </div>
+            <div class="text-2xl font-extrabold font-mono text-white">$48,250.00</div>
+            <div class="text-xs text-amber-400 font-mono mt-0.5">₨ 13,442,450 PKR Equivalent</div>
           </div>
         </div>
 
-        <!-- Right: Mock Portfolio Card (Demo Labeled) -->
-        <div class="lg:col-span-5 bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-5 shadow-2xl space-y-4">
-          <div class="flex items-center justify-between pb-3 border-b border-white/10 text-xs">
+        <div>
+          <a href="markets.html" class="btn-primary text-xs py-2.5 px-5">
+            <span>Explore Live Terminal</span>
+            <span>&rarr;</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Newsletter Box (5 Cols) -->
+      <div class="lg:col-span-5 mp-card p-6 sm:p-8 flex flex-col justify-between">
+        <div>
+          <div class="w-10 h-10 rounded-2xl bg-amber-100 dark:bg-amber-950 text-amber-600 flex items-center justify-center font-bold text-lg mb-3">
+            📬
+          </div>
+          <h3 class="font-heading font-extrabold text-xl text-slate-900 dark:text-white mb-2">
+            The MarketPulse Daily Dispatch
+          </h3>
+          <p class="text-xs text-slate-500 leading-relaxed mb-6">
+            One 3-minute morning email summarizing crypto liquidations, PKR exchange benchmarks, and bullion spot action. No spam.
+          </p>
+
+          <form id="newsletter-form" class="space-y-3">
             <div>
-              <span class="text-[10px] text-slate-300 uppercase tracking-wider block">Total Estimated Value</span>
-              <span class="text-xl font-bold font-mono text-white">$142,850.00</span>
+              <input type="email" required placeholder="Enter your email address..." class="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-xs text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-amber-500">
             </div>
-            <span class="px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300 text-[11px] font-bold">▲ +8.4% (30d)</span>
-          </div>
+            <button type="submit" class="btn-primary w-full text-xs py-3">
+              Subscribe Free (Demo)
+            </button>
+          </form>
 
-          <div class="space-y-2 text-xs">
-            <div class="flex items-center justify-between p-2 rounded-xl bg-white/5">
-              <div class="flex items-center gap-2">
-                <span class="font-bold text-amber-400">BTC</span>
-                <span class="text-slate-300 text-[11px]">1.25 Bitcoin</span>
-              </div>
-              <span class="font-mono font-bold">$111,812.50</span>
-            </div>
-            <div class="flex items-center justify-between p-2 rounded-xl bg-white/5">
-              <div class="flex items-center gap-2">
-                <span class="font-bold text-yellow-300">GOLD</span>
-                <span class="text-slate-300 text-[11px]">5 Tolas (24K)</span>
-              </div>
-              <span class="font-mono font-bold">$13,427.00</span>
-            </div>
-            <div class="flex items-center justify-between p-2 rounded-xl bg-white/5">
-              <div class="flex items-center gap-2">
-                <span class="font-bold text-blue-300">ETH</span>
-                <span class="text-slate-300 text-[11px]">5.20 Ethereum</span>
-              </div>
-              <span class="font-mono font-bold">$17,610.50</span>
-            </div>
+          <div id="newsletter-success" class="hidden p-4 rounded-2xl bg-emerald-50 dark:bg-emerald-950 border border-emerald-200 dark:border-emerald-800 text-emerald-800 dark:text-emerald-300 text-xs font-bold text-center">
+            ✓ Thank you! You have been subscribed to the demo morning dispatch.
           </div>
+        </div>
 
-          <div class="text-[10px] text-slate-400 text-center pt-2">
-            Mock preview data &bull; Designed for client review
-          </div>
+        <div class="text-[10px] text-slate-400 pt-4 border-t border-slate-100 dark:border-slate-800 mt-4">
+          Unsubscribe anytime with 1-click &bull; Demo form
         </div>
       </div>
 
-      <!-- Background glow -->
-      <div class="absolute -right-24 -bottom-24 w-96 h-96 bg-amber-500/10 rounded-full blur-3xl pointer-events-none"></div>
-    </section>
-
-    <!-- 14. NEWSLETTER SUBSCRIPTION STRIP -->
-    <section class="mp-card p-6 md:p-8 bg-white dark:bg-slate-900 text-center reveal-on-scroll">
-      <div class="max-w-2xl mx-auto space-y-4">
-        <div class="w-12 h-12 rounded-2xl bg-amber-100 dark:bg-amber-950/60 text-[#0B1220] dark:text-amber-400 flex items-center justify-center text-xl mx-auto shadow-xs">
-          ✉️
-        </div>
-        <h2 class="font-heading font-extrabold text-xl text-slate-900 dark:text-white">
-          Receive The MarketPulse Morning Briefing
-        </h2>
-        <p class="text-xs text-slate-500 leading-relaxed max-w-lg mx-auto">
-          Every trading day at 07:00 UTC: Spot prices, Pakistan forex rates, central bank updates, and risk analysis distilled into a 3-minute read.
-        </p>
-
-        <form id="newsletter-form" class="flex flex-col sm:flex-row items-center justify-center gap-2 max-w-md mx-auto pt-2">
-          <input type="email" placeholder="Enter your business email" required class="w-full sm:w-auto flex-1 px-4 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-xs focus:outline-hidden focus:ring-2 focus:ring-amber-400 dark:text-white">
-          <button type="submit" class="btn-primary w-full sm:w-auto text-xs py-2.5 px-5">Subscribe Free</button>
-        </form>
-
-        <div id="newsletter-success" class="hidden p-3 rounded-xl bg-emerald-50 dark:bg-emerald-950 text-emerald-800 dark:text-emerald-300 text-xs font-semibold max-w-md mx-auto">
-          ✓ Thank you! You have been registered for the daily MarketPulse intelligence briefing.
-        </div>
-
-        <p class="text-[10px] text-slate-400">Zero spam. Unsubscribe at any time. Form visual demo only.</p>
-      </div>
     </section>
 
   </main>
 
-  <!-- NEAR-BLACK INSTITUTIONAL FOOTER WITH YELLOW ACCENT LINKS -->
-  <footer class="bg-[#0B1220] text-slate-400 text-xs border-t border-slate-800 mt-16">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
+  <!-- 17. FOOTER (Near-Black #0B1220, Yellow Links, Full Legal & Risk Notice) -->
+  <footer class="bg-[#0B1220] text-slate-300 pt-16 pb-12 border-t border-slate-800 mt-16 text-xs">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 pb-12 border-b border-slate-800">
         
-        <!-- Column 1: Brand & About -->
+        <!-- Col 1: About & Brand (2 Cols on lg) -->
         <div class="lg:col-span-2 space-y-4">
-          <div class="flex items-center gap-2.5">
-            <div class="w-8 h-8 rounded-xl bg-[#F5B700] text-[#0B1220] flex items-center justify-center font-black text-lg">
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
-              </svg>
+          <div class="flex items-center gap-3">
+            <div class="w-9 h-9 rounded-2xl bg-[#F5B700] text-[#0B1220] flex items-center justify-center font-black text-xl">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" /></svg>
             </div>
-            <span class="font-heading font-extrabold text-xl text-white tracking-tight">Market<span class="text-[#F5B700]">Pulse</span></span>
+            <span class="font-heading font-extrabold text-2xl text-white tracking-tight">Market<span class="text-amber-400">Pulse</span></span>
           </div>
           <p class="text-slate-400 text-xs leading-relaxed max-w-sm">
-            Institutional market intelligence, real-time cryptocurrency data, global foreign exchange rates, and precious commodity valuation tools tailored for modern investors.
+            Institutional-grade multi-asset intelligence platform providing streaming crypto data, interbank foreign exchange corridors, and physical precious metal calculations.
           </p>
-          <div class="text-[11px] text-slate-500 space-y-1">
-            <p>Version 2.0 &bull; Front-end Client Preview</p>
-            <p>Data Feeds: Binance Public Vision &bull; Currency OpenAPI</p>
+          <div class="text-[11px] text-slate-500 font-mono">
+            Version 3.0.0 &bull; Light Modern Theme Client Preview
           </div>
         </div>
 
-        <!-- Column 2: Markets -->
-        <div>
-          <h3 class="text-white font-bold text-xs uppercase tracking-wider mb-3">Markets</h3>
-          <ul class="space-y-2">
-            <li><a href="markets.html" class="hover:text-[#F5B700] transition">All Crypto Coins</a></li>
-            <li><a href="coin.html?symbol=BTCUSDT" class="hover:text-[#F5B700] transition">Bitcoin Live View</a></li>
-            <li><a href="coin.html?symbol=ETHUSDT" class="hover:text-[#F5B700] transition">Ethereum Live View</a></li>
-            <li><a href="gainers-losers.html" class="hover:text-[#F5B700] transition">24h Gainers & Losers</a></li>
-            <li><a href="heatmap.html" class="hover:text-[#F5B700] transition">Market Heatmap</a></li>
+        <!-- Col 2: Markets -->
+        <div class="space-y-3">
+          <div class="font-bold text-white uppercase tracking-wider text-[11px]">Markets</div>
+          <ul class="space-y-2 text-xs">
+            <li><a href="markets.html" class="hover:text-amber-400 transition">All Cryptocurrencies</a></li>
+            <li><a href="gainers-losers.html" class="hover:text-amber-400 transition">Top Gainers & Losers</a></li>
+            <li><a href="fear-greed.html" class="hover:text-amber-400 transition">Fear & Greed Index</a></li>
+            <li><a href="heatmap.html" class="hover:text-amber-400 transition">Market Heatmap</a></li>
+            <li><a href="#commodities-strip" class="hover:text-amber-400 transition">Commodities & Bullion</a></li>
           </ul>
         </div>
 
-        <!-- Column 3: Calculators & Tools -->
-        <div>
-          <h3 class="text-white font-bold text-xs uppercase tracking-wider mb-3">Tools Hub</h3>
-          <ul class="space-y-2">
-            <li><a href="dca-calculator.html" class="hover:text-[#F5B700] transition">DCA Simulator</a></li>
-            <li><a href="position-size-calculator.html" class="hover:text-[#F5B700] transition">Position Size Calculator</a></li>
-            <li><a href="gold-tola-calculator.html" class="hover:text-[#F5B700] transition">Gold per Tola (PKR)</a></li>
-            <li><a href="crypto-converter.html" class="hover:text-[#F5B700] transition">Crypto to PKR Converter</a></li>
-            <li><a href="profit-loss-calculator.html" class="hover:text-[#F5B700] transition">Profit & Loss Calculator</a></li>
-            <li><a href="fear-greed.html" class="hover:text-[#F5B700] transition">Fear & Greed Index</a></li>
+        <!-- Col 3: Tools Suite -->
+        <div class="space-y-3">
+          <div class="font-bold text-white uppercase tracking-wider text-[11px]">Calculators</div>
+          <ul class="space-y-2 text-xs">
+            <li><a href="dca-calculator.html" class="hover:text-amber-400 transition">DCA Calculator</a></li>
+            <li><a href="position-size-calculator.html" class="hover:text-amber-400 transition">Position Size & Risk</a></li>
+            <li><a href="crypto-converter.html" class="hover:text-amber-400 transition">Crypto & PKR Converter</a></li>
+            <li><a href="gold-tola-calculator.html" class="hover:text-amber-400 transition">Gold per Tola (PKR)</a></li>
+            <li><a href="profit-loss-calculator.html" class="hover:text-amber-400 transition">Profit & Loss Calculator</a></li>
           </ul>
         </div>
 
-        <!-- Column 4: Editorial & Legal -->
-        <div>
-          <h3 class="text-white font-bold text-xs uppercase tracking-wider mb-3">Company & Trust</h3>
-          <ul class="space-y-2">
-            <li><a href="news.html" class="hover:text-[#F5B700] transition">Newsroom</a></li>
-            <li><a href="academy.html" class="hover:text-[#F5B700] transition">Trading Academy</a></li>
-            <li><a href="exchanges-brokers.html" class="hover:text-[#F5B700] transition">Exchanges & Brokers</a></li>
-            <li><a href="author.html" class="hover:text-[#F5B700] transition">Editorial Team</a></li>
-            <li><a href="#" class="hover:text-[#F5B700] transition">Terms & Conditions</a></li>
-            <li><a href="#" class="hover:text-[#F5B700] transition">Privacy Policy</a></li>
-            <li><a href="#" class="hover:text-[#F5B700] transition">Affiliate Disclosure</a></li>
+        <!-- Col 4: Editorial & Legal -->
+        <div class="space-y-3">
+          <div class="font-bold text-white uppercase tracking-wider text-[11px]">Transparency</div>
+          <ul class="space-y-2 text-xs">
+            <li><a href="article.html" class="hover:text-amber-400 transition">Editorial Policy</a></li>
+            <li><a href="exchanges-brokers.html" class="hover:text-amber-400 transition">Affiliate Disclosure</a></li>
+            <li><a href="academy.html" class="hover:text-amber-400 transition">Academy Modules</a></li>
+            <li><a href="author.html" class="hover:text-amber-400 transition">Contributors & Editors</a></li>
+            <li><a href="#" class="hover:text-amber-400 transition">Terms & Privacy</a></li>
           </ul>
         </div>
 
       </div>
 
-      <!-- MANDATORY RISK DISCLAIMER & TRUTH COMPLIANCE -->
-      <div class="mt-12 pt-6 border-t border-slate-800 text-center space-y-2">
-        <p class="text-xs text-amber-400 font-semibold">
-          Trading involves risk. Content is for information only and not financial advice.
+      <!-- Risk Disclaimer & Copyright -->
+      <div class="pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-slate-500 text-[11px]">
+        <p class="max-w-2xl leading-relaxed">
+          <strong class="text-amber-400">Trading involves substantial risk.</strong> Content is for informational purposes only and does not constitute financial, investment, or legal advice. All market rates are sourced from keyless third-party APIs.
         </p>
-        <p class="text-[11px] text-slate-500 max-w-3xl mx-auto leading-relaxed">
-          Cryptocurrencies, foreign exchange contracts, and commodities are speculative instruments subject to market risk and volatility. Past performance does not guarantee future results. All ratings, author names, and sample articles in this design preview are marked as demo content.
-        </p>
-        <p class="text-[11px] text-slate-600 pt-2">
-          &copy; 2026 MarketPulse Inc. All rights reserved. Built for client approval.
+        <p class="whitespace-nowrap font-mono">
+          &copy; 2026 MarketPulse. All rights reserved.
         </p>
       </div>
+
     </div>
   </footer>
 
-  <!-- FLOATING "ASK AI" ASSISTANT BUTTON & PANEL -->
+  <!-- 18. FLOATING "ASK AI" ASSISTANT BUTTON & PANEL (Motion #12) -->
   <div class="fixed bottom-6 right-6 z-50">
-    <!-- Trigger Button -->
-    <button id="ask-ai-trigger" class="flex items-center gap-2 bg-[#F5B700] hover:bg-amber-400 text-[#0B1220] font-bold text-xs px-4 py-3 rounded-full shadow-xl hover:shadow-2xl hover:scale-105 transition-all">
+    <!-- Toggle Button -->
+    <button id="ask-ai-toggle" class="btn-primary shadow-2xl py-3 px-5 rounded-full flex items-center gap-2.5 text-xs font-bold border-2 border-white/40">
       <span class="text-base">🤖</span>
-      <span class="font-heading">Ask AI</span>
+      <span>Ask AI</span>
       <span class="w-2 h-2 rounded-full bg-emerald-700 animate-pulse"></span>
     </button>
 
-    <!-- Slide-Up Floating Panel -->
-    <div id="ask-ai-panel" class="hidden absolute bottom-16 right-0 w-84 sm:w-96 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl shadow-2xl overflow-hidden flex flex-col transition-all">
-      <div class="bg-slate-900 text-white p-3.5 flex items-center justify-between border-b border-slate-800">
+    <!-- Slide-Up Modal Panel -->
+    <div id="ask-ai-panel" class="hidden absolute bottom-14 right-0 w-[350px] sm:w-[400px] bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl shadow-2xl overflow-hidden flex flex-col">
+      <!-- Header -->
+      <div class="bg-gradient-to-r from-amber-400 to-[#F5B700] text-slate-950 p-4 flex items-center justify-between">
         <div class="flex items-center gap-2">
-          <div class="w-6 h-6 rounded-lg bg-[#F5B700] text-[#0B1220] flex items-center justify-center text-xs font-bold">AI</div>
+          <span class="text-lg">🤖</span>
           <div>
-            <h4 class="font-bold text-xs">MarketPulse AI Assistant</h4>
-            <span class="text-[9px] text-slate-400">Powered by Live Market Data</span>
+            <div class="font-extrabold text-xs">MarketPulse AI Intelligence</div>
+            <div class="text-[10px] font-medium opacity-90">Live Market Q&A (Demo Mode)</div>
           </div>
         </div>
-        <button id="ask-ai-close" class="text-slate-400 hover:text-white p-1">
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
-        </button>
+        <button id="ask-ai-close" class="p-1 hover:bg-black/10 rounded-lg text-slate-950 font-bold">&times;</button>
       </div>
 
-      <div id="ask-ai-body" class="p-4 h-72 overflow-y-auto space-y-3 bg-[#F6F9FC] dark:bg-slate-950 text-xs">
-        <!-- Welcome Prompt -->
-        <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-3 rounded-xl rounded-tl-none shadow-xs text-slate-700 dark:text-slate-300">
-          <p class="font-medium">Hello! I can explain live market trends, calculate Pakistani gold rates, or evaluate position risk. Tap a suggested question below:</p>
+      <!-- Chat Body -->
+      <div id="ask-ai-body" class="p-4 space-y-3 max-h-[340px] overflow-y-auto text-xs">
+        <div class="p-3 rounded-2xl bg-slate-50 dark:bg-slate-800 text-slate-700 dark:text-slate-300 leading-relaxed">
+          Hello! I'm the MarketPulse AI assistant. Ask me about live crypto trends, PKR interbank currency rates, or gold tola calculations.
         </div>
-
-        <!-- Suggested Queries -->
         <div class="space-y-1.5 pt-1">
-          <button class="ask-ai-prompt-btn block w-full text-left p-2 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-amber-400 dark:hover:border-amber-500 text-[11px] text-slate-800 dark:text-slate-200 transition font-medium">
-            What is the current Bitcoin market sentiment?
+          <div class="text-[10px] text-slate-400 font-bold uppercase">Suggested Prompts</div>
+          <button class="ai-prompt-btn block w-full text-left p-2 rounded-xl bg-slate-100 hover:bg-amber-50 dark:bg-slate-800 dark:hover:bg-slate-750 text-slate-800 dark:text-slate-200 font-medium transition">
+            &bull; What is the current market sentiment?
           </button>
-          <button class="ask-ai-prompt-btn block w-full text-left p-2 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-amber-400 dark:hover:border-amber-500 text-[11px] text-slate-800 dark:text-slate-200 transition font-medium">
-            How do I calculate 1 Tola gold in Pakistani Rupee today?
+          <button class="ai-prompt-btn block w-full text-left p-2 rounded-xl bg-slate-100 hover:bg-amber-50 dark:bg-slate-800 dark:hover:bg-slate-750 text-slate-800 dark:text-slate-200 font-medium transition">
+            &bull; How is Pakistani Gold per Tola calculated?
           </button>
-          <button class="ask-ai-prompt-btn block w-full text-left p-2 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-amber-400 dark:hover:border-amber-500 text-[11px] text-slate-800 dark:text-slate-200 transition font-medium">
-            What are today's top gainers and loss risks?
+          <button class="ai-prompt-btn block w-full text-left p-2 rounded-xl bg-slate-100 hover:bg-amber-50 dark:bg-slate-800 dark:hover:bg-slate-750 text-slate-800 dark:text-slate-200 font-medium transition">
+            &bull; What is Bitcoin's current market dominance?
           </button>
         </div>
       </div>
 
-      <!-- Form Input -->
-      <form id="ask-ai-form" class="p-2.5 bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 flex gap-2">
-        <input id="ask-ai-input" type="text" placeholder="Ask about crypto, forex, gold..." class="flex-1 px-3 py-1.5 text-xs rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white focus:outline-hidden focus:ring-1 focus:ring-amber-400">
-        <button type="submit" class="bg-[#F5B700] text-[#0B1220] px-3 py-1.5 rounded-xl font-bold text-xs hover:brightness-105">Send</button>
-      </form>
+      <!-- Input Footer -->
+      <div class="p-3 border-t border-slate-100 dark:border-slate-800 bg-slate-50 dark:bg-slate-850">
+        <form id="ask-ai-form" class="flex gap-2">
+          <input type="text" id="ask-ai-input" placeholder="Type your market question..." class="flex-1 px-3 py-2 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 text-xs focus:outline-none focus:ring-2 focus:ring-amber-500 text-slate-900 dark:text-white">
+          <button type="submit" class="btn-primary py-2 px-3 text-xs">Send</button>
+        </form>
+      </div>
     </div>
   </div>
 
-  <!-- CMD+K GLOBAL SEARCH MODAL -->
-  <div id="search-modal" class="hidden fixed inset-0 z-50 modal-backdrop flex items-start justify-center pt-20 px-4">
-    <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 w-full max-w-xl rounded-2xl shadow-2xl overflow-hidden animate-scale-up">
-      <div class="p-3 border-b border-slate-200 dark:border-slate-800 flex items-center gap-3">
+  <!-- 19. GLOBAL SEARCH MODAL (Cmd/Ctrl + K) -->
+  <div id="search-modal" class="hidden fixed inset-0 z-50 bg-slate-950/60 backdrop-blur-sm flex items-start justify-center pt-20 px-4">
+    <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl shadow-2xl w-full max-w-xl overflow-hidden animate-scale-in">
+      <div class="p-4 border-b border-slate-100 dark:border-slate-800 flex items-center gap-3">
         <svg class="w-5 h-5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
-        <input id="search-input" type="text" placeholder="Search coins, calculators, tools, market guides..." class="flex-1 bg-transparent text-sm text-slate-900 dark:text-white focus:outline-hidden">
-        <button id="search-modal-close" class="text-xs text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 px-2 py-1 bg-slate-100 dark:bg-slate-800 rounded-lg">ESC</button>
+        <input type="text" id="search-input" placeholder="Search cryptocurrencies, calculators, research..." class="flex-1 bg-transparent text-sm font-medium focus:outline-none text-slate-900 dark:text-white">
+        <button id="search-modal-close" class="text-xs text-slate-400 hover:text-slate-600 dark:hover:text-white px-2 py-1 rounded-lg">ESC</button>
       </div>
-      <div id="search-results" class="max-h-80 overflow-y-auto p-2 space-y-1">
-        <!-- Rendered by main.js -->
+      <div id="search-results" class="max-h-80 overflow-y-auto p-2 text-xs divide-y divide-slate-100 dark:divide-slate-800">
+        <!-- Results dynamically populated -->
       </div>
     </div>
   </div>
 
-  <!-- MOBILE SLIDE-IN DRAWER -->
-  <div id="mobile-drawer-backdrop" class="fixed inset-0 bg-black/50 z-50 opacity-0 pointer-events-none transition-opacity duration-300"></div>
-  <div id="mobile-drawer" class="fixed top-0 right-0 bottom-0 w-80 bg-white dark:bg-slate-900 z-50 translate-x-full transition-transform duration-300 flex flex-col shadow-2xl">
-    <div class="p-4 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between">
-      <div class="flex items-center gap-2">
-        <div class="w-7 h-7 rounded-lg bg-[#F5B700] text-[#0B1220] flex items-center justify-center font-black text-sm">MP</div>
-        <span class="font-bold text-sm text-slate-900 dark:text-white">MarketPulse</span>
+  <!-- 20. MOBILE DRAWER NAVIGATION -->
+  <div id="mobile-drawer-backdrop" class="fixed inset-0 bg-black/60 z-50 opacity-0 pointer-events-none transition-opacity duration-300"></div>
+  <div id="mobile-drawer" class="fixed right-0 top-0 bottom-0 w-[300px] bg-white dark:bg-slate-900 z-50 transform translate-x-full transition-transform duration-300 p-6 flex flex-col justify-between overflow-y-auto">
+    <div>
+      <div class="flex items-center justify-between pb-4 border-b border-slate-100 dark:border-slate-800 mb-6">
+        <div class="flex items-center gap-2">
+          <div class="w-8 h-8 rounded-xl bg-[#F5B700] text-[#0B1220] flex items-center justify-center font-bold text-sm">MP</div>
+          <span class="font-heading font-extrabold text-lg text-slate-900 dark:text-white">Market<span class="text-amber-500">Pulse</span></span>
+        </div>
+        <button id="mobile-menu-close" class="p-1.5 text-slate-400 hover:text-slate-700 dark:hover:text-white text-lg">&times;</button>
       </div>
-      <button id="mobile-menu-close" class="p-2 text-slate-500 hover:text-slate-900 dark:hover:text-white">
-        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
-      </button>
+
+      <nav class="space-y-1 text-sm font-bold text-slate-700 dark:text-slate-200">
+        <a href="index.html" class="block px-3 py-2 rounded-xl bg-amber-50 dark:bg-slate-800 text-amber-600 dark:text-amber-400">Home</a>
+        <a href="news.html" class="block px-3 py-2 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800">News</a>
+        <a href="markets.html" class="block px-3 py-2 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800">Markets Directory</a>
+        <a href="tools.html" class="block px-3 py-2 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800">Tools Suite (8)</a>
+        <a href="#commodities-strip" class="block px-3 py-2 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800">Commodities</a>
+        <a href="exchanges-brokers.html" class="block px-3 py-2 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800">Exchanges & Brokers</a>
+        <a href="academy.html" class="block px-3 py-2 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800">Academy Guides</a>
+      </nav>
     </div>
 
-    <div class="p-4 overflow-y-auto flex-1 space-y-4 text-sm font-semibold text-slate-700 dark:text-slate-300">
-      <a href="index.html" class="block py-2 text-amber-600">Home</a>
-      <a href="news.html" class="block py-2 hover:text-amber-600">News</a>
-      <a href="markets.html" class="block py-2 hover:text-amber-600">Markets Screener</a>
-      <a href="tools.html" class="block py-2 hover:text-amber-600">Tools Hub (8 Calculators)</a>
-      <a href="dca-calculator.html" class="block pl-4 py-1 text-xs text-slate-500 hover:text-amber-600">DCA Calculator</a>
-      <a href="position-size-calculator.html" class="block pl-4 py-1 text-xs text-slate-500 hover:text-amber-600">Position Size Calculator</a>
-      <a href="gold-tola-calculator.html" class="block pl-4 py-1 text-xs text-slate-500 hover:text-amber-600">Gold per Tola (PKR)</a>
-      <a href="crypto-converter.html" class="block pl-4 py-1 text-xs text-slate-500 hover:text-amber-600">Crypto Converter</a>
-      <a href="exchanges-brokers.html" class="block py-2 hover:text-amber-600">Exchanges & Brokers</a>
-      <a href="academy.html" class="block py-2 hover:text-amber-600">Academy</a>
-    </div>
-
-    <div class="p-4 border-t border-slate-200 dark:border-slate-800 space-y-3">
-      <div class="flex items-center justify-between text-xs">
-        <span class="text-slate-500">Currency</span>
-        <div class="flex bg-slate-100 dark:bg-slate-800 p-0.5 rounded-lg text-xs">
-          <button class="currency-toggle-btn px-2 py-0.5 rounded" data-currency="USD">USD</button>
-          <button class="currency-toggle-btn px-2 py-0.5 rounded" data-currency="PKR">PKR</button>
+    <div class="pt-6 border-t border-slate-100 dark:border-slate-800 space-y-3">
+      <div class="flex items-center justify-between text-xs font-semibold text-slate-500">
+        <span>Currency</span>
+        <div class="flex items-center bg-slate-100 dark:bg-slate-800 p-0.5 rounded-lg border border-slate-200 dark:border-slate-700 text-xs">
+          <button class="currency-toggle-btn px-2 py-0.5 rounded text-xs" data-currency="USD">USD</button>
+          <button class="currency-toggle-btn px-2 py-0.5 rounded text-xs" data-currency="PKR">PKR</button>
         </div>
       </div>
-      <div class="flex items-center justify-between text-xs">
-        <span class="text-slate-500">Theme</span>
-        <button class="theme-toggle-btn px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-xs font-semibold">Toggle Mode</button>
+      <div class="text-[10px] text-slate-400">
+        Trading involves risk &bull; Informational only
       </div>
     </div>
   </div>
@@ -1542,28 +1581,23 @@
   <script src="assets/js/api.js"></script>
   <script src="assets/js/main.js"></script>
 
-  <!-- HOME PAGE SPECIFIC HYDRATION LOGIC -->
+  <!-- HOME PAGE HYDRATION SCRIPT -->
   <script>
     document.addEventListener('DOMContentLoaded', async () => {
-      // Set current date in brief
-      const dateEl = document.getElementById('brief-date');
-      if (dateEl) {
-        const now = new Date();
-        dateEl.textContent = now.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
-      }
+      if (!window.MarketPulseAPI) return;
 
-      // Hydrate live data
       try {
-        const [binanceData, ratesData, fgData] = await Promise.all([
-          window.MarketPulseAPI.getBinance24h(),
+        // Fetch live multi-asset coins, currency rates & fear/greed sentiment
+        const [coinsData, ratesData, fgData] = await Promise.all([
+          window.MarketPulseAPI.getLiveCoins(),
           window.MarketPulseAPI.getCurrencyRates(),
           window.MarketPulseAPI.getFearAndGreed()
         ]);
 
-        const coins = binanceData.data;
-        const rates = ratesData.rates;
+        const coins = coinsData.data || [];
+        const rates = ratesData.rates || {};
 
-        // 1. Fear & Greed needle and text
+        // 1. Hydrate Fear & Greed needle & scores
         if (fgData) {
           const needle = document.getElementById('fg-needle');
           const fgVal = document.getElementById('fg-value');
@@ -1571,7 +1605,11 @@
           if (fgVal) fgVal.textContent = fgData.value;
           if (fgClass) fgClass.textContent = fgData.classification;
 
-          // Rotate needle: -90deg is 0, +90deg is 100
+          const heroFgScore = document.getElementById('hero-fg-score');
+          const heroFgLabel = document.getElementById('hero-fg-label');
+          if (heroFgScore) heroFgScore.textContent = `${fgData.value} / 100`;
+          if (heroFgLabel) heroFgLabel.textContent = `${fgData.classification} Mood`;
+
           if (needle) {
             const deg = -90 + (fgData.value / 100) * 180;
             needle.style.transform = `rotate(${deg}deg)`;
@@ -1585,7 +1623,7 @@
           if (mEl) mEl.textContent = fgData.lastMonth;
         }
 
-        // 2. Hydrate PKR rates
+        // 2. Hydrate Interbank PKR Currency Rates
         if (rates && rates.pkr) {
           const pkrRate = rates.pkr;
           const uPkr = document.getElementById('rate-usd-pkr');
@@ -1602,36 +1640,45 @@
           const heroPkr = document.getElementById('hero-pkr-rate');
           if (heroPkr) heroPkr.textContent = '₨ ' + pkrRate.toFixed(2);
 
-          // 3. Gold per Tola Calculation
-          // Formula: PAXG/USD * USD/PKR * 11.6638 / 31.1035
+          // 3. Gold per Tola Calculation (XAU/USD * USD/PKR * 11.6638 / 31.1035)
           const paxg = coins.find(c => c.symbol === 'PAXGUSDT' || c.code === 'PAXG') || { price: 2685.40 };
           const spotUsd = paxg.price;
           const tolaPkr = spotUsd * pkrRate * 11.6638 / 31.1035;
           const tenGramPkr = spotUsd * pkrRate * 10 / 31.1035;
+          const jewelry22k = tolaPkr * (22 / 24);
 
           const tolaHome = document.getElementById('gold-tola-home-val');
           const spotHome = document.getElementById('gold-spot-usd');
           const tenGHome = document.getElementById('gold-10g-val');
+          const gold22Home = document.getElementById('gold-22k-val');
 
           if (tolaHome) tolaHome.textContent = '₨ ' + Math.round(tolaPkr).toLocaleString('en-PK');
           if (spotHome) spotHome.textContent = '$' + spotUsd.toFixed(2);
           if (tenGHome) tenGHome.textContent = '₨ ' + Math.round(tenGramPkr).toLocaleString('en-PK');
+          if (gold22Home) gold22Home.textContent = '₨ ' + Math.round(jewelry22k).toLocaleString('en-PK');
         }
 
-        // 4. Hero BTC Price
-        const btc = coins.find(c => c.code === 'BTC');
+        // 4. Hero BTC Live Price
+        const btc = coins.find(c => c.code === 'BTC') || coins[0];
         if (btc) {
           const heroBtc = document.getElementById('hero-btc-price');
+          const heroBtcBadge = document.getElementById('hero-btc-badge');
           if (heroBtc) {
             heroBtc.setAttribute('data-price-usd', btc.price);
             heroBtc.textContent = window.MarketPulseAPI.formatPrice(btc.price);
           }
+          if (heroBtcBadge) {
+            const isUp = btc.change24h >= 0;
+            heroBtcBadge.className = `px-2 py-0.5 rounded-full text-xs font-bold border ${isUp ? 'bg-emerald-50 text-emerald-700 border-emerald-200' : 'bg-rose-50 text-rose-700 border-rose-200'}`;
+            heroBtcBadge.textContent = `${isUp ? '▲ +' : '▼ '}${btc.change24h.toFixed(2)}%`;
+          }
         }
 
         // 5. Gainers & Losers (Volume > $5M)
-        const qualifiedMovers = coins.filter(c => c.volume >= 5000000);
-        const sortedGainers = [...qualifiedMovers].sort((a, b) => b.change24h - a.change24h).slice(0, 5);
-        const sortedLosers = [...qualifiedMovers].sort((a, b) => a.change24h - b.change24h).slice(0, 5);
+        const qualifiedMovers = coins.filter(c => (c.volume || 0) >= 5000000 || c.quoteVol >= 5000000);
+        const pool = qualifiedMovers.length >= 10 ? qualifiedMovers : coins;
+        const sortedGainers = [...pool].sort((a, b) => b.change24h - a.change24h).slice(0, 5);
+        const sortedLosers = [...pool].sort((a, b) => a.change24h - b.change24h).slice(0, 5);
 
         renderMoversList('home-gainers-list', sortedGainers, true);
         renderMoversList('home-losers-list', sortedLosers, false);
@@ -1640,7 +1687,7 @@
         renderTopCoinsTable(coins.slice(0, 10));
 
       } catch (err) {
-        console.warn('Home page hydration error:', err);
+        console.warn('Home page hydration warning:', err);
       }
 
       function renderMoversList(containerId, list, isGain) {
@@ -1655,10 +1702,10 @@
           <a href="coin.html?symbol=${c.symbol}" class="flex items-center justify-between p-2.5 rounded-xl bg-slate-50 dark:bg-slate-800/80 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
             <div class="flex items-center gap-2.5">
               <span class="font-bold text-xs text-slate-900 dark:text-white">${c.code}</span>
-              <span class="text-[11px] text-slate-400 font-medium">${c.name}</span>
+              <span class="text-[11px] text-slate-400 font-medium">${c.name || c.code}</span>
             </div>
             <div class="flex items-center gap-3">
-              <span class="font-mono text-xs text-slate-800 dark:text-slate-200" data-price-usd="${c.price}">
+              <span class="font-mono text-xs text-slate-800 dark:text-slate-200 font-bold" data-price-usd="${c.price}">
                 ${window.MarketPulseAPI.formatPrice(c.price)}
               </span>
               ${window.MarketPulseAPI.formatChangeBadge(c.change24h)}
@@ -1682,7 +1729,7 @@
                     ${c.code.slice(0, 3)}
                   </div>
                   <div>
-                    <span class="font-bold text-slate-900 dark:text-white group-hover:text-amber-600 transition">${c.name}</span>
+                    <span class="font-bold text-slate-900 dark:text-white group-hover:text-amber-600 transition">${c.name || c.code}</span>
                     <span class="text-[11px] text-slate-400 block">${c.code}</span>
                   </div>
                 </a>
@@ -1694,10 +1741,10 @@
                 ${window.MarketPulseAPI.formatChangeBadge(c.change24h)}
               </td>
               <td class="py-3.5 px-3 text-right hidden sm:table-cell font-mono text-[11px] text-slate-500">
-                <span class="text-slate-700 dark:text-slate-300">$${c.high.toFixed(2)}</span> / <span>$${c.low.toFixed(2)}</span>
+                <span class="text-slate-700 dark:text-slate-300">$${(c.high || c.price).toFixed(2)}</span> / <span>$${(c.low || c.price).toFixed(2)}</span>
               </td>
               <td class="py-3.5 px-3 text-right hidden md:table-cell font-mono text-[11px] text-slate-600 dark:text-slate-300">
-                ${window.MarketPulseAPI.formatVolume(c.volume)}
+                ${window.MarketPulseAPI.formatVolume(c.volume || c.quoteVol || 0)}
               </td>
               <td class="py-3.5 px-3 text-center hidden lg:table-cell">
                 ${window.generateSparklineSVG(null, isUp, 84, 26)}

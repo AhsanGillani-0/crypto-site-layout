@@ -1,6 +1,6 @@
 /**
  * MarketPulse v2 - Core UI & Interaction Controller
- * Controls theme, currency toggle, Cmd+K search, Ask AI widget, mobile drawer, and shared UI.
+ * Controls theme, currency toggle, Cmd+K search, Ask AI widget, count-up animation, mobile drawer, and shared UI.
  */
 
 (function () {
@@ -8,7 +8,6 @@
 
   // --- 1. Theme Controller (Light Mode Default) ---
   function initTheme() {
-    // Clear old v1 dark cache if present to ensure clean Light theme default
     if (localStorage.getItem('marketpulse_theme')) {
       localStorage.removeItem('marketpulse_theme');
     }
@@ -78,7 +77,13 @@
     document.querySelectorAll('[data-price-usd]').forEach(el => {
       const usdVal = parseFloat(el.getAttribute('data-price-usd'));
       if (!isNaN(usdVal)) {
-        el.textContent = window.MarketPulseAPI.formatPrice(usdVal);
+        const oldVal = el.textContent;
+        const newVal = window.MarketPulseAPI.formatPrice(usdVal);
+        el.textContent = newVal;
+        if (oldVal !== newVal) {
+          el.classList.add('flash-up');
+          setTimeout(() => el.classList.remove('flash-up'), 600);
+        }
       }
     });
   }
@@ -97,7 +102,45 @@
     }, { passive: true });
   }
 
-  // --- 4. Mobile Drawer Navigation ---
+  // --- 4. Count-Up Numbers Animation (Motion #5) ---
+  function initCountUpNumbers() {
+    const countElements = document.querySelectorAll('[data-count-to]');
+    if (!countElements.length) return;
+
+    const observer = new IntersectionObserver((entries, obs) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const el = entry.target;
+          const target = parseFloat(el.getAttribute('data-count-to')) || 0;
+          const decimals = parseInt(el.getAttribute('data-decimals')) || 0;
+          const prefix = el.getAttribute('data-prefix') || '';
+          const suffix = el.getAttribute('data-suffix') || '';
+          const duration = 1200; // ms
+          const startTime = performance.now();
+
+          function step(now) {
+            const progress = Math.min((now - startTime) / duration, 1);
+            const easeOut = 1 - Math.pow(1 - progress, 3);
+            const current = (target * easeOut).toFixed(decimals);
+            el.textContent = prefix + parseFloat(current).toLocaleString('en-US', { minimumFractionDigits: decimals, maximumFractionDigits: decimals }) + suffix;
+
+            if (progress < 1) {
+              requestAnimationFrame(step);
+            } else {
+              el.textContent = prefix + target.toLocaleString('en-US', { minimumFractionDigits: decimals, maximumFractionDigits: decimals }) + suffix;
+            }
+          }
+
+          requestAnimationFrame(step);
+          obs.unobserve(el);
+        }
+      });
+    }, { threshold: 0.2 });
+
+    countElements.forEach(el => observer.observe(el));
+  }
+
+  // --- 5. Mobile Drawer Navigation ---
   function initMobileDrawer() {
     const openBtn = document.getElementById('mobile-menu-open');
     const closeBtn = document.getElementById('mobile-menu-close');
@@ -129,7 +172,7 @@
     if (backdrop) backdrop.addEventListener('click', closeDrawer);
   }
 
-  // --- 5. Global Search Modal (Cmd/Ctrl + K) ---
+  // --- 6. Global Search Modal (Cmd/Ctrl + K) ---
   const searchableItems = [
     { type: 'Tool', title: 'DCA Calculator', desc: 'Simulate Dollar Cost Averaging with real historical klines', url: 'dca-calculator.html' },
     { type: 'Tool', title: 'Position Size Calculator', desc: 'Calculate exact risk amount and Risk/Reward ratio', url: 'position-size-calculator.html' },
@@ -269,9 +312,9 @@
     }
   }
 
-  // --- 6. Floating "Ask AI" Assistant Widget ---
+  // --- 7. Floating "Ask AI" Assistant Widget ---
   function initAskAIWidget() {
-    const trigger = document.getElementById('ask-ai-trigger');
+    const trigger = document.getElementById('ask-ai-toggle') || document.getElementById('ask-ai-trigger');
     const panel = document.getElementById('ask-ai-panel');
     const closeBtn = document.getElementById('ask-ai-close');
     const body = document.getElementById('ask-ai-body');
@@ -291,10 +334,9 @@
       closeBtn.addEventListener('click', () => panel.classList.add('hidden'));
     }
 
-    // Suggested questions handler
-    document.querySelectorAll('.ask-ai-prompt-btn').forEach(btn => {
+    document.querySelectorAll('.ai-prompt-btn, .ask-ai-prompt-btn').forEach(btn => {
       btn.addEventListener('click', () => {
-        const text = btn.innerText.trim();
+        const text = btn.innerText.replace(/^[•\s]+/, '').trim();
         handleUserQuery(text);
       });
     });
@@ -313,11 +355,10 @@
     function handleUserQuery(question) {
       if (!body) return;
 
-      // Add user message bubble
       const userBubble = document.createElement('div');
       userBubble.className = 'flex justify-end mb-3';
       userBubble.innerHTML = `
-        <div class="bg-[#F5B700] text-[#0B1220] font-medium text-xs rounded-2xl rounded-tr-none px-3.5 py-2 max-w-[85%]">
+        <div class="bg-[#F5B700] text-[#0B1220] font-bold text-xs rounded-2xl rounded-tr-none px-3.5 py-2 max-w-[85%] shadow-sm">
           ${escapeHTML(question)}
         </div>
       `;
@@ -335,7 +376,6 @@
       body.appendChild(loader);
       body.scrollTop = body.scrollHeight;
 
-      // Simulate answer with clear demo label
       setTimeout(() => {
         loader.remove();
 
@@ -349,11 +389,11 @@
         const botBubble = document.createElement('div');
         botBubble.className = 'flex flex-col gap-1 mb-3';
         botBubble.innerHTML = `
-          <div class="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs text-slate-800 dark:text-slate-200 rounded-2xl rounded-tl-none p-3 max-w-[90%] shadow-sm">
+          <div class="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs text-slate-800 dark:text-slate-200 rounded-2xl rounded-tl-none p-3.5 max-w-[90%] shadow-sm leading-relaxed">
             <p>${answer}</p>
-            <div class="mt-2 pt-2 border-t border-slate-100 dark:border-slate-700 flex items-center justify-between text-[10px] text-slate-400">
-              <span class="font-medium text-amber-600 dark:text-amber-400">Demo response</span>
-              <span>In production powered by live LLM</span>
+            <div class="mt-2.5 pt-2 border-t border-slate-100 dark:border-slate-700 flex items-center justify-between text-[10px] text-slate-400">
+              <span class="font-bold text-amber-600 dark:text-amber-400">Sample answer</span>
+              <span>Powered by live data LLM in production</span>
             </div>
           </div>
         `;
@@ -373,14 +413,14 @@
     }[tag] || tag));
   }
 
-  // --- 7. Live Marquee Ticker Tape ---
+  // --- 8. Live Marquee Ticker Tape ---
   async function initMarqueeTicker() {
     const track = document.getElementById('live-ticker-track');
     if (!track || !window.MarketPulseAPI) return;
 
     try {
       const [coinsRes, ratesRes] = await Promise.all([
-        window.MarketPulseAPI.getBinance24h(),
+        window.MarketPulseAPI.getLiveCoins(),
         window.MarketPulseAPI.getCurrencyRates()
       ]);
 
@@ -404,7 +444,7 @@
           change: -0.08
         },
         {
-          name: 'Spot Gold',
+          name: 'Spot Gold (PAXG)',
           price: '$' + (coins.find(c => c.code === 'PAXG')?.price || 2685.50).toFixed(1),
           change: 0.45
         },
@@ -423,7 +463,7 @@
           return `
             <div class="inline-flex items-center gap-2 px-4 py-1.5 border-r border-slate-200 dark:border-slate-800 text-xs whitespace-nowrap">
               <span class="font-bold text-slate-900 dark:text-white">${item.name}</span>
-              <span class="font-mono text-slate-700 dark:text-slate-300">${item.price}</span>
+              <span class="font-mono text-slate-700 dark:text-slate-300 font-semibold">${item.price}</span>
               <span class="font-semibold ${color} flex items-center gap-0.5">
                 <span class="text-[9px]">${arrow}</span>
                 <span>${isUp ? '+' : ''}${item.change.toFixed(2)}%</span>
@@ -433,31 +473,32 @@
         }).join('');
       }
 
-      // Double the items for endless loop
       track.innerHTML = buildHTML(items) + buildHTML(items);
     } catch (e) {
       console.warn('Ticker hydration error:', e);
     }
   }
 
-  // --- 8. Scroll Reveal Animations ---
+  // --- 9. Scroll Reveal Animations (Motion #3) ---
   function initScrollReveal() {
     const reveals = document.querySelectorAll('.reveal-on-scroll');
     if (!reveals.length) return;
 
     const observer = new IntersectionObserver((entries, obs) => {
-      entries.forEach(entry => {
+      entries.forEach((entry, i) => {
         if (entry.isIntersecting) {
-          entry.target.classList.add('is-revealed');
+          setTimeout(() => {
+            entry.target.classList.add('is-revealed');
+          }, i * 60); // 60ms stagger
           obs.unobserve(entry.target);
         }
       });
-    }, { threshold: 0.1 });
+    }, { threshold: 0.08 });
 
     reveals.forEach(el => observer.observe(el));
   }
 
-  // --- 9. Article Reading Progress Bar ---
+  // --- 10. Article Reading Progress Bar ---
   function initReadingProgressBar() {
     const bar = document.querySelector('.reading-progress-bar');
     if (!bar) return;
@@ -469,10 +510,9 @@
     }, { passive: true });
   }
 
-  // --- 10. Sparkline Inline SVG Generator ---
-  window.generateSparklineSVG = function (points, isGain, width = 90, height = 28) {
+  // --- 11. Sparkline Inline SVG Generator ---
+  window.generateSparklineSVG = function (points, isGain, width = 84, height = 26) {
     if (!points || points.length < 2) {
-      // Default dummy trend
       points = isGain ? [10, 12, 11, 15, 14, 18, 22] : [22, 19, 20, 16, 17, 13, 10];
     }
     const min = Math.min(...points);
@@ -488,12 +528,12 @@
     const strokeColor = isGain ? '#0E9F6E' : '#E11D48';
     return `
       <svg width="${width}" height="${height}" viewBox="0 0 ${width} ${height}" class="overflow-visible inline-block">
-        <polyline fill="none" stroke="${strokeColor}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" points="${coords.join(' ')}" class="sparkline-path draw" />
+        <polyline fill="none" stroke="${strokeColor}" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" points="${coords.join(' ')}" class="sparkline-path draw" />
       </svg>
     `;
   };
 
-  // --- 11. Newsletter Form Handler ---
+  // --- 12. Newsletter Form Handler ---
   function initNewsletterForm() {
     const form = document.getElementById('newsletter-form');
     const successMsg = document.getElementById('newsletter-success');
@@ -511,6 +551,7 @@
     initTheme();
     initCurrencySwitcher();
     initStickyHeader();
+    initCountUpNumbers();
     initMobileDrawer();
     initSearchModal();
     initAskAIWidget();

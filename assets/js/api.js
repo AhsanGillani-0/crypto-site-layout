@@ -34,6 +34,72 @@ window.MarketPulseAPI = (function () {
   }
 
   /**
+   * Fetch 24hr Bitunix Futures market data
+   */
+  async function getBitunixTickers() {
+    const cacheKey = 'bitunix_tickers';
+    const cached = getCache(cacheKey);
+    if (cached) return cached;
+
+    const urls = [
+      config.endpoints.bitunixFutures,
+      config.endpoints.bitunixProxy
+    ];
+
+    for (const url of urls) {
+      try {
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 5000);
+        const res = await fetch(url, { signal: controller.signal });
+        clearTimeout(timeoutId);
+
+        if (!res.ok) continue;
+        const json = await res.json();
+        const items = json.data || (Array.isArray(json) ? json : null);
+        if (items && Array.isArray(items) && items.length > 0) {
+          const formatted = items
+            .filter(item => item.symbol && item.symbol.endsWith('USDT'))
+            .map(item => {
+              const code = item.symbol.replace('USDT', '');
+              const price = parseFloat(item.lastPrice || item.last || item.markPrice) || 0;
+              const open = parseFloat(item.open) || price;
+              const change24h = open > 0 ? ((price - open) / open) * 100 : 0;
+              const volume = parseFloat(item.quoteVol || item.baseVol) || 0;
+              const high = parseFloat(item.high) || price;
+              const low = parseFloat(item.low) || price;
+
+              return {
+                symbol: item.symbol,
+                code: code,
+                name: getCoinName(code),
+                price: price,
+                change24h: change24h,
+                volume: volume,
+                high: high,
+                low: low,
+                source: 'Bitunix Futures'
+              };
+            });
+
+          if (formatted.length > 0) {
+            const result = {
+              data: formatted,
+              timestamp: new Date(),
+              source: 'Bitunix.com Futures API',
+              isFallback: false
+            };
+            setCache(cacheKey, result);
+            return result;
+          }
+        }
+      } catch (err) {
+        // try next endpoint
+      }
+    }
+    return null;
+  }
+
+  /**
    * Fetch 24hr Binance market data
    */
   async function getBinance24h() {
@@ -331,10 +397,40 @@ window.MarketPulseAPI = (function () {
     </span>`;
   }
 
+  /**
+   * Universal Live Coins Fetcher
+   * Automatically prioritizes Bitunix.com free Futures API, with seamless fallback to Binance Vision API
+   */
+  async function getLiveCoins(preferred = 'auto') {
+    if (preferred === 'bitunix' || preferred === 'auto') {
+      try {
+        const bitunix = await getBitunixTickers();
+        if (bitunix && bitunix.data && bitunix.data.length > 0) {
+          return bitunix;
+        }
+      } catch (e) {
+        console.warn('Bitunix API fetch skipped, falling back to Binance', e);
+      }
+    }
+    const binance = await getBinance24h();
+    if (binance && binance.data && binance.data.length > 0) {
+      binance.source = 'Binance Vision Spot API';
+      return binance;
+    }
+    return {
+      data: config.fallbackCoins,
+      timestamp: new Date(),
+      source: 'Verified Fallback Feed',
+      isFallback: true
+    };
+  }
+
   // Pre-fetch currency rates on load
   getCurrencyRates();
 
   return {
+    getBitunixTickers,
+    getLiveCoins,
     getBinance24h,
     getBinanceKlines,
     getCurrencyRates,
