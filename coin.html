@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Coin Market Analytics & Chart — MarketPulse</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            mp: {
+              bg: '#F6F9FC',
+              surface: '#FFFFFF',
+              dark: '#0B1220',
+              muted: '#5B6B7F',
+              border: '#E3EAF2',
+              primary: '#F5B700',
+              ice: '#DCEBFA',
+              gain: '#0E9F6E',
+              loss: '#E11D48'
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body class="bg-[#F6F9FC] dark:bg-[#0B1220] text-[#0B1220] dark:text-slate-100 antialiased min-h-screen flex flex-col transition-colors duration-200">
+
+  <!-- STICKY HEADER -->
+  <header class="header-glass sticky top-0 z-40 transition-all duration-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+        <div class="flex items-center gap-6">
+          <a href="index.html" class="flex items-center gap-2.5 group">
+            <div class="w-9 h-9 rounded-xl bg-[#F5B700] text-[#0B1220] flex items-center justify-center font-black text-xl shadow-md">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" /></svg>
+            </div>
+            <div>
+              <span class="font-heading font-extrabold text-xl text-slate-900 dark:text-white tracking-tight">Market<span class="text-amber-500">Pulse</span></span>
+              <span class="block text-[9px] font-semibold text-slate-500 tracking-wider uppercase -mt-1">Coin Intelligence</span>
+            </div>
+          </a>
+
+          <nav class="hidden lg:flex items-center gap-1 text-sm font-semibold text-slate-700 dark:text-slate-300">
+            <a href="index.html" class="px-3 py-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition">Home</a>
+            <a href="news.html" class="px-3 py-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition">News</a>
+            <a href="markets.html" class="px-3 py-2 rounded-lg text-amber-600 dark:text-amber-400 bg-amber-50 dark:bg-slate-800">Markets</a>
+            <a href="tools.html" class="px-3 py-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition">Tools</a>
+            <a href="exchanges-brokers.html" class="px-3 py-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition">Brokers</a>
+            <a href="academy.html" class="px-3 py-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition">Academy</a>
+          </nav>
+        </div>
+
+        <div class="flex items-center gap-2.5">
+          <button class="search-modal-trigger flex items-center gap-2 bg-slate-100 dark:bg-slate-800 text-slate-500 px-3 py-1.5 rounded-xl text-xs font-medium">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+            <span class="hidden sm:inline">Search...</span>
+          </button>
+
+          <div class="flex items-center bg-slate-100 dark:bg-slate-800 p-0.5 rounded-xl border border-slate-200 dark:border-slate-700 text-xs font-semibold">
+            <button class="currency-toggle-btn px-2.5 py-1 rounded-lg" data-currency="USD">USD</button>
+            <button class="currency-toggle-btn px-2.5 py-1 rounded-lg" data-currency="PKR">PKR</button>
+          </div>
+
+          <button class="theme-toggle-btn p-2 rounded-xl text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+            <svg class="theme-icon-moon w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
+            <svg class="theme-icon-sun w-4 h-4 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- LIVE TICKER -->
+  <div class="bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 text-xs py-1">
+    <div class="ticker-container">
+      <div id="live-ticker-track" class="ticker-track"></div>
+    </div>
+  </div>
+
+  <!-- MAIN COIN BODY -->
+  <main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-6">
+
+    <!-- Breadcrumbs -->
+    <nav class="flex items-center gap-2 text-xs text-slate-500">
+      <a href="index.html" class="hover:underline">Home</a>
+      <span>&rsaquo;</span>
+      <a href="markets.html" class="hover:underline">Markets</a>
+      <span>&rsaquo;</span>
+      <span class="font-bold text-slate-800 dark:text-slate-200" id="coin-breadcrumb">Bitcoin (BTC)</span>
+    </nav>
+
+    <!-- Coin Header Bar -->
+    <div class="mp-card p-6 flex flex-wrap items-center justify-between gap-6">
+      <div class="flex items-center gap-4">
+        <div id="coin-avatar" class="w-14 h-14 rounded-2xl bg-amber-400/20 text-amber-700 dark:text-amber-300 font-extrabold text-lg flex items-center justify-center shadow-xs">
+          BTC
+        </div>
+        <div>
+          <div class="flex items-center gap-2">
+            <h1 id="coin-name" class="font-heading font-extrabold text-2xl text-slate-900 dark:text-white">Bitcoin</h1>
+            <span id="coin-symbol-badge" class="px-2 py-0.5 rounded text-xs font-bold bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 uppercase">BTC</span>
+            <span class="text-[10px] text-amber-700 bg-amber-100 dark:bg-amber-950 px-2 py-0.5 rounded">Rank #1</span>
+          </div>
+          <p class="text-xs text-slate-500 mt-1">Live spot market pair on Binance &bull; Real-time pricing</p>
+        </div>
+      </div>
+
+      <!-- Live Price Display -->
+      <div class="text-right">
+        <div class="text-[10px] text-slate-400 uppercase font-bold">Current Spot Price</div>
+        <div class="flex items-center gap-2 justify-end">
+          <span id="coin-live-price" class="text-3xl font-extrabold font-mono text-slate-900 dark:text-white">$89,450.20</span>
+          <span id="coin-change-badge">
+            <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-bold bg-emerald-50 text-emerald-700 border border-emerald-200">
+              ▲ +3.42%
+            </span>
+          </span>
+        </div>
+        <div class="text-xs text-slate-500 font-mono mt-0.5" id="coin-pkr-equiv">₨ 24,920,825 PKR</div>
+      </div>
+    </div>
+
+    <!-- TradingView Advanced Real-Time Chart Container -->
+    <div class="mp-card p-4 overflow-hidden">
+      <div class="flex items-center justify-between pb-3 border-b border-slate-100 dark:border-slate-800 mb-3">
+        <div class="flex items-center gap-2">
+          <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
+          <h2 class="font-heading font-bold text-sm text-slate-900 dark:text-white">Advanced TradingView Chart</h2>
+        </div>
+        <span class="text-xs text-slate-400">Timeframe: Interactive &bull; Free Widget</span>
+      </div>
+      
+      <!-- TradingView Widget Embed -->
+      <div class="w-full h-[540px] rounded-xl overflow-hidden bg-slate-900" id="tradingview-widget-box">
+        <div id="tv_chart_container" class="w-full h-full"></div>
+      </div>
+    </div>
+
+    <!-- Two Columns: Key Stats & Quick Converter -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+      
+      <!-- Left Column: Key Stats -->
+      <div class="lg:col-span-8 mp-card p-6 space-y-4">
+        <h3 class="font-heading font-bold text-base text-slate-900 dark:text-white pb-3 border-b border-slate-100 dark:border-slate-800">
+          24h Market Statistics & Metrics
+        </h3>
+
+        <div class="grid grid-cols-2 sm:grid-cols-3 gap-4 text-xs">
+          <div class="p-3.5 rounded-xl bg-slate-50 dark:bg-slate-800">
+            <span class="text-[10px] text-slate-400 uppercase font-bold block">24h High</span>
+            <span id="stat-high" class="text-sm font-bold font-mono text-slate-900 dark:text-white mt-1 block">$90,200.00</span>
+          </div>
+          <div class="p-3.5 rounded-xl bg-slate-50 dark:bg-slate-800">
+            <span class="text-[10px] text-slate-400 uppercase font-bold block">24h Low</span>
+            <span id="stat-low" class="text-sm font-bold font-mono text-slate-900 dark:text-white mt-1 block">$86,400.00</span>
+          </div>
+          <div class="p-3.5 rounded-xl bg-slate-50 dark:bg-slate-800">
+            <span class="text-[10px] text-slate-400 uppercase font-bold block">24h Volume (Quote)</span>
+            <span id="stat-volume" class="text-sm font-bold font-mono text-slate-900 dark:text-white mt-1 block">$38.45B</span>
+          </div>
+          <div class="p-3.5 rounded-xl bg-slate-50 dark:bg-slate-800">
+            <span class="text-[10px] text-slate-400 uppercase font-bold block">Trading Volume Rank</span>
+            <span class="text-sm font-bold text-slate-900 dark:text-white mt-1 block">Tier 1 Liquidity</span>
+          </div>
+          <div class="p-3.5 rounded-xl bg-slate-50 dark:bg-slate-800">
+            <span class="text-[10px] text-slate-400 uppercase font-bold block">Primary Settlement</span>
+            <span class="text-sm font-bold text-slate-900 dark:text-white mt-1 block">USDT Tether</span>
+          </div>
+          <div class="p-3.5 rounded-xl bg-slate-50 dark:bg-slate-800">
+            <span class="text-[10px] text-slate-400 uppercase font-bold block">Source Timestamp</span>
+            <span id="stat-time" class="text-sm font-bold text-slate-900 dark:text-white mt-1 block">Live Feed</span>
+          </div>
+        </div>
+
+        <!-- About Coin Overview -->
+        <div class="pt-4 border-t border-slate-100 dark:border-slate-800 space-y-2 text-xs text-slate-600 dark:text-slate-400">
+          <h4 class="font-bold text-slate-900 dark:text-white">Asset Summary</h4>
+          <p id="coin-desc" class="leading-relaxed">
+            Leading peer-to-peer digital store of value and decentralized cryptocurrency settlement layer. Widely accumulated as a macro hedge against global sovereign debt expansion and fiat currency devaluation.
+          </p>
+          <div class="p-3 rounded-xl bg-amber-50 dark:bg-amber-950/40 border border-amber-200 dark:border-amber-900 text-[11px] text-amber-800 dark:text-amber-300">
+            <strong>Demo notice:</strong> Analytical metrics are derived from live public order books. Historical descriptions are for preview purposes only.
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Column: Quick Coin Converter -->
+      <div class="lg:col-span-4 mp-card p-6 flex flex-col justify-between">
+        <div>
+          <h3 class="font-heading font-bold text-base text-slate-900 dark:text-white pb-3 border-b border-slate-100 dark:border-slate-800 mb-4">
+            Instant Calculator
+          </h3>
+
+          <div class="space-y-3 text-xs">
+            <div>
+              <label class="block text-slate-500 mb-1 font-medium" id="calc-input-label">Amount in BTC:</label>
+              <input id="quick-calc-amount" type="number" step="any" value="1" class="w-full px-3 py-2 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white font-mono font-bold">
+            </div>
+
+            <div class="p-3 rounded-xl bg-slate-50 dark:bg-slate-800 space-y-2">
+              <div class="flex justify-between items-center">
+                <span class="text-slate-500">Value in USD:</span>
+                <span id="quick-calc-usd" class="font-mono font-bold text-slate-900 dark:text-white">$89,450.20</span>
+              </div>
+              <div class="flex justify-between items-center">
+                <span class="text-slate-500">Value in PKR:</span>
+                <span id="quick-calc-pkr" class="font-mono font-bold text-emerald-600 dark:text-emerald-400">₨ 24,920,825</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="pt-4 border-t border-slate-100 dark:border-slate-800 mt-6 space-y-2">
+          <a href="dca-calculator.html" class="btn-primary w-full py-2 text-xs justify-center">Run DCA Backtest</a>
+          <a href="position-size-calculator.html" class="btn-secondary w-full py-2 text-xs justify-center">Calculate Position Risk</a>
+        </div>
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="bg-[#0B1220] text-slate-400 text-xs border-t border-slate-800 mt-16 py-8 text-center space-y-2">
+    <p class="text-amber-400 font-semibold">Trading involves risk. Content is for information only and not financial advice.</p>
+    <p class="text-slate-500 text-[11px]">&copy; 2026 MarketPulse Inc. Real-time Binance charts & currency conversion.</p>
+  </footer>
+
+  <!-- CORE SCRIPTS -->
+  <script src="assets/js/config.js"></script>
+  <script src="assets/js/api.js"></script>
+  <script src="assets/js/main.js"></script>
+
+  <!-- TRADINGVIEW EMBED & COIN HYDRATION -->
+  <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', async () => {
+      // 1. Parse symbol from query param
+      const urlParams = new URLSearchParams(window.location.search);
+      let symbol = (urlParams.get('symbol') || 'BTCUSDT').toUpperCase();
+      if (!symbol.endsWith('USDT')) symbol += 'USDT';
+      const code = symbol.replace('USDT', '');
+
+      // Update UI placeholders
+      const coinNameEl = document.getElementById('coin-name');
+      const coinSymbolEl = document.getElementById('coin-symbol-badge');
+      const coinBreadcrumbEl = document.getElementById('coin-breadcrumb');
+      const coinAvatar = document.getElementById('coin-avatar');
+      const calcLabel = document.getElementById('calc-input-label');
+
+      const knownName = window.MARKETPULSE_CONFIG.coinNames[code] || code;
+      if (coinNameEl) coinNameEl.textContent = knownName;
+      if (coinSymbolEl) coinSymbolEl.textContent = code;
+      if (coinBreadcrumbEl) coinBreadcrumbEl.textContent = `${knownName} (${code})`;
+      if (coinAvatar) coinAvatar.textContent = code.slice(0, 3);
+      if (calcLabel) calcLabel.textContent = `Amount in ${code}:`;
+
+      // 2. Fetch live data
+      let currentPrice = 89450;
+      let pkrRate = 278.60;
+
+      try {
+        const [binanceRes, ratesRes] = await Promise.all([
+          window.MarketPulseAPI.getBinance24h(),
+          window.MarketPulseAPI.getCurrencyRates()
+        ]);
+
+        if (ratesRes && ratesRes.rates) pkrRate = ratesRes.rates.pkr;
+
+        const coin = binanceRes.data.find(c => c.symbol === symbol) || {
+          symbol: symbol,
+          code: code,
+          name: knownName,
+          price: (code === 'BTC' ? 89450 : (code === 'ETH' ? 3380 : 150)),
+          change24h: 2.5,
+          volume: 1200000000,
+          high: 90000,
+          low: 87000
+        };
+
+        currentPrice = coin.price;
+
+        // Populate elements
+        const priceEl = document.getElementById('coin-live-price');
+        const badgeEl = document.getElementById('coin-change-badge');
+        const pkrEqEl = document.getElementById('coin-pkr-equiv');
+        const highEl = document.getElementById('stat-high');
+        const lowEl = document.getElementById('stat-low');
+        const volEl = document.getElementById('stat-volume');
+        const timeEl = document.getElementById('stat-time');
+
+        if (priceEl) priceEl.textContent = window.MarketPulseAPI.formatPrice(coin.price, 'USD');
+        if (badgeEl) badgeEl.innerHTML = window.MarketPulseAPI.formatChangeBadge(coin.change24h);
+        if (pkrEqEl) pkrEqEl.textContent = '₨ ' + Math.round(coin.price * pkrRate).toLocaleString('en-PK') + ' PKR';
+        if (highEl) highEl.textContent = '$' + coin.high.toFixed(2);
+        if (lowEl) lowEl.textContent = '$' + coin.low.toFixed(2);
+        if (volEl) volEl.textContent = window.MarketPulseAPI.formatVolume(coin.volume);
+        if (timeEl) timeEl.textContent = new Date().toLocaleTimeString();
+
+        // Update quick converter
+        updateQuickCalc();
+
+      } catch (e) {
+        console.warn('Coin details fetch error:', e);
+      }
+
+      // 3. Quick converter input listener
+      const amountInput = document.getElementById('quick-calc-amount');
+      if (amountInput) {
+        amountInput.addEventListener('input', updateQuickCalc);
+      }
+
+      function updateQuickCalc() {
+        const amt = parseFloat(amountInput?.value) || 0;
+        const totalUsd = amt * currentPrice;
+        const totalPkr = totalUsd * pkrRate;
+
+        const usdEl = document.getElementById('quick-calc-usd');
+        const pkrEl = document.getElementById('quick-calc-pkr');
+        if (usdEl) usdEl.textContent = '$' + totalUsd.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+        if (pkrEl) pkrEl.textContent = '₨ ' + Math.round(totalPkr).toLocaleString('en-PK');
+      }
+
+      // 4. Mount TradingView widget
+      if (typeof TradingView !== 'undefined') {
+        new TradingView.widget({
+          "autosize": true,
+          "symbol": `BINANCE:${symbol}`,
+          "interval": "D",
+          "timezone": "Etc/UTC",
+          "theme": document.documentElement.classList.contains('dark') ? "dark" : "light",
+          "style": "1",
+          "locale": "en",
+          "toolbar_bg": "#f1f3f6",
+          "enable_publishing": false,
+          "allow_symbol_change": true,
+          "container_id": "tv_chart_container"
+        });
+      }
+    });
+  </script>
+
+</body>
+</html>
+

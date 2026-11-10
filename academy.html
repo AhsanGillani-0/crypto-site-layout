@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Trading & Financial Academy — MarketPulse</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            mp: {
+              bg: '#F6F9FC',
+              surface: '#FFFFFF',
+              dark: '#0B1220',
+              muted: '#5B6B7F',
+              border: '#E3EAF2',
+              primary: '#F5B700',
+              ice: '#DCEBFA',
+              gain: '#0E9F6E',
+              loss: '#E11D48'
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body class="bg-[#F6F9FC] dark:bg-[#0B1220] text-[#0B1220] dark:text-slate-100 antialiased min-h-screen flex flex-col transition-colors duration-200">
+
+  <!-- STICKY HEADER -->
+  <header class="header-glass sticky top-0 z-40 transition-all duration-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+        <div class="flex items-center gap-6">
+          <a href="index.html" class="flex items-center gap-2.5">
+            <div class="w-9 h-9 rounded-xl bg-[#F5B700] text-[#0B1220] flex items-center justify-center font-black text-xl shadow-md">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" /></svg>
+            </div>
+            <div>
+              <span class="font-heading font-extrabold text-xl text-slate-900 dark:text-white tracking-tight">Market<span class="text-amber-500">Pulse</span></span>
+              <span class="block text-[9px] font-semibold text-slate-500 tracking-wider uppercase -mt-1">Trading Academy</span>
+            </div>
+          </a>
+
+          <nav class="hidden lg:flex items-center gap-1 text-sm font-semibold text-slate-700 dark:text-slate-300">
+            <a href="index.html" class="px-3 py-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition">Home</a>
+            <a href="news.html" class="px-3 py-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition">News</a>
+            <a href="markets.html" class="px-3 py-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition">Markets</a>
+            <a href="tools.html" class="px-3 py-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition">Tools</a>
+            <a href="exchanges-brokers.html" class="px-3 py-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition">Brokers</a>
+            <a href="academy.html" class="px-3 py-2 rounded-lg text-amber-600 dark:text-amber-400 bg-amber-50 dark:bg-slate-800">Academy</a>
+          </nav>
+        </div>
+
+        <div class="flex items-center gap-2.5">
+          <button class="search-modal-trigger flex items-center gap-2 bg-slate-100 dark:bg-slate-800 text-slate-500 px-3 py-1.5 rounded-xl text-xs font-medium">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+            <span class="hidden sm:inline">Search...</span>
+          </button>
+          <button class="theme-toggle-btn p-2 rounded-xl text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800">
+            <svg class="theme-icon-moon w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
+            <svg class="theme-icon-sun w-4 h-4 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- LIVE TICKER -->
+  <div class="bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 text-xs py-1">
+    <div class="ticker-container">
+      <div id="live-ticker-track" class="ticker-track"></div>
+    </div>
+  </div>
+
+  <!-- MAIN BODY -->
+  <main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
+
+    <!-- Breadcrumb -->
+    <nav class="flex items-center gap-2 text-xs text-slate-500">
+      <a href="index.html" class="hover:underline">Home</a>
+      <span>&rsaquo;</span>
+      <span class="font-bold text-slate-800 dark:text-slate-200">Academy</span>
+    </nav>
+
+    <!-- Header Banner -->
+    <div class="text-center max-w-3xl mx-auto space-y-3">
+      <span class="px-3 py-1 rounded-full text-xs font-bold bg-[#F5B700] text-[#0B1220]">STRUCTURED CURRICULUM</span>
+      <h1 class="font-heading font-extrabold text-3xl md:text-4xl text-slate-900 dark:text-white">
+        MarketPulse Trading & Risk Academy
+      </h1>
+      <p class="text-xs md:text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+        Free masterclasses on capital preservation, order book microstructure, macroeconomic hedging, and mathematical expectancy.
+      </p>
+    </div>
+
+    <!-- Level Filter Tabs -->
+    <div class="flex items-center justify-center gap-2 text-xs" id="academy-tabs">
+      <button class="acad-tab px-3.5 py-1.5 rounded-xl font-bold bg-[#F5B700] text-[#0B1220]" data-level="all">All Modules</button>
+      <button class="acad-tab px-3.5 py-1.5 rounded-xl font-semibold text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800" data-level="beginner">Beginner</button>
+      <button class="acad-tab px-3.5 py-1.5 rounded-xl font-semibold text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800" data-level="intermediate">Intermediate</button>
+      <button class="acad-tab px-3.5 py-1.5 rounded-xl font-semibold text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800" data-level="advanced">Advanced</button>
+    </div>
+
+    <!-- Academy Cards Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="academy-grid">
+      
+      <!-- Module 1 -->
+      <div class="mp-card p-6 mp-card-hover group flex flex-col justify-between" data-level="beginner">
+        <div>
+          <div class="flex items-center justify-between mb-3">
+            <span class="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-emerald-100 dark:bg-emerald-950 text-emerald-800 dark:text-emerald-300">BEGINNER</span>
+            <span class="text-[11px] text-slate-400">8 min read</span>
+          </div>
+          <h3 class="font-heading font-bold text-base text-slate-900 dark:text-white group-hover:text-amber-600 transition mb-2">
+            Order Book Mechanics: Bids, Asks, and Slippage Explained
+          </h3>
+          <p class="text-xs text-slate-500 leading-relaxed mb-4">
+            Learn why market orders incur slippage during high volatility, how limit orders provide maker fee rebates, and how to read market depth charts.
+          </p>
+        </div>
+        <div class="pt-4 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between">
+          <span class="text-[10px] text-slate-400 font-mono">Module 01</span>
+          <button class="text-xs font-bold text-amber-600 hover:underline" onclick="alert('Demo academy lesson preview.');">Start Lesson &rarr;</button>
+        </div>
+      </div>
+
+      <!-- Module 2 -->
+      <div class="mp-card p-6 mp-card-hover group flex flex-col justify-between" data-level="beginner">
+        <div>
+          <div class="flex items-center justify-between mb-3">
+            <span class="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-emerald-100 dark:bg-emerald-950 text-emerald-800 dark:text-emerald-300">BEGINNER</span>
+            <span class="text-[11px] text-slate-400">10 min read</span>
+          </div>
+          <h3 class="font-heading font-bold text-base text-slate-900 dark:text-white group-hover:text-amber-600 transition mb-2">
+            Dollar-Cost Averaging vs Lump Sum: Empirical Backtesting
+          </h3>
+          <p class="text-xs text-slate-500 leading-relaxed mb-4">
+            Examine multi-year backtests comparing systematic recurring accumulation against single-entry bottom timing across volatile bear market troughs.
+          </p>
+        </div>
+        <div class="pt-4 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between">
+          <span class="text-[10px] text-slate-400 font-mono">Module 02</span>
+          <a href="dca-calculator.html" class="text-xs font-bold text-amber-600 hover:underline">Try DCA Tool &rarr;</a>
+        </div>
+      </div>
+
+      <!-- Module 3 -->
+      <div class="mp-card p-6 mp-card-hover group flex flex-col justify-between" data-level="intermediate">
+        <div>
+          <div class="flex items-center justify-between mb-3">
+            <span class="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-blue-100 dark:bg-blue-950 text-blue-800 dark:text-blue-300">INTERMEDIATE</span>
+            <span class="text-[11px] text-slate-400">12 min read</span>
+          </div>
+          <h3 class="font-heading font-bold text-base text-slate-900 dark:text-white group-hover:text-amber-600 transition mb-2">
+            Mathematical Position Sizing: Why 1-2% Capital Risk Prevents Ruin
+          </h3>
+          <p class="text-xs text-slate-500 leading-relaxed mb-4">
+            Master the inverse relationship between stop-loss distance and position lot size to ensure no single setup impairs your core trading capital.
+          </p>
+        </div>
+        <div class="pt-4 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between">
+          <span class="text-[10px] text-slate-400 font-mono">Module 03</span>
+          <a href="position-size-calculator.html" class="text-xs font-bold text-amber-600 hover:underline">Try Risk Tool &rarr;</a>
+        </div>
+      </div>
+
+      <!-- Module 4 -->
+      <div class="mp-card p-6 mp-card-hover group flex flex-col justify-between" data-level="intermediate">
+        <div>
+          <div class="flex items-center justify-between mb-3">
+            <span class="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-blue-100 dark:bg-blue-950 text-blue-800 dark:text-blue-300">INTERMEDIATE</span>
+            <span class="text-[11px] text-slate-400">14 min read</span>
+          </div>
+          <h3 class="font-heading font-bold text-base text-slate-900 dark:text-white group-hover:text-amber-600 transition mb-2">
+            Forex Corridors & Emerging Market Devaluation (Pakistan USD/PKR)
+          </h3>
+          <p class="text-xs text-slate-500 leading-relaxed mb-4">
+            How remittances, interbank reserves, and multilateral debt obligations shape rupee parity, and how local investors preserve purchasing power with physical gold.
+          </p>
+        </div>
+        <div class="pt-4 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between">
+          <span class="text-[10px] text-slate-400 font-mono">Module 04</span>
+          <a href="gold-tola-calculator.html" class="text-xs font-bold text-amber-600 hover:underline">Try Gold Tool &rarr;</a>
+        </div>
+      </div>
+
+      <!-- Module 5 -->
+      <div class="mp-card p-6 mp-card-hover group flex flex-col justify-between" data-level="intermediate">
+        <div>
+          <div class="flex items-center justify-between mb-3">
+            <span class="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-blue-100 dark:bg-blue-950 text-blue-800 dark:text-blue-300">INTERMEDIATE</span>
+            <span class="text-[11px] text-slate-400">10 min read</span>
+          </div>
+          <h3 class="font-heading font-bold text-base text-slate-900 dark:text-white group-hover:text-amber-600 transition mb-2">
+            Physical Bullion vs Tokenized Gold (PAXG) vs Commodity Futures
+          </h3>
+          <p class="text-xs text-slate-500 leading-relaxed mb-4">
+            Evaluate counterparty risk, storage fees, maker spreads, and settlement logistics across physical jewelry, LBMA vaults, and digital blockchain tokens.
+          </p>
+        </div>
+        <div class="pt-4 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between">
+          <span class="text-[10px] text-slate-400 font-mono">Module 05</span>
+          <button class="text-xs font-bold text-amber-600 hover:underline" onclick="alert('Demo academy lesson preview.');">Start Lesson &rarr;</button>
+        </div>
+      </div>
+
+      <!-- Module 6 -->
+      <div class="mp-card p-6 mp-card-hover group flex flex-col justify-between" data-level="advanced">
+        <div>
+          <div class="flex items-center justify-between mb-3">
+            <span class="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-purple-100 dark:bg-purple-950 text-purple-800 dark:text-purple-300">ADVANCED</span>
+            <span class="text-[11px] text-slate-400">15 min read</span>
+          </div>
+          <h3 class="font-heading font-bold text-base text-slate-900 dark:text-white group-hover:text-amber-600 transition mb-2">
+            Risk-to-Reward & Mathematical Expectancy: Why Win Rate Is Overrated
+          </h3>
+          <p class="text-xs text-slate-500 leading-relaxed mb-4">
+            Mathematical proof showing how professional prop traders compound capital with a 38% win rate by strictly enforcing asymmetrical 1:3 and 1:4 risk/reward setups.
+          </p>
+        </div>
+        <div class="pt-4 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between">
+          <span class="text-[10px] text-slate-400 font-mono">Module 06</span>
+          <a href="profit-loss-calculator.html" class="text-xs font-bold text-amber-600 hover:underline">Try PnL Tool &rarr;</a>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Educational Truth Note -->
+    <div class="p-4 rounded-xl bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-xs text-slate-500 text-center">
+      All academy curriculum is educational and for demonstration in this client layout preview. No paid signals or financial advice.
+    </div>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="bg-[#0B1220] text-slate-400 text-xs border-t border-slate-800 mt-16 py-8 text-center space-y-2">
+    <p class="text-amber-400 font-semibold">Trading involves risk. Content is for information only and not financial advice.</p>
+    <p class="text-slate-500 text-[11px]">&copy; 2026 MarketPulse Inc. Educational academy preview.</p>
+  </footer>
+
+  <!-- CORE SCRIPTS -->
+  <script src="assets/js/config.js"></script>
+  <script src="assets/js/api.js"></script>
+  <script src="assets/js/main.js"></script>
+
+  <!-- ACADEMY FILTER CONTROLLER -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const tabs = document.querySelectorAll('.acad-tab');
+      const cards = document.querySelectorAll('#academy-grid > div');
+
+      tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+          const level = tab.getAttribute('data-level');
+
+          tabs.forEach(t => {
+            t.classList.remove('bg-[#F5B700]', 'text-[#0B1220]', 'font-bold');
+            t.classList.add('text-slate-600', 'dark:text-slate-300');
+          });
+          tab.classList.add('bg-[#F5B700]', 'text-[#0B1220]', 'font-bold');
+          tab.classList.remove('text-slate-600', 'dark:text-slate-300');
+
+          cards.forEach(c => {
+            if (level === 'all' || c.getAttribute('data-level') === level) {
+              c.classList.remove('hidden');
+            } else {
+              c.classList.add('hidden');
+            }
+          });
+        });
+      });
+    });
+  </script>
+
+</body>
+</html>

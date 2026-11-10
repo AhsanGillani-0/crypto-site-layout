@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Gold per Tola (PKR) Calculator — MarketPulse</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            mp: {
+              bg: '#F6F9FC',
+              surface: '#FFFFFF',
+              dark: '#0B1220',
+              muted: '#5B6B7F',
+              border: '#E3EAF2',
+              primary: '#F5B700',
+              ice: '#DCEBFA',
+              gain: '#0E9F6E',
+              loss: '#E11D48'
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body class="bg-[#F6F9FC] dark:bg-[#0B1220] text-[#0B1220] dark:text-slate-100 antialiased min-h-screen flex flex-col transition-colors duration-200">
+
+  <!-- STICKY HEADER -->
+  <header class="header-glass sticky top-0 z-40 transition-all duration-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+        <div class="flex items-center gap-6">
+          <a href="index.html" class="flex items-center gap-2.5">
+            <div class="w-9 h-9 rounded-xl bg-[#F5B700] text-[#0B1220] flex items-center justify-center font-black text-xl shadow-md">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" /></svg>
+            </div>
+            <div>
+              <span class="font-heading font-extrabold text-xl text-slate-900 dark:text-white tracking-tight">Market<span class="text-amber-500">Pulse</span></span>
+              <span class="block text-[9px] font-semibold text-slate-500 tracking-wider uppercase -mt-1">Gold Calculator</span>
+            </div>
+          </a>
+
+          <nav class="hidden lg:flex items-center gap-1 text-sm font-semibold text-slate-700 dark:text-slate-300">
+            <a href="index.html" class="px-3 py-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition">Home</a>
+            <a href="markets.html" class="px-3 py-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition">Markets</a>
+            <a href="tools.html" class="px-3 py-2 rounded-lg text-amber-600 dark:text-amber-400 bg-amber-50 dark:bg-slate-800">Tools</a>
+            <a href="news.html" class="px-3 py-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition">News</a>
+            <a href="academy.html" class="px-3 py-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition">Academy</a>
+          </nav>
+        </div>
+
+        <div class="flex items-center gap-2.5">
+          <div class="flex items-center bg-slate-100 dark:bg-slate-800 p-0.5 rounded-xl border border-slate-200 dark:border-slate-700 text-xs font-semibold">
+            <button class="currency-toggle-btn px-2.5 py-1 rounded-lg" data-currency="USD">USD</button>
+            <button class="currency-toggle-btn px-2.5 py-1 rounded-lg" data-currency="PKR">PKR</button>
+          </div>
+          <button class="theme-toggle-btn p-2 rounded-xl text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800">
+            <svg class="theme-icon-moon w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
+            <svg class="theme-icon-sun w-4 h-4 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- LIVE TICKER -->
+  <div class="bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 text-xs py-1">
+    <div class="ticker-container">
+      <div id="live-ticker-track" class="ticker-track"></div>
+    </div>
+  </div>
+
+  <!-- MAIN BODY -->
+  <main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-6">
+
+    <!-- Breadcrumb -->
+    <nav class="flex items-center gap-2 text-xs text-slate-500">
+      <a href="index.html" class="hover:underline">Home</a>
+      <span>&rsaquo;</span>
+      <a href="tools.html" class="hover:underline">Tools</a>
+      <span>&rsaquo;</span>
+      <span class="font-bold text-slate-800 dark:text-slate-200">Gold per Tola Calculator</span>
+    </nav>
+
+    <div>
+      <h1 class="font-heading font-extrabold text-2xl md:text-3xl text-slate-900 dark:text-white">
+        Pakistani Gold per Tola (PKR) Calculator
+      </h1>
+      <p class="text-xs text-slate-500 mt-1">
+        Convert international spot bullion rates into Pakistani Tola, 10-Gram, and Gram values with live PAXG tracking and manual override.
+      </p>
+    </div>
+
+    <!-- Main Grid -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+      
+      <!-- Left: Inputs & Overrides -->
+      <div class="lg:col-span-5 mp-card p-6 space-y-4">
+        <h2 class="font-heading font-bold text-base text-slate-900 dark:text-white pb-3 border-b border-slate-100 dark:border-slate-800">
+          Conversion Inputs
+        </h2>
+
+        <div class="space-y-4 text-xs">
+          <!-- Spot Gold Price -->
+          <div>
+            <div class="flex justify-between items-center mb-1">
+              <label class="font-bold text-slate-700 dark:text-slate-300">Gold Spot Price ($ / Troy Oz):</label>
+              <span class="text-[10px] text-amber-600 font-semibold">PAXG tracks spot gold</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <input id="gold-spot-input" type="number" step="0.1" value="2685.40" class="w-full px-3 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white font-mono font-bold">
+            </div>
+          </div>
+
+          <!-- USD/PKR Rate -->
+          <div>
+            <label class="block font-bold text-slate-700 dark:text-slate-300 mb-1">USD / PKR Exchange Rate:</label>
+            <input id="gold-pkr-input" type="number" step="0.05" value="278.60" class="w-full px-3 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white font-mono font-bold">
+          </div>
+
+          <!-- Purity Toggle -->
+          <div>
+            <label class="block font-bold text-slate-700 dark:text-slate-300 mb-1">Select Gold Karat / Purity:</label>
+            <div class="grid grid-cols-2 gap-2">
+              <button type="button" class="karat-btn py-2 rounded-xl border font-bold text-center bg-[#F5B700] text-[#0B1220] border-amber-400" data-karat="24">24 Karat (99.9% Pure)</button>
+              <button type="button" class="karat-btn py-2 rounded-xl border font-semibold text-center border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300" data-karat="22">22 Karat (Jewelry)</button>
+            </div>
+          </div>
+
+          <!-- Reset / Auto Sync Button -->
+          <button id="gold-sync-btn" type="button" class="btn-secondary w-full py-2 justify-center text-xs">
+            ↻ Reset to Live Binance & Interbank Feeds
+          </button>
+        </div>
+
+        <div class="p-3 rounded-xl bg-slate-50 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 text-[11px] text-slate-500 space-y-1">
+          <p><strong>Conversion Constant:</strong> 1 Tola = 11.6638 grams &bull; 1 Troy Oz = 31.1035 grams.</p>
+          <p class="text-amber-600 dark:text-amber-400 font-medium">International rate conversion. Local Sarafa rates may differ due to dealer premiums and import duties.</p>
+        </div>
+      </div>
+
+      <!-- Right: Rates Breakdown Cards -->
+      <div class="lg:col-span-7 space-y-4">
+        
+        <!-- Primary 1 Tola Card -->
+        <div class="mp-card p-6 border-amber-300 dark:border-amber-900/60 bg-gradient-to-br from-amber-50/50 via-white to-white dark:from-slate-900 dark:to-slate-800">
+          <div class="flex items-center justify-between pb-3 border-b border-amber-200 dark:border-amber-900/40 mb-3">
+            <div>
+              <span class="text-[10px] text-amber-700 dark:text-amber-300 font-extrabold uppercase tracking-wider block">Estimated Bullion Value</span>
+              <h2 class="font-heading font-extrabold text-lg text-slate-900 dark:text-white" id="gold-card-title">1 Tola Gold (24K) in Pakistan</h2>
+            </div>
+            <span class="px-2.5 py-1 rounded-full text-xs font-bold bg-[#F5B700] text-[#0B1220]">11.664 Grams</span>
+          </div>
+
+          <div class="py-2">
+            <span class="text-xs text-slate-500">Estimated Rate in Pakistani Rupee:</span>
+            <div id="gold-tola-pkr-display" class="text-4xl font-black font-mono text-slate-900 dark:text-white my-1">
+              ₨ 280,450
+            </div>
+            <div id="gold-tola-usd-display" class="text-xs font-mono text-slate-500">$1,006.64 USD Equivalent</div>
+          </div>
+        </div>
+
+        <!-- 3-Way Sub-Units Breakdown -->
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+          <div class="mp-card p-4 text-center">
+            <span class="text-[10px] text-slate-400 font-bold uppercase block">10 Grams Rate</span>
+            <div id="gold-10g-display" class="text-lg font-bold font-mono text-slate-900 dark:text-white my-1">₨ 240,440</div>
+            <span class="text-[10px] text-slate-500">Standard Bullion Bar</span>
+          </div>
+
+          <div class="mp-card p-4 text-center">
+            <span class="text-[10px] text-slate-400 font-bold uppercase block">1 Gram Rate</span>
+            <div id="gold-1g-display" class="text-lg font-bold font-mono text-slate-900 dark:text-white my-1">₨ 24,044</div>
+            <span class="text-[10px] text-slate-500">Unit Baseline</span>
+          </div>
+
+          <div class="mp-card p-4 text-center">
+            <span class="text-[10px] text-slate-400 font-bold uppercase block">1 Troy Ounce</span>
+            <div id="gold-oz-display" class="text-lg font-bold font-mono text-slate-900 dark:text-white my-1">₨ 748,152</div>
+            <span class="text-[10px] text-slate-500">31.1035 Grams</span>
+          </div>
+        </div>
+
+        <!-- Formula Callout -->
+        <div class="mp-card p-4 bg-slate-50 dark:bg-slate-800 text-xs text-slate-600 dark:text-slate-400 space-y-1">
+          <span class="font-bold text-slate-900 dark:text-white block">Conversion Mathematical Formula:</span>
+          <p class="font-mono text-[11px] bg-white dark:bg-slate-900 p-2 rounded-lg border border-slate-200 dark:border-slate-700">
+            Rate per Tola = (Spot USD &times; USD/PKR Rate &times; 11.6638) &divide; 31.1035
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- Sarafa Market Explanation & FAQs -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-4">
+      <div class="mp-card p-6 space-y-2 text-xs">
+        <h3 class="font-heading font-bold text-sm text-slate-900 dark:text-white">Understanding Local Sarafa Rates</h3>
+        <p class="text-slate-500 leading-relaxed">
+          In Pakistan, major Sarafa Associations in Karachi, Lahore, and Islamabad announce daily rates based on international London Bullion Market (LBMA) spot prices combined with the open-market rupee parity.
+        </p>
+        <p class="text-slate-500 leading-relaxed">
+          Physical gold jewelry prices include additional "Making Charges" (Katai / Mazdoori) which typically range from 5% to 15% depending on artisan complexity.
+        </p>
+      </div>
+
+      <div class="mp-card p-6 space-y-3 text-xs">
+        <h3 class="font-heading font-bold text-sm text-slate-900 dark:text-white">Gold FAQs</h3>
+        
+        <details class="group">
+          <summary class="font-bold text-slate-800 dark:text-slate-200 cursor-pointer">What is the difference between 24K and 22K gold?</summary>
+          <p class="mt-1 text-slate-500">24 Karat is 99.9% pure gold, primarily used for investment bars and biscuits. 22 Karat contains 91.6% gold alloyed with silver or copper for structural durability in jewelry.</p>
+        </details>
+
+        <details class="group">
+          <summary class="font-bold text-slate-800 dark:text-slate-200 cursor-pointer">Why does PAXG track spot gold?</summary>
+          <p class="mt-1 text-slate-500">PAX Gold (PAXG) is a digital token where each unit is 1:1 physically backed by one fine troy ounce of London Good Delivery gold stored in Brink's vaults.</p>
+        </details>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="bg-[#0B1220] text-slate-400 text-xs border-t border-slate-800 mt-16 py-8 text-center space-y-2">
+    <p class="text-amber-400 font-semibold">Trading involves risk. Content is for information only and not financial advice.</p>
+    <p class="text-slate-500 text-[11px]">&copy; 2026 MarketPulse Inc.</p>
+  </footer>
+
+  <!-- CORE SCRIPTS -->
+  <script src="assets/js/config.js"></script>
+  <script src="assets/js/api.js"></script>
+  <script src="assets/js/main.js"></script>
+
+  <!-- GOLD CONTROLLER -->
+  <script>
+    document.addEventListener('DOMContentLoaded', async () => {
+      let liveSpot = 2685.40;
+      let livePkr = 278.60;
+      let currentKarat = 24;
+
+      const spotInput = document.getElementById('gold-spot-input');
+      const pkrInput = document.getElementById('gold-pkr-input');
+      const syncBtn = document.getElementById('gold-sync-btn');
+      const karatBtns = document.querySelectorAll('.karat-btn');
+
+      // Fetch live rates
+      async function fetchLive() {
+        try {
+          const [binanceRes, ratesRes] = await Promise.all([
+            window.MarketPulseAPI.getBinance24h(),
+            window.MarketPulseAPI.getCurrencyRates()
+          ]);
+
+          const paxg = binanceRes.data.find(c => c.symbol === 'PAXGUSDT' || c.code === 'PAXG');
+          if (paxg) liveSpot = paxg.price;
+          if (ratesRes && ratesRes.rates) livePkr = ratesRes.rates.pkr;
+
+          spotInput.value = liveSpot.toFixed(2);
+          pkrInput.value = livePkr.toFixed(2);
+          calculateGold();
+        } catch (e) {
+          calculateGold();
+        }
+      }
+
+      await fetchLive();
+
+      spotInput.addEventListener('input', calculateGold);
+      pkrInput.addEventListener('input', calculateGold);
+      syncBtn?.addEventListener('click', fetchLive);
+
+      karatBtns.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          karatBtns.forEach(b => {
+            b.classList.remove('bg-[#F5B700]', 'text-[#0B1220]', 'font-bold', 'border-amber-400');
+            b.classList.add('border-slate-200', 'dark:border-slate-700', 'text-slate-600', 'dark:text-slate-300');
+          });
+          e.currentTarget.classList.add('bg-[#F5B700]', 'text-[#0B1220]', 'font-bold', 'border-amber-400');
+          e.currentTarget.classList.remove('border-slate-200', 'dark:border-slate-700', 'text-slate-600', 'dark:text-slate-300');
+          currentKarat = parseInt(e.currentTarget.getAttribute('data-karat')) || 24;
+          calculateGold();
+        });
+      });
+
+      function calculateGold() {
+        const spot = parseFloat(spotInput.value) || 0;
+        const pkr = parseFloat(pkrInput.value) || 0;
+        const purityMultiplier = currentKarat === 22 ? (22 / 24) : 1;
+
+        // Formula: Spot USD * USD/PKR * grams / 31.1035
+        const pricePerGram = (spot * pkr / 31.1035) * purityMultiplier;
+        const pricePerTola = pricePerGram * 11.6638;
+        const pricePer10g = pricePerGram * 10;
+        const pricePerOz = (spot * pkr) * purityMultiplier;
+
+        const tolaPkrEl = document.getElementById('gold-tola-pkr-display');
+        const tolaUsdEl = document.getElementById('gold-tola-usd-display');
+        const tenGEl = document.getElementById('gold-10g-display');
+        const oneGEl = document.getElementById('gold-1g-display');
+        const ozEl = document.getElementById('gold-oz-display');
+        const cardTitle = document.getElementById('gold-card-title');
+
+        if (cardTitle) cardTitle.textContent = `1 Tola Gold (${currentKarat}K) in Pakistan`;
+        if (tolaPkrEl) tolaPkrEl.textContent = '₨ ' + Math.round(pricePerTola).toLocaleString('en-PK');
+        if (tolaUsdEl) tolaUsdEl.textContent = '$' + ((spot * 11.6638 / 31.1035) * purityMultiplier).toFixed(2) + ' USD Equivalent';
+        if (tenGEl) tenGEl.textContent = '₨ ' + Math.round(pricePer10g).toLocaleString('en-PK');
+        if (oneGEl) oneGEl.textContent = '₨ ' + Math.round(pricePerGram).toLocaleString('en-PK');
+        if (ozEl) ozEl.textContent = '₨ ' + Math.round(pricePerOz).toLocaleString('en-PK');
+      }
+    });
+  </script>
+
+</body>
+</html>
+

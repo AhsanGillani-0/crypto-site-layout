@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Regulated Exchanges & Broker Reviews — MarketPulse</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            mp: {
+              bg: '#F6F9FC',
+              surface: '#FFFFFF',
+              dark: '#0B1220',
+              muted: '#5B6B7F',
+              border: '#E3EAF2',
+              primary: '#F5B700',
+              ice: '#DCEBFA',
+              gain: '#0E9F6E',
+              loss: '#E11D48'
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body class="bg-[#F6F9FC] dark:bg-[#0B1220] text-[#0B1220] dark:text-slate-100 antialiased min-h-screen flex flex-col transition-colors duration-200">
+
+  <!-- STICKY HEADER -->
+  <header class="header-glass sticky top-0 z-40 transition-all duration-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+        <div class="flex items-center gap-6">
+          <a href="index.html" class="flex items-center gap-2.5">
+            <div class="w-9 h-9 rounded-xl bg-[#F5B700] text-[#0B1220] flex items-center justify-center font-black text-xl shadow-md">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" /></svg>
+            </div>
+            <div>
+              <span class="font-heading font-extrabold text-xl text-slate-900 dark:text-white tracking-tight">Market<span class="text-amber-500">Pulse</span></span>
+              <span class="block text-[9px] font-semibold text-slate-500 tracking-wider uppercase -mt-1">Broker Directory</span>
+            </div>
+          </a>
+
+          <nav class="hidden lg:flex items-center gap-1 text-sm font-semibold text-slate-700 dark:text-slate-300">
+            <a href="index.html" class="px-3 py-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition">Home</a>
+            <a href="news.html" class="px-3 py-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition">News</a>
+            <a href="markets.html" class="px-3 py-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition">Markets</a>
+            <a href="tools.html" class="px-3 py-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition">Tools</a>
+            <a href="exchanges-brokers.html" class="px-3 py-2 rounded-lg text-amber-600 dark:text-amber-400 bg-amber-50 dark:bg-slate-800">Brokers</a>
+            <a href="academy.html" class="px-3 py-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition">Academy</a>
+          </nav>
+        </div>
+
+        <div class="flex items-center gap-2.5">
+          <button class="search-modal-trigger flex items-center gap-2 bg-slate-100 dark:bg-slate-800 text-slate-500 px-3 py-1.5 rounded-xl text-xs font-medium">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+            <span class="hidden sm:inline">Search...</span>
+          </button>
+          <button class="theme-toggle-btn p-2 rounded-xl text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800">
+            <svg class="theme-icon-moon w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
+            <svg class="theme-icon-sun w-4 h-4 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- LIVE TICKER -->
+  <div class="bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 text-xs py-1">
+    <div class="ticker-container">
+      <div id="live-ticker-track" class="ticker-track"></div>
+    </div>
+  </div>
+
+  <!-- MAIN BODY -->
+  <main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-6">
+
+    <!-- Breadcrumb -->
+    <nav class="flex items-center gap-2 text-xs text-slate-500">
+      <a href="index.html" class="hover:underline">Home</a>
+      <span>&rsaquo;</span>
+      <span class="font-bold text-slate-800 dark:text-slate-200">Exchanges & Broker Reviews</span>
+    </nav>
+
+    <!-- Header & Category Filters -->
+    <div class="flex flex-wrap items-center justify-between gap-4">
+      <div>
+        <h1 class="font-heading font-extrabold text-2xl md:text-3xl text-slate-900 dark:text-white">
+          Trading Platforms & Broker Reviews
+        </h1>
+        <p class="text-xs text-slate-500 mt-1">
+          Objective evaluation of liquidity, order routing, maker/taker fee schedules, and regulatory licensing.
+        </p>
+      </div>
+
+      <!-- Category Filter Tabs -->
+      <div class="flex items-center gap-2 text-xs overflow-x-auto" id="broker-filter-tabs">
+        <button class="broker-tab px-3.5 py-1.5 rounded-xl font-bold bg-[#F5B700] text-[#0B1220]" data-type="all">All Platforms</button>
+        <button class="broker-tab px-3.5 py-1.5 rounded-xl font-semibold text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800" data-type="crypto">Crypto Exchanges</button>
+        <button class="broker-tab px-3.5 py-1.5 rounded-xl font-semibold text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800" data-type="forex">Forex Brokers</button>
+        <button class="broker-tab px-3.5 py-1.5 rounded-xl font-semibold text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800" data-type="stocks">Stock Brokers</button>
+      </div>
+    </div>
+
+    <!-- Broker Cards Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="brokers-grid">
+      
+      <!-- Card 1: Binance -->
+      <div class="mp-card p-6 flex flex-col justify-between" data-type="crypto">
+        <div>
+          <div class="flex items-center justify-between pb-3 border-b border-slate-100 dark:border-slate-800 mb-4">
+            <div class="flex items-center gap-3">
+              <div class="w-12 h-12 rounded-xl bg-amber-400/20 text-amber-800 dark:text-amber-300 flex items-center justify-center font-black text-lg">
+                BN
+              </div>
+              <div>
+                <h3 class="font-heading font-bold text-base text-slate-900 dark:text-white">Binance</h3>
+                <span class="text-[11px] text-slate-400 font-semibold uppercase">Global Crypto Exchange</span>
+              </div>
+            </div>
+            <div class="text-right">
+              <div class="text-amber-500 font-bold text-sm">★ 4.9 / 5.0</div>
+              <span class="text-[9px] text-slate-400">Demo rating</span>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-2 gap-2 text-[11px] mb-4 bg-slate-50 dark:bg-slate-800 p-2.5 rounded-xl font-mono">
+            <div><span class="text-slate-400 block">Spot Fee:</span> 0.10% (0.075% BNB)</div>
+            <div><span class="text-slate-400 block">Coins Listed:</span> 350+ Assets</div>
+            <div><span class="text-slate-400 block">Min Deposit:</span> $10 USD</div>
+            <div><span class="text-slate-400 block">Proof of Reserves:</span> Published</div>
+          </div>
+
+          <div class="space-y-2 text-xs mb-6">
+            <div class="text-emerald-700 dark:text-emerald-400 space-y-1">
+              <div class="flex items-center gap-1.5 font-medium"><span>✓</span> Unmatched global order book depth</div>
+              <div class="flex items-center gap-1.5 font-medium"><span>✓</span> Advanced trading tools & futures liquidity</div>
+            </div>
+            <div class="text-rose-700 dark:text-rose-400 space-y-1 pt-1 border-t border-slate-100 dark:border-slate-800">
+              <div class="flex items-center gap-1.5 font-medium"><span>✗</span> Limited access for certain US residents</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="space-y-2 pt-2 border-t border-slate-100 dark:border-slate-800">
+          <a href="https://binance.com" target="_blank" rel="noopener" class="btn-primary w-full py-2 justify-center text-xs">Visit Binance ↗</a>
+          <button class="btn-secondary w-full py-2 justify-center text-xs" onclick="alert('Demo review modal preview.');">Read Full Editorial Review</button>
+        </div>
+      </div>
+
+      <!-- Card 2: Interactive Brokers -->
+      <div class="mp-card p-6 flex flex-col justify-between" data-type="stocks">
+        <div>
+          <div class="flex items-center justify-between pb-3 border-b border-slate-100 dark:border-slate-800 mb-4">
+            <div class="flex items-center gap-3">
+              <div class="w-12 h-12 rounded-xl bg-red-100 dark:bg-red-950 text-red-700 dark:text-red-300 flex items-center justify-center font-black text-lg">
+                IB
+              </div>
+              <div>
+                <h3 class="font-heading font-bold text-base text-slate-900 dark:text-white">Interactive Brokers</h3>
+                <span class="text-[11px] text-slate-400 font-semibold uppercase">Multi-Asset Global Broker</span>
+              </div>
+            </div>
+            <div class="text-right">
+              <div class="text-amber-500 font-bold text-sm">★ 4.8 / 5.0</div>
+              <span class="text-[9px] text-slate-400">Demo rating</span>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-2 gap-2 text-[11px] mb-4 bg-slate-50 dark:bg-slate-800 p-2.5 rounded-xl font-mono">
+            <div><span class="text-slate-400 block">Stock Commissions:</span> $0.005 / share</div>
+            <div><span class="text-slate-400 block">Global Markets:</span> 150+ Exchanges</div>
+            <div><span class="text-slate-400 block">Min Deposit:</span> $0</div>
+            <div><span class="text-slate-400 block">Regulation:</span> SEC, FCA, ASIC</div>
+          </div>
+
+          <div class="space-y-2 text-xs mb-6">
+            <div class="text-emerald-700 dark:text-emerald-400 space-y-1">
+              <div class="flex items-center gap-1.5 font-medium"><span>✓</span> Professional Trader Workstation (TWS)</div>
+              <div class="flex items-center gap-1.5 font-medium"><span>✓</span> Lowest institutional margin borrowing rates</div>
+            </div>
+            <div class="text-rose-700 dark:text-rose-400 space-y-1 pt-1 border-t border-slate-100 dark:border-slate-800">
+              <div class="flex items-center gap-1.5 font-medium"><span>✗</span> Complex interface for complete beginners</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="space-y-2 pt-2 border-t border-slate-100 dark:border-slate-800">
+          <a href="#" class="btn-primary w-full py-2 justify-center text-xs">Visit Interactive Brokers ↗</a>
+          <button class="btn-secondary w-full py-2 justify-center text-xs" onclick="alert('Demo review modal preview.');">Read Full Editorial Review</button>
+        </div>
+      </div>
+
+      <!-- Card 3: OANDA -->
+      <div class="mp-card p-6 flex flex-col justify-between" data-type="forex">
+        <div>
+          <div class="flex items-center justify-between pb-3 border-b border-slate-100 dark:border-slate-800 mb-4">
+            <div class="flex items-center gap-3">
+              <div class="w-12 h-12 rounded-xl bg-blue-100 dark:bg-blue-950 text-blue-700 dark:text-blue-300 flex items-center justify-center font-black text-lg">
+                OA
+              </div>
+              <div>
+                <h3 class="font-heading font-bold text-base text-slate-900 dark:text-white">OANDA</h3>
+                <span class="text-[11px] text-slate-400 font-semibold uppercase">Forex & CFD Broker</span>
+              </div>
+            </div>
+            <div class="text-right">
+              <div class="text-amber-500 font-bold text-sm">★ 4.7 / 5.0</div>
+              <span class="text-[9px] text-slate-400">Demo rating</span>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-2 gap-2 text-[11px] mb-4 bg-slate-50 dark:bg-slate-800 p-2.5 rounded-xl font-mono">
+            <div><span class="text-slate-400 block">EUR/USD Spread:</span> 1.0 pips</div>
+            <div><span class="text-slate-400 block">Currency Pairs:</span> 70+ Pairs</div>
+            <div><span class="text-slate-400 block">Min Deposit:</span> $0</div>
+            <div><span class="text-slate-400 block">Regulation:</span> CFTC, FCA, IIROC</div>
+          </div>
+
+          <div class="space-y-2 text-xs mb-6">
+            <div class="text-emerald-700 dark:text-emerald-400 space-y-1">
+              <div class="flex items-center gap-1.5 font-medium"><span>✓</span> Direct TradingView chart execution</div>
+              <div class="flex items-center gap-1.5 font-medium"><span>✓</span> Decades of clean regulatory standing</div>
+            </div>
+            <div class="text-rose-700 dark:text-rose-400 space-y-1 pt-1 border-t border-slate-100 dark:border-slate-800">
+              <div class="flex items-center gap-1.5 font-medium"><span>✗</span> Higher spreads on exotic currency pairs</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="space-y-2 pt-2 border-t border-slate-100 dark:border-slate-800">
+          <a href="#" class="btn-primary w-full py-2 justify-center text-xs">Visit OANDA ↗</a>
+          <button class="btn-secondary w-full py-2 justify-center text-xs" onclick="alert('Demo review modal preview.');">Read Full Editorial Review</button>
+        </div>
+      </div>
+
+      <!-- Card 4: Bybit -->
+      <div class="mp-card p-6 flex flex-col justify-between" data-type="crypto">
+        <div>
+          <div class="flex items-center justify-between pb-3 border-b border-slate-100 dark:border-slate-800 mb-4">
+            <div class="flex items-center gap-3">
+              <div class="w-12 h-12 rounded-xl bg-slate-900 text-[#F5B700] flex items-center justify-center font-black text-lg">
+                BY
+              </div>
+              <div>
+                <h3 class="font-heading font-bold text-base text-slate-900 dark:text-white">Bybit</h3>
+                <span class="text-[11px] text-slate-400 font-semibold uppercase">Crypto Derivatives Hub</span>
+              </div>
+            </div>
+            <div class="text-right">
+              <div class="text-amber-500 font-bold text-sm">★ 4.7 / 5.0</div>
+              <span class="text-[9px] text-slate-400">Demo rating</span>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-2 gap-2 text-[11px] mb-4 bg-slate-50 dark:bg-slate-800 p-2.5 rounded-xl font-mono">
+            <div><span class="text-slate-400 block">Taker Fee:</span> 0.055% (Perp)</div>
+            <div><span class="text-slate-400 block">Leverage:</span> Up to 100x</div>
+            <div><span class="text-slate-400 block">Min Deposit:</span> $10</div>
+            <div><span class="text-slate-400 block">VIP Tiers:</span> Active rebates</div>
+          </div>
+
+          <div class="space-y-2 text-xs mb-6">
+            <div class="text-emerald-700 dark:text-emerald-400 space-y-1">
+              <div class="flex items-center gap-1.5 font-medium"><span>✓</span> Exceptional matching engine stability</div>
+              <div class="flex items-center gap-1.5 font-medium"><span>✓</span> Integrated copy trading marketplace</div>
+            </div>
+            <div class="text-rose-700 dark:text-rose-400 space-y-1 pt-1 border-t border-slate-100 dark:border-slate-800">
+              <div class="flex items-center gap-1.5 font-medium"><span>✗</span> Strict KYC requirements across tiers</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="space-y-2 pt-2 border-t border-slate-100 dark:border-slate-800">
+          <a href="#" class="btn-primary w-full py-2 justify-center text-xs">Visit Bybit ↗</a>
+          <button class="btn-secondary w-full py-2 justify-center text-xs" onclick="alert('Demo review modal preview.');">Read Full Editorial Review</button>
+        </div>
+      </div>
+
+      <!-- Card 5: Exness -->
+      <div class="mp-card p-6 flex flex-col justify-between" data-type="forex">
+        <div>
+          <div class="flex items-center justify-between pb-3 border-b border-slate-100 dark:border-slate-800 mb-4">
+            <div class="flex items-center gap-3">
+              <div class="w-12 h-12 rounded-xl bg-yellow-100 dark:bg-yellow-950 text-yellow-800 dark:text-yellow-300 flex items-center justify-center font-black text-lg">
+                EX
+              </div>
+              <div>
+                <h3 class="font-heading font-bold text-base text-slate-900 dark:text-white">Exness</h3>
+                <span class="text-[11px] text-slate-400 font-semibold uppercase">Forex & Gold Broker</span>
+              </div>
+            </div>
+            <div class="text-right">
+              <div class="text-amber-500 font-bold text-sm">★ 4.6 / 5.0</div>
+              <span class="text-[9px] text-slate-400">Demo rating</span>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-2 gap-2 text-[11px] mb-4 bg-slate-50 dark:bg-slate-800 p-2.5 rounded-xl font-mono">
+            <div><span class="text-slate-400 block">Gold Spread:</span> Low Bullion Spreads</div>
+            <div><span class="text-slate-400 block">Withdrawal:</span> Instant Processing</div>
+            <div><span class="text-slate-400 block">Local Currency:</span> PKR Supported</div>
+            <div><span class="text-slate-400 block">Regulation:</span> FSA, CySEC, FCA</div>
+          </div>
+
+          <div class="space-y-2 text-xs mb-6">
+            <div class="text-emerald-700 dark:text-emerald-400 space-y-1">
+              <div class="flex items-center gap-1.5 font-medium"><span>✓</span> Instant automated withdrawal processing</div>
+              <div class="flex items-center gap-1.5 font-medium"><span>✓</span> Popular among Pakistani and GCC bullion traders</div>
+            </div>
+            <div class="text-rose-700 dark:text-rose-400 space-y-1 pt-1 border-t border-slate-100 dark:border-slate-800">
+              <div class="flex items-center gap-1.5 font-medium"><span>✗</span> High leverage carries risk for untrained retail</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="space-y-2 pt-2 border-t border-slate-100 dark:border-slate-800">
+          <a href="#" class="btn-primary w-full py-2 justify-center text-xs">Visit Exness ↗</a>
+          <button class="btn-secondary w-full py-2 justify-center text-xs" onclick="alert('Demo review modal preview.');">Read Full Editorial Review</button>
+        </div>
+      </div>
+
+      <!-- Card 6: eToro -->
+      <div class="mp-card p-6 flex flex-col justify-between" data-type="stocks">
+        <div>
+          <div class="flex items-center justify-between pb-3 border-b border-slate-100 dark:border-slate-800 mb-4">
+            <div class="flex items-center gap-3">
+              <div class="w-12 h-12 rounded-xl bg-emerald-100 dark:bg-emerald-950 text-emerald-800 dark:text-emerald-300 flex items-center justify-center font-black text-lg">
+                eT
+              </div>
+              <div>
+                <h3 class="font-heading font-bold text-base text-slate-900 dark:text-white">eToro</h3>
+                <span class="text-[11px] text-slate-400 font-semibold uppercase">Social Investment Broker</span>
+              </div>
+            </div>
+            <div class="text-right">
+              <div class="text-amber-500 font-bold text-sm">★ 4.5 / 5.0</div>
+              <span class="text-[9px] text-slate-400">Demo rating</span>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-2 gap-2 text-[11px] mb-4 bg-slate-50 dark:bg-slate-800 p-2.5 rounded-xl font-mono">
+            <div><span class="text-slate-400 block">Stocks:</span> 0% Commission (US)</div>
+            <div><span class="text-slate-400 block">Social Copy:</span> CopyTrader tech</div>
+            <div><span class="text-slate-400 block">Min Deposit:</span> $50</div>
+            <div><span class="text-slate-400 block">Regulation:</span> FCA, CySEC, ASIC</div>
+          </div>
+
+          <div class="space-y-2 text-xs mb-6">
+            <div class="text-emerald-700 dark:text-emerald-400 space-y-1">
+              <div class="flex items-center gap-1.5 font-medium"><span>✓</span> Intuitive social investing interface</div>
+              <div class="flex items-center gap-1.5 font-medium"><span>✓</span> Fractional shares on major US equities</div>
+            </div>
+            <div class="text-rose-700 dark:text-rose-400 space-y-1 pt-1 border-t border-slate-100 dark:border-slate-800">
+              <div class="flex items-center gap-1.5 font-medium"><span>✗</span> Fixed $5 withdrawal fee on standard accounts</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="space-y-2 pt-2 border-t border-slate-100 dark:border-slate-800">
+          <a href="#" class="btn-primary w-full py-2 justify-center text-xs">Visit eToro ↗</a>
+          <button class="btn-secondary w-full py-2 justify-center text-xs" onclick="alert('Demo review modal preview.');">Read Full Editorial Review</button>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Mandatory Affiliate Disclosure Note -->
+    <div class="p-5 rounded-2xl bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-xs text-slate-600 dark:text-slate-400 space-y-2">
+      <h3 class="font-bold text-slate-900 dark:text-white">Editorial Rating & Affiliate Disclosure Policy</h3>
+      <p class="leading-relaxed">
+        MarketPulse provides objective comparisons of trading platforms. We may receive affiliate compensation when you register through partner links on this page. Such compensation does not influence our editorial scoring criteria, fee assessments, or regulatory evaluations. All ratings and author classifications on this design preview are marked as demo content.
+      </p>
+    </div>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="bg-[#0B1220] text-slate-400 text-xs border-t border-slate-800 mt-16 py-8 text-center space-y-2">
+    <p class="text-amber-400 font-semibold">Trading involves risk. Content is for information only and not financial advice.</p>
+    <p class="text-slate-500 text-[11px]">&copy; 2026 MarketPulse Inc. Broker comparison preview.</p>
+  </footer>
+
+  <!-- CORE SCRIPTS -->
+  <script src="assets/js/config.js"></script>
+  <script src="assets/js/api.js"></script>
+  <script src="assets/js/main.js"></script>
+
+  <!-- BROKER FILTER CONTROLLER -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const tabs = document.querySelectorAll('.broker-tab');
+      const cards = document.querySelectorAll('#brokers-grid > div');
+
+      tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+          const type = tab.getAttribute('data-type');
+
+          tabs.forEach(t => {
+            t.classList.remove('bg-[#F5B700]', 'text-[#0B1220]', 'font-bold');
+            t.classList.add('text-slate-600', 'dark:text-slate-300');
+          });
+          tab.classList.add('bg-[#F5B700]', 'text-[#0B1220]', 'font-bold');
+          tab.classList.remove('text-slate-600', 'dark:text-slate-300');
+
+          cards.forEach(c => {
+            if (type === 'all' || c.getAttribute('data-type') === type) {
+              c.classList.remove('hidden');
+            } else {
+              c.classList.add('hidden');
+            }
+          });
+        });
+      });
+    });
+  </script>
+
+</body>
+</html>

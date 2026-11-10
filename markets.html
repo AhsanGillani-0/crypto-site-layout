@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>All Cryptocurrency Markets & Screener — MarketPulse</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            mp: {
+              bg: '#F6F9FC',
+              surface: '#FFFFFF',
+              dark: '#0B1220',
+              muted: '#5B6B7F',
+              border: '#E3EAF2',
+              primary: '#F5B700',
+              ice: '#DCEBFA',
+              gain: '#0E9F6E',
+              loss: '#E11D48'
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body class="bg-[#F6F9FC] dark:bg-[#0B1220] text-[#0B1220] dark:text-slate-100 antialiased min-h-screen flex flex-col transition-colors duration-200">
+
+  <!-- STICKY HEADER -->
+  <header class="header-glass sticky top-0 z-40 transition-all duration-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+        <div class="flex items-center gap-6">
+          <a href="index.html" class="flex items-center gap-2.5 group">
+            <div class="w-9 h-9 rounded-xl bg-[#F5B700] text-[#0B1220] flex items-center justify-center font-black text-xl shadow-md group-hover:scale-105 transition-transform">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" /></svg>
+            </div>
+            <div>
+              <span class="font-heading font-extrabold text-xl text-slate-900 dark:text-white tracking-tight">Market<span class="text-amber-500">Pulse</span></span>
+              <span class="block text-[9px] font-semibold text-slate-500 tracking-wider uppercase -mt-1">Markets Screener</span>
+            </div>
+          </a>
+
+          <nav class="hidden lg:flex items-center gap-1 xl:gap-2 text-sm font-semibold text-slate-700 dark:text-slate-300">
+            <a href="index.html" class="px-3 py-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition">Home</a>
+            <a href="news.html" class="px-3 py-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition">News</a>
+            <a href="markets.html" class="px-3 py-2 rounded-lg text-amber-600 dark:text-amber-400 bg-amber-50 dark:bg-slate-800">Markets</a>
+            <a href="tools.html" class="px-3 py-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition">Tools</a>
+            <a href="exchanges-brokers.html" class="px-3 py-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition">Brokers</a>
+            <a href="academy.html" class="px-3 py-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition">Academy</a>
+          </nav>
+        </div>
+
+        <div class="flex items-center gap-2.5">
+          <button class="search-modal-trigger flex items-center gap-2 bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-500 dark:text-slate-400 px-3 py-1.5 rounded-xl text-xs font-medium transition">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+            <span class="hidden sm:inline">Search...</span>
+            <kbd class="hidden md:inline text-[10px] bg-white dark:bg-slate-900 px-1.5 py-0.5 rounded border border-slate-300 dark:border-slate-700 shadow-xs font-mono">⌘K</kbd>
+          </button>
+
+          <div class="flex items-center bg-slate-100 dark:bg-slate-800 p-0.5 rounded-xl border border-slate-200 dark:border-slate-700 text-xs font-semibold">
+            <button class="currency-toggle-btn px-2.5 py-1 rounded-lg transition" data-currency="USD">USD</button>
+            <button class="currency-toggle-btn px-2.5 py-1 rounded-lg transition" data-currency="PKR">PKR</button>
+          </div>
+
+          <button class="theme-toggle-btn p-2 rounded-xl text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+            <svg class="theme-icon-moon w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
+            <svg class="theme-icon-sun w-4 h-4 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+          </button>
+
+          <button id="mobile-menu-open" class="lg:hidden p-2 text-slate-700 dark:text-slate-200">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- LIVE TICKER TAPE -->
+  <div class="bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 text-xs py-1">
+    <div class="ticker-container">
+      <div id="live-ticker-track" class="ticker-track">
+        <div class="px-6 py-1 text-slate-400 text-xs">Loading live ticker tape...</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MAIN MARKETS CONTENT -->
+  <main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-6">
+
+    <!-- Header & Headline -->
+    <div class="flex flex-wrap items-center justify-between gap-4">
+      <div>
+        <h1 class="font-heading font-extrabold text-2xl md:text-3xl text-slate-900 dark:text-white">
+          Cryptocurrency Markets & Screener
+        </h1>
+        <p class="text-xs text-slate-500 mt-1">
+          Complete Binance USDT spot pairs with real-time price updates, volume filters & currency conversion
+        </p>
+      </div>
+      <div class="flex items-center gap-2 text-xs">
+        <a href="gainers-losers.html" class="btn-secondary py-1.5 px-3 text-xs">Top Movers</a>
+        <a href="heatmap.html" class="btn-secondary py-1.5 px-3 text-xs">Heatmap View</a>
+      </div>
+    </div>
+
+    <!-- Summary Metrics Strip -->
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+      <div class="mp-card p-4">
+        <span class="text-[10px] text-slate-400 font-bold uppercase">Coins Filtered</span>
+        <div id="metric-total-coins" class="text-xl font-bold font-mono text-slate-900 dark:text-white mt-1">...</div>
+        <span class="text-[11px] text-slate-500">Binance USDT Pairs</span>
+      </div>
+      <div class="mp-card p-4">
+        <span class="text-[10px] text-slate-400 font-bold uppercase">24h Total Volume</span>
+        <div id="metric-total-vol" class="text-xl font-bold font-mono text-slate-900 dark:text-white mt-1">...</div>
+        <span class="text-[11px] text-emerald-600 font-semibold">Active Institutional Liquidity</span>
+      </div>
+      <div class="mp-card p-4">
+        <span class="text-[10px] text-slate-400 font-bold uppercase">Bitcoin Dominance</span>
+        <div class="text-xl font-bold font-mono text-slate-900 dark:text-white mt-1">58.42%</div>
+        <span class="text-[11px] text-slate-500">Leading Market Cap Share</span>
+      </div>
+      <div class="mp-card p-4">
+        <span class="text-[10px] text-slate-400 font-bold uppercase">USD/PKR Baseline</span>
+        <div id="metric-pkr-rate" class="text-xl font-bold font-mono text-slate-900 dark:text-white mt-1">₨ 278.60</div>
+        <span class="text-[11px] text-slate-500">Daily Interbank Rate</span>
+      </div>
+    </div>
+
+    <!-- Filter and Search Controls Bar -->
+    <div class="mp-card p-4 flex flex-wrap items-center justify-between gap-4">
+      <!-- Search Input -->
+      <div class="relative w-full sm:w-72">
+        <svg class="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+        <input id="market-search" type="text" placeholder="Search by name or symbol (e.g. BTC)..." class="w-full pl-9 pr-3 py-2 text-xs rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white focus:outline-hidden focus:ring-2 focus:ring-amber-400">
+      </div>
+
+      <!-- Category Filter Tabs -->
+      <div class="flex items-center gap-1.5 text-xs overflow-x-auto">
+        <button class="filter-tab-btn px-3 py-1.5 rounded-xl font-bold bg-[#F5B700] text-[#0B1220]" data-filter="all">All Coins</button>
+        <button class="filter-tab-btn px-3 py-1.5 rounded-xl font-semibold text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800" data-filter="gainers">Gainers Only</button>
+        <button class="filter-tab-btn px-3 py-1.5 rounded-xl font-semibold text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800" data-filter="losers">Losers Only</button>
+        <button class="filter-tab-btn px-3 py-1.5 rounded-xl font-semibold text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800" data-filter="volume">High Volume (> $10M)</button>
+      </div>
+
+      <!-- Sort Selection -->
+      <div class="flex items-center gap-2 text-xs">
+        <span class="text-slate-400">Sort:</span>
+        <select id="market-sort" class="px-2.5 py-1.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-800 dark:text-slate-200 text-xs focus:outline-hidden">
+          <option value="volume_desc">Volume: High to Low</option>
+          <option value="gain_desc">24h Gain: High to Low</option>
+          <option value="loss_asc">24h Loss: High to Low</option>
+          <option value="price_desc">Price: High to Low</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Paginated Markets Table -->
+    <div class="mp-card overflow-hidden">
+      <div class="overflow-x-auto">
+        <table class="w-full text-left border-collapse">
+          <thead>
+            <tr class="border-b border-slate-200 dark:border-slate-800 text-[11px] font-bold text-slate-400 uppercase tracking-wider bg-slate-50/60 dark:bg-slate-800/40">
+              <th class="py-3 px-4 w-12">#</th>
+              <th class="py-3 px-4">Coin</th>
+              <th class="py-3 px-4 text-right">Price</th>
+              <th class="py-3 px-4 text-right">24h %</th>
+              <th class="py-3 px-4 text-right hidden sm:table-cell">24h High</th>
+              <th class="py-3 px-4 text-right hidden sm:table-cell">24h Low</th>
+              <th class="py-3 px-4 text-right">24h Volume</th>
+              <th class="py-3 px-4 text-center hidden md:table-cell">7d Trend</th>
+              <th class="py-3 px-4 text-right">Action</th>
+            </tr>
+          </thead>
+          <tbody id="markets-table-body" class="divide-y divide-slate-100 dark:divide-slate-800/60 text-xs font-medium">
+            <tr>
+              <td colspan="9" class="py-16 text-center text-slate-400">
+                <div class="inline-block w-6 h-6 border-2 border-amber-500 border-t-transparent rounded-full animate-spin mb-2"></div>
+                <p>Loading all Binance spot markets...</p>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Pagination Toolbar -->
+      <div class="p-4 border-t border-slate-200 dark:border-slate-800 flex flex-wrap items-center justify-between gap-4 text-xs text-slate-500">
+        <div id="pagination-info">Showing 1 to 50</div>
+        <div class="flex items-center gap-1.5" id="pagination-buttons">
+          <!-- Populated by JS -->
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- NEAR-BLACK FOOTER -->
+  <footer class="bg-[#0B1220] text-slate-400 text-xs border-t border-slate-800 mt-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 text-center space-y-3">
+      <p class="text-xs text-amber-400 font-semibold">Trading involves risk. Content is for information only and not financial advice.</p>
+      <p class="text-[11px] text-slate-500 max-w-2xl mx-auto leading-relaxed">
+        Live market data provided directly by Binance Vision Public APIs. Currency conversions are for estimation only.
+      </p>
+      <p class="text-[11px] text-slate-600">&copy; 2026 MarketPulse Inc. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- GLOBAL SEARCH MODAL -->
+  <div id="search-modal" class="hidden fixed inset-0 z-50 modal-backdrop flex items-start justify-center pt-20 px-4">
+    <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 w-full max-w-xl rounded-2xl shadow-2xl overflow-hidden">
+      <div class="p-3 border-b border-slate-200 dark:border-slate-800 flex items-center gap-3">
+        <svg class="w-5 h-5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+        <input id="search-input" type="text" placeholder="Search coins, calculators, tools..." class="flex-1 bg-transparent text-sm text-slate-900 dark:text-white focus:outline-hidden">
+        <button id="search-modal-close" class="text-xs text-slate-400 hover:text-slate-600 px-2 py-1 bg-slate-100 dark:bg-slate-800 rounded-lg">ESC</button>
+      </div>
+      <div id="search-results" class="max-h-80 overflow-y-auto p-2 space-y-1"></div>
+    </div>
+  </div>
+
+  <!-- MOBILE SLIDE-IN DRAWER -->
+  <div id="mobile-drawer-backdrop" class="fixed inset-0 bg-black/50 z-50 opacity-0 pointer-events-none transition-opacity duration-300"></div>
+  <div id="mobile-drawer" class="fixed top-0 right-0 bottom-0 w-80 bg-white dark:bg-slate-900 z-50 translate-x-full transition-transform duration-300 flex flex-col shadow-2xl">
+    <div class="p-4 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between">
+      <span class="font-bold text-sm text-slate-900 dark:text-white">MarketPulse</span>
+      <button id="mobile-menu-close" class="p-2 text-slate-500"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg></button>
+    </div>
+    <div class="p-4 overflow-y-auto flex-1 space-y-3 text-sm font-semibold text-slate-700 dark:text-slate-300">
+      <a href="index.html" class="block py-1.5">Home</a>
+      <a href="markets.html" class="block py-1.5 text-amber-600">Markets</a>
+      <a href="tools.html" class="block py-1.5">Tools Hub</a>
+      <a href="news.html" class="block py-1.5">News</a>
+      <a href="exchanges-brokers.html" class="block py-1.5">Brokers</a>
+      <a href="academy.html" class="block py-1.5">Academy</a>
+    </div>
+  </div>
+
+  <!-- CORE SCRIPTS -->
+  <script src="assets/js/config.js"></script>
+  <script src="assets/js/api.js"></script>
+  <script src="assets/js/main.js"></script>
+
+  <!-- MARKETS CONTROLLER SCRIPT -->
+  <script>
+    document.addEventListener('DOMContentLoaded', async () => {
+      let allCoins = [];
+      let filteredCoins = [];
+      let currentPage = 1;
+      const pageSize = 50;
+      let activeFilter = 'all';
+      let currentSort = 'volume_desc';
+
+      const tbody = document.getElementById('markets-table-body');
+      const searchInput = document.getElementById('market-search');
+      const sortSelect = document.getElementById('market-sort');
+      const filterBtns = document.querySelectorAll('.filter-tab-btn');
+
+      try {
+        const [binanceRes, ratesRes] = await Promise.all([
+          window.MarketPulseAPI.getBinance24h(),
+          window.MarketPulseAPI.getCurrencyRates()
+        ]);
+
+        allCoins = binanceRes.data;
+        filteredCoins = [...allCoins];
+
+        // Update metrics
+        const totalCoinsEl = document.getElementById('metric-total-coins');
+        const totalVolEl = document.getElementById('metric-total-vol');
+        const pkrRateEl = document.getElementById('metric-pkr-rate');
+
+        if (totalCoinsEl) totalCoinsEl.textContent = allCoins.length.toLocaleString();
+        if (ratesRes && ratesRes.rates && pkrRateEl) {
+          pkrRateEl.textContent = '₨ ' + ratesRes.rates.pkr.toFixed(2);
+        }
+
+        const sumVol = allCoins.reduce((acc, c) => acc + c.volume, 0);
+        if (totalVolEl) totalVolEl.textContent = window.MarketPulseAPI.formatVolume(sumVol);
+
+        applyFilters();
+
+      } catch (e) {
+        console.error('Markets loading error:', e);
+      }
+
+      // Filter tabs handler
+      filterBtns.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          filterBtns.forEach(b => {
+            b.classList.remove('bg-[#F5B700]', 'text-[#0B1220]', 'font-bold');
+            b.classList.add('text-slate-600', 'dark:text-slate-300', 'font-semibold');
+          });
+          e.currentTarget.classList.add('bg-[#F5B700]', 'text-[#0B1220]', 'font-bold');
+          e.currentTarget.classList.remove('text-slate-600', 'dark:text-slate-300');
+          activeFilter = e.currentTarget.getAttribute('data-filter');
+          currentPage = 1;
+          applyFilters();
+        });
+      });
+
+      // Search handler
+      if (searchInput) {
+        searchInput.addEventListener('input', () => {
+          currentPage = 1;
+          applyFilters();
+        });
+      }
+
+      // Sort handler
+      if (sortSelect) {
+        sortSelect.addEventListener('change', (e) => {
+          currentSort = e.target.value;
+          applyFilters();
+        });
+      }
+
+      function applyFilters() {
+        const query = searchInput ? searchInput.value.toLowerCase().trim() : '';
+
+        filteredCoins = allCoins.filter(c => {
+          // Search match
+          const matchesQuery = query === '' || 
+            c.code.toLowerCase().includes(query) || 
+            c.name.toLowerCase().includes(query) ||
+            c.symbol.toLowerCase().includes(query);
+
+          if (!matchesQuery) return false;
+
+          // Category filter
+          if (activeFilter === 'gainers') return c.change24h > 0;
+          if (activeFilter === 'losers') return c.change24h < 0;
+          if (activeFilter === 'volume') return c.volume >= 10000000;
+          return true;
+        });
+
+        // Apply sort
+        filteredCoins.sort((a, b) => {
+          if (currentSort === 'volume_desc') return b.volume - a.volume;
+          if (currentSort === 'gain_desc') return b.change24h - a.change24h;
+          if (currentSort === 'loss_asc') return a.change24h - b.change24h;
+          if (currentSort === 'price_desc') return b.price - a.price;
+          return 0;
+        });
+
+        renderTable();
+        renderPagination();
+      }
+
+      function renderTable() {
+        if (!tbody) return;
+
+        const startIdx = (currentPage - 1) * pageSize;
+        const pageItems = filteredCoins.slice(startIdx, startIdx + pageSize);
+
+        if (pageItems.length === 0) {
+          tbody.innerHTML = `<tr><td colspan="9" class="py-12 text-center text-slate-400">No coins match your filter criteria.</td></tr>`;
+          return;
+        }
+
+        tbody.innerHTML = pageItems.map((c, i) => {
+          const rank = startIdx + i + 1;
+          const isUp = c.change24h >= 0;
+          return `
+            <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/60 transition group cursor-pointer" onclick="window.location.href='coin.html?symbol=${c.symbol}'">
+              <td class="py-3 px-4 text-slate-400 font-bold">${rank}</td>
+              <td class="py-3 px-4">
+                <div class="flex items-center gap-2.5">
+                  <div class="w-7 h-7 rounded-full bg-slate-100 dark:bg-slate-700 flex items-center justify-center font-bold text-[10px] text-slate-700 dark:text-slate-200">
+                    ${c.code.slice(0, 3)}
+                  </div>
+                  <div>
+                    <span class="font-bold text-slate-900 dark:text-white group-hover:text-amber-600 transition">${c.name}</span>
+                    <span class="text-[11px] text-slate-400 block">${c.code}</span>
+                  </div>
+                </div>
+              </td>
+              <td class="py-3 px-4 text-right font-mono font-bold text-slate-900 dark:text-white" data-price-usd="${c.price}">
+                ${window.MarketPulseAPI.formatPrice(c.price)}
+              </td>
+              <td class="py-3 px-4 text-right">
+                ${window.MarketPulseAPI.formatChangeBadge(c.change24h)}
+              </td>
+              <td class="py-3 px-4 text-right hidden sm:table-cell font-mono text-[11px] text-slate-600 dark:text-slate-300">
+                $${c.high.toFixed(2)}
+              </td>
+              <td class="py-3 px-4 text-right hidden sm:table-cell font-mono text-[11px] text-slate-400">
+                $${c.low.toFixed(2)}
+              </td>
+              <td class="py-3 px-4 text-right font-mono text-slate-700 dark:text-slate-300">
+                ${window.MarketPulseAPI.formatVolume(c.volume)}
+              </td>
+              <td class="py-3 px-4 text-center hidden md:table-cell">
+                ${window.generateSparklineSVG(null, isUp, 76, 22)}
+              </td>
+              <td class="py-3 px-4 text-right" onclick="event.stopPropagation();">
+                <a href="coin.html?symbol=${c.symbol}" class="inline-flex items-center px-2 py-1 rounded-lg text-xs font-semibold bg-slate-100 dark:bg-slate-800 hover:bg-[#F5B700] hover:text-[#0B1220] transition">
+                  Chart &rarr;
+                </a>
+              </td>
+            </tr>
+          `;
+        }).join('');
+      }
+
+      function renderPagination() {
+        const totalPages = Math.ceil(filteredCoins.length / pageSize) || 1;
+        const infoEl = document.getElementById('pagination-info');
+        const btnsEl = document.getElementById('pagination-buttons');
+
+        const startIdx = (currentPage - 1) * pageSize + 1;
+        const endIdx = Math.min(currentPage * pageSize, filteredCoins.length);
+        if (infoEl) {
+          infoEl.textContent = `Showing ${filteredCoins.length > 0 ? startIdx : 0} to ${endIdx} of ${filteredCoins.length} coins`;
+        }
+
+        if (!btnsEl) return;
+        btnsEl.innerHTML = '';
+
+        // Prev button
+        const prevBtn = document.createElement('button');
+        prevBtn.textContent = '← Prev';
+        prevBtn.disabled = currentPage === 1;
+        prevBtn.className = `px-3 py-1.5 rounded-lg border border-slate-200 dark:border-slate-700 ${currentPage === 1 ? 'opacity-40 cursor-not-allowed' : 'hover:bg-slate-100 dark:hover:bg-slate-800'}`;
+        prevBtn.addEventListener('click', () => {
+          if (currentPage > 1) {
+            currentPage--;
+            renderTable();
+            renderPagination();
+            window.scrollTo({ top: 300, behavior: 'smooth' });
+          }
+        });
+        btnsEl.appendChild(prevBtn);
+
+        // Page number buttons (show up to 5)
+        for (let p = Math.max(1, currentPage - 2); p <= Math.min(totalPages, currentPage + 2); p++) {
+          const pageBtn = document.createElement('button');
+          pageBtn.textContent = p;
+          pageBtn.className = `px-3 py-1.5 rounded-lg border ${p === currentPage ? 'bg-[#F5B700] text-[#0B1220] font-bold border-amber-400' : 'border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800'}`;
+          pageBtn.addEventListener('click', () => {
+            currentPage = p;
+            renderTable();
+            renderPagination();
+            window.scrollTo({ top: 300, behavior: 'smooth' });
+          });
+          btnsEl.appendChild(pageBtn);
+        }
+
+        // Next button
+        const nextBtn = document.createElement('button');
+        nextBtn.textContent = 'Next →';
+        nextBtn.disabled = currentPage === totalPages;
+        nextBtn.className = `px-3 py-1.5 rounded-lg border border-slate-200 dark:border-slate-700 ${currentPage === totalPages ? 'opacity-40 cursor-not-allowed' : 'hover:bg-slate-100 dark:hover:bg-slate-800'}`;
+        nextBtn.addEventListener('click', () => {
+          if (currentPage < totalPages) {
+            currentPage++;
+            renderTable();
+            renderPagination();
+            window.scrollTo({ top: 300, behavior: 'smooth' });
+          }
+        });
+        btnsEl.appendChild(nextBtn);
+      }
+    });
+  </script>
+
+</body>
+</html>
+

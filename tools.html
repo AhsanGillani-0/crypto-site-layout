@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Financial & Crypto Tools Hub — MarketPulse</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            mp: {
+              bg: '#F6F9FC',
+              surface: '#FFFFFF',
+              dark: '#0B1220',
+              muted: '#5B6B7F',
+              border: '#E3EAF2',
+              primary: '#F5B700',
+              ice: '#DCEBFA',
+              gain: '#0E9F6E',
+              loss: '#E11D48'
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body class="bg-[#F6F9FC] dark:bg-[#0B1220] text-[#0B1220] dark:text-slate-100 antialiased min-h-screen flex flex-col transition-colors duration-200">
+
+  <!-- STICKY HEADER -->
+  <header class="header-glass sticky top-0 z-40 transition-all duration-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+        <div class="flex items-center gap-6">
+          <a href="index.html" class="flex items-center gap-2.5 group">
+            <div class="w-9 h-9 rounded-xl bg-[#F5B700] text-[#0B1220] flex items-center justify-center font-black text-xl shadow-md">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" /></svg>
+            </div>
+            <div>
+              <span class="font-heading font-extrabold text-xl text-slate-900 dark:text-white tracking-tight">Market<span class="text-amber-500">Pulse</span></span>
+              <span class="block text-[9px] font-semibold text-slate-500 tracking-wider uppercase -mt-1">Tools Hub</span>
+            </div>
+          </a>
+
+          <nav class="hidden lg:flex items-center gap-1 text-sm font-semibold text-slate-700 dark:text-slate-300">
+            <a href="index.html" class="px-3 py-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition">Home</a>
+            <a href="news.html" class="px-3 py-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition">News</a>
+            <a href="markets.html" class="px-3 py-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition">Markets</a>
+            <a href="tools.html" class="px-3 py-2 rounded-lg text-amber-600 dark:text-amber-400 bg-amber-50 dark:bg-slate-800">Tools</a>
+            <a href="exchanges-brokers.html" class="px-3 py-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition">Brokers</a>
+            <a href="academy.html" class="px-3 py-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition">Academy</a>
+          </nav>
+        </div>
+
+        <div class="flex items-center gap-2.5">
+          <button class="search-modal-trigger flex items-center gap-2 bg-slate-100 dark:bg-slate-800 text-slate-500 px-3 py-1.5 rounded-xl text-xs font-medium">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+            <span class="hidden sm:inline">Search...</span>
+          </button>
+
+          <div class="flex items-center bg-slate-100 dark:bg-slate-800 p-0.5 rounded-xl border border-slate-200 dark:border-slate-700 text-xs font-semibold">
+            <button class="currency-toggle-btn px-2.5 py-1 rounded-lg" data-currency="USD">USD</button>
+            <button class="currency-toggle-btn px-2.5 py-1 rounded-lg" data-currency="PKR">PKR</button>
+          </div>
+
+          <button class="theme-toggle-btn p-2 rounded-xl text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+            <svg class="theme-icon-moon w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
+            <svg class="theme-icon-sun w-4 h-4 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- LIVE TICKER TAPE -->
+  <div class="bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 text-xs py-1">
+    <div class="ticker-container">
+      <div id="live-ticker-track" class="ticker-track"></div>
+    </div>
+  </div>
+
+  <!-- MAIN TOOLS CONTENT -->
+  <main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-10">
+
+    <!-- Header Banner -->
+    <div class="text-center max-w-3xl mx-auto space-y-3">
+      <span class="px-3 py-1 rounded-full text-xs font-bold bg-[#F5B700] text-[#0B1220]">INTERACTIVE FINANCIAL SUITE</span>
+      <h1 class="font-heading font-extrabold text-3xl md:text-4xl text-slate-900 dark:text-white">
+        MarketPulse Intelligence & Calculators
+      </h1>
+      <p class="text-xs md:text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+        Engineered with exact mathematical formulas, live Binance market feeds, and official foreign exchange rates. Zero fabricated estimates.
+      </p>
+    </div>
+
+    <!-- Group 1: Calculators -->
+    <section class="space-y-4">
+      <div class="flex items-center gap-2 pb-2 border-b border-slate-200 dark:border-slate-800">
+        <span class="text-lg">🧮</span>
+        <h2 class="font-heading font-extrabold text-lg text-slate-900 dark:text-white">Trading & Valuation Calculators</h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        
+        <a href="dca-calculator.html" class="mp-card p-6 mp-card-hover group flex flex-col justify-between">
+          <div>
+            <div class="w-12 h-12 rounded-2xl bg-blue-50 dark:bg-blue-950 text-blue-600 dark:text-blue-400 flex items-center justify-center text-xl mb-4 group-hover:scale-105 transition-transform">
+              📈
+            </div>
+            <h3 class="font-bold text-base text-slate-900 dark:text-white mb-2 group-hover:text-amber-600 transition">DCA Simulator</h3>
+            <p class="text-xs text-slate-500 leading-relaxed">
+              Backtest Dollar-Cost Averaging across Bitcoin, Ethereum, and Solana using real daily Binance klines data.
+            </p>
+          </div>
+          <span class="mt-6 text-xs font-bold text-slate-800 dark:text-slate-200 flex items-center gap-1 group-hover:text-amber-600">
+            Open Calculator &rarr;
+          </span>
+        </a>
+
+        <a href="position-size-calculator.html" class="mp-card p-6 mp-card-hover group flex flex-col justify-between">
+          <div>
+            <div class="w-12 h-12 rounded-2xl bg-emerald-50 dark:bg-emerald-950 text-emerald-600 dark:text-emerald-400 flex items-center justify-center text-xl mb-4 group-hover:scale-105 transition-transform">
+              ⚖️
+            </div>
+            <h3 class="font-bold text-base text-slate-900 dark:text-white mb-2 group-hover:text-amber-600 transition">Position Size & Risk Calculator</h3>
+            <p class="text-xs text-slate-500 leading-relaxed">
+              Determine maximum units to trade based on exact portfolio risk percentage, entry price, stop-loss, and take-profit targets.
+            </p>
+          </div>
+          <span class="mt-6 text-xs font-bold text-slate-800 dark:text-slate-200 flex items-center gap-1 group-hover:text-amber-600">
+            Open Calculator &rarr;
+          </span>
+        </a>
+
+        <a href="gold-tola-calculator.html" class="mp-card p-6 mp-card-hover group flex flex-col justify-between border-amber-200 dark:border-amber-900/40">
+          <div>
+            <div class="w-12 h-12 rounded-2xl bg-amber-50 dark:bg-amber-950 text-amber-600 dark:text-amber-400 flex items-center justify-center text-xl mb-4 group-hover:scale-105 transition-transform">
+              🪙
+            </div>
+            <h3 class="font-bold text-base text-slate-900 dark:text-white mb-2 group-hover:text-amber-600 transition">Gold per Tola (PKR) Calculator</h3>
+            <p class="text-xs text-slate-500 leading-relaxed">
+              Calculate Pakistani Sarafa gold rates per tola & 10g from live spot gold (PAXG) and interbank USD/PKR with manual override.
+            </p>
+          </div>
+          <span class="mt-6 text-xs font-bold text-amber-700 dark:text-amber-400 flex items-center gap-1 group-hover:text-amber-600">
+            Open Calculator &rarr;
+          </span>
+        </a>
+
+        <a href="crypto-converter.html" class="mp-card p-6 mp-card-hover group flex flex-col justify-between">
+          <div>
+            <div class="w-12 h-12 rounded-2xl bg-purple-50 dark:bg-purple-950 text-purple-600 dark:text-purple-400 flex items-center justify-center text-xl mb-4 group-hover:scale-105 transition-transform">
+              🔄
+            </div>
+            <h3 class="font-bold text-base text-slate-900 dark:text-white mb-2 group-hover:text-amber-600 transition">Crypto &harr; PKR &harr; USD Converter</h3>
+            <p class="text-xs text-slate-500 leading-relaxed">
+              Real-time multi-currency converter between all top crypto assets, US Dollar, and Pakistani Rupee.
+            </p>
+          </div>
+          <span class="mt-6 text-xs font-bold text-slate-800 dark:text-slate-200 flex items-center gap-1 group-hover:text-amber-600">
+            Open Calculator &rarr;
+          </span>
+        </a>
+
+        <a href="profit-loss-calculator.html" class="mp-card p-6 mp-card-hover group flex flex-col justify-between">
+          <div>
+            <div class="w-12 h-12 rounded-2xl bg-teal-50 dark:bg-teal-950 text-teal-600 dark:text-teal-400 flex items-center justify-center text-xl mb-4 group-hover:scale-105 transition-transform">
+              💵
+            </div>
+            <h3 class="font-bold text-base text-slate-900 dark:text-white mb-2 group-hover:text-amber-600 transition">Profit & Loss (PnL) Calculator</h3>
+            <p class="text-xs text-slate-500 leading-relaxed">
+              Compute gross earnings, maker/taker fee deductions, net dollar returns, and accurate ROI percentage.
+            </p>
+          </div>
+          <span class="mt-6 text-xs font-bold text-slate-800 dark:text-slate-200 flex items-center gap-1 group-hover:text-amber-600">
+            Open Calculator &rarr;
+          </span>
+        </a>
+
+      </div>
+    </section>
+
+    <!-- Group 2: Market Data & Sentiment Tools -->
+    <section class="space-y-4">
+      <div class="flex items-center gap-2 pb-2 border-b border-slate-200 dark:border-slate-800">
+        <span class="text-lg">📊</span>
+        <h2 class="font-heading font-extrabold text-lg text-slate-900 dark:text-white">Market Sentiment & Visual Scanners</h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        
+        <a href="fear-greed.html" class="mp-card p-6 mp-card-hover group flex flex-col justify-between">
+          <div>
+            <div class="w-12 h-12 rounded-2xl bg-rose-50 dark:bg-rose-950 text-rose-600 dark:text-rose-400 flex items-center justify-center text-xl mb-4 group-hover:scale-105 transition-transform">
+              🌡️
+            </div>
+            <h3 class="font-bold text-base text-slate-900 dark:text-white mb-2 group-hover:text-amber-600 transition">Fear & Greed Index</h3>
+            <p class="text-xs text-slate-500 leading-relaxed">
+              Interactive sentiment needle gauge, yesterday/week/month comparison, and 30-day historical trend chart.
+            </p>
+          </div>
+          <span class="mt-6 text-xs font-bold text-slate-800 dark:text-slate-200 flex items-center gap-1 group-hover:text-amber-600">
+            View Sentiment &rarr;
+          </span>
+        </a>
+
+        <a href="gainers-losers.html" class="mp-card p-6 mp-card-hover group flex flex-col justify-between">
+          <div>
+            <div class="w-12 h-12 rounded-2xl bg-indigo-50 dark:bg-indigo-950 text-indigo-600 dark:text-indigo-400 flex items-center justify-center text-xl mb-4 group-hover:scale-105 transition-transform">
+              🚀
+            </div>
+            <h3 class="font-bold text-base text-slate-900 dark:text-white mb-2 group-hover:text-amber-600 transition">Gainers & Losers Screener</h3>
+            <p class="text-xs text-slate-500 leading-relaxed">
+              Binance USDT pairs filtered for active liquidity (over $5M 24h volume) with real-time percentage rankings.
+            </p>
+          </div>
+          <span class="mt-6 text-xs font-bold text-slate-800 dark:text-slate-200 flex items-center gap-1 group-hover:text-amber-600">
+            View Movers &rarr;
+          </span>
+        </a>
+
+        <a href="heatmap.html" class="mp-card p-6 mp-card-hover group flex flex-col justify-between">
+          <div>
+            <div class="w-12 h-12 rounded-2xl bg-sky-50 dark:bg-sky-950 text-sky-600 dark:text-sky-400 flex items-center justify-center text-xl mb-4 group-hover:scale-105 transition-transform">
+              🗺️
+            </div>
+            <h3 class="font-bold text-base text-slate-900 dark:text-white mb-2 group-hover:text-amber-600 transition">Top 100 Market Heatmap</h3>
+            <p class="text-xs text-slate-500 leading-relaxed">
+              Visual treemap representation sizing coins by volume and color-coding by 24-hour performance.
+            </p>
+          </div>
+          <span class="mt-6 text-xs font-bold text-slate-800 dark:text-slate-200 flex items-center gap-1 group-hover:text-amber-600">
+            Open Heatmap &rarr;
+          </span>
+        </a>
+
+      </div>
+    </section>
+
+    <!-- FAQ Accordion -->
+    <section class="mp-card p-6 md:p-8 space-y-4">
+      <div class="pb-3 border-b border-slate-100 dark:border-slate-800">
+        <h2 class="font-heading font-extrabold text-lg text-slate-900 dark:text-white">Frequently Asked Questions</h2>
+        <p class="text-xs text-slate-500">Methodologies, formulas, and data origin behind our calculators</p>
+      </div>
+
+      <div class="space-y-3 text-xs">
+        
+        <details class="group p-4 rounded-xl bg-slate-50 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700/60 open:bg-white dark:open:bg-slate-800 transition">
+          <summary class="font-bold text-slate-900 dark:text-white cursor-pointer flex justify-between items-center list-none">
+            <span>How are Pakistani Gold per Tola rates calculated?</span>
+            <span class="text-slate-400 group-open:rotate-180 transition-transform">▼</span>
+          </summary>
+          <p class="mt-3 text-slate-600 dark:text-slate-400 leading-relaxed">
+            1 Pakistani Tola equals exactly 11.6638 grams. 1 Troy Ounce (the international gold standard) equals 31.1035 grams. The formula calculates: <code>(Gold Spot USD &times; USD/PKR Rate &times; 11.6638) / 31.1035</code>. Spot gold is pulled live from PAXG token (1:1 backed by physical gold) and paired with interbank USD/PKR rates. Local Sarafa associations may include small regional import premiums.
+          </p>
+        </details>
+
+        <details class="group p-4 rounded-xl bg-slate-50 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700/60 open:bg-white dark:open:bg-slate-800 transition">
+          <summary class="font-bold text-slate-900 dark:text-white cursor-pointer flex justify-between items-center list-none">
+            <span>Why is Dollar-Cost Averaging (DCA) effective during volatile drawdowns?</span>
+            <span class="text-slate-400 group-open:rotate-180 transition-transform">▼</span>
+          </summary>
+          <p class="mt-3 text-slate-600 dark:text-slate-400 leading-relaxed">
+            DCA eliminates the emotional hazard of attempting to time market cycle bottoms. By allocating a fixed fiat amount at regular intervals, an investor acquires more units when prices fall and fewer when prices rise, systematically reducing the aggregate average cost per coin.
+          </p>
+        </details>
+
+        <details class="group p-4 rounded-xl bg-slate-50 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700/60 open:bg-white dark:open:bg-slate-800 transition">
+          <summary class="font-bold text-slate-900 dark:text-white cursor-pointer flex justify-between items-center list-none">
+            <span>What is the standard capital risk rule in the Position Size Calculator?</span>
+            <span class="text-slate-400 group-open:rotate-180 transition-transform">▼</span>
+          </summary>
+          <p class="mt-3 text-slate-600 dark:text-slate-400 leading-relaxed">
+            Institutional risk managers strongly advise risking no more than 1% to 2% of total capital on any single setup. Position sizing adjusts quantity inversely to stop-loss distance: tighter invalidation allows larger notional size while keeping dollar loss capped.
+          </p>
+        </details>
+
+        <details class="group p-4 rounded-xl bg-slate-50 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700/60 open:bg-white dark:open:bg-slate-800 transition">
+          <summary class="font-bold text-slate-900 dark:text-white cursor-pointer flex justify-between items-center list-none">
+            <span>Are the data sources genuinely live or hardcoded?</span>
+            <span class="text-slate-400 group-open:rotate-180 transition-transform">▼</span>
+          </summary>
+          <p class="mt-3 text-slate-600 dark:text-slate-400 leading-relaxed">
+            All prices on MarketPulse stream directly via keyless public REST endpoints from Binance Vision, Alternative.me, and global currency repositories. Data is refreshed and cached in-memory for 60 seconds to optimize performance without layout shift.
+          </p>
+        </details>
+
+      </div>
+    </section>
+
+    <!-- Suggest a Tool Mini Form -->
+    <section class="mp-card p-6 text-center max-w-xl mx-auto">
+      <h3 class="font-heading font-bold text-base text-slate-900 dark:text-white mb-1">Suggest a Financial Tool</h3>
+      <p class="text-xs text-slate-500 mb-4">Need an options payoff simulator, arbitrage scanner, or staking yield calculator?</p>
+      
+      <form id="suggest-tool-form" class="space-y-3 text-xs">
+        <input type="text" placeholder="Tool name or idea..." required class="w-full px-3 py-2 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white">
+        <textarea rows="2" placeholder="Briefly describe the formula or calculation..." class="w-full px-3 py-2 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white"></textarea>
+        <button type="submit" class="btn-primary w-full py-2 justify-center">Submit Suggestion</button>
+      </form>
+      <div id="suggest-success" class="hidden mt-3 p-2.5 rounded-xl bg-emerald-50 text-emerald-800 text-xs font-semibold">
+        ✓ Thank you! Your tool suggestion has been noted for client review.
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="bg-[#0B1220] text-slate-400 text-xs border-t border-slate-800 mt-16 py-8 text-center space-y-2">
+    <p class="text-amber-400 font-semibold">Trading involves risk. Content is for information only and not financial advice.</p>
+    <p class="text-slate-500 text-[11px]">&copy; 2026 MarketPulse Inc. Real financial formulas & calculations.</p>
+  </footer>
+
+  <!-- CORE SCRIPTS -->
+  <script src="assets/js/config.js"></script>
+  <script src="assets/js/api.js"></script>
+  <script src="assets/js/main.js"></script>
+
+  <script>
+    document.getElementById('suggest-tool-form')?.addEventListener('submit', (e) => {
+      e.preventDefault();
+      e.target.classList.add('hidden');
+      document.getElementById('suggest-success')?.classList.remove('hidden');
+    });
+  </script>
+
+</body>
+</html>
+

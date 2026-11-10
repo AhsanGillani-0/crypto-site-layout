@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Position Size & Risk Calculator — MarketPulse</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            mp: {
+              bg: '#F6F9FC',
+              surface: '#FFFFFF',
+              dark: '#0B1220',
+              muted: '#5B6B7F',
+              border: '#E3EAF2',
+              primary: '#F5B700',
+              ice: '#DCEBFA',
+              gain: '#0E9F6E',
+              loss: '#E11D48'
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body class="bg-[#F6F9FC] dark:bg-[#0B1220] text-[#0B1220] dark:text-slate-100 antialiased min-h-screen flex flex-col transition-colors duration-200">
+
+  <!-- STICKY HEADER -->
+  <header class="header-glass sticky top-0 z-40 transition-all duration-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+        <div class="flex items-center gap-6">
+          <a href="index.html" class="flex items-center gap-2.5">
+            <div class="w-9 h-9 rounded-xl bg-[#F5B700] text-[#0B1220] flex items-center justify-center font-black text-xl shadow-md">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" /></svg>
+            </div>
+            <div>
+              <span class="font-heading font-extrabold text-xl text-slate-900 dark:text-white tracking-tight">Market<span class="text-amber-500">Pulse</span></span>
+              <span class="block text-[9px] font-semibold text-slate-500 tracking-wider uppercase -mt-1">Risk Calculator</span>
+            </div>
+          </a>
+
+          <nav class="hidden lg:flex items-center gap-1 text-sm font-semibold text-slate-700 dark:text-slate-300">
+            <a href="index.html" class="px-3 py-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition">Home</a>
+            <a href="markets.html" class="px-3 py-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition">Markets</a>
+            <a href="tools.html" class="px-3 py-2 rounded-lg text-amber-600 dark:text-amber-400 bg-amber-50 dark:bg-slate-800">Tools</a>
+            <a href="news.html" class="px-3 py-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition">News</a>
+            <a href="academy.html" class="px-3 py-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition">Academy</a>
+          </nav>
+        </div>
+
+        <div class="flex items-center gap-2.5">
+          <div class="flex items-center bg-slate-100 dark:bg-slate-800 p-0.5 rounded-xl border border-slate-200 dark:border-slate-700 text-xs font-semibold">
+            <button class="currency-toggle-btn px-2.5 py-1 rounded-lg" data-currency="USD">USD</button>
+            <button class="currency-toggle-btn px-2.5 py-1 rounded-lg" data-currency="PKR">PKR</button>
+          </div>
+          <button class="theme-toggle-btn p-2 rounded-xl text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800">
+            <svg class="theme-icon-moon w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
+            <svg class="theme-icon-sun w-4 h-4 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- LIVE TICKER -->
+  <div class="bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 text-xs py-1">
+    <div class="ticker-container">
+      <div id="live-ticker-track" class="ticker-track"></div>
+    </div>
+  </div>
+
+  <!-- MAIN BODY -->
+  <main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-6">
+
+    <!-- Breadcrumb -->
+    <nav class="flex items-center gap-2 text-xs text-slate-500">
+      <a href="index.html" class="hover:underline">Home</a>
+      <span>&rsaquo;</span>
+      <a href="tools.html" class="hover:underline">Tools</a>
+      <span>&rsaquo;</span>
+      <span class="font-bold text-slate-800 dark:text-slate-200">Position Size & Risk Calculator</span>
+    </nav>
+
+    <div>
+      <h1 class="font-heading font-extrabold text-2xl md:text-3xl text-slate-900 dark:text-white">
+        Position Size & Risk / Reward Calculator
+      </h1>
+      <p class="text-xs text-slate-500 mt-1">
+        Mathematical capital protection model: calculate exact lot size, total dollar exposure, and invalidation distance.
+      </p>
+    </div>
+
+    <!-- Main Grid -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+      
+      <!-- Left: Input Parameters -->
+      <div class="lg:col-span-5 mp-card p-6 space-y-4">
+        <h2 class="font-heading font-bold text-base text-slate-900 dark:text-white pb-3 border-b border-slate-100 dark:border-slate-800">
+          Trade Parameters
+        </h2>
+
+        <div class="space-y-3.5 text-xs">
+          <!-- Total Account Size -->
+          <div>
+            <label class="block font-bold text-slate-700 dark:text-slate-300 mb-1">Total Trading Capital ($ USD):</label>
+            <input id="risk-capital" type="number" value="10000" step="500" class="w-full px-3 py-2 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white font-mono font-bold">
+          </div>
+
+          <!-- Risk % -->
+          <div>
+            <div class="flex justify-between items-center mb-1">
+              <label class="font-bold text-slate-700 dark:text-slate-300">Risk Percentage (%):</label>
+              <span id="risk-pct-label" class="font-bold text-amber-600 font-mono">1.0% ($100.00)</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <input id="risk-pct" type="range" min="0.5" max="5" step="0.25" value="1" class="flex-1 accent-amber-500 cursor-pointer">
+              <div class="flex gap-1">
+                <button type="button" class="risk-preset-btn px-2 py-1 rounded bg-slate-100 dark:bg-slate-800 font-bold hover:bg-amber-100" data-pct="1">1%</button>
+                <button type="button" class="risk-preset-btn px-2 py-1 rounded bg-slate-100 dark:bg-slate-800 font-bold hover:bg-amber-100" data-pct="2">2%</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Entry Price -->
+          <div>
+            <label class="block font-bold text-slate-700 dark:text-slate-300 mb-1">Entry Price ($):</label>
+            <input id="risk-entry" type="number" value="89450" step="any" class="w-full px-3 py-2 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white font-mono font-bold">
+          </div>
+
+          <!-- Stop-loss Price -->
+          <div>
+            <label class="block font-bold text-slate-700 dark:text-slate-300 mb-1">Stop-Loss Invalidation ($):</label>
+            <input id="risk-stop" type="number" value="86500" step="any" class="w-full px-3 py-2 rounded-xl border border-rose-300 dark:border-rose-900/60 bg-rose-50/30 dark:bg-rose-950/20 text-rose-700 dark:text-rose-400 font-mono font-bold">
+          </div>
+
+          <!-- Take-profit Price -->
+          <div>
+            <label class="block font-bold text-slate-700 dark:text-slate-300 mb-1">Take-Profit Target ($):</label>
+            <input id="risk-tp" type="number" value="96500" step="any" class="w-full px-3 py-2 rounded-xl border border-emerald-300 dark:border-emerald-900/60 bg-emerald-50/30 dark:bg-emerald-950/20 text-emerald-700 dark:text-emerald-400 font-mono font-bold">
+          </div>
+        </div>
+
+        <div class="pt-3 border-t border-slate-100 dark:border-slate-800 text-[11px] text-slate-400">
+          Formulas auto-compute in real-time as you type.
+        </div>
+      </div>
+
+      <!-- Right: Calculated Results & Risk / Reward Analysis -->
+      <div class="lg:col-span-7 mp-card p-6 flex flex-col justify-between">
+        <div>
+          <div class="flex items-center justify-between pb-3 border-b border-slate-100 dark:border-slate-800 mb-4">
+            <h2 class="font-heading font-bold text-base text-slate-900 dark:text-white">Execution Metrics</h2>
+            <span id="rr-badge" class="px-2.5 py-1 rounded-full text-xs font-bold bg-emerald-100 text-emerald-800">
+              R:R 1 : 2.39 (Good Setup)
+            </span>
+          </div>
+
+          <!-- Highlights -->
+          <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 text-xs mb-6">
+            <div class="p-3.5 rounded-xl bg-slate-50 dark:bg-slate-800">
+              <span class="text-[10px] text-slate-400 uppercase font-bold block">Max Position Units</span>
+              <span id="res-pos-units" class="text-base font-bold font-mono text-slate-900 dark:text-white block mt-1">0.0339 BTC</span>
+              <span id="res-pos-notional" class="text-[10px] text-slate-500 font-mono block">$3,032.35 Notional</span>
+            </div>
+
+            <div class="p-3.5 rounded-xl bg-rose-50/60 dark:bg-rose-950/30 border border-rose-200 dark:border-rose-900/40">
+              <span class="text-[10px] text-rose-600 dark:text-rose-400 uppercase font-bold block">Capital at Risk</span>
+              <span id="res-risk-dollars" class="text-base font-bold font-mono text-rose-700 dark:text-rose-400 block mt-1">$100.00</span>
+              <span id="res-risk-pkr" class="text-[10px] text-rose-600/80 font-mono block">₨ 27,860</span>
+            </div>
+
+            <div class="p-3.5 rounded-xl bg-emerald-50/60 dark:bg-emerald-950/30 border border-emerald-200 dark:border-emerald-900/40">
+              <span class="text-[10px] text-emerald-600 dark:text-emerald-400 uppercase font-bold block">Target Profit</span>
+              <span id="res-tp-dollars" class="text-base font-bold font-mono text-emerald-700 dark:text-emerald-400 block mt-1">+$239.01</span>
+              <span id="res-tp-pkr" class="text-[10px] text-emerald-600/80 font-mono block">₨ 66,588</span>
+            </div>
+          </div>
+
+          <!-- Visual Trade Breakdown Bar -->
+          <div class="space-y-3 text-xs">
+            <span class="font-bold text-slate-700 dark:text-slate-300">Price Structure & Distance:</span>
+            
+            <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-800 space-y-2 font-mono">
+              <div class="flex justify-between items-center text-slate-600 dark:text-slate-400">
+                <span>Stop-Loss Distance:</span>
+                <span id="res-sl-dist" class="font-bold text-rose-600">-$2,950.00 (-3.30%)</span>
+              </div>
+              <div class="flex justify-between items-center text-slate-600 dark:text-slate-400">
+                <span>Take-Profit Distance:</span>
+                <span id="res-tp-dist" class="font-bold text-emerald-600">+$7,050.00 (+7.88%)</span>
+              </div>
+              <div class="flex justify-between items-center text-slate-600 dark:text-slate-400 pt-1 border-t border-slate-200 dark:border-slate-700">
+                <span>Risk / Reward Ratio:</span>
+                <span id="res-rr-ratio" class="font-bold text-slate-900 dark:text-white">1 : 2.39</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="p-3 mt-6 rounded-xl bg-amber-50 dark:bg-amber-950/40 border border-amber-200 dark:border-amber-900 text-[11px] text-amber-800 dark:text-amber-300">
+          <strong>Risk Disclaimer:</strong> Market slippage and sudden volatility spikes during macro events can trigger fills beyond your exact stop-loss level. Always maintain adequate margin.
+        </div>
+      </div>
+
+    </div>
+
+    <!-- FAQ Accordion -->
+    <div class="mp-card p-6 space-y-3">
+      <h3 class="font-heading font-bold text-base text-slate-900 dark:text-white mb-2">Position Sizing Guidelines</h3>
+      
+      <details class="text-xs group p-3 rounded-lg bg-slate-50 dark:bg-slate-800/60">
+        <summary class="font-bold text-slate-800 dark:text-slate-200 cursor-pointer">What is the mathematical position size formula?</summary>
+        <p class="mt-2 text-slate-500">
+          <code>Position Size = (Total Capital &times; Risk %) / |Entry Price - Stop Loss Price|</code>. This guarantees that if the stop-loss is hit, the total loss equals exactly the defined risk dollar limit.
+        </p>
+      </details>
+
+      <details class="text-xs group p-3 rounded-lg bg-slate-50 dark:bg-slate-800/60">
+        <summary class="font-bold text-slate-800 dark:text-slate-200 cursor-pointer">Why is a Risk/Reward ratio over 1:2 recommended?</summary>
+        <p class="mt-2 text-slate-500">
+          With a 1:2 R:R, a trader needs only a 35% win rate to maintain long-term profitability, absorbing consecutive losses while protecting portfolio expectancy.
+        </p>
+      </details>
+    </div>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="bg-[#0B1220] text-slate-400 text-xs border-t border-slate-800 mt-16 py-8 text-center space-y-2">
+    <p class="text-amber-400 font-semibold">Trading involves risk. Content is for information only and not financial advice.</p>
+    <p class="text-slate-500 text-[11px]">&copy; 2026 MarketPulse Inc.</p>
+  </footer>
+
+  <!-- CORE SCRIPTS -->
+  <script src="assets/js/config.js"></script>
+  <script src="assets/js/api.js"></script>
+  <script src="assets/js/main.js"></script>
+
+  <!-- CALCULATOR CONTROLLER -->
+  <script>
+    document.addEventListener('DOMContentLoaded', async () => {
+      let pkrRate = 278.60;
+      try {
+        const r = await window.MarketPulseAPI.getCurrencyRates();
+        if (r && r.rates) pkrRate = r.rates.pkr;
+      } catch (e) {}
+
+      const capInput = document.getElementById('risk-capital');
+      const pctInput = document.getElementById('risk-pct');
+      const entryInput = document.getElementById('risk-entry');
+      const stopInput = document.getElementById('risk-stop');
+      const tpInput = document.getElementById('risk-tp');
+      const pctLabel = document.getElementById('risk-pct-label');
+
+      // Presets
+      document.querySelectorAll('.risk-preset-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          pctInput.value = e.target.getAttribute('data-pct');
+          calculateRisk();
+        });
+      });
+
+      [capInput, pctInput, entryInput, stopInput, tpInput].forEach(el => {
+        el?.addEventListener('input', calculateRisk);
+      });
+
+      calculateRisk();
+
+      function calculateRisk() {
+        const capital = parseFloat(capInput.value) || 0;
+        const pct = parseFloat(pctInput.value) || 1;
+        const entry = parseFloat(entryInput.value) || 0;
+        const stop = parseFloat(stopInput.value) || 0;
+        const tp = parseFloat(tpInput.value) || 0;
+
+        const riskDollars = capital * (pct / 100);
+        pctLabel.textContent = `${pct.toFixed(1)}% ($${riskDollars.toFixed(2)})`;
+
+        const slDelta = Math.abs(entry - stop);
+        const tpDelta = Math.abs(tp - entry);
+
+        let positionUnits = 0;
+        let notional = 0;
+        let rrRatio = 0;
+        let tpProfit = 0;
+
+        if (slDelta > 0) {
+          positionUnits = riskDollars / slDelta;
+          notional = positionUnits * entry;
+          if (tpDelta > 0) {
+            rrRatio = tpDelta / slDelta;
+            tpProfit = positionUnits * tpDelta;
+          }
+        }
+
+        const slPct = entry > 0 ? (slDelta / entry) * 100 : 0;
+        const tpPct = entry > 0 ? (tpDelta / entry) * 100 : 0;
+
+        // Populate
+        document.getElementById('res-pos-units').textContent = positionUnits.toFixed(4) + ' Units';
+        document.getElementById('res-pos-notional').textContent = '$' + notional.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' Notional';
+
+        document.getElementById('res-risk-dollars').textContent = '$' + riskDollars.toFixed(2);
+        document.getElementById('res-risk-pkr').textContent = '₨ ' + Math.round(riskDollars * pkrRate).toLocaleString('en-PK');
+
+        document.getElementById('res-tp-dollars').textContent = '+$' + tpProfit.toFixed(2);
+        document.getElementById('res-tp-pkr').textContent = '₨ ' + Math.round(tpProfit * pkrRate).toLocaleString('en-PK');
+
+        document.getElementById('res-sl-dist').textContent = `-$${slDelta.toFixed(2)} (-${slPct.toFixed(2)}%)`;
+        document.getElementById('res-tp-dist').textContent = `+$${tpDelta.toFixed(2)} (+${tpPct.toFixed(2)}%)`;
+        document.getElementById('res-rr-ratio').textContent = `1 : ${rrRatio.toFixed(2)}`;
+
+        const badge = document.getElementById('rr-badge');
+        if (badge) {
+          badge.textContent = `R:R 1 : ${rrRatio.toFixed(2)} (${rrRatio >= 2 ? 'Favorable' : (rrRatio >= 1 ? 'Balanced' : 'High Risk')})`;
+          badge.className = `px-2.5 py-1 rounded-full text-xs font-bold ${rrRatio >= 2 ? 'bg-emerald-100 text-emerald-800' : (rrRatio >= 1 ? 'bg-amber-100 text-amber-800' : 'bg-rose-100 text-rose-800')}`;
+        }
+      }
+    });
+  </script>
+
+</body>
+</html>
+

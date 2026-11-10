@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Crypto to PKR & USD Live Converter — MarketPulse</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            mp: {
+              bg: '#F6F9FC',
+              surface: '#FFFFFF',
+              dark: '#0B1220',
+              muted: '#5B6B7F',
+              border: '#E3EAF2',
+              primary: '#F5B700',
+              ice: '#DCEBFA',
+              gain: '#0E9F6E',
+              loss: '#E11D48'
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body class="bg-[#F6F9FC] dark:bg-[#0B1220] text-[#0B1220] dark:text-slate-100 antialiased min-h-screen flex flex-col transition-colors duration-200">
+
+  <!-- STICKY HEADER -->
+  <header class="header-glass sticky top-0 z-40 transition-all duration-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+        <div class="flex items-center gap-6">
+          <a href="index.html" class="flex items-center gap-2.5">
+            <div class="w-9 h-9 rounded-xl bg-[#F5B700] text-[#0B1220] flex items-center justify-center font-black text-xl shadow-md">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" /></svg>
+            </div>
+            <div>
+              <span class="font-heading font-extrabold text-xl text-slate-900 dark:text-white tracking-tight">Market<span class="text-amber-500">Pulse</span></span>
+              <span class="block text-[9px] font-semibold text-slate-500 tracking-wider uppercase -mt-1">Crypto Converter</span>
+            </div>
+          </a>
+
+          <nav class="hidden lg:flex items-center gap-1 text-sm font-semibold text-slate-700 dark:text-slate-300">
+            <a href="index.html" class="px-3 py-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition">Home</a>
+            <a href="markets.html" class="px-3 py-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition">Markets</a>
+            <a href="tools.html" class="px-3 py-2 rounded-lg text-amber-600 dark:text-amber-400 bg-amber-50 dark:bg-slate-800">Tools</a>
+            <a href="news.html" class="px-3 py-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition">News</a>
+            <a href="academy.html" class="px-3 py-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition">Academy</a>
+          </nav>
+        </div>
+
+        <div class="flex items-center gap-2.5">
+          <div class="flex items-center bg-slate-100 dark:bg-slate-800 p-0.5 rounded-xl border border-slate-200 dark:border-slate-700 text-xs font-semibold">
+            <button class="currency-toggle-btn px-2.5 py-1 rounded-lg" data-currency="USD">USD</button>
+            <button class="currency-toggle-btn px-2.5 py-1 rounded-lg" data-currency="PKR">PKR</button>
+          </div>
+          <button class="theme-toggle-btn p-2 rounded-xl text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800">
+            <svg class="theme-icon-moon w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
+            <svg class="theme-icon-sun w-4 h-4 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- LIVE TICKER -->
+  <div class="bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 text-xs py-1">
+    <div class="ticker-container">
+      <div id="live-ticker-track" class="ticker-track"></div>
+    </div>
+  </div>
+
+  <!-- MAIN CONVERTER BODY -->
+  <main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-6">
+
+    <!-- Breadcrumb -->
+    <nav class="flex items-center gap-2 text-xs text-slate-500">
+      <a href="index.html" class="hover:underline">Home</a>
+      <span>&rsaquo;</span>
+      <a href="tools.html" class="hover:underline">Tools</a>
+      <span>&rsaquo;</span>
+      <span class="font-bold text-slate-800 dark:text-slate-200">Crypto Converter</span>
+    </nav>
+
+    <div>
+      <h1 class="font-heading font-extrabold text-2xl md:text-3xl text-slate-900 dark:text-white">
+        Live Crypto to PKR & USD Converter
+      </h1>
+      <p class="text-xs text-slate-500 mt-1">
+        Seamless bidirectional conversion between cryptocurrencies, US Dollars, and Pakistani Rupee using live Binance and Forex rates.
+      </p>
+    </div>
+
+    <!-- Converter Card -->
+    <div class="mp-card p-6 md:p-8 max-w-2xl mx-auto space-y-6">
+      
+      <!-- Conversion Form -->
+      <div class="space-y-4">
+        <!-- From -->
+        <div>
+          <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1.5">You Send / From:</label>
+          <div class="flex items-center gap-3">
+            <input id="conv-from-amount" type="number" step="any" value="1" class="flex-1 px-4 py-3 rounded-2xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white font-mono font-extrabold text-lg focus:outline-hidden focus:ring-2 focus:ring-amber-400">
+            <select id="conv-from-currency" class="px-3 py-3 rounded-2xl border border-slate-200 dark:border-slate-700 bg-slate-100 dark:bg-slate-800 text-slate-900 dark:text-white font-bold text-sm">
+              <option value="BTC" selected>BTC (Bitcoin)</option>
+              <option value="ETH">ETH (Ethereum)</option>
+              <option value="SOL">SOL (Solana)</option>
+              <option value="BNB">BNB (BNB)</option>
+              <option value="XRP">XRP (XRP)</option>
+              <option value="DOGE">DOGE (Dogecoin)</option>
+              <option value="PAXG">PAXG (Gold)</option>
+              <option value="USD">USD (US Dollar)</option>
+              <option value="PKR">PKR (Pakistani Rupee)</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Swap Button -->
+        <div class="flex justify-center -my-1">
+          <button id="conv-swap-btn" type="button" class="p-2.5 rounded-full bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 hover:bg-[#F5B700] hover:text-[#0B1220] transition-transform hover:rotate-180 duration-300 shadow-xs" title="Swap currencies">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16V4m0 0L3 8m4-4l4 4m6 0v12m0 0l4-4m-4 4l-4-4"/></svg>
+          </button>
+        </div>
+
+        <!-- To -->
+        <div>
+          <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1.5">You Receive / Estimated:</label>
+          <div class="flex items-center gap-3">
+            <input id="conv-to-amount" type="text" readonly class="flex-1 px-4 py-3 rounded-2xl border border-slate-200 dark:border-slate-700 bg-slate-100 dark:bg-slate-800/60 text-slate-900 dark:text-white font-mono font-extrabold text-lg">
+            <select id="conv-to-currency" class="px-3 py-3 rounded-2xl border border-slate-200 dark:border-slate-700 bg-slate-100 dark:bg-slate-800 text-slate-900 dark:text-white font-bold text-sm">
+              <option value="PKR" selected>PKR (Pakistani Rupee)</option>
+              <option value="USD">USD (US Dollar)</option>
+              <option value="BTC">BTC (Bitcoin)</option>
+              <option value="ETH">ETH (Ethereum)</option>
+              <option value="SOL">SOL (Solana)</option>
+              <option value="BNB">BNB (BNB)</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quick Preset Buttons -->
+      <div class="flex items-center justify-between text-xs pt-2">
+        <span class="text-slate-400 font-medium">Quick Amount:</span>
+        <div class="flex gap-1.5">
+          <button type="button" class="conv-preset-btn px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 font-bold hover:bg-amber-100" data-amt="0.1">0.1</button>
+          <button type="button" class="conv-preset-btn px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 font-bold hover:bg-amber-100" data-amt="0.5">0.5</button>
+          <button type="button" class="conv-preset-btn px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 font-bold hover:bg-amber-100" data-amt="1">1.0</button>
+          <button type="button" class="conv-preset-btn px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 font-bold hover:bg-amber-100" data-amt="5">5.0</button>
+        </div>
+      </div>
+
+      <!-- Live Rate Info Box -->
+      <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 text-xs space-y-1.5">
+        <div class="flex justify-between items-center">
+          <span class="text-slate-500">Live Exchange Baseline:</span>
+          <span id="conv-rate-display" class="font-mono font-bold text-slate-900 dark:text-white">1 BTC = ₨ 24,920,825 PKR</span>
+        </div>
+        <div class="flex justify-between items-center text-[11px] text-slate-400">
+          <span>USD/PKR Rate:</span>
+          <span id="conv-usd-pkr-display" class="font-mono">278.60 PKR</span>
+        </div>
+      </div>
+
+      <!-- Truth note -->
+      <p class="text-[11px] text-slate-400 text-center">
+        Data origin: Binance Vision &bull; Daily Interbank Forex rate &bull; Updated continuously
+      </p>
+    </div>
+
+    <!-- Popular Conversion Table -->
+    <div class="mp-card p-6 max-w-4xl mx-auto space-y-3">
+      <h3 class="font-heading font-bold text-sm text-slate-900 dark:text-white">Popular Crypto to PKR Reference Rates</h3>
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 text-xs" id="popular-rates-grid">
+        <!-- Rendered by JS -->
+      </div>
+    </div>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="bg-[#0B1220] text-slate-400 text-xs border-t border-slate-800 mt-16 py-8 text-center space-y-2">
+    <p class="text-amber-400 font-semibold">Trading involves risk. Content is for information only and not financial advice.</p>
+    <p class="text-slate-500 text-[11px]">&copy; 2026 MarketPulse Inc.</p>
+  </footer>
+
+  <!-- CORE SCRIPTS -->
+  <script src="assets/js/config.js"></script>
+  <script src="assets/js/api.js"></script>
+  <script src="assets/js/main.js"></script>
+
+  <!-- CONVERTER LOGIC -->
+  <script>
+    document.addEventListener('DOMContentLoaded', async () => {
+      let pricesUSD = {
+        'BTC': 89450,
+        'ETH': 3380,
+        'SOL': 214,
+        'BNB': 635,
+        'XRP': 0.72,
+        'DOGE': 0.38,
+        'PAXG': 2685.40,
+        'USD': 1
+      };
+      let pkrRate = 278.60;
+
+      const fromAmt = document.getElementById('conv-from-amount');
+      const fromCurr = document.getElementById('conv-from-currency');
+      const toAmt = document.getElementById('conv-to-amount');
+      const toCurr = document.getElementById('conv-to-currency');
+      const swapBtn = document.getElementById('conv-swap-btn');
+      const rateDisplay = document.getElementById('conv-rate-display');
+      const usdPkrDisplay = document.getElementById('conv-usd-pkr-display');
+
+      try {
+        const [binanceRes, ratesRes] = await Promise.all([
+          window.MarketPulseAPI.getBinance24h(),
+          window.MarketPulseAPI.getCurrencyRates()
+        ]);
+
+        if (ratesRes && ratesRes.rates) {
+          pkrRate = ratesRes.rates.pkr;
+          if (usdPkrDisplay) usdPkrDisplay.textContent = `${pkrRate.toFixed(2)} PKR`;
+        }
+
+        binanceRes.data.forEach(c => {
+          pricesUSD[c.code] = c.price;
+        });
+
+        calculateConversion();
+        renderPopularRates();
+      } catch (e) {
+        calculateConversion();
+      }
+
+      fromAmt?.addEventListener('input', calculateConversion);
+      fromCurr?.addEventListener('change', calculateConversion);
+      toCurr?.addEventListener('change', calculateConversion);
+
+      swapBtn?.addEventListener('click', () => {
+        const temp = fromCurr.value;
+        fromCurr.value = toCurr.value;
+        toCurr.value = temp;
+        calculateConversion();
+      });
+
+      document.querySelectorAll('.conv-preset-btn').forEach(b => {
+        b.addEventListener('click', (e) => {
+          fromAmt.value = e.target.getAttribute('data-amt');
+          calculateConversion();
+        });
+      });
+
+      function getPriceInUSD(c) {
+        if (c === 'USD') return 1;
+        if (c === 'PKR') return 1 / pkrRate;
+        return pricesUSD[c] || 1;
+      }
+
+      function calculateConversion() {
+        const amount = parseFloat(fromAmt.value) || 0;
+        const from = fromCurr.value;
+        const to = toCurr.value;
+
+        const fromUsd = getPriceInUSD(from);
+        const toUsd = getPriceInUSD(to);
+
+        // 1 From unit in USD / 1 To unit in USD
+        const rate = fromUsd / toUsd;
+        const converted = amount * rate;
+
+        if (to === 'PKR') {
+          toAmt.value = Math.round(converted).toLocaleString('en-PK');
+        } else if (to === 'USD') {
+          toAmt.value = converted.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 4 });
+        } else {
+          toAmt.value = converted >= 1 ? converted.toFixed(4) : converted.toFixed(6);
+        }
+
+        if (rateDisplay) {
+          rateDisplay.textContent = `1 ${from} = ${to === 'PKR' ? '₨ ' + Math.round(rate).toLocaleString('en-PK') : rate.toFixed(4)} ${to}`;
+        }
+      }
+
+      function renderPopularRates() {
+        const grid = document.getElementById('popular-rates-grid');
+        if (!grid) return;
+
+        const pairs = [
+          { name: '1 Bitcoin (BTC)', val: pricesUSD['BTC'] * pkrRate },
+          { name: '1 Ethereum (ETH)', val: pricesUSD['ETH'] * pkrRate },
+          { name: '1 Solana (SOL)', val: pricesUSD['SOL'] * pkrRate },
+          { name: '100 USDT', val: 100 * pkrRate },
+          { name: '1 BNB', val: pricesUSD['BNB'] * pkrRate },
+          { name: '1 PAX Gold (PAXG)', val: pricesUSD['PAXG'] * pkrRate }
+        ];
+
+        grid.innerHTML = pairs.map(p => `
+          <div class="p-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 flex justify-between items-center">
+            <span class="font-bold text-slate-700 dark:text-slate-300">${p.name}</span>
+            <span class="font-mono font-bold text-slate-900 dark:text-white">₨ ${Math.round(p.val).toLocaleString('en-PK')}</span>
+          </div>
+        `).join('');
+      }
+    });
+  </script>
+
+</body>
+</html>
+

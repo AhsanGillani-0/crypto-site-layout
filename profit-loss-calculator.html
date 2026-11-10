@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Profit & Loss (PnL) Calculator — MarketPulse</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            mp: {
+              bg: '#F6F9FC',
+              surface: '#FFFFFF',
+              dark: '#0B1220',
+              muted: '#5B6B7F',
+              border: '#E3EAF2',
+              primary: '#F5B700',
+              ice: '#DCEBFA',
+              gain: '#0E9F6E',
+              loss: '#E11D48'
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body class="bg-[#F6F9FC] dark:bg-[#0B1220] text-[#0B1220] dark:text-slate-100 antialiased min-h-screen flex flex-col transition-colors duration-200">
+
+  <!-- STICKY HEADER -->
+  <header class="header-glass sticky top-0 z-40 transition-all duration-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+        <div class="flex items-center gap-6">
+          <a href="index.html" class="flex items-center gap-2.5">
+            <div class="w-9 h-9 rounded-xl bg-[#F5B700] text-[#0B1220] flex items-center justify-center font-black text-xl shadow-md">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" /></svg>
+            </div>
+            <div>
+              <span class="font-heading font-extrabold text-xl text-slate-900 dark:text-white tracking-tight">Market<span class="text-amber-500">Pulse</span></span>
+              <span class="block text-[9px] font-semibold text-slate-500 tracking-wider uppercase -mt-1">PnL Calculator</span>
+            </div>
+          </a>
+
+          <nav class="hidden lg:flex items-center gap-1 text-sm font-semibold text-slate-700 dark:text-slate-300">
+            <a href="index.html" class="px-3 py-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition">Home</a>
+            <a href="markets.html" class="px-3 py-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition">Markets</a>
+            <a href="tools.html" class="px-3 py-2 rounded-lg text-amber-600 dark:text-amber-400 bg-amber-50 dark:bg-slate-800">Tools</a>
+            <a href="news.html" class="px-3 py-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition">News</a>
+            <a href="academy.html" class="px-3 py-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition">Academy</a>
+          </nav>
+        </div>
+
+        <div class="flex items-center gap-2.5">
+          <div class="flex items-center bg-slate-100 dark:bg-slate-800 p-0.5 rounded-xl border border-slate-200 dark:border-slate-700 text-xs font-semibold">
+            <button class="currency-toggle-btn px-2.5 py-1 rounded-lg" data-currency="USD">USD</button>
+            <button class="currency-toggle-btn px-2.5 py-1 rounded-lg" data-currency="PKR">PKR</button>
+          </div>
+          <button class="theme-toggle-btn p-2 rounded-xl text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800">
+            <svg class="theme-icon-moon w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
+            <svg class="theme-icon-sun w-4 h-4 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- LIVE TICKER -->
+  <div class="bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 text-xs py-1">
+    <div class="ticker-container">
+      <div id="live-ticker-track" class="ticker-track"></div>
+    </div>
+  </div>
+
+  <!-- MAIN BODY -->
+  <main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-6">
+
+    <!-- Breadcrumb -->
+    <nav class="flex items-center gap-2 text-xs text-slate-500">
+      <a href="index.html" class="hover:underline">Home</a>
+      <span>&rsaquo;</span>
+      <a href="tools.html" class="hover:underline">Tools</a>
+      <span>&rsaquo;</span>
+      <span class="font-bold text-slate-800 dark:text-slate-200">Profit & Loss Calculator</span>
+    </nav>
+
+    <div>
+      <h1 class="font-heading font-extrabold text-2xl md:text-3xl text-slate-900 dark:text-white">
+        Crypto & Asset Profit / Loss (PnL) Calculator
+      </h1>
+      <p class="text-xs text-slate-500 mt-1">
+        Determine exact net financial returns, maker/taker exchange fee impacts, break-even targets, and ROI percentage.
+      </p>
+    </div>
+
+    <!-- Main Grid -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+      
+      <!-- Left: Inputs -->
+      <div class="lg:col-span-5 mp-card p-6 space-y-4">
+        <h2 class="font-heading font-bold text-base text-slate-900 dark:text-white pb-3 border-b border-slate-100 dark:border-slate-800">
+          Trade Input Figures
+        </h2>
+
+        <div class="space-y-3.5 text-xs">
+          <div>
+            <label class="block font-bold text-slate-700 dark:text-slate-300 mb-1">Buy Price ($):</label>
+            <input id="pnl-buy" type="number" step="any" value="85000" class="w-full px-3 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white font-mono font-bold">
+          </div>
+
+          <div>
+            <label class="block font-bold text-slate-700 dark:text-slate-300 mb-1">Sell / Exit Price ($):</label>
+            <input id="pnl-sell" type="number" step="any" value="92500" class="w-full px-3 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white font-mono font-bold">
+          </div>
+
+          <div>
+            <label class="block font-bold text-slate-700 dark:text-slate-300 mb-1">Units Quantity:</label>
+            <input id="pnl-qty" type="number" step="any" value="0.25" class="w-full px-3 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white font-mono font-bold">
+          </div>
+
+          <div>
+            <label class="block font-bold text-slate-700 dark:text-slate-300 mb-1">Exchange Fee (% per side):</label>
+            <div class="flex items-center gap-2">
+              <input id="pnl-fee" type="number" step="0.01" value="0.10" class="flex-1 px-3 py-2 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white font-mono font-bold">
+              <span class="text-slate-500 font-bold">%</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="pt-3 border-t border-slate-100 dark:border-slate-800 text-[11px] text-slate-400">
+          Standard Binance spot fee is 0.10% (0.075% with BNB deduction).
+        </div>
+      </div>
+
+      <!-- Right: Computed Results -->
+      <div class="lg:col-span-7 mp-card p-6 flex flex-col justify-between">
+        <div>
+          <div class="flex items-center justify-between pb-3 border-b border-slate-100 dark:border-slate-800 mb-4">
+            <h2 class="font-heading font-bold text-base text-slate-900 dark:text-white">Net Return Analysis</h2>
+            <span id="pnl-badge" class="px-2.5 py-1 rounded-full text-xs font-bold bg-emerald-100 text-emerald-800">
+              Profitable (+8.60% ROI)
+            </span>
+          </div>
+
+          <!-- Highlight Cards -->
+          <div class="grid grid-cols-2 gap-4 mb-6">
+            <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-800">
+              <span class="text-[10px] text-slate-400 uppercase font-bold block">Total Capital Invested</span>
+              <span id="res-inv-usd" class="text-xl font-black font-mono text-slate-900 dark:text-white my-1 block">$21,250.00</span>
+              <span id="res-inv-pkr" class="text-xs text-slate-500 font-mono block">₨ 5,920,250 PKR</span>
+            </div>
+
+            <div class="p-4 rounded-xl bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-900">
+              <span class="text-[10px] text-emerald-700 dark:text-emerald-400 uppercase font-bold block">Net Profit After Fees</span>
+              <span id="res-net-usd" class="text-xl font-black font-mono text-emerald-700 dark:text-emerald-400 my-1 block">+$1,830.63</span>
+              <span id="res-net-pkr" class="text-xs text-emerald-600 font-mono block">₨ 510,003 PKR</span>
+            </div>
+          </div>
+
+          <!-- Detailed Fee & Break-Even Grid -->
+          <div class="space-y-2 text-xs font-mono">
+            <div class="flex justify-between py-2 border-b border-slate-100 dark:border-slate-800">
+              <span class="text-slate-500">Gross Exit Revenue:</span>
+              <span id="res-exit-gross" class="font-bold text-slate-900 dark:text-white">$23,125.00</span>
+            </div>
+            <div class="flex justify-between py-2 border-b border-slate-100 dark:border-slate-800">
+              <span class="text-slate-500">Total Exchange Fees (Buy + Sell):</span>
+              <span id="res-total-fees" class="font-bold text-rose-600">-$44.38</span>
+            </div>
+            <div class="flex justify-between py-2 border-b border-slate-100 dark:border-slate-800">
+              <span class="text-slate-500">Break-Even Sell Price:</span>
+              <span id="res-breakeven" class="font-bold text-slate-900 dark:text-white">$85,170.34</span>
+            </div>
+            <div class="flex justify-between py-2">
+              <span class="text-slate-500">Return on Investment (ROI):</span>
+              <span id="res-roi" class="font-bold text-emerald-600">+8.61%</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="p-3 mt-6 rounded-xl bg-amber-50 dark:bg-amber-950/40 border border-amber-200 dark:border-amber-900 text-[11px] text-amber-800 dark:text-amber-300">
+          <strong>Not Financial Advice:</strong> Calculations account strictly for maker/taker trade execution fees and exclude local capital gains taxes.
+        </div>
+      </div>
+
+    </div>
+
+    <!-- FAQ -->
+    <div class="mp-card p-6 space-y-3 text-xs">
+      <h3 class="font-heading font-bold text-sm text-slate-900 dark:text-white">PnL Calculation FAQs</h3>
+      
+      <details class="group">
+        <summary class="font-bold text-slate-800 dark:text-slate-200 cursor-pointer">How is the break-even sell price determined?</summary>
+        <p class="mt-1 text-slate-500">Break-even accounts for both the initial buy fee and the exit sell fee: <code>Break-even = Buy Price &times; (1 + Fee) / (1 - Fee)</code>.</p>
+      </details>
+
+      <details class="group">
+        <summary class="font-bold text-slate-800 dark:text-slate-200 cursor-pointer">What is the difference between Maker and Taker fees?</summary>
+        <p class="mt-1 text-slate-500">Maker orders add liquidity to the order book (limit orders) and usually enjoy discounted fees. Taker orders remove liquidity (market orders) and incur the standard exchange fee schedule.</p>
+      </details>
+    </div>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="bg-[#0B1220] text-slate-400 text-xs border-t border-slate-800 mt-16 py-8 text-center space-y-2">
+    <p class="text-amber-400 font-semibold">Trading involves risk. Content is for information only and not financial advice.</p>
+    <p class="text-slate-500 text-[11px]">&copy; 2026 MarketPulse Inc.</p>
+  </footer>
+
+  <!-- CORE SCRIPTS -->
+  <script src="assets/js/config.js"></script>
+  <script src="assets/js/api.js"></script>
+  <script src="assets/js/main.js"></script>
+
+  <!-- CONTROLLER -->
+  <script>
+    document.addEventListener('DOMContentLoaded', async () => {
+      let pkrRate = 278.60;
+      try {
+        const r = await window.MarketPulseAPI.getCurrencyRates();
+        if (r && r.rates) pkrRate = r.rates.pkr;
+      } catch (e) {}
+
+      const buyInput = document.getElementById('pnl-buy');
+      const sellInput = document.getElementById('pnl-sell');
+      const qtyInput = document.getElementById('pnl-qty');
+      const feeInput = document.getElementById('pnl-fee');
+
+      [buyInput, sellInput, qtyInput, feeInput].forEach(el => {
+        el?.addEventListener('input', calculatePnL);
+      });
+
+      calculatePnL();
+
+      function calculatePnL() {
+        const buy = parseFloat(buyInput.value) || 0;
+        const sell = parseFloat(sellInput.value) || 0;
+        const qty = parseFloat(qtyInput.value) || 0;
+        const feePct = (parseFloat(feeInput.value) || 0) / 100;
+
+        const initialCost = buy * qty;
+        const buyFee = initialCost * feePct;
+        const totalInvested = initialCost + buyFee;
+
+        const grossExit = sell * qty;
+        const sellFee = grossExit * feePct;
+        const netExit = grossExit - sellFee;
+
+        const totalFees = buyFee + sellFee;
+        const netPnL = netExit - totalInvested;
+        const roi = totalInvested > 0 ? (netPnL / totalInvested) * 100 : 0;
+
+        // Break-even
+        const breakEvenPrice = feePct < 1 ? (buy * (1 + feePct)) / (1 - feePct) : buy;
+
+        // Populate
+        document.getElementById('res-inv-usd').textContent = '$' + totalInvested.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+        document.getElementById('res-inv-pkr').textContent = '₨ ' + Math.round(totalInvested * pkrRate).toLocaleString('en-PK') + ' PKR';
+
+        const netUsdEl = document.getElementById('res-net-usd');
+        netUsdEl.textContent = (netPnL >= 0 ? '+$' : '-$') + Math.abs(netPnL).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+        netUsdEl.className = `text-xl font-black font-mono my-1 block ${netPnL >= 0 ? 'text-emerald-700 dark:text-emerald-400' : 'text-rose-700 dark:text-rose-400'}`;
+
+        document.getElementById('res-net-pkr').textContent = '₨ ' + Math.round(netPnL * pkrRate).toLocaleString('en-PK') + ' PKR';
+        document.getElementById('res-exit-gross').textContent = '$' + grossExit.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+        document.getElementById('res-total-fees').textContent = '-$' + totalFees.toFixed(2);
+        document.getElementById('res-breakeven').textContent = '$' + breakEvenPrice.toFixed(2);
+
+        const roiEl = document.getElementById('res-roi');
+        roiEl.textContent = (roi >= 0 ? '+' : '') + roi.toFixed(2) + '%';
+        roiEl.className = `font-bold ${roi >= 0 ? 'text-emerald-600' : 'text-rose-600'}`;
+
+        const badge = document.getElementById('pnl-badge');
+        if (badge) {
+          badge.textContent = `${netPnL >= 0 ? 'Profitable' : 'Loss'} (${roi >= 0 ? '+' : ''}${roi.toFixed(2)}% ROI)`;
+          badge.className = `px-2.5 py-1 rounded-full text-xs font-bold ${netPnL >= 0 ? 'bg-emerald-100 text-emerald-800' : 'bg-rose-100 text-rose-800'}`;
+        }
+      }
+    });
+  </script>
+
+</body>
+</html>
+

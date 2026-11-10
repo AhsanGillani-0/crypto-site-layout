@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Dollar Cost Averaging (DCA) Simulator — MarketPulse</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            mp: {
+              bg: '#F6F9FC',
+              surface: '#FFFFFF',
+              dark: '#0B1220',
+              muted: '#5B6B7F',
+              border: '#E3EAF2',
+              primary: '#F5B700',
+              ice: '#DCEBFA',
+              gain: '#0E9F6E',
+              loss: '#E11D48'
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body class="bg-[#F6F9FC] dark:bg-[#0B1220] text-[#0B1220] dark:text-slate-100 antialiased min-h-screen flex flex-col transition-colors duration-200">
+
+  <!-- STICKY HEADER -->
+  <header class="header-glass sticky top-0 z-40 transition-all duration-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+        <div class="flex items-center gap-6">
+          <a href="index.html" class="flex items-center gap-2.5">
+            <div class="w-9 h-9 rounded-xl bg-[#F5B700] text-[#0B1220] flex items-center justify-center font-black text-xl shadow-md">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" /></svg>
+            </div>
+            <div>
+              <span class="font-heading font-extrabold text-xl text-slate-900 dark:text-white tracking-tight">Market<span class="text-amber-500">Pulse</span></span>
+              <span class="block text-[9px] font-semibold text-slate-500 tracking-wider uppercase -mt-1">DCA Simulator</span>
+            </div>
+          </a>
+
+          <nav class="hidden lg:flex items-center gap-1 text-sm font-semibold text-slate-700 dark:text-slate-300">
+            <a href="index.html" class="px-3 py-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition">Home</a>
+            <a href="markets.html" class="px-3 py-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition">Markets</a>
+            <a href="tools.html" class="px-3 py-2 rounded-lg text-amber-600 dark:text-amber-400 bg-amber-50 dark:bg-slate-800">Tools</a>
+            <a href="news.html" class="px-3 py-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition">News</a>
+            <a href="academy.html" class="px-3 py-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition">Academy</a>
+          </nav>
+        </div>
+
+        <div class="flex items-center gap-2.5">
+          <div class="flex items-center bg-slate-100 dark:bg-slate-800 p-0.5 rounded-xl border border-slate-200 dark:border-slate-700 text-xs font-semibold">
+            <button class="currency-toggle-btn px-2.5 py-1 rounded-lg" data-currency="USD">USD</button>
+            <button class="currency-toggle-btn px-2.5 py-1 rounded-lg" data-currency="PKR">PKR</button>
+          </div>
+          <button class="theme-toggle-btn p-2 rounded-xl text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800">
+            <svg class="theme-icon-moon w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
+            <svg class="theme-icon-sun w-4 h-4 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- LIVE TICKER -->
+  <div class="bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 text-xs py-1">
+    <div class="ticker-container">
+      <div id="live-ticker-track" class="ticker-track"></div>
+    </div>
+  </div>
+
+  <!-- MAIN DCA BODY -->
+  <main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-6">
+
+    <!-- Breadcrumb -->
+    <nav class="flex items-center gap-2 text-xs text-slate-500">
+      <a href="index.html" class="hover:underline">Home</a>
+      <span>&rsaquo;</span>
+      <a href="tools.html" class="hover:underline">Tools</a>
+      <span>&rsaquo;</span>
+      <span class="font-bold text-slate-800 dark:text-slate-200">DCA Simulator</span>
+    </nav>
+
+    <!-- Header info -->
+    <div>
+      <h1 class="font-heading font-extrabold text-2xl md:text-3xl text-slate-900 dark:text-white">
+        Dollar-Cost Averaging (DCA) Backtest Simulator
+      </h1>
+      <p class="text-xs text-slate-500 mt-1">
+        Simulate recurring cryptocurrency investments using real historical Binance price data.
+      </p>
+    </div>
+
+    <!-- Main Grid: Form Inputs & Live Simulation Results -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+      
+      <!-- Left: Simulation Parameters -->
+      <div class="lg:col-span-5 mp-card p-6 space-y-4">
+        <h2 class="font-heading font-bold text-base text-slate-900 dark:text-white pb-3 border-b border-slate-100 dark:border-slate-800">
+          Investment Parameters
+        </h2>
+
+        <div class="space-y-4 text-xs">
+          <!-- Coin Selector -->
+          <div>
+            <label class="block font-bold text-slate-700 dark:text-slate-300 mb-1">Select Asset:</label>
+            <select id="dca-coin" class="w-full px-3 py-2 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white font-medium">
+              <option value="BTCUSDT">Bitcoin (BTC)</option>
+              <option value="ETHUSDT">Ethereum (ETH)</option>
+              <option value="SOLUSDT">Solana (SOL)</option>
+              <option value="BNBUSDT">BNB</option>
+            </select>
+          </div>
+
+          <!-- Amount per recurrence -->
+          <div>
+            <label class="block font-bold text-slate-700 dark:text-slate-300 mb-1">Periodic Allocation ($ USD):</label>
+            <div class="flex items-center gap-2">
+              <input id="dca-amount" type="number" value="100" min="10" step="10" class="flex-1 px-3 py-2 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white font-mono font-bold">
+              <div class="flex gap-1">
+                <button type="button" class="preset-amt-btn px-2.5 py-2 rounded-lg bg-slate-100 dark:bg-slate-800 font-bold hover:bg-amber-100" data-amt="50">$50</button>
+                <button type="button" class="preset-amt-btn px-2.5 py-2 rounded-lg bg-slate-100 dark:bg-slate-800 font-bold hover:bg-amber-100" data-amt="100">$100</button>
+                <button type="button" class="preset-amt-btn px-2.5 py-2 rounded-lg bg-slate-100 dark:bg-slate-800 font-bold hover:bg-amber-100" data-amt="250">$250</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Frequency -->
+          <div>
+            <label class="block font-bold text-slate-700 dark:text-slate-300 mb-1">Recurrence Frequency:</label>
+            <div class="grid grid-cols-2 gap-2">
+              <button type="button" class="freq-btn py-2 rounded-xl border font-bold text-center bg-[#F5B700] text-[#0B1220] border-amber-400" data-freq="weekly">Weekly</button>
+              <button type="button" class="freq-btn py-2 rounded-xl border font-semibold text-center border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300" data-freq="monthly">Monthly</button>
+            </div>
+          </div>
+
+          <!-- Time Horizon -->
+          <div>
+            <label class="block font-bold text-slate-700 dark:text-slate-300 mb-1">Historical Duration:</label>
+            <select id="dca-duration" class="w-full px-3 py-2 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white font-medium">
+              <option value="90">Past 3 Months (90 Days)</option>
+              <option value="180" selected>Past 6 Months (180 Days)</option>
+              <option value="365">Past 1 Year (365 Days)</option>
+            </select>
+          </div>
+
+          <button id="run-dca-btn" class="btn-primary w-full py-2.5 text-xs justify-center font-bold">
+            Simulate Strategy
+          </button>
+        </div>
+
+        <div class="pt-3 border-t border-slate-100 dark:border-slate-800 text-[11px] text-slate-400">
+          Source: Real Binance daily historical klines.
+        </div>
+      </div>
+
+      <!-- Right: Results Dashboard & Performance Chart -->
+      <div class="lg:col-span-7 mp-card p-6 flex flex-col justify-between">
+        <div>
+          <div class="flex items-center justify-between pb-3 border-b border-slate-100 dark:border-slate-800 mb-4">
+            <h2 class="font-heading font-bold text-base text-slate-900 dark:text-white">Backtest Performance Summary</h2>
+            <span class="text-xs font-bold px-2 py-0.5 rounded bg-emerald-100 text-emerald-800" id="dca-status-badge">Profitable</span>
+          </div>
+
+          <!-- Metrics 4-grid -->
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs mb-6">
+            <div class="p-3 rounded-xl bg-slate-50 dark:bg-slate-800">
+              <span class="text-[10px] text-slate-400 uppercase font-bold block">Total Invested</span>
+              <span id="res-total-invested" class="text-sm font-bold font-mono text-slate-900 dark:text-white block mt-1">$2,600.00</span>
+              <span id="res-total-invested-pkr" class="text-[10px] text-slate-500 font-mono block">₨ 724,360</span>
+            </div>
+            <div class="p-3 rounded-xl bg-slate-50 dark:bg-slate-800">
+              <span class="text-[10px] text-slate-400 uppercase font-bold block">Current Value</span>
+              <span id="res-current-value" class="text-sm font-bold font-mono text-emerald-600 dark:text-emerald-400 block mt-1">$3,145.80</span>
+              <span id="res-current-value-pkr" class="text-[10px] text-slate-500 font-mono block">₨ 876,420</span>
+            </div>
+            <div class="p-3 rounded-xl bg-slate-50 dark:bg-slate-800">
+              <span class="text-[10px] text-slate-400 uppercase font-bold block">Total Profit / Loss</span>
+              <span id="res-profit-loss" class="text-sm font-bold font-mono text-emerald-600 block mt-1">+$545.80</span>
+              <span id="res-roi-pct" class="text-[10px] font-bold text-emerald-600 block">+20.99%</span>
+            </div>
+            <div class="p-3 rounded-xl bg-slate-50 dark:bg-slate-800">
+              <span class="text-[10px] text-slate-400 uppercase font-bold block">Accumulated Coins</span>
+              <span id="res-coins-bought" class="text-sm font-bold font-mono text-slate-900 dark:text-white block mt-1">0.0351 BTC</span>
+              <span id="res-avg-price" class="text-[10px] text-slate-500 block">Avg $74,074</span>
+            </div>
+          </div>
+
+          <!-- SVG Growth Chart -->
+          <div class="bg-slate-50 dark:bg-slate-800/60 p-4 rounded-xl border border-slate-100 dark:border-slate-800">
+            <div class="flex items-center justify-between text-xs mb-2">
+              <span class="font-bold text-slate-700 dark:text-slate-300">Portfolio Value Growth vs Total Capital Invested</span>
+              <div class="flex items-center gap-3 text-[11px]">
+                <span class="flex items-center gap-1 text-emerald-600"><span class="w-2.5 h-2.5 bg-emerald-500 rounded-sm"></span> Portfolio Value</span>
+                <span class="flex items-center gap-1 text-slate-400"><span class="w-2.5 h-2.5 bg-slate-400 rounded-sm"></span> Capital Invested</span>
+              </div>
+            </div>
+            <div id="dca-chart-container" class="w-full h-48 flex items-center justify-center">
+              <svg id="dca-svg" class="w-full h-full overflow-visible"></svg>
+            </div>
+          </div>
+        </div>
+
+        <div class="p-3 mt-4 rounded-xl bg-amber-50 dark:bg-amber-950/40 border border-amber-200 dark:border-amber-900 text-[11px] text-amber-800 dark:text-amber-300">
+          <strong>Not Financial Advice:</strong> Backtested results reflect historical Binance spot candle prices and do not account for individual tax liabilities or exchange withdrawal fees.
+        </div>
+      </div>
+
+    </div>
+
+    <!-- How it works box & FAQ -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div class="mp-card p-6">
+        <h3 class="font-heading font-bold text-base text-slate-900 dark:text-white mb-2">How Dollar-Cost Averaging Works</h3>
+        <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed mb-3">
+          Dollar-cost averaging is an institutional risk-mitigation framework wherein equal dollar increments are allocated systematically into an asset at regular intervals regardless of current spot market fluctuations.
+        </p>
+        <ul class="text-xs text-slate-600 dark:text-slate-400 space-y-1.5 list-disc pl-4">
+          <li>Systematically mitigates timing risk during macro consolidation phases.</li>
+          <li>Acquires more units during oversold troughs and fewer during overbought peaks.</li>
+          <li>Replaces emotional fear-of-missing-out (FOMO) with disciplined execution.</li>
+        </ul>
+      </div>
+
+      <div class="mp-card p-6 space-y-3">
+        <h3 class="font-heading font-bold text-base text-slate-900 dark:text-white mb-2">DCA Strategy FAQs</h3>
+        
+        <details class="text-xs group">
+          <summary class="font-bold text-slate-800 dark:text-slate-200 cursor-pointer">Is weekly DCA superior to monthly DCA?</summary>
+          <p class="mt-1 text-slate-500">Historical simulations reveal marginal difference in aggregate ROI between weekly and monthly intervals for long-term horizons, but weekly schedules reduce local variance.</p>
+        </details>
+
+        <details class="text-xs group">
+          <summary class="font-bold text-slate-800 dark:text-slate-200 cursor-pointer">How are Binance klines fetched?</summary>
+          <p class="mt-1 text-slate-500">The calculator queries the public Binance Vision REST API endpoints for exact historical daily closes across the selected duration.</p>
+        </details>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="bg-[#0B1220] text-slate-400 text-xs border-t border-slate-800 mt-16 py-8 text-center space-y-2">
+    <p class="text-amber-400 font-semibold">Trading involves risk. Content is for information only and not financial advice.</p>
+    <p class="text-slate-500 text-[11px]">&copy; 2026 MarketPulse Inc.</p>
+  </footer>
+
+  <!-- CORE SCRIPTS -->
+  <script src="assets/js/config.js"></script>
+  <script src="assets/js/api.js"></script>
+  <script src="assets/js/main.js"></script>
+
+  <!-- DCA LOGIC SCRIPT -->
+  <script>
+    document.addEventListener('DOMContentLoaded', async () => {
+      let currentFreq = 'weekly';
+      let pkrRate = 278.60;
+
+      // Fetch rates
+      try {
+        const ratesRes = await window.MarketPulseAPI.getCurrencyRates();
+        if (ratesRes && ratesRes.rates) pkrRate = ratesRes.rates.pkr;
+      } catch (e) {}
+
+      // Preset buttons
+      document.querySelectorAll('.preset-amt-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          document.getElementById('dca-amount').value = e.target.getAttribute('data-amt');
+          runSimulation();
+        });
+      });
+
+      // Frequency toggle
+      const freqBtns = document.querySelectorAll('.freq-btn');
+      freqBtns.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          freqBtns.forEach(b => {
+            b.classList.remove('bg-[#F5B700]', 'text-[#0B1220]', 'font-bold', 'border-amber-400');
+            b.classList.add('border-slate-200', 'dark:border-slate-700', 'text-slate-600', 'dark:text-slate-300');
+          });
+          e.currentTarget.classList.add('bg-[#F5B700]', 'text-[#0B1220]', 'font-bold', 'border-amber-400');
+          e.currentTarget.classList.remove('border-slate-200', 'dark:border-slate-700', 'text-slate-600', 'dark:text-slate-300');
+          currentFreq = e.currentTarget.getAttribute('data-freq');
+          runSimulation();
+        });
+      });
+
+      document.getElementById('run-dca-btn')?.addEventListener('click', runSimulation);
+      document.getElementById('dca-coin')?.addEventListener('change', runSimulation);
+      document.getElementById('dca-duration')?.addEventListener('change', runSimulation);
+
+      // Initial run
+      runSimulation();
+
+      async function runSimulation() {
+        const symbol = document.getElementById('dca-coin').value;
+        const code = symbol.replace('USDT', '');
+        const amount = parseFloat(document.getElementById('dca-amount').value) || 100;
+        const durationDays = parseInt(document.getElementById('dca-duration').value) || 180;
+        const stepDays = currentFreq === 'weekly' ? 7 : 30;
+
+        // Fetch klines
+        const klines = await window.MarketPulseAPI.getBinanceKlines(symbol, '1d', durationDays);
+        if (!klines || !klines.length) return;
+
+        let totalInvested = 0;
+        let totalCoins = 0;
+        const historyPoints = [];
+
+        for (let i = 0; i < klines.length; i += stepDays) {
+          const candle = klines[i];
+          const price = candle.close;
+          const bought = amount / price;
+          totalInvested += amount;
+          totalCoins += bought;
+
+          const currentValueAtPoint = totalCoins * price;
+          historyPoints.push({
+            time: candle.openTime,
+            invested: totalInvested,
+            value: currentValueAtPoint,
+            price: price
+          });
+        }
+
+        const currentPrice = klines[klines.length - 1].close;
+        const finalValue = totalCoins * currentPrice;
+        const netPnL = finalValue - totalInvested;
+        const roi = totalInvested > 0 ? (netPnL / totalInvested) * 100 : 0;
+        const avgPrice = totalCoins > 0 ? (totalInvested / totalCoins) : currentPrice;
+
+        // Populate metrics
+        document.getElementById('res-total-invested').textContent = '$' + totalInvested.toLocaleString('en-US', { minimumFractionDigits: 2 });
+        document.getElementById('res-total-invested-pkr').textContent = '₨ ' + Math.round(totalInvested * pkrRate).toLocaleString('en-PK');
+
+        const curValEl = document.getElementById('res-current-value');
+        curValEl.textContent = '$' + finalValue.toLocaleString('en-US', { minimumFractionDigits: 2 });
+        curValEl.className = `text-sm font-bold font-mono block mt-1 ${netPnL >= 0 ? 'text-emerald-600 dark:text-emerald-400' : 'text-rose-600 dark:text-rose-400'}`;
+
+        document.getElementById('res-current-value-pkr').textContent = '₨ ' + Math.round(finalValue * pkrRate).toLocaleString('en-PK');
+
+        const pnlEl = document.getElementById('res-profit-loss');
+        pnlEl.textContent = (netPnL >= 0 ? '+$' : '-$') + Math.abs(netPnL).toLocaleString('en-US', { minimumFractionDigits: 2 });
+        pnlEl.className = `text-sm font-bold font-mono block mt-1 ${netPnL >= 0 ? 'text-emerald-600 dark:text-emerald-400' : 'text-rose-600 dark:text-rose-400'}`;
+
+        const roiEl = document.getElementById('res-roi-pct');
+        roiEl.textContent = (roi >= 0 ? '+' : '') + roi.toFixed(2) + '% ROI';
+        roiEl.className = `text-[10px] font-bold block ${roi >= 0 ? 'text-emerald-600 dark:text-emerald-400' : 'text-rose-600 dark:text-rose-400'}`;
+
+        document.getElementById('res-coins-bought').textContent = totalCoins.toFixed(4) + ' ' + code;
+        document.getElementById('res-avg-price').textContent = 'Avg Price: $' + avgPrice.toFixed(2);
+
+        const badge = document.getElementById('dca-status-badge');
+        if (badge) {
+          badge.textContent = netPnL >= 0 ? 'Profitable' : 'Drawdown';
+          badge.className = `text-xs font-bold px-2 py-0.5 rounded ${netPnL >= 0 ? 'bg-emerald-100 text-emerald-800' : 'bg-rose-100 text-rose-800'}`;
+        }
+
+        // Draw SVG chart
+        drawDCAChart(historyPoints);
+      }
+
+      function drawDCAChart(points) {
+        const svg = document.getElementById('dca-svg');
+        if (!svg || points.length < 2) return;
+
+        const width = svg.clientWidth || 500;
+        const height = svg.clientHeight || 180;
+        svg.setAttribute('viewBox', `0 0 ${width} ${height}`);
+
+        const maxVal = Math.max(...points.map(p => Math.max(p.value, p.invested))) * 1.1;
+        const minVal = 0;
+
+        const valCoords = points.map((p, i) => {
+          const x = (i / (points.length - 1)) * (width - 40) + 20;
+          const y = height - 20 - (p.value / maxVal) * (height - 40);
+          return `${x.toFixed(1)},${y.toFixed(1)}`;
+        });
+
+        const invCoords = points.map((p, i) => {
+          const x = (i / (points.length - 1)) * (width - 40) + 20;
+          const y = height - 20 - (p.invested / maxVal) * (height - 40);
+          return `${x.toFixed(1)},${y.toFixed(1)}`;
+        });
+
+        svg.innerHTML = `
+          <!-- Baseline -->
+          <line x1="20" y1="${height - 20}" x2="${width - 20}" y2="${height - 20}" stroke="#CBD5E1" stroke-width="1" />
+          <!-- Invested line (Dashed slate) -->
+          <polyline fill="none" stroke="#94A3B8" stroke-width="2" stroke-dasharray="4,4" points="${invCoords.join(' ')}" />
+          <!-- Portfolio Value line (Solid Emerald) -->
+          <polyline fill="none" stroke="#10B981" stroke-width="2.5" stroke-linecap="round" points="${valCoords.join(' ')}" />
+        `;
+      }
+    });
+  </script>
+
+</body>
+</html>
+

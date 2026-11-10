@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Top 100 Crypto Market Heatmap — MarketPulse</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            mp: {
+              bg: '#F6F9FC',
+              surface: '#FFFFFF',
+              dark: '#0B1220',
+              muted: '#5B6B7F',
+              border: '#E3EAF2',
+              primary: '#F5B700',
+              ice: '#DCEBFA',
+              gain: '#0E9F6E',
+              loss: '#E11D48'
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="stylesheet" href="assets/css/style.css">
+  <style>
+    .heatmap-tile {
+      transition: transform 0.2s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.2s ease;
+    }
+    .heatmap-tile:hover {
+      transform: scale(1.03);
+      z-index: 20;
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+    }
+  </style>
+</head>
+<body class="bg-[#F6F9FC] dark:bg-[#0B1220] text-[#0B1220] dark:text-slate-100 antialiased min-h-screen flex flex-col transition-colors duration-200">
+
+  <!-- STICKY HEADER -->
+  <header class="header-glass sticky top-0 z-40 transition-all duration-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+        <div class="flex items-center gap-6">
+          <a href="index.html" class="flex items-center gap-2.5">
+            <div class="w-9 h-9 rounded-xl bg-[#F5B700] text-[#0B1220] flex items-center justify-center font-black text-xl shadow-md">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" /></svg>
+            </div>
+            <div>
+              <span class="font-heading font-extrabold text-xl text-slate-900 dark:text-white tracking-tight">Market<span class="text-amber-500">Pulse</span></span>
+              <span class="block text-[9px] font-semibold text-slate-500 tracking-wider uppercase -mt-1">Heatmap</span>
+            </div>
+          </a>
+
+          <nav class="hidden lg:flex items-center gap-1 text-sm font-semibold text-slate-700 dark:text-slate-300">
+            <a href="index.html" class="px-3 py-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition">Home</a>
+            <a href="markets.html" class="px-3 py-2 rounded-lg text-amber-600 dark:text-amber-400 bg-amber-50 dark:bg-slate-800">Markets</a>
+            <a href="tools.html" class="px-3 py-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition">Tools</a>
+            <a href="news.html" class="px-3 py-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition">News</a>
+            <a href="academy.html" class="px-3 py-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition">Academy</a>
+          </nav>
+        </div>
+
+        <div class="flex items-center gap-2.5">
+          <button class="theme-toggle-btn p-2 rounded-xl text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800">
+            <svg class="theme-icon-moon w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
+            <svg class="theme-icon-sun w-4 h-4 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- LIVE TICKER -->
+  <div class="bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 text-xs py-1">
+    <div class="ticker-container">
+      <div id="live-ticker-track" class="ticker-track"></div>
+    </div>
+  </div>
+
+  <!-- MAIN BODY -->
+  <main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-6">
+
+    <!-- Breadcrumb -->
+    <nav class="flex items-center gap-2 text-xs text-slate-500">
+      <a href="index.html" class="hover:underline">Home</a>
+      <span>&rsaquo;</span>
+      <a href="markets.html" class="hover:underline">Markets</a>
+      <span>&rsaquo;</span>
+      <span class="font-bold text-slate-800 dark:text-slate-200">Market Heatmap</span>
+    </nav>
+
+    <div class="flex flex-wrap items-center justify-between gap-4">
+      <div>
+        <h1 class="font-heading font-extrabold text-2xl md:text-3xl text-slate-900 dark:text-white">
+          Top 100 Crypto Volume Heatmap
+        </h1>
+        <p class="text-xs text-slate-500 mt-1">
+          Tile size proportional to 24h trading volume &bull; Color spectrum mapped to 24h % price gain / loss.
+        </p>
+      </div>
+
+      <!-- Search Highlight Input -->
+      <div class="w-full sm:w-64">
+        <input id="heatmap-search" type="text" placeholder="Highlight coin (e.g. BTC)..." class="w-full px-3 py-1.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white text-xs">
+      </div>
+    </div>
+
+    <!-- Color Spectrum Legend -->
+    <div class="mp-card p-3 flex flex-wrap items-center justify-between gap-3 text-xs">
+      <span class="font-bold text-slate-600 dark:text-slate-400">Performance Legend:</span>
+      <div class="flex flex-wrap items-center gap-2 text-[11px] font-semibold">
+        <span class="px-2 py-0.5 rounded text-white bg-[#059669]">&gt; +5%</span>
+        <span class="px-2 py-0.5 rounded text-white bg-[#10B981]">+2% to +5%</span>
+        <span class="px-2 py-0.5 rounded text-slate-900 bg-[#6EE7B7]">0% to +2%</span>
+        <span class="px-2 py-0.5 rounded text-slate-900 bg-[#FDA4AF]">0% to -2%</span>
+        <span class="px-2 py-0.5 rounded text-white bg-[#EF4444]">-2% to -5%</span>
+        <span class="px-2 py-0.5 rounded text-white bg-[#BE123C]">&lt; -5%</span>
+      </div>
+    </div>
+
+    <!-- Heatmap Grid Container -->
+    <div class="mp-card p-4 min-h-[500px]">
+      <div id="heatmap-grid" class="flex flex-wrap gap-2.5 justify-start">
+        <div class="py-20 w-full text-center text-slate-400 text-xs">
+          <div class="inline-block w-6 h-6 border-2 border-amber-500 border-t-transparent rounded-full animate-spin mb-2"></div>
+          <p>Generating top 100 volume-weighted treemap...</p>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="bg-[#0B1220] text-slate-400 text-xs border-t border-slate-800 mt-16 py-8 text-center space-y-2">
+    <p class="text-amber-400 font-semibold">Trading involves risk. Content is for information only and not financial advice.</p>
+    <p class="text-slate-500 text-[11px]">&copy; 2026 MarketPulse Inc. Real-time Binance spot pairs.</p>
+  </footer>
+
+  <!-- CORE SCRIPTS -->
+  <script src="assets/js/config.js"></script>
+  <script src="assets/js/api.js"></script>
+  <script src="assets/js/main.js"></script>
+
+  <!-- HEATMAP CONTROLLER -->
+  <script>
+    document.addEventListener('DOMContentLoaded', async () => {
+      let topCoins = [];
+      const container = document.getElementById('heatmap-grid');
+      const search = document.getElementById('heatmap-search');
+
+      try {
+        const res = await window.MarketPulseAPI.getBinance24h();
+        const sorted = [...res.data].sort((a, b) => b.volume - a.volume);
+        topCoins = sorted.slice(0, 100);
+        renderHeatmap('');
+      } catch (e) {
+        console.error('Heatmap loading error:', e);
+      }
+
+      search?.addEventListener('input', (e) => {
+        renderHeatmap(e.target.value.toLowerCase().trim());
+      });
+
+      function getColor(change) {
+        if (change >= 5) return 'bg-[#059669] text-white';
+        if (change >= 2) return 'bg-[#10B981] text-white';
+        if (change >= 0) return 'bg-[#6EE7B7] text-slate-900';
+        if (change >= -2) return 'bg-[#FDA4AF] text-slate-900';
+        if (change >= -5) return 'bg-[#EF4444] text-white';
+        return 'bg-[#BE123C] text-white';
+      }
+
+      function getSizeClasses(index) {
+        if (index === 0) return 'w-48 sm:w-64 h-36 p-4 text-base'; // BTC
+        if (index === 1) return 'w-40 sm:w-52 h-32 p-3 text-sm';  // ETH
+        if (index < 6) return 'w-32 sm:w-40 h-28 p-2.5 text-xs';  // SOL, BNB, etc.
+        if (index < 18) return 'w-24 sm:w-32 h-20 p-2 text-xs';
+        return 'w-20 sm:w-24 h-16 p-1.5 text-[11px]';
+      }
+
+      function renderHeatmap(filterQuery) {
+        if (!container || !topCoins.length) return;
+
+        container.innerHTML = topCoins.map((c, i) => {
+          const colorClass = getColor(c.change24h);
+          const sizeClass = getSizeClasses(i);
+          const isMatched = filterQuery === '' || c.code.toLowerCase().includes(filterQuery) || c.name.toLowerCase().includes(filterQuery);
+          const dimClass = isMatched ? '' : 'opacity-20';
+
+          return `
+            <a href="coin.html?symbol=${c.symbol}" class="heatmap-tile ${sizeClass} ${colorClass} ${dimClass} rounded-xl shadow-xs flex flex-col justify-between overflow-hidden relative group cursor-pointer" title="${c.name} (${c.code}): ${c.change24h >= 0 ? '+' : ''}${c.change24h.toFixed(2)}% | Vol: ${window.MarketPulseAPI.formatVolume(c.volume)}">
+              <div class="flex items-center justify-between w-full">
+                <span class="font-extrabold uppercase tracking-tight">${c.code}</span>
+                <span class="text-[10px] opacity-80 font-mono">${c.change24h >= 0 ? '▲' : '▼'}</span>
+              </div>
+              <div class="text-right">
+                <div class="font-mono font-bold leading-tight">$${c.price >= 1 ? c.price.toLocaleString('en-US', { maximumFractionDigits: 2 }) : c.price.toFixed(4)}</div>
+                <div class="text-[10px] font-semibold opacity-90">${c.change24h >= 0 ? '+' : ''}${c.change24h.toFixed(2)}%</div>
+              </div>
+            </a>
+          `;
+        }).join('');
+      }
+    });
+  </script>
+
+</body>
+</html>
+

@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Tariq Ghazali — Author & Chief Market Strategist — MarketPulse</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            mp: {
+              bg: '#F6F9FC',
+              surface: '#FFFFFF',
+              dark: '#0B1220',
+              muted: '#5B6B7F',
+              border: '#E3EAF2',
+              primary: '#F5B700',
+              ice: '#DCEBFA',
+              gain: '#0E9F6E',
+              loss: '#E11D48'
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body class="bg-[#F6F9FC] dark:bg-[#0B1220] text-[#0B1220] dark:text-slate-100 antialiased min-h-screen flex flex-col transition-colors duration-200">
+
+  <!-- STICKY HEADER -->
+  <header class="header-glass sticky top-0 z-40 transition-all duration-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+        <div class="flex items-center gap-6">
+          <a href="index.html" class="flex items-center gap-2.5">
+            <div class="w-9 h-9 rounded-xl bg-[#F5B700] text-[#0B1220] flex items-center justify-center font-black text-xl shadow-md">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" /></svg>
+            </div>
+            <div>
+              <span class="font-heading font-extrabold text-xl text-slate-900 dark:text-white tracking-tight">Market<span class="text-amber-500">Pulse</span></span>
+              <span class="block text-[9px] font-semibold text-slate-500 tracking-wider uppercase -mt-1">Editorial Team</span>
+            </div>
+          </a>
+
+          <nav class="hidden lg:flex items-center gap-1 text-sm font-semibold text-slate-700 dark:text-slate-300">
+            <a href="index.html" class="px-3 py-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition">Home</a>
+            <a href="news.html" class="px-3 py-2 rounded-lg text-amber-600 dark:text-amber-400 bg-amber-50 dark:bg-slate-800">News</a>
+            <a href="markets.html" class="px-3 py-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition">Markets</a>
+            <a href="tools.html" class="px-3 py-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition">Tools</a>
+            <a href="exchanges-brokers.html" class="px-3 py-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition">Brokers</a>
+            <a href="academy.html" class="px-3 py-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition">Academy</a>
+          </nav>
+        </div>
+
+        <div class="flex items-center gap-2.5">
+          <button class="theme-toggle-btn p-2 rounded-xl text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800">
+            <svg class="theme-icon-moon w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
+            <svg class="theme-icon-sun w-4 h-4 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- LIVE TICKER -->
+  <div class="bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 text-xs py-1">
+    <div class="ticker-container">
+      <div id="live-ticker-track" class="ticker-track"></div>
+    </div>
+  </div>
+
+  <!-- MAIN BODY -->
+  <main class="flex-grow max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
+
+    <!-- Breadcrumb -->
+    <nav class="flex items-center gap-2 text-xs text-slate-500">
+      <a href="index.html" class="hover:underline">Home</a>
+      <span>&rsaquo;</span>
+      <a href="news.html" class="hover:underline">Newsroom</a>
+      <span>&rsaquo;</span>
+      <span class="font-bold text-slate-800 dark:text-slate-200">Tariq Ghazali</span>
+    </nav>
+
+    <!-- Author Profile Card -->
+    <div class="mp-card p-6 md:p-8 flex flex-col md:flex-row items-center md:items-start gap-6 bg-gradient-to-br from-white via-white to-amber-50/30 dark:from-slate-900 dark:to-slate-800">
+      <!-- Avatar Placeholder -->
+      <div class="w-24 h-24 rounded-2xl bg-gradient-to-tr from-amber-500 to-yellow-300 text-[#0B1220] flex items-center justify-center font-black text-3xl shadow-lg flex-shrink-0">
+        TG
+      </div>
+
+      <div class="space-y-3 text-center md:text-left flex-1">
+        <div class="flex flex-wrap items-center justify-center md:justify-start gap-2">
+          <h1 class="font-heading font-extrabold text-2xl text-slate-900 dark:text-white">Tariq Ghazali</h1>
+          <span class="px-2.5 py-0.5 rounded-full text-xs font-bold bg-[#F5B700] text-[#0B1220]">Chief Market Strategist</span>
+          <span class="text-[10px] bg-amber-100 dark:bg-amber-950 text-amber-800 dark:text-amber-300 px-2 py-0.5 rounded font-mono">Demo author</span>
+        </div>
+
+        <p class="text-xs md:text-sm text-slate-600 dark:text-slate-300 leading-relaxed max-w-2xl">
+          Tariq brings over a decade of cross-asset market research experience covering sovereign debt sustainability, macroeconomic currency corridors across South Asia and the GCC, and institutional cryptocurrency order book structures.
+        </p>
+
+        <!-- Social Badges & Certifications -->
+        <div class="flex flex-wrap items-center justify-center md:justify-start gap-3 pt-2 text-xs text-slate-500">
+          <span class="flex items-center gap-1.5"><span class="text-emerald-500">✓</span> CFA Charterholder</span>
+          <span class="flex items-center gap-1.5"><span class="text-blue-500">✓</span> Macro Derivatives Focus</span>
+          <span class="text-slate-400 font-mono">Islamabad, PK</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Articles Written by Author -->
+    <div class="space-y-4">
+      <div class="flex items-center justify-between pb-2 border-b border-slate-200 dark:border-slate-800">
+        <h2 class="font-heading font-extrabold text-lg text-slate-900 dark:text-white">Recent Analyses by Tariq</h2>
+        <span class="text-xs text-slate-400">Showing 4 Demo Publications</span>
+      </div>
+
+      <div class="space-y-4">
+        
+        <article class="mp-card p-5 mp-card-hover group flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+          <div class="space-y-1.5 flex-1">
+            <div class="flex items-center gap-2 text-[10px] text-slate-400">
+              <span class="text-amber-600 font-bold uppercase">Digital Assets</span>
+              <span>&bull;</span>
+              <span>Nov 10, 2026</span>
+              <span>&bull;</span>
+              <span>6 min read</span>
+            </div>
+            <h3 class="font-bold text-base text-slate-900 dark:text-white group-hover:text-amber-600 transition">
+              <a href="article.html">Institutional Bitcoin Reserves Reach 4.2% of Total Circulating Supply</a>
+            </h3>
+            <p class="text-xs text-slate-500 line-clamp-2 leading-relaxed">
+              Custodial tracking across sovereign balance sheets and registered spot exchange-traded products highlights a structural compression in available order book liquidity.
+            </p>
+          </div>
+          <a href="article.html" class="btn-secondary py-1.5 px-3 text-xs whitespace-nowrap">Read Deep Dive &rarr;</a>
+        </article>
+
+        <article class="mp-card p-5 mp-card-hover group flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+          <div class="space-y-1.5 flex-1">
+            <div class="flex items-center gap-2 text-[10px] text-slate-400">
+              <span class="text-amber-600 font-bold uppercase">Precious Metals</span>
+              <span>&bull;</span>
+              <span>Nov 09, 2026</span>
+              <span>&bull;</span>
+              <span>4 min read</span>
+            </div>
+            <h3 class="font-bold text-base text-slate-900 dark:text-white group-hover:text-amber-600 transition">
+              <a href="article.html">Pakistani Sarafa Association: How 24K Gold Tola Premiums Form</a>
+            </h3>
+            <p class="text-xs text-slate-500 line-clamp-2 leading-relaxed">
+              Deconstructing the mathematical correlation between London LBMA spot prices, domestic rupee depreciation, and jeweler dealer markups.
+            </p>
+          </div>
+          <a href="article.html" class="btn-secondary py-1.5 px-3 text-xs whitespace-nowrap">Read Deep Dive &rarr;</a>
+        </article>
+
+        <article class="mp-card p-5 mp-card-hover group flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+          <div class="space-y-1.5 flex-1">
+            <div class="flex items-center gap-2 text-[10px] text-slate-400">
+              <span class="text-blue-600 font-bold uppercase">Energy & Macro</span>
+              <span>&bull;</span>
+              <span>Nov 07, 2026</span>
+              <span>&bull;</span>
+              <span>5 min read</span>
+            </div>
+            <h3 class="font-bold text-base text-slate-900 dark:text-white group-hover:text-amber-600 transition">
+              <a href="article.html">Crude Oil Volatility: Maritime Supply Lines and Refinery Utilization</a>
+            </h3>
+            <p class="text-xs text-slate-500 line-clamp-2 leading-relaxed">
+              Global shipping insurance adjustments influence sweet crude benchmark spreads heading into winter seasonal demand.
+            </p>
+          </div>
+          <a href="article.html" class="btn-secondary py-1.5 px-3 text-xs whitespace-nowrap">Read Deep Dive &rarr;</a>
+        </article>
+
+      </div>
+    </div>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="bg-[#0B1220] text-slate-400 text-xs border-t border-slate-800 mt-16 py-8 text-center space-y-2">
+    <p class="text-amber-400 font-semibold">Trading involves risk. Content is for information only and not financial advice.</p>
+    <p class="text-slate-500 text-[11px]">&copy; 2026 MarketPulse Inc. Author profile preview.</p>
+  </footer>
+
+  <!-- CORE SCRIPTS -->
+  <script src="assets/js/config.js"></script>
+  <script src="assets/js/api.js"></script>
+  <script src="assets/js/main.js"></script>
+
+</body>
+</html>
