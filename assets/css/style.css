@@ -378,6 +378,48 @@ html.dark .glass-float-card {
   animation: livePing 1.8s cubic-bezier(0, 0, 0.2, 1) infinite;
 }
 
+/* Floating "Ask AI" Assistant Button (Institutional Fintech Polish) */
+.ask-ai-floating-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  padding: 10px 18px;
+  border-radius: 9999px;
+  background: #0B1220;
+  color: #FFFFFF;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 12px 32px -4px rgba(11, 18, 32, 0.35), 0 0 0 1px rgba(245, 183, 0, 0.15);
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 800;
+  font-size: 13px;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  user-select: none;
+  transition: all 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform, box-shadow;
+}
+
+.ask-ai-floating-btn:hover {
+  background: #111C30;
+  border-color: rgba(245, 183, 0, 0.5);
+  box-shadow: 0 16px 36px -4px rgba(245, 183, 0, 0.25), 0 0 0 1px rgba(245, 183, 0, 0.4);
+  transform: translateY(-2px) scale(1.02);
+}
+
+.ask-ai-floating-btn:active {
+  transform: translateY(0) scale(0.97);
+}
+
+.ask-ai-floating-btn .ai-sparkle-icon {
+  color: #F5B700;
+  filter: drop-shadow(0 0 6px rgba(245, 183, 0, 0.5));
+  transition: transform 0.3s ease;
+}
+
+.ask-ai-floating-btn:hover .ai-sparkle-icon {
+  transform: rotate(15deg) scale(1.1);
+}
+
 @keyframes livePing {
   0% { transform: scale(0.9); opacity: 0.8; }
   75%, 100% { transform: scale(2.2); opacity: 0; }

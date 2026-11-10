@@ -550,6 +550,105 @@
     </div>
   </div>
 
+<!-- 18. FLOATING "ASK AI" ASSISTANT BUTTON & PANEL (Billion-Dollar Fintech Polish) -->
+  <div class="fixed bottom-6 right-6 z-50">
+    <!-- Sleek Obsidian Floating Pill (Zero-knob, balanced fintech polish) -->
+    <button id="ask-ai-toggle" class="ask-ai-floating-btn" aria-label="Open MarketPulse AI Assistant">
+      <span class="ai-sparkle-icon flex items-center justify-center">
+        <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M12 2L14.4 9.6L22 12L14.4 14.4L12 22L9.6 14.4L2 12L9.6 9.6L12 2Z"/>
+        </svg>
+      </span>
+      <span>Ask AI</span>
+      <span class="relative flex h-2 w-2 ml-0.5">
+        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+        <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+      </span>
+    </button>
+
+    <!-- Slide-Up Modal Panel -->
+    <div id="ask-ai-panel" class="hidden absolute bottom-14 right-0 w-[360px] sm:w-[410px] bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl shadow-2xl overflow-hidden flex flex-col transition-all duration-200">
+      
+      <!-- Obsidian Header with Amber Glow -->
+      <div class="bg-[#0B1220] text-white p-4 flex items-center justify-between relative overflow-hidden border-b border-white/10">
+        <div class="absolute -top-12 -right-12 w-32 h-32 rounded-full bg-amber-500/15 blur-2xl pointer-events-none"></div>
+        <div class="flex items-center gap-3 relative z-10">
+          <div class="w-9 h-9 rounded-2xl bg-gradient-to-tr from-amber-500 to-amber-300 text-slate-950 flex items-center justify-center font-black shadow-md">
+            <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 2L14.4 9.6L22 12L14.4 14.4L12 22L9.6 14.4L2 12L9.6 9.6L12 2Z"/>
+            </svg>
+          </div>
+          <div>
+            <div class="font-heading font-extrabold text-sm text-white flex items-center gap-2">
+              <span>MarketPulse AI</span>
+              <span class="px-1.5 py-0.2 rounded text-[9px] bg-amber-400/20 text-amber-300 border border-amber-400/30 font-bold uppercase tracking-wider">Demo Mode</span>
+            </div>
+            <div class="text-[10px] text-slate-400 flex items-center gap-1.5">
+              <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+              <span>Live Market Synthesizer</span>
+            </div>
+          </div>
+        </div>
+        <button id="ask-ai-close" class="relative z-10 w-7 h-7 rounded-full bg-white/10 hover:bg-white/20 text-slate-300 hover:text-white flex items-center justify-center transition text-sm font-bold">&times;</button>
+      </div>
+
+      <!-- Chat Body -->
+      <div id="ask-ai-body" class="p-4 space-y-3.5 max-h-[350px] overflow-y-auto text-xs bg-slate-50/50 dark:bg-slate-900/50">
+        <!-- AI Greeting -->
+        <div class="p-3.5 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200/80 dark:border-slate-700/80 text-slate-700 dark:text-slate-200 shadow-xs leading-relaxed">
+          <div class="flex items-center gap-2 mb-1.5">
+            <span class="text-amber-500 font-bold text-xs">✨ Assistant</span>
+            <span class="text-[10px] text-slate-400 font-medium">Just now</span>
+          </div>
+          <p>Hello! I analyze live spot prices from 800+ crypto pairs, interbank currency rates, and Sarafa gold tola metrics. Click a prompt below or type your market question.</p>
+        </div>
+
+        <!-- Sleek Suggested Prompts -->
+        <div class="space-y-1.5 pt-1">
+          <div class="text-[10px] text-slate-400 font-bold uppercase tracking-wider px-1">Suggested Market Queries</div>
+          
+          <button class="ai-prompt-btn group w-full text-left p-2.5 rounded-xl bg-white dark:bg-slate-800 hover:bg-amber-50 dark:hover:bg-slate-750 border border-slate-200 dark:border-slate-700 text-slate-800 dark:text-slate-200 font-medium transition flex items-center justify-between shadow-xs">
+            <span class="flex items-center gap-2">
+              <span class="text-amber-500">⚡</span>
+              <span>What is the current crypto market sentiment?</span>
+            </span>
+            <span class="text-slate-400 group-hover:text-amber-500 group-hover:translate-x-0.5 transition-all text-xs">&rarr;</span>
+          </button>
+
+          <button class="ai-prompt-btn group w-full text-left p-2.5 rounded-xl bg-white dark:bg-slate-800 hover:bg-amber-50 dark:hover:bg-slate-750 border border-slate-200 dark:border-slate-700 text-slate-800 dark:text-slate-200 font-medium transition flex items-center justify-between shadow-xs">
+            <span class="flex items-center gap-2">
+              <span class="text-amber-500">🪙</span>
+              <span>How is Pakistani Gold per Tola calculated?</span>
+            </span>
+            <span class="text-slate-400 group-hover:text-amber-500 group-hover:translate-x-0.5 transition-all text-xs">&rarr;</span>
+          </button>
+
+          <button class="ai-prompt-btn group w-full text-left p-2.5 rounded-xl bg-white dark:bg-slate-800 hover:bg-amber-50 dark:hover:bg-slate-750 border border-slate-200 dark:border-slate-700 text-slate-800 dark:text-slate-200 font-medium transition flex items-center justify-between shadow-xs">
+            <span class="flex items-center gap-2">
+              <span class="text-amber-500">📊</span>
+              <span>What is Bitcoin's current market dominance?</span>
+            </span>
+            <span class="text-slate-400 group-hover:text-amber-500 group-hover:translate-x-0.5 transition-all text-xs">&rarr;</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Input Footer -->
+      <div class="p-3 border-t border-slate-100 dark:border-slate-800 bg-white dark:bg-slate-900">
+        <form id="ask-ai-form" class="flex items-center gap-2">
+          <input type="text" id="ask-ai-input" placeholder="Ask about BTC, PKR rates, or gold..." class="flex-1 px-3.5 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-xs focus:outline-hidden focus:border-amber-500 focus:bg-white dark:focus:bg-slate-800 text-slate-900 dark:text-white font-medium transition">
+          <button type="submit" class="w-9 h-9 rounded-xl bg-[#F5B700] hover:bg-amber-400 text-slate-950 flex items-center justify-center font-bold shadow-sm transition hover:scale-105 active:scale-95" title="Send message">
+            <svg class="w-4 h-4" viewBox="0 0 20 20" fill="currentColor">
+              <path d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z"/>
+            </svg>
+          </button>
+        </form>
+        <div class="text-[9px] text-slate-400 text-center mt-1.5">
+          Simulated AI demo. Trading involves risk &bull; Informational only.
+        </div>
+      </div>
+    </div>
+  </div>
 </body>
 </html>
 
