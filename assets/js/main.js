@@ -142,16 +142,44 @@
     });
   }
 
-  // --- 3c. Top-Tier Crypto Cursor Glow & Tilt ---
+  // --- 3c. Interactive 3D Parallax Tilt & Specular Light Engine ---
   function initCardGlow() {
-    const cards = document.querySelectorAll('.crypto-card-glow, .mp-card-hover, .glass-float-card, .mp-card');
+    const cards = document.querySelectorAll('.tilt-3d, .glass-float-card, .crypto-card-glow, .bento-card-3d');
+    if (!cards.length) return;
+
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
     cards.forEach(card => {
+      let rafId = null;
+
       card.addEventListener('mousemove', (e) => {
         const rect = card.getBoundingClientRect();
         const x = e.clientX - rect.left;
         const y = e.clientY - rect.top;
-        card.style.setProperty('--mouse-x', `${x}px`);
-        card.style.setProperty('--mouse-y', `${y}px`);
+
+        if (rafId) cancelAnimationFrame(rafId);
+        rafId = requestAnimationFrame(() => {
+          card.style.setProperty('--mouse-x', `${x}px`);
+          card.style.setProperty('--mouse-y', `${y}px`);
+
+          if (!prefersReduced) {
+            const centerX = rect.width / 2;
+            const centerY = rect.height / 2;
+            // Precise 3D tilt calculation (max +/- 6.5 degrees for luxury fintech feel)
+            const rotateX = ((centerY - y) / centerY * 6.5).toFixed(2);
+            const rotateY = ((x - centerX) / centerX * 6.5).toFixed(2);
+            card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(8px)`;
+          }
+        });
+      });
+
+      card.addEventListener('mouseleave', () => {
+        if (rafId) cancelAnimationFrame(rafId);
+        rafId = requestAnimationFrame(() => {
+          card.style.setProperty('--mouse-x', '50%');
+          card.style.setProperty('--mouse-y', '50%');
+          card.style.transform = '';
+        });
       });
     });
   }

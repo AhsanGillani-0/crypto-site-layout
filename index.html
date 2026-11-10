@@ -317,29 +317,29 @@
         <!-- Right: 3 Floating Live Data Glass Cards (Motion #1: Slow Float) -->
         <div class="lg:col-span-5 relative flex flex-col gap-4">
           
-          <!-- Floating Card 1: BTC Live + Sparkline (Top) -->
-          <div class="glass-float-card p-5 rounded-3xl animate-float-1 border-t-2 border-t-amber-400">
+          <!-- Floating Card 1: BTC Live + Sparkline (Top) with 3D Parallax Depth -->
+          <div class="glass-float-card tilt-3d p-5 rounded-3xl animate-float-1 border-t-2 border-t-amber-400">
             <div class="flex items-center justify-between mb-3">
               <div class="flex items-center gap-2.5">
-                <div class="w-8 h-8 rounded-full bg-amber-500 text-slate-900 font-bold text-xs flex items-center justify-center">₿</div>
+                <div class="card-3d-badge w-8 h-8 rounded-full bg-amber-500 text-slate-900 font-bold text-xs flex items-center justify-center shadow-md">₿</div>
                 <div>
                   <div class="font-extrabold text-sm text-slate-900 dark:text-white">Bitcoin</div>
                   <div class="text-[10px] text-slate-400 font-semibold">BTC / USDT &bull; Live Feed</div>
                 </div>
               </div>
-              <div id="hero-btc-badge" class="px-2 py-0.5 rounded-full text-xs font-bold bg-emerald-50 text-emerald-700 border border-emerald-200">
+              <div id="hero-btc-badge" class="card-3d-badge px-2 py-0.5 rounded-full text-xs font-bold bg-emerald-50 text-emerald-700 border border-emerald-200">
                 ▲ +3.42%
               </div>
             </div>
             <div class="flex items-baseline justify-between">
-              <div id="hero-btc-price" class="text-2xl sm:text-3xl font-extrabold font-mono text-slate-900 dark:text-white tabular-nums" data-price-usd="89450">
+              <div id="hero-btc-price" class="card-3d-price text-2xl sm:text-3xl font-extrabold font-mono text-slate-900 dark:text-white tabular-nums" data-price-usd="89450">
                 $89,450.00
               </div>
               <div class="text-[10px] text-slate-400 font-mono">24h High: $90,200</div>
             </div>
             <div class="mt-3 pt-3 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between text-xs">
               <span class="text-slate-400 text-[11px]">7-Day Trend</span>
-              <div id="hero-btc-sparkline">
+              <div id="hero-btc-sparkline" class="card-3d-sparkline">
                 <svg width="100" height="24" viewBox="0 0 100 24" class="overflow-visible">
                   <polyline fill="none" stroke="#0E9F6E" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" points="2,18 18,14 36,16 54,8 72,11 98,3" class="sparkline-path draw" />
                 </svg>
@@ -350,24 +350,24 @@
           <!-- 2 Side-by-side Floating Cards -->
           <div class="grid grid-cols-2 gap-4">
             
-            <!-- Floating Card 2: Fear & Greed Mini Gauge -->
-            <div class="glass-float-card p-4 rounded-3xl animate-float-2 border-t-2 border-t-emerald-500">
+            <!-- Floating Card 2: Fear & Greed Mini Gauge (3D Tilt) -->
+            <div class="glass-float-card tilt-3d p-4 rounded-3xl animate-float-2 border-t-2 border-t-emerald-500">
               <div class="text-[10px] text-slate-400 font-bold uppercase tracking-wider flex items-center justify-between">
                 <span>SENTIMENT</span>
-                <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+                <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
               </div>
-              <div id="hero-fg-score" class="text-xl font-extrabold font-mono text-emerald-600 mt-1">68 / 100</div>
+              <div id="hero-fg-score" class="card-3d-price text-xl font-extrabold font-mono text-emerald-600 mt-1">68 / 100</div>
               <div id="hero-fg-label" class="text-xs text-slate-600 dark:text-slate-300 font-semibold mt-0.5">Greed Mood</div>
               <div class="mt-2 text-[10px] text-slate-400 font-mono">Alternative.me Index</div>
             </div>
 
-            <!-- Floating Card 3: USD / PKR Live Interbank -->
-            <div class="glass-float-card p-4 rounded-3xl animate-float-3 border-t-2 border-t-blue-500">
+            <!-- Floating Card 3: USD / PKR Live Interbank (3D Tilt) -->
+            <div class="glass-float-card tilt-3d p-4 rounded-3xl animate-float-3 border-t-2 border-t-blue-500">
               <div class="text-[10px] text-slate-400 font-bold uppercase tracking-wider flex items-center justify-between">
                 <span>USD / PKR</span>
                 <span class="text-[9px] text-blue-600 font-bold">Interbank</span>
               </div>
-              <div id="hero-pkr-rate" class="text-xl font-extrabold font-mono text-slate-900 dark:text-white mt-1">₨ 278.60</div>
+              <div id="hero-pkr-rate" class="card-3d-price text-xl font-extrabold font-mono text-slate-900 dark:text-white mt-1">₨ 278.60</div>
               <div class="text-xs text-slate-500 font-medium mt-0.5">Daily baseline rate</div>
               <div class="mt-2 text-[10px] text-slate-400 font-mono">Updated today</div>
             </div>
@@ -385,7 +385,7 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="grid grid-cols-2 md:grid-cols-4 gap-6 items-center">
         
-        <div class="border-l-2 border-amber-400 pl-4">
+        <div class="tilt-3d border-l-2 border-amber-400 pl-4 py-1.5 rounded-r-xl transition-all hover:bg-white/[0.04]">
           <div class="text-[11px] text-slate-400 uppercase tracking-wider font-semibold">Total Market Cap</div>
           <div class="text-xl sm:text-2xl font-extrabold font-mono mt-0.5 flex items-baseline gap-2">
             <span data-count-to="3.18" data-decimals="2" data-prefix="$" data-suffix="T">$3.18T</span>
@@ -394,7 +394,7 @@
           <div class="text-[10px] text-slate-500 mt-0.5">Across 800+ assets</div>
         </div>
 
-        <div class="border-l-2 border-slate-700 pl-4">
+        <div class="tilt-3d border-l-2 border-slate-700 hover:border-amber-400 pl-4 py-1.5 rounded-r-xl transition-all hover:bg-white/[0.04]">
           <div class="text-[11px] text-slate-400 uppercase tracking-wider font-semibold">24h Trading Volume</div>
           <div class="text-xl sm:text-2xl font-extrabold font-mono mt-0.5">
             <span data-count-to="142.50" data-decimals="2" data-prefix="$" data-suffix="B">$142.50B</span>
@@ -402,7 +402,7 @@
           <div class="text-[10px] text-slate-500 mt-0.5">Spot & derivative volume</div>
         </div>
 
-        <div class="border-l-2 border-slate-700 pl-4">
+        <div class="tilt-3d border-l-2 border-slate-700 hover:border-amber-400 pl-4 py-1.5 rounded-r-xl transition-all hover:bg-white/[0.04]">
           <div class="text-[11px] text-slate-400 uppercase tracking-wider font-semibold">Bitcoin Dominance</div>
           <div class="text-xl sm:text-2xl font-extrabold font-mono mt-0.5">
             <span data-count-to="58.42" data-decimals="2" data-suffix="%">58.42%</span>
@@ -410,7 +410,7 @@
           <div class="text-[10px] text-slate-500 mt-0.5">Institutional weight</div>
         </div>
 
-        <div class="border-l-2 border-slate-700 pl-4">
+        <div class="tilt-3d border-l-2 border-slate-700 hover:border-emerald-400 pl-4 py-1.5 rounded-r-xl transition-all hover:bg-white/[0.04]">
           <div class="text-[11px] text-slate-400 uppercase tracking-wider font-semibold">API Feeds Status</div>
           <div class="flex items-center gap-2 mt-1">
             <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
@@ -568,8 +568,8 @@
 
     </section>
 
-    <!-- 7. AI MARKET BRIEF CARD (Strictly Labeled Sample) -->
-    <section class="reveal-on-scroll mp-card p-6 sm:p-7 border-l-4 border-l-[#F5B700] bg-gradient-to-r from-amber-50/30 via-white to-white dark:from-slate-900 dark:to-slate-850">
+    <!-- 7. AI MARKET BRIEF CARD (Strictly Labeled Sample - 3D Tilt) -->
+    <section class="reveal-on-scroll mp-card bento-card-3d p-6 sm:p-7 border-l-4 border-l-[#F5B700] bg-gradient-to-r from-amber-50/30 via-white to-white dark:from-slate-900 dark:to-slate-850">
       <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
         <div class="flex items-center gap-3">
           <div class="w-9 h-9 rounded-xl bg-[#F5B700] text-[#0B1220] flex items-center justify-center font-bold text-base shadow-xs">
@@ -637,8 +637,8 @@
       <!-- Bento Grid (12 Columns) -->
       <div class="bento-grid">
         
-        <!-- Bento Cell 1: Top Gainers & Losers (8 Cols) -->
-        <div class="lg:col-span-8 mp-card p-6 flex flex-col justify-between">
+        <!-- Bento Cell 1: Top Gainers & Losers (8 Cols) - 3D Tilt -->
+        <div class="lg:col-span-8 mp-card bento-card-3d p-6 flex flex-col justify-between">
           <div class="flex flex-wrap items-center justify-between pb-3 border-b border-slate-100 dark:border-slate-800 mb-4 gap-2">
             <div>
               <h3 class="font-heading font-extrabold text-base text-slate-900 dark:text-white flex items-center gap-2">
@@ -683,8 +683,8 @@
           </div>
         </div>
 
-        <!-- Bento Cell 2: Fear & Greed Radial Gauge (4 Cols) - Billion-Dollar Precision Meter -->
-        <div class="lg:col-span-4 mp-card crypto-card-glow p-6 flex flex-col justify-between">
+        <!-- Bento Cell 2: Fear & Greed Radial Gauge (4 Cols) - 3D Precision Meter -->
+        <div class="lg:col-span-4 mp-card bento-card-3d crypto-card-glow p-6 flex flex-col justify-between">
           <div>
             <div class="flex items-center justify-between pb-3 border-b border-slate-100 dark:border-slate-800 mb-3">
               <div class="flex items-center gap-2">
@@ -763,8 +763,8 @@
           </a>
         </div>
 
-        <!-- Bento Cell 3: Pakistani Rupee (PKR) Interbank Rates (4 Cols) -->
-        <div class="lg:col-span-4 mp-card p-6 flex flex-col justify-between">
+        <!-- Bento Cell 3: Pakistani Rupee (PKR) Interbank Rates (4 Cols) - 3D Tilt -->
+        <div class="lg:col-span-4 mp-card bento-card-3d p-6 flex flex-col justify-between">
           <div>
             <div class="flex items-center justify-between pb-3 border-b border-slate-100 dark:border-slate-800 mb-3">
               <h3 class="font-heading font-extrabold text-base text-slate-900 dark:text-white flex items-center gap-2">
@@ -804,8 +804,8 @@
           </div>
         </div>
 
-        <!-- Bento Cell 4: Gold per Tola Live Calculator (4 Cols) -->
-        <div class="lg:col-span-4 mp-card p-6 flex flex-col justify-between border-amber-200/80 dark:border-amber-900/60">
+        <!-- Bento Cell 4: Gold per Tola Live Calculator (4 Cols) - 3D Tilt -->
+        <div class="lg:col-span-4 mp-card bento-card-3d p-6 flex flex-col justify-between border-amber-200/80 dark:border-amber-900/60">
           <div>
             <div class="flex items-center justify-between pb-3 border-b border-slate-100 dark:border-slate-800 mb-3">
               <h3 class="font-heading font-extrabold text-base text-slate-900 dark:text-white flex items-center gap-2">
@@ -839,8 +839,8 @@
           </div>
         </div>
 
-        <!-- Bento Cell 5: Market Heatmap / Bubbles Preview (4 Cols) -->
-        <div class="lg:col-span-4 mp-card p-6 flex flex-col justify-between">
+        <!-- Bento Cell 5: Market Heatmap / Bubbles Preview (4 Cols) - 3D Tilt -->
+        <div class="lg:col-span-4 mp-card bento-card-3d p-6 flex flex-col justify-between">
           <div>
             <div class="flex items-center justify-between pb-3 border-b border-slate-100 dark:border-slate-800 mb-3">
               <h3 class="font-heading font-extrabold text-base text-slate-900 dark:text-white flex items-center gap-2">
